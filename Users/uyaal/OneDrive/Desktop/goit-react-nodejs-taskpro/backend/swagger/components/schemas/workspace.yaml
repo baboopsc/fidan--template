@@ -1,0 +1,23 @@
+type: object
+properties:
+  _id:
+    type: string
+    example: 6a67526ff14cb5e47aa33850
+  owner:
+    type: string
+    example: 6a6111520dc5a4cb7deec6e4
+  boards:
+    type: array
+    items:
+      $ref: './board.yaml'
+  activeBoardId:
+    type:
+      - string
+      - 'null'
+    example: board-123
+  createdAt:
+    type: string
+    format: date-time
+  updatedAt:
+    type: string
+    format: date-time

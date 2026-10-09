@@ -1,0 +1,18 @@
+type: object
+properties:
+  id:
+    type: string
+    example: board-123
+  title:
+    type: string
+    example: Website Project
+  iconId:
+    type: string
+    example: grid
+  backgroundId:
+    type: string
+    example: none
+  columns:
+    type: array
+    items:
+      $ref: './column.yaml'

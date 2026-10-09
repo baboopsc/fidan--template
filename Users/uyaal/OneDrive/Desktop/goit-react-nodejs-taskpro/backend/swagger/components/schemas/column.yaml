@@ -1,0 +1,8 @@
+type: object
+properties:
+  id:
+    type: string
+    example: column-123
+  title:
+    type: string
+    example: Todo

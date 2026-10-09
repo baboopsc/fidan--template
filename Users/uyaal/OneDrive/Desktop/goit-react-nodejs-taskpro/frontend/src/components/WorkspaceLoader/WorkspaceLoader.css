@@ -1,0 +1,47 @@
+.workspace-loader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  gap: 8px;
+  background: var(--app-bg);
+  color: var(--text-primary);
+}
+
+.workspace-loader-spinner {
+  width: 44px;
+  height: 44px;
+  background:
+    radial-gradient(farthest-side, var(--accent) 94%, transparent) top / 6px 6px no-repeat,
+    conic-gradient(transparent 14%, var(--accent));
+  border-radius: 50%;
+  animation: workspace-loader-spin 0.75s linear infinite;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.workspace-loader-spinner::after {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin: 6px;
+  border-radius: 50%;
+  background: var(--app-bg);
+}
+
+.workspace-loader-text {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+@keyframes workspace-loader-spin {
+  from {
+    transform: translateZ(0) rotate(0deg);
+  }
+
+  to {
+    transform: translateZ(0) rotate(360deg);
+  }
+}

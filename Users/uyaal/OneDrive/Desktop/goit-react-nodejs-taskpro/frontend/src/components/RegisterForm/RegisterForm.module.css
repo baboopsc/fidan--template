@@ -1,0 +1,93 @@
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.registerForm {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field input {
+  width: 100%;
+  height: 52px;
+  padding: 0 18px;
+  color: #fff;
+  background: #1f1f1f;
+  border: 1px solid rgba(190, 219, 176, 0.55);
+  border-radius: 8px;
+  font: inherit;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.field input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.field input:hover {
+  border-color: rgba(190, 219, 176, 0.8);
+}
+
+.field input:focus,
+.field input:focus-visible,
+.field input:active {
+  border-color: var(--light-green);
+  box-shadow: 0 0 0 3px rgba(190, 219, 176, 0.15);
+}
+
+.error {
+  display: block;
+  margin-top: 6px;
+  color: #e09cb5;
+  font-size: 12px;
+}
+
+.errorServer {
+  text-align: center;
+}
+
+.submit {
+  width: 100%;
+  height: 56px;
+  margin-top: 8px;
+  color: #161616;
+  background: var(--light-green);
+  border: 0;
+  border-radius: 8px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.submit:hover:not(:disabled) {
+  background: #aed19d;
+}
+
+.submit:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.submit:active:not(:disabled) {
+  background: var(--green);
+}
+
+.submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}

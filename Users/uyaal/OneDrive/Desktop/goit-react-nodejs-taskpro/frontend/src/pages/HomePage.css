@@ -1,0 +1,45 @@
+.taskpro-layout {
+  display: flex;
+  flex-direction: column; /* mobile/tablet: sidebar is fixed overlay, content is full width */
+  min-height: 100vh;
+}
+
+.taskpro-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0; /* prevents flex children from overflowing, per your earlier learning */
+  max-height: 100vh;
+  overflow-y: auto;
+  scrollbar-color: var(--accent) color-mix(in srgb, var(--app-bg) 65%, var(--panel-bg));
+  scrollbar-width: thin;
+}
+
+.taskpro-content::-webkit-scrollbar {
+  width: 12px;
+}
+
+.taskpro-content::-webkit-scrollbar-track {
+  background: color-mix(in srgb, var(--app-bg) 65%, var(--panel-bg));
+}
+
+.taskpro-content::-webkit-scrollbar-thumb {
+  min-height: 80px;
+  border: 3px solid color-mix(in srgb, var(--app-bg) 65%, var(--panel-bg));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 85%, #fff 15%);
+}
+
+.taskpro-content::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+@media (min-width: 1440px) {
+  .taskpro-layout {
+    flex-direction: row; /* sidebar + content side by side */
+  }
+
+  .taskpro-content {
+    flex: 1;
+  }
+}

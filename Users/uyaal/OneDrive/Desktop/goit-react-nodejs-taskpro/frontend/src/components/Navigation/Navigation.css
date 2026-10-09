@@ -1,0 +1,194 @@
+.navigation {
+  position: relative;
+  min-height: 0;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin-top: 40px;
+  overflow-y: auto;
+  scrollbar-color: transparent transparent;
+  scrollbar-width: thin;
+}
+
+.navigation::after {
+  position: sticky;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  height: 18px;
+  flex: 0 0 18px;
+  margin-top: -18px;
+  pointer-events: none;
+  opacity: 0;
+  background:
+    radial-gradient(ellipse at center bottom, color-mix(in srgb, var(--sidebar-accent) 24%, transparent) 0%, transparent 68%),
+    linear-gradient(to top, color-mix(in srgb, var(--sidebar-accent) 8%, transparent), transparent);
+  content: "";
+  transition: opacity 180ms ease;
+}
+
+.navigation.has-more-below::after {
+  opacity: 1;
+}
+
+.navigation::before {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  height: 16px;
+  flex: 0 0 16px;
+  margin-bottom: -16px;
+  pointer-events: none;
+  opacity: 0;
+  background:
+    radial-gradient(ellipse at center top, color-mix(in srgb, var(--sidebar-accent) 18%, transparent) 0%, transparent 72%),
+    linear-gradient(to bottom, color-mix(in srgb, var(--sidebar-accent) 7%, transparent), transparent);
+  content: "";
+  transition: opacity 180ms ease;
+}
+
+.navigation[data-has-more-above='true']::before {
+  opacity: 1;
+}
+
+.navigation:hover,
+.navigation:focus-within {
+  scrollbar-color: var(--sidebar-accent) color-mix(in srgb, var(--sidebar-bg) 78%, var(--panel-bg));
+}
+
+.navigation::-webkit-scrollbar {
+  width: 10px;
+}
+
+.navigation::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.navigation::-webkit-scrollbar-thumb {
+  min-height: 72px;
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  background-clip: padding-box;
+  transition: background-color 180ms ease, border-color 180ms ease;
+}
+
+.navigation:hover::-webkit-scrollbar-track,
+.navigation:focus-within::-webkit-scrollbar-track {
+  background: color-mix(in srgb, var(--sidebar-bg) 78%, var(--panel-bg));
+}
+
+.navigation:hover::-webkit-scrollbar-thumb,
+.navigation:focus-within::-webkit-scrollbar-thumb {
+  border-color: color-mix(in srgb, var(--sidebar-bg) 78%, var(--panel-bg));
+  background-color: color-mix(in srgb, var(--sidebar-accent) 85%, #fff 15%);
+}
+
+.navigation::-webkit-scrollbar-thumb:hover {
+  background-color: var(--sidebar-accent);
+}
+
+.board {
+  position: relative;
+  min-height: 61px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 14px;
+  color: var(--sidebar-text-secondary);
+  text-decoration: none;
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+.board:hover,
+.board:focus-visible {
+  background: var(--panel-hover-bg);
+  color: var(--sidebar-text-primary);
+  outline: none;
+}
+
+.board.active {
+  background: var(--active-bg);
+  color: var(--sidebar-text-primary);
+}
+
+.board.active::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 4px;
+  height: 100%;
+  border-radius: 4px 0 0 4px;
+  background: var(--accent);
+  content: "";
+}
+
+.board-left {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.board-icon {
+  flex: 0 0 18px;
+  stroke: currentColor;
+}
+
+.board-title-text {
+  min-width: 0;
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.28;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.board-actions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+
+.board:hover .board-actions,
+.board:focus-within .board-actions,
+.board.active .board-actions {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.board-actions button {
+  width: 16px;
+  height: 16px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--sidebar-text-secondary);
+  cursor: pointer;
+  transition: color 180ms ease;
+}
+
+.board-actions button:hover,
+.board-actions button:focus-visible {
+  color: var(--sidebar-accent);
+  outline: none;
+}
+
+.board-actions svg {
+  stroke: currentColor;
+}
+
+@media (min-width: 768px) {
+  .board {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}

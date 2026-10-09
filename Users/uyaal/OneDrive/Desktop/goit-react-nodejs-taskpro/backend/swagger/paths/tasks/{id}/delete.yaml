@@ -1,0 +1,36 @@
+tags:
+  - Tasks
+summary: Delete a task
+operationId: deleteTask
+description: Deletes a task belonging to the authenticated user.
+parameters:
+  - in: path
+    name: id
+    description: Task ID
+    required: true
+    schema:
+      type: string
+      example: 65e4decdd286b30065d54af9
+responses:
+  '200':
+    description: Task deleted successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Task deleted successfully
+  '401':
+    $ref: ../../../components/responses/401.yaml
+  '404':
+    $ref: ../../../components/responses/404.yaml
+  '500':
+    $ref: ../../../components/responses/500.yaml

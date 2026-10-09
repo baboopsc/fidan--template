@@ -1,0 +1,120 @@
+.welcomePage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  min-height: 100svh;
+  padding: 32px 20px;
+  text-align: center;
+  background: linear-gradient(
+    180deg,
+    #f6f6f7 0%,
+    #eef1ea 28%,
+    #d9e4d0 60%,
+    #bbd9ad 100%
+  );
+}
+
+.hero {
+  width: 110px;
+  height: 110px;
+  margin-bottom: 8px;
+}
+
+.description {
+  max-width: 320px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #161616;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.buttonPrimary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 200px;
+  padding: 14px 24px;
+  border-radius: 12px;
+  background: #161616;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.buttonPrimary:hover,
+.buttonPrimary:focus-visible {
+  opacity: 0.85;
+}
+
+.buttonLink {
+  font-size: 14px;
+  font-weight: 500;
+  color: #161616;
+  text-decoration: none;
+}
+
+.buttonLink:hover,
+.buttonLink:focus-visible {
+  text-decoration: underline;
+}
+
+@media (min-width: 375px) {
+  .hero {
+    width: 130px;
+    height: 130px;
+  }
+
+  .description {
+    max-width: 360px;
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 768px) {
+  .welcomePage {
+    gap: 20px;
+    padding: 48px 32px;
+  }
+
+  .hero {
+    width: 150px;
+    height: 150px;
+  }
+
+  .description {
+    max-width: 420px;
+    font-size: 16px;
+  }
+
+  .buttonPrimary,
+  .buttonLink {
+    font-size: 16px;
+  }
+
+  .buttonPrimary {
+    min-width: 235px;
+    padding: 16px 32px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .hero {
+    width: 162px;
+    height: 162px;
+  }
+
+  .description {
+    max-width: 463px;
+  }
+}

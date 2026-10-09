@@ -1,0 +1,11 @@
+type: object
+required:
+  - user
+  - token
+properties:
+  user:
+    $ref: ./user.yaml
+  token:
+    type: string
+    description: JWT access token
+    example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...

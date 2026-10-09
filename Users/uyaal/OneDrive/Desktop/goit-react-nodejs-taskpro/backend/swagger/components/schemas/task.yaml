@@ -1,0 +1,51 @@
+type: object
+required:
+  - _id
+  - title
+  - description
+  - labelColor
+  - deadline
+  - columnId
+  - owner
+  - createdAt
+  - updatedAt
+properties:
+  _id:
+    description: Task's id
+    type: string
+    example: 65e4decdd286b30065d54af9
+  title:
+    description: Task's title
+    type: string
+    example: 'Send sales report'
+  description:
+    description: Task's description
+    type: string
+    example: 'quarterly report'
+  labelColor:
+    description: Task's label color
+    type: string
+    example: 'blue'
+  deadline:
+    description: Task deadline
+    type: string
+    format: date-time
+    example: '2026-08-01T12:00:00.000Z'
+  columnId:
+    description: Current board column
+    type: string
+    example: todo
+  owner:
+    description: ID of the user who owns the task
+    type: string
+    example: '65e4decdd286b30065d54af9'
+  createdAt:
+    description: Task creation timestamp
+    type: string
+    format: date-time
+    example: '2026-07-25T10:30:00.000Z'
+  updatedAt:
+    description: Task last update timestamp
+    type: string
+    format: date-time
+    example: '2026-07-25T11:15:00.000Z'

@@ -1,0 +1,59 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Task Pro API
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  description: >
+    REST API for Task Pro
+tags:
+  - name: Tasks
+    description: Operations about tasks.
+  - name: Auth
+    description: Auth operations.
+  - name: Workspace
+    description: Workspace operations.
+servers:
+  - url: http://localhost:3000
+security:
+  - bearerAuth: []
+paths:
+  /api/auth/register:
+    post:
+      $ref: '../swagger/paths/auth/register/post.yaml'
+  /api/auth/login:
+    post:
+      $ref: '../swagger/paths/auth/login/post.yaml'
+  /api/auth/logout:
+    post:
+      $ref: '../swagger/paths/auth/logout/post.yaml'
+  /api/auth/current:
+    get:
+      $ref: '../swagger/paths/auth/current/get.yaml'
+    patch:
+      $ref: '../swagger/paths/auth/current/patch.yaml'
+  /api/tasks:
+    get:
+      $ref: ../swagger/paths/tasks/get.yaml
+    post:
+      $ref: ../swagger/paths/tasks/post.yaml
+  /api/tasks/{id}:
+    patch:
+      $ref: ../swagger/paths/tasks/{id}/patch.yaml
+    delete:
+      $ref: ../swagger/paths/tasks/{id}/delete.yaml
+  /api/workspace:
+    get:
+      $ref: '../swagger/paths/workspace/get.yaml'
+    put:
+      $ref: '../swagger/paths/workspace/put.yaml'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    AuthResponse:
+      $ref: ../swagger/components/schemas/authResponse.yaml

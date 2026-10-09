@@ -1,0 +1,29 @@
+type: object
+required:
+  - id
+  - name
+  - email
+  - theme
+properties:
+  id:
+    type: string
+    example: '65e4decdd286b30065d54af9'
+  name:
+    type: string
+    minLength: 2
+    maxLength: 32
+    example: John
+  email:
+    type: string
+    format: email
+    example: johndoe@example.com
+  avatarUrl:
+    type: string
+    example: https://res.cloudinary.com/example/avatar.jpg
+  theme:
+    type: string
+    enum:
+      - light
+      - dark
+      - violet
+    example: light

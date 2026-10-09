@@ -1,0 +1,1018 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Task Pro API",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "description": "REST API for Task Pro\n"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Tasks",
+      "description": "Operations about tasks."
+    },
+    {
+      "name": "Auth",
+      "description": "Auth operations."
+    },
+    {
+      "name": "Workspace",
+      "description": "Workspace operations."
+    }
+  ],
+  "paths": {
+    "/api/auth/register": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Register a user",
+        "operationId": "registerUser",
+        "description": "Register a new user account",
+        "security": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "email",
+                  "password"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "John Doe"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "johndoe@example.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "password123"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User registered successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/authResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          }
+        }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Login a user",
+        "operationId": "loginUser",
+        "description": "Login with email and password to get an access token",
+        "security": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email",
+                  "password"
+                ],
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "johndoe@example.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "password123"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User logged in successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/authResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          }
+        }
+      }
+    },
+    "/api/auth/logout": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Logout a user",
+        "operationId": "logoutUser",
+        "description": "Logout the currently authenticated user and invalidate the session",
+        "security": [],
+        "responses": {
+          "204": {
+            "description": "Successfully logged out"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          }
+        }
+      }
+    },
+    "/api/auth/current": {
+      "get": {
+        "operationId": "getCurrentUser",
+        "summary": "Get current user",
+        "description": "Returns the currently authenticated user's profile",
+        "tags": [
+          "Auth"
+        ],
+        "responses": {
+          "200": {
+            "description": "Current user retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/user"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateCurrentUser",
+        "summary": "Update current user",
+        "description": "Updates the currently authenticated user's profile",
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "avatar": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "New avatar image"
+                  },
+                  "name": {
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 32,
+                    "example": "John"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "example": "johndoe@example.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "format": "password",
+                    "example": "newPassword123"
+                  },
+                  "theme": {
+                    "type": "string",
+                    "enum": [
+                      "light",
+                      "dark",
+                      "violet"
+                    ],
+                    "example": "dark"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/user"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Nothing to update or invalid data"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          }
+        }
+      }
+    },
+    "/api/tasks": {
+      "get": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Get all tasks",
+        "operationId": "getTasks",
+        "description": "Returns all tasks belonging to the authenticated user.",
+        "responses": {
+          "200": {
+            "description": "Tasks retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Tasks retrieved successfully"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/task"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Create a task",
+        "operationId": "createTask",
+        "description": "Creates a new task for the authenticated user.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/createTask"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Task created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 201
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Task created successfully"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/task"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/api/tasks/{id}": {
+      "patch": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Update a task",
+        "operationId": "updateTask",
+        "description": "Updates a task belonging to the authenticated user.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Task ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "65e4decdd286b30065d54af9"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/updateTask"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Task updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Task updated successfully"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/task"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Delete a task",
+        "operationId": "deleteTask",
+        "description": "Deletes a task belonging to the authenticated user.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Task ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "65e4decdd286b30065d54af9"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Task deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Task deleted successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/api/workspace": {
+      "get": {
+        "summary": "Get user workspace",
+        "description": "Retrieves the authenticated user's workspace.",
+        "operationId": "getWorkspace",
+        "tags": [
+          "Workspace"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Workspace retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Workspace retrieved successfully"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/workspace"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          }
+        }
+      },
+      "put": {
+        "summary": "Save user workspace",
+        "description": "Saves boards, columns, and active board for the authenticated user.",
+        "operationId": "saveWorkspace",
+        "tags": [
+          "Workspace"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "boards": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/board"
+                    }
+                  },
+                  "activeBoardId": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "example": "board-123"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Workspace saved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Workspace saved successfully"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/workspace"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "AuthResponse": {
+        "$ref": "#/components/schemas/authResponse"
+      },
+      "user": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "email",
+          "theme"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "65e4decdd286b30065d54af9"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 32,
+            "example": "John"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "johndoe@example.com"
+          },
+          "avatarUrl": {
+            "type": "string",
+            "example": "https://res.cloudinary.com/example/avatar.jpg"
+          },
+          "theme": {
+            "type": "string",
+            "enum": [
+              "light",
+              "dark",
+              "violet"
+            ],
+            "example": "light"
+          }
+        }
+      },
+      "authResponse": {
+        "type": "object",
+        "required": [
+          "user",
+          "token"
+        ],
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/user"
+          },
+          "token": {
+            "type": "string",
+            "description": "JWT access token",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+          }
+        }
+      },
+      "task": {
+        "type": "object",
+        "required": [
+          "_id",
+          "title",
+          "description",
+          "labelColor",
+          "deadline",
+          "columnId",
+          "owner",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "_id": {
+            "description": "Task's id",
+            "type": "string",
+            "example": "65e4decdd286b30065d54af9"
+          },
+          "title": {
+            "description": "Task's title",
+            "type": "string",
+            "example": "Send sales report"
+          },
+          "description": {
+            "description": "Task's description",
+            "type": "string",
+            "example": "quarterly report"
+          },
+          "labelColor": {
+            "description": "Task's label color",
+            "type": "string",
+            "example": "blue"
+          },
+          "deadline": {
+            "description": "Task deadline",
+            "type": "string",
+            "format": "date-time",
+            "example": "2026-08-01T12:00:00.000Z"
+          },
+          "columnId": {
+            "description": "Current board column",
+            "type": "string",
+            "example": "todo"
+          },
+          "owner": {
+            "description": "ID of the user who owns the task",
+            "type": "string",
+            "example": "65e4decdd286b30065d54af9"
+          },
+          "createdAt": {
+            "description": "Task creation timestamp",
+            "type": "string",
+            "format": "date-time",
+            "example": "2026-07-25T10:30:00.000Z"
+          },
+          "updatedAt": {
+            "description": "Task last update timestamp",
+            "type": "string",
+            "format": "date-time",
+            "example": "2026-07-25T11:15:00.000Z"
+          }
+        }
+      },
+      "createTask": {
+        "type": "object",
+        "required": [
+          "title",
+          "description",
+          "deadline"
+        ],
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 100,
+            "example": "Finish project"
+          },
+          "description": {
+            "type": "string",
+            "example": "Complete API documentation"
+          },
+          "labelColor": {
+            "type": "string",
+            "enum": [
+              "blue",
+              "pink",
+              "green",
+              "gray"
+            ],
+            "default": "gray",
+            "example": "green"
+          },
+          "deadline": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2026-08-01T12:00:00.000Z"
+          },
+          "columnId": {
+            "type": "string",
+            "example": "todo"
+          }
+        }
+      },
+      "updateTask": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 100,
+            "example": "Updated task title",
+            "description": "Task title"
+          },
+          "description": {
+            "type": "string",
+            "example": "Updated task description"
+          },
+          "labelColor": {
+            "type": "string",
+            "enum": [
+              "blue",
+              "pink",
+              "green",
+              "gray"
+            ],
+            "example": "pink"
+          },
+          "deadline": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2026-08-10T12:00:00.000Z"
+          },
+          "columnId": {
+            "type": "string",
+            "example": "in-progress"
+          }
+        }
+      },
+      "column": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "column-123"
+          },
+          "title": {
+            "type": "string",
+            "example": "Todo"
+          }
+        }
+      },
+      "board": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "board-123"
+          },
+          "title": {
+            "type": "string",
+            "example": "Website Project"
+          },
+          "iconId": {
+            "type": "string",
+            "example": "grid"
+          },
+          "backgroundId": {
+            "type": "string",
+            "example": "none"
+          },
+          "columns": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/column"
+            }
+          }
+        }
+      },
+      "workspace": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "6a67526ff14cb5e47aa33850"
+          },
+          "owner": {
+            "type": "string",
+            "example": "6a6111520dc5a4cb7deec6e4"
+          },
+          "boards": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/board"
+            }
+          },
+          "activeBoardId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "example": "board-123"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    },
+    "responses": {
+      "400": {
+        "description": "Bad Request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "status",
+                "message"
+              ],
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 400
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Nothing to update"
+                },
+                "data": {
+                  "type": "object",
+                  "description": "Additional error information"
+                }
+              }
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "Unauthorized",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "status",
+                "message"
+              ],
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 401
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Authorization header missing"
+                },
+                "data": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "404": {
+        "description": "Not Found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "status",
+                "message"
+              ],
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 404
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Route not found"
+                },
+                "data": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "409": {
+        "description": "Conflict",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "status",
+                "message"
+              ],
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 409
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Email in use"
+                },
+                "data": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "500": {
+        "description": "Internal Server Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 500
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something went wrong"
+                },
+                "data": {
+                  "type": "string",
+                  "example": "Database connection failed"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+summary: Save user workspace
+description: Saves boards, columns, and active board for the authenticated user.
+operationId: saveWorkspace
+tags:
+  - Workspace
+security:
+  - bearerAuth: []
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          boards:
+            type: array
+            items:
+              $ref: '../../components/schemas/board.yaml'
+
+          activeBoardId:
+            type: [string, 'null']
+            example: board-123
+responses:
+  '200':
+    description: Workspace saved successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Workspace saved successfully
+            data:
+              $ref: '../../components/schemas/workspace.yaml'
+  '401':
+    $ref: ../../components/responses/401.yaml

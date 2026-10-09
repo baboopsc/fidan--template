@@ -1,0 +1,78 @@
+.column-modal {
+  position: relative;
+  width: min(100%, 360px);
+  padding: 28px;
+  color: var(--text-primary);
+  text-align: left;
+  background: var(--panel-bg);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
+}
+
+.column-modal-title {
+  margin: 0 0 24px;
+  color: var(--text-primary);
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.column-modal-input {
+  width: 100%;
+  height: 48px;
+  padding: 0 18px;
+  color: var(--text-primary);
+  background: var(--app-bg);
+  border: 1px solid color-mix(in srgb, var(--accent) 75%, transparent);
+  border-radius: 8px;
+  box-sizing: border-box;
+  font: inherit;
+  outline: none;
+}
+
+.column-modal-input:focus {
+  border-color: var(--accent);
+}
+
+.column-modal-submit {
+  width: 100%;
+  height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px;
+  color: var(--accent-text);
+  background: var(--accent);
+  border: 0;
+  border-radius: 8px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.modal-close-button svg,
+.submit-icon svg {
+  stroke: currentColor;
+}
+
+.modal-close-button {
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.modal-close-button:hover,
+.modal-close-button:focus-visible {
+  color: #e74c3c;
+  outline: none;
+  transform: scale(1.06);
+}
+
+.column-modal-submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+body[data-theme='violet'] .submit-icon {
+  background: #fff;
+  color: var(--accent);
+}

@@ -1,0 +1,199 @@
+:root {
+  --font-family: 'Poppins', sans-serif;
+  --font-weight: 400;
+
+  --font-size: 12px;
+  --line-height: 1.33333;
+  --letter-spacing: -0.02em;
+
+  --white: #fff;
+  --dark-grey-text: rgba(255, 255, 255, 0.5);
+  --light-green: #bedbb0;
+  --light-green-alpha: rgba(190, 219, 176, 0.4);
+  --green: #9dc888;
+  --light-violet: #7b7ede;
+  --violet: #5255bc;
+
+  --background: #1f1f1f;
+  --app-bg: #1f1f1f;
+  --header-bg: #161616;
+  --sidebar-bg: #121212;
+  --sidebar-card-bg: #1f1f1f;
+  --sidebar-text-primary: #fff;
+  --sidebar-text-secondary: rgba(255, 255, 255, 0.5);
+  --sidebar-border-soft: rgba(255, 255, 255, 0.1);
+  --sidebar-accent: #bedbb0;
+  --sidebar-accent-text: #121212;
+  --panel-bg: #121212;
+  --panel-hover-bg: #171717;
+  --active-bg: #1f1f1f;
+  --text-primary: #fff;
+  --text-secondary: rgba(255, 255, 255, 0.5);
+  --text-muted: rgba(255, 255, 255, 0.42);
+  --border-soft: rgba(255, 255, 255, 0.1);
+  --accent: #bedbb0;
+  --accent-hover: #9dc888;
+  --accent-text: #121212;
+  --logo-icon-bg: #1f1f1f;
+  --logo-mark: #fff;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* @media (min-width: 768px) {
+  }
+
+  @media (min-width: 1440px) {
+  } */
+}
+
+@media (prefers-color-scheme: light) {
+  /* :root {
+    --text: #9ca3af;
+    --text-h: #f3f4f6;
+    --bg: #16171d;
+    --border: #2e303a;
+    --code-bg: #1f2028;
+    --accent: #c084fc;
+    --accent-bg: rgba(192, 132, 252, 0.15);
+    --accent-border: rgba(192, 132, 252, 0.5);
+    --social-bg: rgba(47, 48, 58, 0.5);
+    --shadow:
+      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+  } */
+}
+
+@media (prefers-color-scheme: violet) {
+  :root {
+    /* --text: #9ca3af;
+    --text-h: #f3f4f6;
+    --bg: #16171d;
+    --border: #2e303a;
+    --code-bg: #1f2028;
+    --accent: #c084fc;
+    --accent-bg: rgba(192, 132, 252, 0.15);
+    --accent-border: rgba(192, 132, 252, 0.5);
+    --social-bg: rgba(47, 48, 58, 0.5);
+    --shadow:
+      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px; */
+  }
+}
+
+body[data-theme='light'] {
+  --background: #f6f6f7;
+  --app-bg: #f6f6f7;
+  --header-bg: #fcfcfc;
+  --sidebar-bg: #fff;
+  --sidebar-card-bg: #f6f6f7;
+  --sidebar-text-primary: #161616;
+  --sidebar-text-secondary: rgba(22, 22, 22, 0.5);
+  --sidebar-border-soft: rgba(22, 22, 22, 0.1);
+  --sidebar-accent: #bedbb0;
+  --sidebar-accent-text: #161616;
+  --panel-bg: #fff;
+  --panel-hover-bg: #f6f6f7;
+  --active-bg: #f6f6f7;
+  --text-primary: #161616;
+  --text-secondary: rgba(22, 22, 22, 0.5);
+  --text-muted: rgba(22, 22, 22, 0.7);
+  --border-soft: rgba(22, 22, 22, 0.1);
+  --accent: #bedbb0;
+  --accent-hover: #9dc888;
+  --accent-text: #161616;
+  --logo-icon-bg: #161616;
+  --logo-mark: #fff;
+}
+
+body[data-theme='violet'] {
+  --background: #ecedfd;
+  --app-bg: #ecedfd;
+  --header-bg: #fff;
+  --sidebar-bg: #5255bc;
+  --sidebar-card-bg: rgba(255, 255, 255, 0.12);
+  --sidebar-text-primary: #fff;
+  --sidebar-text-secondary: rgba(255, 255, 255, 0.5);
+  --sidebar-border-soft: rgba(255, 255, 255, 0.16);
+  --sidebar-accent: #fff;
+  --sidebar-accent-text: #5255bc;
+  --panel-bg: #fff;
+  --panel-hover-bg: #f7f7ff;
+  --active-bg: rgba(255, 255, 255, 0.18);
+  --text-primary: #161616;
+  --text-secondary: rgba(22, 22, 22, 0.5);
+  --text-muted: rgba(22, 22, 22, 0.7);
+  --border-soft: rgba(22, 22, 22, 0.1);
+  --accent: #5255bc;
+  --accent-hover: #7b7ede;
+  --accent-text: #fff;
+  --logo-icon-bg: #fff;
+  --logo-mark: #5255bc;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+  line-height: var(--line-height);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background);
+  color: var(--text-primary);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.taskpro-layout {
+  min-height: 100vh;
+  display: flex;
+  overflow-x: hidden;
+  background: var(--app-bg);
+}
+
+.taskpro-content {
+  min-width: 0;
+  min-height: 100vh;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+h1,
+h2 {
+  font-family: var(--font-family);
+  color: var(--text-primary);
+}
+
+h1 {
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: -0.04em;
+}
+
+h2 {
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+p {
+  margin: 0;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}

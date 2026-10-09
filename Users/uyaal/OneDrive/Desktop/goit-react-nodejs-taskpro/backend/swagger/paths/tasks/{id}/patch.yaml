@@ -1,0 +1,47 @@
+tags:
+  - Tasks
+summary: Update a task
+operationId: updateTask
+description: Updates a task belonging to the authenticated user.
+parameters:
+  - in: path
+    name: id
+    description: Task ID
+    required: true
+    schema:
+      type: string
+      example: 65e4decdd286b30065d54af9
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: ../../../components/schemas/updateTask.yaml
+responses:
+  '200':
+    description: Task updated successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Task updated successfully
+            data:
+              $ref: ../../../components/schemas/task.yaml
+  '400':
+    $ref: ../../../components/responses/400.yaml
+  '401':
+    $ref: ../../../components/responses/401.yaml
+  '404':
+    $ref: ../../../components/responses/404.yaml
+  '500':
+    $ref: ../../../components/responses/500.yaml

@@ -1,0 +1,14 @@
+operationId: getCurrentUser
+summary: Get current user
+description: Returns the currently authenticated user's profile
+tags:
+  - Auth
+responses:
+  '200':
+    description: Current user retrieved successfully
+    content:
+      application/json:
+        schema:
+          $ref: '../../../components/schemas/user.yaml'
+  '401':
+    $ref: '../../../components/responses/401.yaml'
