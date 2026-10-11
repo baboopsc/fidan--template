@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fidan Dünyası - Fidanlar</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* --- BİREBİR MİNİMAL TASARIM KODLARI --- */
+    :root {
+      --bg-color: #fcf9f2;      /* Krem Arka Plan */
+      --hero-bg: #c8d5c4;       /* Soft Yeşil Afiş */
+      --text-dark: #2a3c24;     /* Koyu Yeşil Metin */
+      --text-light: #6b7a65;    /* Gri/Yeşil Alt Metin */
+      --card-bg: #ffffff;       /* Beyaz Kartlar */
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+   /* SERT GEÇİŞİ YUMUŞATAN ANİMASYON EKLENDİ */
+    body { 
+      background-color: var(--bg-color); 
+      font-family: 'Plus Jakarta Sans', sans-serif; 
+      color: var(--text-dark); 
+      line-height: 1.6; 
+      animation: fadeIn 0.4s ease-in-out; 
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    h1, h2, h3 { font-family: 'Lora', serif; color: var(--text-dark); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    
+    /* Üst Menü */
+    header { background: transparent; padding: 20px 0; }
+    .header__inner { display: flex; justify-content: space-between; align-items: center; }
+    .logo-text { font-size: 24px; font-weight: 700; font-family: 'Lora', serif; text-decoration: none; color: var(--text-dark); }
+    .desktop-nav { display: flex; gap: 30px; }
+    .desktop-nav a { text-decoration: none; color: var(--text-dark); font-weight: 500; font-size: 15px; transition: color 0.2s; }
+    .desktop-nav a:hover, .desktop-nav a.active { color: #4caf50; }
+
+    /* Katalog Afişi (Hero) */
+    .catalog-hero { background-color: var(--hero-bg); padding: 50px 20px; text-align: center; border-radius: 0 0 40px 40px; margin-bottom: 40px; }
+    .catalog-hero h1 { font-size: 2.5rem; margin-bottom: 10px; }
+    .catalog-hero p { color: var(--text-dark); font-size: 1.1rem; opacity: 0.8; }
+
+    /* Arama ve Filtreleme Çubuğu */
+    .search-filter-wrapper { max-width: 700px; margin: -70px auto 50px; position: relative; z-index: 10; }
+    .search-filter-form { display: flex; align-items: center; gap: 15px; background: #fff; padding: 10px 20px; border-radius: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    .search-input-wrapper { flex: 1; display: flex; align-items: center; }
+    .search-input { width: 100%; border: none; outline: none; font-size: 16px; color: var(--text-dark); background: transparent; padding: 5px; font-family: inherit; }
+    .searcher__clear { background: none; border: none; font-size: 18px; color: #999; cursor: pointer; padding: 0 10px; }
+    
+    /* Kategori Seçici */
+    .custom-select { position: relative; border-left: 1px solid #eee; padding-left: 20px; display: flex; align-items: center; }
+    .custom-select__btn { background: none; border: none; display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; color: var(--text-dark); cursor: pointer; font-family: inherit; }
+    .custom-select__list { position: absolute; top: 120%; left: 0; background: #fff; list-style: none; padding: 10px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); width: 100%; min-width: 150px; z-index: 20; }
+    .custom-select__list li { padding: 8px 12px; cursor: pointer; font-size: 14px; border-radius: 6px; transition: 0.2s; }
+    .custom-select__list li:hover { background: #f5f5f5; }
+    .hide { display: none !important; }
+    
+    .search-btn { background: var(--text-dark); color: #fff; border: none; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; }
+    .search-btn:hover { background: #3b5234; }
+
+    /* Fidan Kartları Izgarası (Grid) */
+    /* Fidan Kartları Izgarası (Grid) - 3'lü Dizilim */
+    .movie-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; list-style: none; max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+    
+    /* catalog.js içindeki movie-card sınıfına müdahale */
+    .movie-card { background: var(--card-bg) !important; padding: 15px !important; border-radius: 20px !important; box-shadow: 0 4px 15px rgba(0,0,0,0.03) !important; transition: transform 0.3s !important; cursor: pointer; text-align: left !important; }
+    .movie-card:hover { transform: translateY(-5px) !important; }
+    .movie-card__poster { width: 100% !important; height: 250px !important; object-fit: cover !important; border-radius: 12px !important; margin-bottom: 15px !important; background: #f0f0f0; }
+    .movie-card__info { display: flex; flex-direction: column; gap: 5px; }
+    .movie-card__title { font-size: 18px !important; font-weight: 700 !important; color: var(--text-dark) !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: 'Plus Jakarta Sans', sans-serif !important; margin-bottom: 5px !important; }
+    .movie-card__meta { display: flex !important; justify-content: space-between !important; align-items: center !important; }
+    .movie-card__text { color: var(--text-light) !important; font-size: 14px !important; }
+    .movie-card__stars { font-weight: 700 !important; color: var(--text-dark) !important; font-size: 16px !important; }
+    
+    /* Sepet Butonu Görünümü (JS'deki fiyata eklenecek) */
+    .movie-card__stars::after { content: ' 🛒'; font-size: 14px; }
+
+    /* Hata ve Sayfalama */
+    .hidden { display: none !important; }
+    .oops-message { text-align: center; padding: 60px 20px; }
+    .oops-title { font-family: 'Lora', serif; font-size: 2rem; color: var(--text-dark); margin-bottom: 10px; }
+    .oops-text { color: var(--text-light); font-size: 1.1rem; }
+    
+    .pagination { display: flex; justify-content: center; gap: 10px; margin: 50px 0; }
+    .pagination__btn { background: #fff; border: 1px solid #ddd; padding: 8px 15px; border-radius: 8px; cursor: pointer; color: var(--text-dark); font-weight: 600; transition: 0.2s; }
+    .pagination__btn:hover, .pagination__btn.active { background: var(--text-dark); color: #fff; border-color: var(--text-dark); }
+  
+    .pagination__btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  /* --- MOBİL UYUMLULUK (RESPONSIVE) KODLARI --- */
+   /* --- E-TİCARET MOBİL UYGULAMA GÖRÜNÜMÜ --- */
+    @media (max-width: 900px) {
+      .movie-grid, .product-grid { grid-template-columns: repeat(3, 1fr); gap: 15px; }
+    }
+    
+    @media (max-width: 768px) {
+      /* 1. Üst Menü Sadeleştirme */
+      .header__inner { flex-direction: column; gap: 10px; padding: 10px 0; }
+      .desktop-nav { gap: 15px; }
+      .desktop-nav a { font-size: 14px; }
+      
+      /* 2. Afişi Daraltma */
+      .catalog-hero { padding: 20px 10px 40px; margin-bottom: 10px; }
+      .catalog-hero h1 { font-size: 1.5rem !important; margin-bottom: 5px; }
+      .catalog-hero p { font-size: 0.9rem; }
+      
+      /* 3. Profesyonel Mobil Arama ve Filtre (Kompakt) */
+      .search-filter-wrapper { margin: -30px auto 20px; padding: 0 15px; }
+      .search-filter-form { 
+        display: grid; 
+        grid-template-columns: 1fr 50px; /* Kategori geniş, buton dar */
+        grid-template-rows: auto auto; 
+        gap: 10px; 
+        padding: 15px; 
+        border-radius: 16px;
+      }
+      .search-input-wrapper { 
+        grid-column: 1 / 3; /* Arama çubuğu üstü tam kaplar */
+        background: #f5f7f4; 
+        border-radius: 12px; 
+        padding: 8px 15px; 
+      }
+      .search-input { font-size: 14px; }
+      .custom-select { 
+        grid-column: 1 / 2; 
+        background: #f5f7f4; 
+        border-radius: 12px; 
+        justify-content: center; 
+        border: none; 
+        padding: 5px 0; 
+      }
+      .search-btn { 
+        grid-column: 2 / 3; 
+        width: 100%; 
+        height: 100%; 
+        border-radius: 12px; 
+        margin: 0; 
+      }
+
+      /* 4. Yan Yana 2'li Ürün Kartları (Trendyol Mantığı) */
+      .movie-grid, .product-grid { 
+        grid-template-columns: repeat(2, 1fr) !important; 
+        gap: 12px !important; 
+        padding: 0 12px; 
+      }
+      .movie-card, .product-card { 
+        padding: 10px !important; 
+        border-radius: 16px !important; 
+      }
+      .movie-card__poster, .product-card img { 
+        height: 140px !important; /* Resimleri orantılı küçülttük */
+        border-radius: 10px !important; 
+        margin-bottom: 10px !important; 
+      }
+      .movie-card__title, .p-info h4 { 
+        font-size: 13px !important; 
+        white-space: normal !important; 
+        display: -webkit-box; 
+        -webkit-line-clamp: 2; /* Çok uzun yazıları 2 satırda keser */
+        -webkit-box-orient: vertical; 
+        margin-bottom: 8px !important; 
+      }
+      .movie-card__text { font-size: 11px !important; }
+      .movie-card__stars, .p-info p { font-size: 14px !important; }
+      
+      /* Modal (Detay Penceresi) */
+      .f-inner { padding: 20px !important; }
+      .f-img { height: 200px !important; }
+      .f-details h2 { font-size: 22px !important; }
+      .f-price { font-size: 22px !important; }
+      .f-actions { flex-direction: column; width: 100%; }
+      .f-qty { width: 100%; justify-content: space-between; margin-bottom: 10px; }
+      .f-add-btn { width: 100%; padding: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Temiz Üst Menü -->
+  <header>
+    <div class="container header__inner">
+      <a href="./index.html" class="logo-text">🌿 Fidan Dünyası</a>
+      <nav class="desktop-nav">
+        <a href="./index.html">Ana Sayfa</a>
+        <a href="./catalog.html" class="active">Fidanlar</a>
+        <a href="./library.html">Sepetim</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Minimal Katalog Afişi -->
+    <section class="catalog-hero">
+      <div class="container">
+        <h1>Tüm Fidanlarımız</h1>
+        <p>Aradığınız her çeşit fidanı burada bulabilirsiniz.</p>
+      </div>
+    </section>
+
+    <section class="catalog-section">
+      <div class="container">
+
+        <!-- Arama ve Filtre Çubuğu (JS Seçicilerine Uygun) -->
+        <div class="search-filter-wrapper">
+          <form class="search-filter-form" id="searchForm" autocomplete="off">
+            
+            <div class="search-input-wrapper">
+              <input type="text" class="search-input" id="searchInput" placeholder="Hangi fidanı arıyorsunuz?" />
+              <button type="button" class="searcher__clear" id="clearBtn" hidden>✕</button>
+            </div>
+
+            <!-- Eski ID'leri koruyoruz ki JS bozulmasın -->
+            <select id="yearSelect" hidden aria-hidden="true" tabindex="-1">
+              <option value="">Tüm Kategoriler</option>
+            </select>
+
+            <div id="yearSelectCustom" class="custom-select">
+              <button type="button" class="custom-select__btn" aria-expanded="false">
+                <span class="custom-select__label">Tüm Kategoriler</span>
+                <span>▾</span>
+              </button>
+              <ul class="custom-select__list hide year-menu">
+                <!-- JS Burayı Dolduracak -->
+              </ul>
+            </div>
+
+            <button type="submit" class="search-btn" aria-label="Search">🔍</button>
+          </form>
+        </div>
+
+        <!-- Hata Mesajı Alanı -->
+        <div class="oops-message hidden" id="oopsMessage">
+          <p class="oops-title">Tüh!</p>
+          <p class="oops-text">Aradığınız kritere uygun fidan bulamadık.</p>
+        </div>
+
+        <!-- Fidan Kartları (JS Buraya Basacak) -->
+        <ul class="movie-grid" id="movieGrid"></ul>
+
+        <!-- Sayfalama (Pagination) -->
+       
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Alt Bilgi -->
+  <footer style="text-align: center; padding: 40px 0; color: #6b7a65; font-size: 14px; margin-top: 50px;">
+    &copy; 2026 Fidan Dünyası | Tüm Hakları Saklıdır
+  </footer>
+
+  <!-- Modal ve JS -->
+  <load src="./partials/modal.html" />
+  <load src="./partials/loader.html" />
+  <script type="module" src="./js/catalog.js"></script>
+</body>
+</html>
