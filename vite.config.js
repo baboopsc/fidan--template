@@ -4,8 +4,7 @@ import injectHtml from 'vite-plugin-html-inject';
 import FullReload from 'vite-plugin-full-reload';
 
 export default defineConfig({
-  base: './',
-  base: '/Project-Cinemania1/',
+  base: '/', /* Eski Cinemania kalıntısı silindi, kök dizine ayarlandı */
   root: 'src',
   envDir: '../',
   build: {
