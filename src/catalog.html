@@ -163,7 +163,11 @@
         font-size: 13px !important; 
         white-space: normal !important; 
         display: -webkit-box; 
-        -webkit-line-clamp: 2; /* Çok uzun yazıları 2 satırda keser */
+        -webkit-line-clamp: 2; 
+        display: -webkit-box;
+-webkit-line-clamp: 2;
+line-clamp: 2; /* VS Code'u susturan satır */
+-webkit-box-orient: vertical;/* Çok uzun yazıları 2 satırda keser */
         -webkit-box-orient: vertical; 
         margin-bottom: 8px !important; 
       }
@@ -259,6 +263,8 @@
   <!-- Modal ve JS -->
   <load src="./partials/modal.html" />
   <load src="./partials/loader.html" />
-  <script type="module" src="./js/catalog.js"></script>
+ <!-- catalog.html dosyasının en altındaki scriptleri bununla değiştir: -->
+<script type="module" src="./js/catalog.js"></script>
+<script type="module" src="./js/header.js"></script>
 </body>
 </html>
