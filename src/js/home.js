@@ -1,42 +1,29 @@
-import { showMovieSpotlight } from './movie-spotlight.js';
+/* Ana sayfa — "Öne Çıkan Fidanlar" bölümü */
+import './ui.js';
+import { FIDANLAR, CATEGORIES } from './data.js';
+import { cardHTML } from './product-card.js';
 
-const fidanlarVeritabani = [
-  { id: 101, title: "Ceviz Fidanı (Chandler)", price: 150, image: "./img/ceviz.jpg", category: "Meyve" },
-  { id: 102, title: "Limon Fidanı (Yediveren)", price: 200, image: "./img/limon.jpg", category: "Narenciye" },
-  { id: 103, title: "Zeytin Fidanı (Gemlik)", price: 120, image: "./img/zeytin.jpg", category: "Zeytingiller" },
-  { id: 104, title: "Elma Fidanı (Amasya)", price: 130, image: "./img/elma.jpg", category: "Meyve" }
-];
+const FAVORI = [15, 7, 11, 19, 20, 35, 23, 25]; // Ana sayfada gösterilecek fidanların id'leri (data.js)
 
-export async function initHome() {
-  renderFidanKatalogu();
+const grid = document.getElementById('favGrid');
+const chips = document.getElementById('favChips');
+let aktif = 'Tümü';
+
+chips.innerHTML = CATEGORIES.map(c =>
+  `<button type="button" class="chip${c === aktif ? ' is-active' : ''}" data-cat="${c}">${c}</button>`).join('');
+
+function ciz() {
+  const liste = FAVORI.map(id => FIDANLAR.find(f => f.id === id))
+    .filter(f => f && (aktif === 'Tümü' || f.group === aktif));
+  grid.innerHTML = liste.map((f, i) => cardHTML(f, { link: true, i })).join('');
 }
 
-function renderFidanKatalogu() {
-  const weeklyList = document.getElementById('weeklyList');
-  if (!weeklyList) return;
+chips.addEventListener('click', e => {
+  const b = e.target.closest('[data-cat]');
+  if (!b) return;
+  aktif = b.dataset.cat;
+  chips.querySelectorAll('.chip').forEach(c => c.classList.toggle('is-active', c === b));
+  ciz();
+});
 
-  const markup = fidanlarVeritabani.map(fidan => {
-    const poster = fidan.image ? fidan.image : './img/oops-logo.png';
-
-    return `
-      <li class="product-card" data-id="${fidan.id}">
-        <img src="${poster}" alt="${fidan.title}" loading="lazy" />
-        <div class="product-info">
-          <h3>${fidan.title}</h3>
-          <div class="product-bottom">
-            <span class="product-price">₺${fidan.price}</span>
-            <div class="cart-btn">🛒</div>
-          </div>
-        </div>
-      </li>
-    `;
-  });
-
-  weeklyList.innerHTML = markup.join('');
-
-  weeklyList.querySelectorAll('.product-card').forEach(card => {
-    card.addEventListener('click', () => {
-      showMovieSpotlight(card.dataset.id);
-    });
-  });
-}
+ciz();

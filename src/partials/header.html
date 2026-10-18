@@ -1,40 +1,21 @@
-<header id="header" class="header" data-dev="Header Section">
-  <div class="container">
-    <div class="header__inner">
-      <a href="./index.html" class="header__logo logo-link">
-        <img src="./img/logo.svg" alt="Fidan Dünyası" class="nav-logo" width="45" height="36" decoding="async" />
-        <span class="logo-text">Fidan Dünyası</span>
-      </a>
-
-      <nav class="header__nav desktop-nav">
-        <a href="./index.html" class="nav-link" data-page="home">ANA SAYFA</a>
-        <a href="./catalog.html" class="nav-link" data-page="catalog">FİDANLAR</a>
-        <a href="./library.html" class="nav-link" data-page="library">SEPETİM</a>
-      </nav>
-
-      <nav class="mobile-nav">
-        <div class="mobile-menu-logo">
-          <a href="./index.html" class="logo-link">
-            <img src="./img/logo.svg" alt="Fidan Dünyası" class="nav-logo" width="45" height="36" decoding="async" />
-            <span class="logo-text">Fidan Dünyası</span>
-          </a>
-        </div>
-        <a href="./index.html" class="nav-link" data-page="home">ANA SAYFA</a>
-        <a href="./catalog.html" class="nav-link" data-page="catalog">FİDANLAR</a>
-        <a href="./library.html" class="nav-link" data-page="library">SEPETİM</a>
-      </nav>
-
-      <button class="header__menu-btn" id="menuToggle">MENÜ</button>
-
-      <div class="header__controls">
-        <button class="theme-toggle" aria-label="Toggle theme">
-          <span class="toggle-track">
-            <img src="./img/moon.svg" class="icon moon" alt="moon" width="14" height="14" decoding="async" />
-            <img src="./img/sun.svg" class="icon sun" alt="sun" width="14" height="14" decoding="async" />
-            <span class="toggle-thumb"></span>
-          </span>
-        </button>
+<!-- Üst menü: tüm sayfalara buradan eklenir (sağdaki buton yazısı "cta" ve "ctahref" ile sayfadan gelir).
+     Aktif sayfa js/ui.js içinde otomatik işaretlenir. -->
+<header class="site-header">
+  <div class="wrap">
+    <nav class="nav" aria-label="Ana menü">
+      <a href="./index.html" class="brand"><span class="brand__mark"><i class="i i-sprout"></i></span>Sağ Fidancılık</a>
+      <ul class="nav-links">
+        <li><a href="./index.html" data-page="index">Ana Sayfa</a></li>
+        <li><a href="./catalog.html" data-page="catalog">Fidanlar</a></li>
+        <li><a href="./atlas.html" data-page="atlas">Atlas</a></li>
+        <li><a href="./index.html#hakkimizda">Hakkımızda</a></li>
+        <li><a href="./index.html#iletisim">İletişim</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="./library.html" class="icon-btn" data-page="library" aria-label="Sepetim"><i class="i i-bag"></i><span class="badge" data-cart-count>0</span></a>
+        <a href="{=$ctahref}" class="btn btn-primary btn-sm nav-cta">{=$cta}</a>
+        <button class="icon-btn nav-toggle" type="button" aria-label="Menüyü aç" aria-expanded="false"><i class="i i-menu"></i></button>
       </div>
-    </div>
+    </nav>
   </div>
 </header>

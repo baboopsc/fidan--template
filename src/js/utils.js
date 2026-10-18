@@ -1,60 +1,13 @@
-/**
- * @param {string} dateString 
- * @returns {string}
- */
-export function formatDate(dateString) {
-  if (!dateString) return 'Bilinmiyor';
-  const options = { year: 'numeric', month: 'long', day: 'numeric' };
-  return new Date(dateString).toLocaleDateString('tr-TR', options);
-}
+/* Küçük yardımcı fonksiyonlar */
 
-/**
- * @param {number} rating 
- * @returns {string}
- */
-export function getRatingBadgeClass(rating) {
-  if (rating >= 7.5) return 'badge-high';
-  if (rating >= 5.0) return 'badge-mid';
-  return 'badge-low';
-}
+// 1500 -> "₺1.500"
+export const tl = n =>
+  new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY', maximumFractionDigits: 0 }).format(n);
 
-/**
- * @param {string} key 
- * @param {any} value 
- */
-export function setToLocalStorage(key, value) {
-  try {
-    localStorage.setItem(key, JSON.stringify(value));
-  } catch (error) {
-    console.error('Veri kaydedilirken bir hata oluştu:', error);
-  }
-}
+// HTML içine yazılan metni güvenli hâle getirir
+export const esc = s =>
+  String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
-/**
- * @param {string} key 
- * @returns {any[]}
- */
-export function getFromLocalStorage(key) {
-  try {
-    const data = localStorage.getItem(key);
-    return data ? JSON.parse(data) : [];
-  } catch (error) {
-    console.error('Veri okunurken bir hata oluştu:', error);
-    return [];
-  }
-}
-
-/**
- * @param {Function} func 
- * @param {number} delay 
- * @returns {Function}
- */
-export function debounce(func, delay = 300) {
-  let timeoutId;
-  return (...args) => {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => {
-      func.apply(null, args);
-    }, delay);
-  };
-}
+// Türkçe karakterlerden bağımsız arama için sadeleştirir (İncir -> incir, ş -> s ...)
+export const sade = s =>
+  String(s).toLocaleLowerCase('tr').replace(/ı/g, 'i').normalize('NFD').replace(/[̀-ͯ]/g, '');

@@ -4,7 +4,7 @@ import injectHtml from 'vite-plugin-html-inject';
 import FullReload from 'vite-plugin-full-reload';
 
 export default defineConfig({
-  base: '/', /* Eski Cinemania kalıntısı silindi, kök dizine ayarlandı */
+  base: '/',
   root: 'src',
   envDir: '../',
   build: {
@@ -15,6 +15,7 @@ export default defineConfig({
         main: resolve(__dirname, 'src/index.html'),
         catalog: resolve(__dirname, 'src/catalog.html'),
         library: resolve(__dirname, 'src/library.html'),
+        atlas: resolve(__dirname, 'src/atlas.html'),
       },
     },
   },

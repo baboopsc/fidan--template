@@ -1,24 +1,32 @@
+/* ==========================================================
+   Değişkenler — renkler, köşeler, gölgeler, yazı tipleri.
+   Sitenin rengini değiştirmek için yalnızca burayı düzenle.
+   ========================================================== */
 :root {
-  --font-family-base: 'Roboto', sans-serif;
-  --orange: #f87719;
-  --orange-deep: #f84119;
-  --background: #111111;
-  --surface-dark: #171717;
-  --secondary-black: #282828;
-  --grey-white-theme: #595959;
-  --grey: #b7b7b7;
-  --secondary-text: #f8f8f8;
-  --white: #ffffff;
-  --black: #000000;
-  --gradient-primary: linear-gradient(135deg, #ffc226, #f84119);
-  --gradient-secondary: linear-gradient(135deg, #f84119, #f89f19);
-  --border-light-soft: rgba(17, 17, 17, 0.12);
-  --border-light: rgba(17, 17, 17, 0.16);
-  --border-light-strong: rgba(17, 17, 17, 0.24);
-  --text-light-muted: rgba(17, 17, 17, 0.6);
-  --text-dark-muted: rgba(255, 255, 255, 0.6);
-  --text-dark-soft: rgba(255, 255, 255, 0.8);
-  --surface-white-soft: #f6f6f6;
-  --overlay-white-08: rgba(255, 255, 255, 0.08);
-  --scrollbar-thumb: rgba(248, 119, 25, 0.7);
+  /* Renkler */
+  --bg: #fbf8f1;        /* sayfa zemini (krem) */
+  --surface: #ffffff;   /* kartlar */
+  --sand: #f3efe6;      /* görsel zemini */
+  --sage: #c8d5c4;      /* adaçayı yeşili (başlık alanları) */
+  --sage-2: #dfe7d9;
+  --soft: #eef2ea;      /* ikon kutuları */
+  --ink: #1f2e1b;       /* ana yazı ve koyu butonlar */
+  --ink-2: #2f4529;
+  --mute: #69775f;      /* ikincil yazı */
+  --line: #e6e1d4;      /* ince çizgiler */
+  --leaf: #4f7d3c;      /* vurgu yeşili */
+  --gold: #d9a23a;      /* yıldızlar */
+  --wa: #25d366;        /* WhatsApp */
+
+  /* Köşeler ve gölgeler */
+  --r-lg: 28px;
+  --r-md: 20px;
+  --r-sm: 14px;
+  --shadow-sm: 0 1px 2px rgba(31,46,27,.05), 0 8px 20px -12px rgba(31,46,27,.18);
+  --shadow-md: 0 2px 6px rgba(31,46,27,.04), 0 24px 48px -24px rgba(31,46,27,.32);
+
+  /* Hareket ve yazı tipleri */
+  --ease: cubic-bezier(.22,.8,.24,1);
+  --serif: 'Lora', Georgia, serif;
+  --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
 }

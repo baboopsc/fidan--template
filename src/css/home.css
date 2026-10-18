@@ -1,0 +1,136 @@
+/* ==========================================================
+   Ana sayfa — hero, istatistikler, "Neden biz", bakım bandı.
+   ========================================================== */
+
+/* ---------- Hero ---------- */
+.hero { position: relative; isolation: isolate; overflow: hidden; margin: 12px 12px 0; border-radius: var(--r-lg) var(--r-lg) 44px 44px; min-height: min(800px, 96svh); display: flex; align-items: center; padding: 140px 0 160px; background: var(--sage); }
+.hero__bg { position: absolute; inset: 0; z-index: -1; background:
+    linear-gradient(90deg, var(--sage) 0%, rgba(200,213,196,.94) 30%, rgba(200,213,196,.35) 55%, rgba(200,213,196,0) 72%),
+    url("../img/hero-plants.jpg") right center / cover no-repeat;
+  animation: heroZoom 1.8s var(--ease) both; }
+.hero__bg::after { content: ""; position: absolute; inset: auto 0 0; height: 35%; background: linear-gradient(to top, rgba(200,213,196,.6), rgba(200,213,196,0)); }
+.hero > .wrap { width: 100%; }
+.hero__content { max-width: 580px; }
+.hero h1 { font-size: clamp(2.5rem, 5.2vw, 4.2rem); margin: 20px 0; }
+.hero__lead { font-size: 1.1rem; color: var(--ink-2); opacity: .82; max-width: 480px; margin-bottom: 34px; }
+.hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; }
+.hero__trust { display: flex; align-items: center; gap: 12px; margin-top: 38px; font-size: 14px; color: var(--ink-2); }
+.hero__trust strong { color: var(--ink); }
+.hero__trust-icon { width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,.7); color: var(--leaf); display: grid; place-items: center; flex: none; }
+.hero__trust-icon .i { width: 18px; height: 18px; }
+.pill-tag { display: inline-flex; align-items: center; gap: 10px; padding: 6px 16px 6px 6px; border-radius: 999px; background: rgba(255,255,255,.62); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.85); font-size: 13.5px; font-weight: 600; color: var(--ink-2); }
+.pill-tag__icon { width: 28px; height: 28px; border-radius: 50%; background: var(--ink); color: #e6f0dc; display: grid; place-items: center; }
+.pill-tag__icon .i { width: 16px; height: 16px; }
+
+.play-btn { display: inline-flex; align-items: center; gap: 12px; font-weight: 600; color: var(--ink); }
+.play-btn__circle { position: relative; width: 52px; height: 52px; border-radius: 50%; background: #fff; display: grid; place-items: center; box-shadow: var(--shadow-sm); transition: transform .3s var(--ease); }
+.play-btn__circle .i { width: 18px; height: 18px; margin-left: 3px; }
+.play-btn__circle::after { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.9); animation: pulse 2.4s var(--ease) infinite; }
+.play-btn:hover .play-btn__circle { transform: scale(1.08); }
+
+/* ---------- İstatistikler ---------- */
+.stats { position: relative; z-index: 2; margin-top: -80px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.stat { display: flex; align-items: center; gap: 16px; padding: 24px; background: var(--surface); border-radius: var(--r-md); border: 1px solid rgba(230,225,212,.7); box-shadow: var(--shadow-md); }
+.stat__icon { width: 54px; height: 54px; border-radius: 16px; background: var(--soft); color: var(--leaf); display: grid; place-items: center; flex: none; }
+.stat__icon .i { width: 26px; height: 26px; }
+.stat strong { display: block; font: 700 1.65rem/1.1 var(--sans); letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 13.5px; color: var(--mute); }
+
+/* ---------- Neden biz ---------- */
+.why-grid { display: grid; grid-template-columns: 1fr minmax(260px, 380px) 1fr; gap: 48px; align-items: center; }
+.why-col { display: grid; gap: 44px; }
+.feature { display: flex; gap: 18px; align-items: flex-start; }
+.feature__icon { width: 56px; height: 56px; border-radius: 50%; background: var(--surface); border: 1px solid var(--line); color: var(--leaf); display: grid; place-items: center; flex: none; box-shadow: var(--shadow-sm); transition: background .3s, color .3s, transform .4s var(--ease); }
+.feature__icon .i { width: 24px; height: 24px; }
+.feature:hover .feature__icon { background: var(--ink); color: #e6f0dc; transform: rotate(-10deg); }
+.feature h3 { font: 700 1.05rem/1.3 var(--sans); letter-spacing: 0; margin: 4px 0 6px; }
+.feature p { font-size: 14.5px; color: var(--mute); }
+/* Fotoğrafın kenarları yumuşakça kaybolur, arkasında dikdörtgen kalmaz */
+.why-media { position: relative; isolation: isolate; display: grid; place-items: center; background: var(--bg); }
+.why-media::before { content: ""; position: absolute; z-index: -1; width: 92%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, var(--sage-2) 0%, rgba(223,231,217,.7) 42%, rgba(223,231,217,0) 70%); }
+.why-media img { width: 100%; max-width: 380px; aspect-ratio: 5 / 6; object-fit: cover; mix-blend-mode: multiply; filter: brightness(1.05) contrast(1.02); -webkit-mask-image: radial-gradient(ellipse 72% 68% at 50% 50%, #000 78%, transparent 100%); mask-image: radial-gradient(ellipse 72% 68% at 50% 50%, #000 78%, transparent 100%); animation: float 7s ease-in-out infinite; }
+
+/* ---------- Hakkımızda ---------- */
+.about { display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; }
+.about__text h2 { font-size: clamp(1.9rem, 3.2vw, 2.7rem); margin: 12px 0 20px; }
+.about__text p { color: var(--mute); max-width: 60ch; margin-bottom: 16px; }
+.about__text .btn { margin-top: 12px; }
+.about__card { padding: 32px; border-radius: var(--r-lg); background: var(--surface); border: 1px solid rgba(230,225,212,.75); box-shadow: var(--shadow-md); }
+.about__card h3 { font-size: 1.45rem; margin-bottom: 18px; }
+.about__facts { list-style: none; display: grid; }
+.about__facts li { display: flex; gap: 16px; align-items: flex-start; padding: 16px 0; border-top: 1px solid var(--line); }
+.about__facts li:first-child { border-top: 0; padding-top: 4px; }
+.about__icon { width: 44px; height: 44px; border-radius: 14px; background: var(--soft); color: var(--leaf); display: grid; place-items: center; flex: none; }
+.about__icon .i { width: 22px; height: 22px; }
+.about__facts small { display: block; font-size: 12.5px; font-weight: 600; color: var(--mute); }
+.about__facts b { display: block; font-size: 15px; font-weight: 600; line-height: 1.45; }
+
+/* ---------- İletişim ---------- */
+.contact-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.contact-card { display: flex; flex-direction: column; gap: 4px; padding: 24px; border-radius: var(--r-md); background: var(--surface); border: 1px solid rgba(230,225,212,.75); box-shadow: var(--shadow-sm); transition: transform .35s var(--ease), box-shadow .35s var(--ease); }
+.contact-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+.contact-card__icon { width: 48px; height: 48px; border-radius: 14px; background: var(--ink); color: #e6f0dc; display: grid; place-items: center; margin-bottom: 14px; }
+.contact-card__icon .i { width: 22px; height: 22px; }
+.contact-card small { font-size: 13px; font-weight: 600; color: var(--mute); }
+.contact-card b { font-size: 15.5px; font-weight: 700; line-height: 1.4; overflow-wrap: anywhere; }
+
+/* ---------- Bakım bandı ---------- */
+.care { position: relative; isolation: isolate; overflow: hidden; margin-top: 110px; border-radius: var(--r-lg); padding: 60px; display: grid; grid-template-columns: 1fr 1.05fr; gap: 40px; align-items: center; color: #fff; background: #2c3f27; }
+.care__bg { position: absolute; inset: 0; z-index: -1; background:
+    linear-gradient(100deg, rgba(25,38,21,.95) 0%, rgba(33,50,28,.84) 40%, rgba(33,50,28,.3) 100%),
+    url("../img/care-bg.jpg") center / cover no-repeat;
+  transition: transform 1.4s var(--ease); }
+.care:hover .care__bg { transform: scale(1.04); }
+.care .eyebrow { color: #cfe3c2; }
+.care h2 { color: #fff; font-size: clamp(1.9rem, 3vw, 2.6rem); margin: 12px 0 14px; }
+.care h2 em { color: #cfe3c2; }
+.care__text p { color: rgba(255,255,255,.78); max-width: 380px; margin-bottom: 30px; }
+.care-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 470px; justify-self: end; width: 100%; }
+.glass-card { padding: 24px; border-radius: var(--r-md); background: rgba(255,255,255,.86); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); color: var(--ink); border: 1px solid rgba(255,255,255,.6); transition: transform .35s var(--ease); }
+.glass-card:hover { transform: translateY(-5px); }
+.glass-card__icon { width: 48px; height: 48px; border-radius: 14px; background: var(--soft); color: var(--leaf); display: grid; place-items: center; margin-bottom: 18px; }
+.glass-card__icon .i { width: 24px; height: 24px; }
+.glass-card h3 { font: 700 1rem/1.3 var(--sans); letter-spacing: 0; margin-bottom: 6px; }
+.glass-card p { font-size: 13.5px; color: var(--mute); }
+
+/* ---------- Tablet ---------- */
+@media (max-width: 1080px) {
+  .hero__bg { background:
+      linear-gradient(90deg, var(--sage) 0%, rgba(200,213,196,.95) 42%, rgba(200,213,196,.5) 66%, rgba(200,213,196,0) 86%),
+      url("../img/hero-plants.jpg") right center / cover no-repeat; }
+  .about { gap: 36px; }
+  .contact-grid { grid-template-columns: repeat(2, 1fr); }
+  .why-grid { grid-template-columns: 1fr 300px 1fr; gap: 28px; }
+  .care { padding: 48px; grid-template-columns: 1fr; }
+  .care-cards { justify-self: start; }
+  .stat { padding: 20px; gap: 12px; }
+  .stat__icon { width: 46px; height: 46px; }
+}
+
+/* ---------- Mobil ---------- */
+@media (max-width: 860px) {
+  .hero__bg { background:
+      linear-gradient(180deg, rgba(200,213,196,.97) 0%, rgba(200,213,196,.93) 62%, rgba(200,213,196,.55) 100%),
+      url("../img/hero-plants.jpg") 70% center / cover no-repeat; }
+  .about { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: repeat(2, 1fr); margin-top: -64px; gap: 12px; }
+  .why-grid { grid-template-columns: 1fr; gap: 36px; }
+  .why-media { order: -1; }
+  .why-media img { max-width: 280px; }
+  .why-col { grid-template-columns: 1fr 1fr; gap: 28px; }
+}
+
+@media (max-width: 600px) {
+  .hero { margin: 8px 8px 0; border-radius: 22px 22px 32px 32px; min-height: 0; padding: 120px 0 130px; }
+  .hero__actions { gap: 16px; }
+  .hero__trust { align-items: flex-start; margin-top: 28px; }
+  .stat { flex-direction: column; align-items: flex-start; padding: 16px; }
+  .stat strong { font-size: 1.4rem; }
+  .why-col { grid-template-columns: 1fr; }
+  .care { margin-top: 80px; padding: 30px 22px; border-radius: 22px; }
+  .care-cards { grid-template-columns: 1fr; }
+  .about__card { padding: 24px; }
+  .contact-grid { grid-template-columns: 1fr; gap: 12px; }
+  .contact-card { display: grid; grid-template-columns: 48px 1fr; column-gap: 14px; row-gap: 0; align-items: center; padding: 16px 18px; }
+  .contact-card__icon { grid-row: span 2; margin: 0; }
+}
