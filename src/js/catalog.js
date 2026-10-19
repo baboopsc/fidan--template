@@ -1,8 +1,9 @@
 /* Fidanlar sayfası — arama, kategori filtresi ve ürün penceresi */
 import './ui.js';
-import { FIDANLAR, CATEGORIES, byId, imgFor, fullName } from './data.js';
+import { FIDANLAR, CATEGORIES, byId, imgFor, highlights } from './data.js';
+import { localize, fullName, cat, t } from './i18n.js';
 import { cardHTML } from './product-card.js';
-import { tl, sade, esc } from './utils.js';
+import { sade, esc } from './utils.js';
 
 const $ = s => document.querySelector(s);
 const grid = $('#grid'), chips = $('#chips'), count = $('#count'), empty = $('#empty');
@@ -10,21 +11,27 @@ const search = $('#search'), input = $('#q');
 let aktif = 'Tümü', aranan = '';
 
 /* ---------- Liste ve filtreler ---------- */
-chips.innerHTML = CATEGORIES.map(c =>
-  `<button type="button" class="chip${c === aktif ? ' is-active' : ''}" data-cat="${c}">${c}</button>`).join('');
+function cipleriCiz() {
+  chips.innerHTML = CATEGORIES.map(c =>
+    `<button type="button" class="chip${c === aktif ? ' is-active' : ''}" data-cat="${c}">${cat(c)}</button>`).join('');
+}
 
 function ciz() {
-  const liste = FIDANLAR.filter(f =>
-    (aktif === 'Tümü' || f.group === aktif) &&
-    sade(`${f.title} ${f.variety} ${f.category} ${f.group}`).includes(sade(aranan)));
+  const q = sade(aranan);
+  const liste = FIDANLAR.filter(f => {
+    const L = localize(f);
+    // Hem seçili dilde hem Türkçe ad ile aranabilir
+    return (aktif === 'Tümü' || f.category === aktif) &&
+      sade(`${L.title} ${L.category} ${f.title} ${f.category} ${f.group}`).includes(q);
+  });
   grid.innerHTML = liste.map((f, i) => cardHTML(f, { i })).join('');
-  count.textContent = liste.length ? `${liste.length} fidan listeleniyor` : '';
+  count.textContent = liste.length ? t('count', { n: liste.length }) : '';
   empty.hidden = liste.length > 0;
 }
 
-function kategoriSec(cat) {
-  aktif = cat;
-  chips.querySelectorAll('.chip').forEach(c => c.classList.toggle('is-active', c.dataset.cat === cat));
+function kategoriSec(c) {
+  aktif = c;
+  chips.querySelectorAll('.chip').forEach(b => b.classList.toggle('is-active', b.dataset.cat === c));
   ciz();
 }
 
@@ -46,47 +53,55 @@ input.addEventListener('input', () => {
 $('#clear').addEventListener('click', () => { aramayiTemizle(); ciz(); input.focus(); });
 $('#reset').addEventListener('click', () => { aramayiTemizle(); kategoriSec('Tümü'); });
 
-/* ---------- Ürün penceresi ---------- */
+/* ---------- Ürün penceresi: tüm özellikler ---------- */
 const modal = $('#modal');
-let secili = null, adet = 1;
+let acik = null;
 
-function fiyatYaz() {
-  $('#mQty').textContent = adet;
-  $('#mPrice').textContent = tl(secili.price * adet);
-  $('#mAdd').dataset.qty = adet;
-  $('#mMinus').disabled = adet <= 1;
+function doldur(f) {
+  const L = localize(f);
+  $('#mImg').src = imgFor(f.slug);
+  $('#mImg').alt = fullName(f);
+  $('#mCat').textContent = L.category;
+  $('#mTitle').textContent = L.title;
+  $('#mDesc').textContent = L.desc;
+  $('#mFacts').innerHTML = highlights(f).map(([ikon, k, v]) => {
+    const [baslik, deger] = L.spec([k, v]);
+    return `<div class="fact"><i class="i i-${ikon}"></i>${esc(baslik)}<b>${esc(deger)}</b></div>`;
+  }).join('');
+  $('#mSpecs').innerHTML = L.specs
+    .map(([baslik, deger]) => `<div class="specs__row"><dt>${esc(baslik)}</dt><dd>${esc(deger)}</dd></div>`).join('');
 }
 
 function ac(id) {
-  secili = byId(id);
-  if (!secili) return;
-  adet = 1;
-  $('#mImg').src = imgFor(secili.slug);
-  $('#mImg').alt = fullName(secili);
-  $('#mCat').textContent = secili.category;
-  $('#mTitle').textContent = secili.title;
-  $('#mVariety').textContent = secili.variety;
-  $('#mDesc').textContent = secili.desc;
-  $('#mFacts').innerHTML = secili.facts
-    .map(([ikon, baslik, deger]) => `<div class="fact"><i class="i i-${ikon}"></i>${esc(baslik)}<b>${esc(deger)}</b></div>`).join('');
-  $('#mAdd').dataset.add = secili.id;
-  fiyatYaz();
+  const f = byId(id);
+  if (!f) return;
+  acik = f;
+  doldur(f);
   modal.showModal();
+  modal.scrollTop = 0;
+  modal.querySelector('.modal__body').scrollTop = 0;
+  history.replaceState(null, '', `?fidan=${f.id}`);
 }
 
 grid.addEventListener('click', e => {
   const o = e.target.closest('[data-open]');
   if (o) ac(o.dataset.open);
 });
-$('#mMinus').addEventListener('click', () => { if (adet > 1) { adet--; fiyatYaz(); } });
-$('#mPlus').addEventListener('click', () => { adet++; fiyatYaz(); });
-$('#mAdd').addEventListener('click', () => setTimeout(() => modal.close(), 450)); // ekleme ui.js'te yapılır
 modal.addEventListener('click', e => {
   if (e.target === modal || e.target.closest('[data-close]')) modal.close();
 });
+modal.addEventListener('close', () => { acik = null; history.replaceState(null, '', location.pathname); });
 
+// Dil değişince çipler, kartlar ve açık pencere yeni dille yeniden çizilir
+document.addEventListener('langchange', () => {
+  cipleriCiz();
+  ciz();
+  if (acik) doldur(acik);
+});
+
+cipleriCiz();
 ciz();
 
-// Ana sayfadaki karttan gelindiyse o fidanın penceresini aç (catalog.html?fidan=5)
+// Ana sayfadaki karttan ya da paylaşılan bağlantıdan gelindiyse o fidanın penceresini aç (catalog.html?fidan=15)
 const gelen = new URLSearchParams(location.search).get('fidan');
 if (gelen) ac(gelen);

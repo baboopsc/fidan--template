@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fidan Çeşitleri | Sağ Fidancılık</title>
-  <meta name="description" content="Sertifikalı turunçgil, zeytin, nar ve meyve fidanı çeşitlerini inceleyin." />
+  <title data-i18n="meta.catalog.title">Fidan Çeşitleri | Sağ Fidancılık</title>
+  <meta name="description" content="Sertifikalı turunçgil, zeytin, nar ve meyve fidanı çeşitlerini inceleyin." data-i18n-attr="content:meta.catalog.desc" />
   <meta name="theme-color" content="#fbf8f1" />
   <link rel="icon" href="./img/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,19 +15,20 @@
   <link rel="stylesheet" href="./css/icons.css" />
   <link rel="stylesheet" href="./css/layout.css" />
   <link rel="stylesheet" href="./css/catalog.css" />
-  <script>document.documentElement.classList.add('js')</script>
+  <!-- Seçili dil Türkçe değilse, çeviri yüklenene kadar sayfayı kısa süre gizler (js/i18n.js) -->
+  <script>document.documentElement.classList.add('js');try{var l=new URLSearchParams(location.search).get('lang')||localStorage.getItem('lang');if(l==='en'||l==='ru'){document.documentElement.classList.add('i18n-wait');setTimeout(function(){document.documentElement.classList.remove('i18n-wait')},1500)}}catch(e){}</script>
 </head>
 <body id="top">
 
-  <load src="./partials/header.html" cta="Sepete Git" ctahref="./library.html" />
+  <load src="./partials/header.html" cta="Bize Ulaşın" ctakey="cta.contact" ctahref="./index.html#iletisim" />
 
   <main>
     <!-- SAYFA BAŞLIĞI (arka plan fotoğraflı) -->
     <section class="page-hero">
       <div class="wrap">
-        <nav class="crumbs" aria-label="Konum" data-reveal><a href="./index.html">Ana Sayfa</a><i class="i i-chevron-right"></i><span>Fidan Çeşitleri</span></nav>
-        <h1 data-reveal style="--d:1">Fidan <em>Çeşitlerimiz</em></h1>
-        <p data-reveal style="--d:2">Turunçgilden zeytine, nardan kayısıya sertifikalı fidanlarımızı inceleyin. Aradığınız çeşidi bulamazsanız bizi arayın.</p>
+        <nav class="crumbs" aria-label="Konum" data-i18n-attr="aria-label:catalog.crumbs" data-reveal><a href="./index.html" data-i18n="nav.home">Ana Sayfa</a><i class="i i-chevron-right"></i><span data-i18n="footer.catalog">Fidan Çeşitleri</span></nav>
+        <h1 data-reveal style="--d:1" data-i18n="catalog.title">Fidan <em>Çeşitlerimiz</em></h1>
+        <p data-reveal style="--d:2" data-i18n="catalog.lead">Turunçgilden zeytine, nardan kayısıya sertifikalı fidanlarımızı inceleyin. Bir fidana tıklayarak tüm özelliklerini görebilirsiniz.</p>
       </div>
     </section>
 
@@ -36,10 +37,10 @@
       <div class="toolbar" data-reveal style="--d:3">
         <div class="search" id="search">
           <i class="i i-search"></i>
-          <input id="q" type="search" placeholder="Hangi fidanı arıyorsunuz?" autocomplete="off" aria-label="Fidan ara">
-          <button class="search__clear" id="clear" type="button" aria-label="Aramayı temizle"><i class="i i-close"></i></button>
+          <input id="q" type="search" placeholder="Hangi fidanı arıyorsunuz?" autocomplete="off" aria-label="Fidan ara" data-i18n-attr="placeholder:search.ph;aria-label:search.aria">
+          <button class="search__clear" id="clear" type="button" aria-label="Aramayı temizle" data-i18n-attr="aria-label:search.clear"><i class="i i-close"></i></button>
         </div>
-        <div class="chips" id="chips" aria-label="Kategoriler"></div>
+        <div class="chips" id="chips" aria-label="Kategoriler" data-i18n-attr="aria-label:chips.aria"></div>
       </div>
 
       <p class="result-count" id="count" aria-live="polite"></p>
@@ -47,33 +48,33 @@
 
       <div class="empty" id="empty" hidden>
         <span class="empty__icon"><i class="i i-search"></i></span>
-        <h3>Aradığınız fidanı bulamadık</h3>
-        <p>Farklı bir kelime deneyin ya da filtreleri temizleyin.</p>
-        <button class="btn btn-primary" id="reset" type="button">Filtreleri Temizle</button>
+        <h3 data-i18n="empty.title">Aradığınız fidanı bulamadık</h3>
+        <p data-i18n="empty.p">Farklı bir kelime deneyin ya da filtreleri temizleyin.</p>
+        <button class="btn btn-primary" id="reset" type="button" data-i18n="empty.reset">Filtreleri Temizle</button>
       </div>
     </section>
   </main>
 
-  <!-- ÜRÜN PENCERESİ -->
+  <!-- ÜRÜN PENCERESİ: içeriği js/catalog.js doldurur -->
   <dialog class="modal" id="modal" aria-labelledby="mTitle">
-    <button class="icon-btn modal__close" type="button" data-close aria-label="Kapat"><i class="i i-close"></i></button>
+    <button class="icon-btn modal__close" type="button" data-close aria-label="Kapat" data-i18n-attr="aria-label:modal.close"><i class="i i-close"></i></button>
     <div class="modal__inner">
       <div class="modal__media"><img id="mImg" src="" alt=""></div>
       <div class="modal__body">
         <span class="eyebrow" id="mCat"></span>
         <h2 id="mTitle"></h2>
-        <p class="modal__variety" id="mVariety"></p>
         <p class="modal__desc" id="mDesc"></p>
         <div class="facts" id="mFacts"></div>
-        <div class="modal__buy">
-          <div class="qty">
-            <button type="button" id="mMinus" aria-label="Azalt"><i class="i i-minus"></i></button>
-            <output id="mQty">1</output>
-            <button type="button" id="mPlus" aria-label="Artır"><i class="i i-plus"></i></button>
+        <h3 class="specs__title" data-i18n="modal.specs">Tüm özellikler</h3>
+        <dl class="specs" id="mSpecs"></dl>
+        <div class="modal__contact">
+          <p data-i18n="modal.contact"><b>Fiyat ve stok bilgisi için</b> bizi arayın.</p>
+          <div class="modal__actions">
+            <a class="btn btn-primary btn-sm" href="tel:+905336125225"><i class="i i-phone"></i> Ali Sağ · 0533 612 52 25</a>
+            <a class="icon-btn" data-social="instagram" href="#" target="_blank" rel="noopener" aria-label="Instagram" hidden><i class="i i-instagram"></i></a>
+            <a class="icon-btn" data-social="facebook" href="#" target="_blank" rel="noopener" aria-label="Facebook" hidden><i class="i i-facebook"></i></a>
           </div>
-          <strong class="modal__price" id="mPrice"></strong>
         </div>
-        <button class="btn btn-primary btn-block" type="button" id="mAdd" data-add="" data-qty="1"><i class="i i-bag"></i> Sepete Ekle</button>
       </div>
     </div>
   </dialog>

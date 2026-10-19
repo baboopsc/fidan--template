@@ -1,9 +1,10 @@
 /* ==========================================================
    Ortak sayfa davranışları — her sayfanın JS'i bu dosyayı içe aktarır.
-   Menü, aktif sayfa, sepet rozeti, "sepete ekle" düğmeleri,
+   Dil, menü, aktif sayfa, sosyal medya bağlantıları,
    kaydırınca beliren öğeler ve sayaçlar.
    ========================================================== */
-import { addToCart, updateBadge, CART_KEY } from './cart.js';
+import './i18n.js'; // dil seçimi ve sayfa çevirileri
+import { SITE } from './data.js';
 
 /* ---------- Üst menü ---------- */
 const header = document.querySelector('.site-header');
@@ -28,16 +29,20 @@ document.addEventListener('click', e => {
   if (header?.classList.contains('is-open') && !e.target.closest('.nav')) toggle?.click();
 });
 
-/* ---------- "Sepete ekle" düğmeleri: data-add="id" (isteğe bağlı data-qty) ---------- */
-document.addEventListener('click', e => {
-  const btn = e.target.closest('[data-add]');
-  if (!btn || !btn.dataset.add) return;
-  addToCart(btn.dataset.add, Number(btn.dataset.qty) || 1);
-  const icon = btn.querySelector('.i');
-  btn.classList.add('is-done');
-  icon?.classList.replace('i-bag', 'i-check');
-  setTimeout(() => { btn.classList.remove('is-done'); icon?.classList.replace('i-check', 'i-bag'); }, 1300);
-});
+/* ---------- Instagram / Facebook ----------
+   <a data-social="instagram"> bağlantıları adresini data.js'teki SITE'tan alır.
+   Adres boşsa bağlantı (ya da data-social-box ile işaretli kutusu) gizli kalır;
+   içinde görünen bağlantı kalmayan data-social-wrap alanı da gizlenir. */
+export function applySocial(root = document) {
+  root.querySelectorAll('[data-social]').forEach(a => {
+    const url = SITE[a.dataset.social];
+    if (url) a.href = url;
+    (a.closest('[data-social-box]') || a).hidden = !url;
+  });
+  root.querySelectorAll('[data-social-wrap]').forEach(w => {
+    w.hidden = ![...w.querySelectorAll('[data-social]')].some(a => SITE[a.dataset.social]);
+  });
+}
 
 /* ---------- Kaydırınca beliren öğeler ve sayaçlar ---------- */
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -72,7 +77,6 @@ export function reveal(root = document) {
 /* ---------- Başlat ---------- */
 markActivePage();
 onScroll();
-updateBadge();
+applySocial();
 reveal();
 document.querySelectorAll('[data-year]').forEach(el => { el.textContent = new Date().getFullYear(); });
-window.addEventListener('storage', e => { if (e.key === CART_KEY) updateBadge(); });

@@ -1,29 +1,33 @@
-/* Ürün kartı — ana sayfa ve Fidanlar sayfası aynı kartı kullanır */
-import { imgFor, fullName } from './data.js';
-import { tl, esc } from './utils.js';
+/* Ürün kartı — ana sayfa ve Fidanlar sayfası aynı kartı kullanır.
+   Kartın tamamı tıklanabilir: başlıktaki bağlantı/düğme tüm kartı kaplar (CSS: .p-card__link::after). */
+import { imgFor, highlights } from './data.js';
+import { localize, fullName, t } from './i18n.js';
+import { esc } from './utils.js';
 
-// link: true  -> karta tıklayınca Fidanlar sayfasına gider (ana sayfa)
-// link: false -> karta tıklayınca ürün penceresi açılır (Fidanlar sayfası)
+// link: true  -> karta tıklayınca Fidanlar sayfasında o fidanın penceresi açılır (ana sayfa)
+// link: false -> karta tıklayınca aynı sayfada ürün penceresi açılır (Fidanlar sayfası)
 export function cardHTML(f, { link = false, i = 0 } = {}) {
-  const inner = `
-      <img src="${imgFor(f.slug)}" alt="${esc(fullName(f))}" loading="lazy" width="600" height="600">
-      <span class="p-card__tag">${esc(f.category)}</span>
-      <span class="p-card__view">İncele <i class="i i-arrow-right"></i></span>`;
-
-  const media = link
-    ? `<a class="p-card__media" href="./catalog.html?fidan=${f.id}" aria-label="${esc(f.title)} detayları">${inner}</a>`
-    : `<button class="p-card__media" type="button" data-open="${f.id}" aria-label="${esc(f.title)} detayları">${inner}</button>`;
+  const L = localize(f);
+  const ilk = highlights(f)[0];
+  const [baslik, deger] = ilk ? L.spec([ilk[1], ilk[2]]) : [];
+  const meta = ilk ? `<p class="p-card__meta"><i class="i i-${ilk[0]}"></i><span>${esc(baslik)}: ${esc(deger)}</span></p>` : '';
+  const title = link
+    ? `<a class="p-card__link" href="./catalog.html?fidan=${f.id}">${esc(L.title)}</a>`
+    : `<button class="p-card__link" type="button" data-open="${f.id}">${esc(L.title)}</button>`;
 
   return `
     <article class="p-card" style="--i:${i}">
-      ${media}
+      <div class="p-card__media">
+        <img src="${imgFor(f.slug)}" alt="${esc(fullName(f))}" loading="lazy" width="600" height="600">
+        <span class="p-card__tag">${esc(L.category)}</span>
+        <span class="p-card__view" aria-hidden="true">${esc(t('card.view'))} <i class="i i-arrow-right"></i></span>
+      </div>
       <div class="p-card__body">
-        <div>
-          <h3 class="p-card__name">${esc(f.title)}</h3>
-          <p class="p-card__variety">${esc(f.variety)}</p>
-          <strong class="p-card__price">${tl(f.price)}</strong>
+        <div class="p-card__text">
+          <h3 class="p-card__name">${title}</h3>
+          ${meta}
         </div>
-        <button class="add-btn" type="button" data-add="${f.id}" aria-label="${esc(f.title)} sepete ekle"><i class="i i-bag"></i></button>
+        <span class="more-btn" aria-hidden="true"><i class="i i-arrow-right"></i></span>
       </div>
     </article>`;
 }

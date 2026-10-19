@@ -1,6 +1,7 @@
 /* Ana sayfa — "Öne Çıkan Fidanlar" bölümü */
 import './ui.js';
-import { FIDANLAR, CATEGORIES } from './data.js';
+import { FIDANLAR, GROUPS } from './data.js';
+import { cat } from './i18n.js';
 import { cardHTML } from './product-card.js';
 
 const FAVORI = [15, 7, 11, 19, 20, 35, 23, 25]; // Ana sayfada gösterilecek fidanların id'leri (data.js)
@@ -9,8 +10,10 @@ const grid = document.getElementById('favGrid');
 const chips = document.getElementById('favChips');
 let aktif = 'Tümü';
 
-chips.innerHTML = CATEGORIES.map(c =>
-  `<button type="button" class="chip${c === aktif ? ' is-active' : ''}" data-cat="${c}">${c}</button>`).join('');
+function cipleriCiz() {
+  chips.innerHTML = GROUPS.map(c =>
+    `<button type="button" class="chip${c === aktif ? ' is-active' : ''}" data-cat="${c}">${cat(c)}</button>`).join('');
+}
 
 function ciz() {
   const liste = FAVORI.map(id => FIDANLAR.find(f => f.id === id))
@@ -26,4 +29,8 @@ chips.addEventListener('click', e => {
   ciz();
 });
 
+// Dil değişince çipler ve kartlar yeni dille yeniden çizilir
+document.addEventListener('langchange', () => { cipleriCiz(); ciz(); });
+
+cipleriCiz();
 ciz();

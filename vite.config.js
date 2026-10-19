@@ -14,8 +14,6 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'src/index.html'),
         catalog: resolve(__dirname, 'src/catalog.html'),
-        library: resolve(__dirname, 'src/library.html'),
-        atlas: resolve(__dirname, 'src/atlas.html'),
       },
     },
   },

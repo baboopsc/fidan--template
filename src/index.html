@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sağ Fidancılık | Hatay Fidan Üreticisi</title>
-  <meta name="description" content="2005'ten beri Samandağ / Hatay'da sertifikalı turunçgil, zeytin, nar ve meyve fidanı üretimi." />
+  <title data-i18n="meta.index.title">Sağ Fidancılık | Hatay Fidan Üreticisi</title>
+  <meta name="description" content="2005'ten beri Samandağ / Hatay'da sertifikalı turunçgil, zeytin, nar ve meyve fidanı üretimi." data-i18n-attr="content:meta.index.desc" />
   <meta name="theme-color" content="#fbf8f1" />
   <link rel="icon" href="./img/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,11 +15,12 @@
   <link rel="stylesheet" href="./css/icons.css" />
   <link rel="stylesheet" href="./css/layout.css" />
   <link rel="stylesheet" href="./css/home.css" />
-  <script>document.documentElement.classList.add('js')</script>
+  <!-- Seçili dil Türkçe değilse, çeviri yüklenene kadar sayfayı kısa süre gizler (js/i18n.js) -->
+  <script>document.documentElement.classList.add('js');try{var l=new URLSearchParams(location.search).get('lang')||localStorage.getItem('lang');if(l==='en'||l==='ru'){document.documentElement.classList.add('i18n-wait');setTimeout(function(){document.documentElement.classList.remove('i18n-wait')},1500)}}catch(e){}</script>
 </head>
 <body id="top">
 
-  <load src="./partials/header.html" cta="Fidanları İncele" ctahref="./catalog.html" />
+  <load src="./partials/header.html" cta="Fidanları İncele" ctakey="cta.browse" ctahref="./catalog.html" />
 
   <main>
     <!-- 1. HERO -->
@@ -27,48 +28,48 @@
       <div class="hero__bg" aria-hidden="true"></div>
       <div class="wrap">
         <div class="hero__content">
-          <span class="pill-tag" data-reveal><span class="pill-tag__icon"><i class="i i-pin"></i></span>2005'ten beri Samandağ / Hatay</span>
-          <h1 data-reveal style="--d:1">Bahçenizin geleceği <em>sağlıklı</em> bir fidanla başlar</h1>
-          <p class="hero__lead" data-reveal style="--d:2">Turunçgil, zeytin, nar ve meyve fidanlarını sertifikalı olarak yetiştiriyor; çeşidi belli, sağlıklı fidanları uygun fiyatla sunuyoruz.</p>
+          <span class="pill-tag" data-reveal><span class="pill-tag__icon"><i class="i i-pin"></i></span><span data-i18n="hero.pill">2005'ten beri Samandağ / Hatay</span></span>
+          <h1 data-reveal style="--d:1" data-i18n="hero.title">Bahçenizin geleceği <em>sağlıklı</em> bir fidanla başlar</h1>
+          <p class="hero__lead" data-reveal style="--d:2" data-i18n="hero.lead">Turunçgil, zeytin, nar ve meyve fidanlarını sertifikalı olarak yetiştiriyor; çeşidi belli, sağlıklı fidanları uygun fiyatla sunuyoruz.</p>
           <div class="hero__actions" data-reveal style="--d:3">
-            <a class="btn btn-primary" href="./catalog.html">Fidan Çeşitleri <i class="i i-arrow-right"></i></a>
-            <a class="play-btn" href="./atlas.html"><span class="play-btn__circle"><i class="i i-play"></i></span>3D Atlas'ı Gez</a>
+            <a class="btn btn-primary" href="./catalog.html"><span data-i18n="hero.cta">Fidan Çeşitleri</span> <i class="i i-arrow-right"></i></a>
+            <a class="play-btn" href="tel:+905336125225"><span class="play-btn__circle"><i class="i i-phone"></i></span><span data-i18n="hero.call">Hemen Arayın</span></a>
           </div>
           <div class="hero__trust" data-reveal style="--d:4">
             <span class="hero__trust-icon"><i class="i i-award"></i></span>
-            <span><strong>Sertifikalı fidan</strong> · Turunçgilden kayısıya 10 meyve türü</span>
+            <span data-i18n="hero.trust"><strong>Sertifikalı fidan</strong> · Turunçgilden kayısıya 10 meyve türü</span>
           </div>
         </div>
       </div>
     </section>
 
     <!-- 2. İSTATİSTİKLER -->
-    <section class="wrap stats" aria-label="Rakamlarla Sağ Fidancılık">
-      <div class="stat" data-reveal><span class="stat__icon"><i class="i i-calendar"></i></span><div><strong data-count="20" data-suffix="+">20+</strong><span>Yıllık tecrübe</span></div></div>
-      <div class="stat" data-reveal style="--d:1"><span class="stat__icon"><i class="i i-sprout"></i></span><div><strong data-count="35" data-suffix="+">35+</strong><span>Fidan çeşidi</span></div></div>
-      <div class="stat" data-reveal style="--d:2"><span class="stat__icon"><i class="i i-tree"></i></span><div><strong data-count="10">10</strong><span>Meyve türü</span></div></div>
-      <div class="stat" data-reveal style="--d:3"><span class="stat__icon"><i class="i i-award"></i></span><div><strong data-count="100" data-prefix="%">%100</strong><span>Sertifikalı üretim</span></div></div>
+    <section class="wrap stats" aria-label="Rakamlarla Sağ Fidancılık" data-i18n-attr="aria-label:stats.aria">
+      <div class="stat" data-reveal><span class="stat__icon"><i class="i i-calendar"></i></span><div><strong data-count="20" data-suffix="+">20+</strong><span data-i18n="stats.years">Yıllık tecrübe</span></div></div>
+      <div class="stat" data-reveal style="--d:1"><span class="stat__icon"><i class="i i-sprout"></i></span><div><strong data-count="35" data-suffix="+">35+</strong><span data-i18n="stats.varieties">Fidan çeşidi</span></div></div>
+      <div class="stat" data-reveal style="--d:2"><span class="stat__icon"><i class="i i-tree"></i></span><div><strong data-count="10">10</strong><span data-i18n="stats.types">Meyve türü</span></div></div>
+      <div class="stat" data-reveal style="--d:3"><span class="stat__icon"><i class="i i-award"></i></span><div><strong data-count="100" data-prefix="%">%100</strong><span data-i18n="stats.cert">Sertifikalı üretim</span></div></div>
     </section>
 
     <!-- 3. NEDEN BİZ -->
     <section class="section" id="neden">
       <div class="wrap">
         <header class="section-head" data-reveal>
-          <span class="eyebrow">Neden biz</span>
-          <h2>Neden <em>Sağ Fidancılık</em>?</h2>
-          <p>Kontrolsüz dikimden doğabilecek kayıpları önlemek için çeşidi belli, sağlıklı fidanlar yetiştiriyoruz.</p>
+          <span class="eyebrow" data-i18n="why.eyebrow">Neden biz</span>
+          <h2 data-i18n="why.title">Neden <em>Sağ Fidancılık</em>?</h2>
+          <p data-i18n="why.lead">Kontrolsüz dikimden doğabilecek kayıpları önlemek için çeşidi belli, sağlıklı fidanlar yetiştiriyoruz.</p>
         </header>
         <div class="why-grid">
           <div class="why-col">
-            <div class="feature" data-reveal><span class="feature__icon"><i class="i i-award"></i></span><div><h3>Sertifikalı Fidan</h3><p>Turunçgil ve meyve fidanlarımızın tamamı sertifikalı olarak yetiştirilir.</p></div></div>
-            <div class="feature" data-reveal style="--d:1"><span class="feature__icon"><i class="i i-tree"></i></span><div><h3>Seçilmiş Aşı Gözleri</h3><p>Aşı gözleri sağlıklı ve verimli ağaçlardan özenle seçilir.</p></div></div>
+            <div class="feature" data-reveal><span class="feature__icon"><i class="i i-award"></i></span><div><h3 data-i18n="why.f1.t">Sertifikalı Fidan</h3><p data-i18n="why.f1.p">Turunçgil ve meyve fidanlarımızın tamamı sertifikalı olarak yetiştirilir.</p></div></div>
+            <div class="feature" data-reveal style="--d:1"><span class="feature__icon"><i class="i i-tree"></i></span><div><h3 data-i18n="why.f2.t">Seçilmiş Aşı Gözleri</h3><p data-i18n="why.f2.p">Aşı gözleri sağlıklı ve verimli ağaçlardan özenle seçilir.</p></div></div>
           </div>
           <div class="why-media" data-reveal style="--d:1">
-            <img src="./img/pot-plant.png" alt="Saksıda yeşil bir fidan" width="2400" height="1792">
+            <img src="./img/pot-plant.png" alt="Saksıda yeşil bir fidan" data-i18n-attr="alt:why.img" width="2400" height="1792">
           </div>
           <div class="why-col">
-            <div class="feature" data-reveal style="--d:2"><span class="feature__icon"><i class="i i-flask"></i></span><div><h3>Hastalığa Karşı Önlem</h3><p>Turunç tohumları hastalık riskini azaltmak için çeşitli işlemlerden geçirilir.</p></div></div>
-            <div class="feature" data-reveal style="--d:3"><span class="feature__icon"><i class="i i-headset"></i></span><div><h3>Uygun Fiyat, Yakın İlgi</h3><p>Önceliğimiz müşteri memnuniyeti; çiftçiye ve yeni başlayana aynı özen.</p></div></div>
+            <div class="feature" data-reveal style="--d:2"><span class="feature__icon"><i class="i i-flask"></i></span><div><h3 data-i18n="why.f3.t">Hastalığa Karşı Önlem</h3><p data-i18n="why.f3.p">Turunç tohumları hastalık riskini azaltmak için çeşitli işlemlerden geçirilir.</p></div></div>
+            <div class="feature" data-reveal style="--d:3"><span class="feature__icon"><i class="i i-headset"></i></span><div><h3 data-i18n="why.f4.t">Uygun Fiyat, Yakın İlgi</h3><p data-i18n="why.f4.p">Önceliğimiz müşteri memnuniyeti; çiftçiye ve yeni başlayana aynı özen.</p></div></div>
           </div>
         </div>
       </div>
@@ -78,20 +79,20 @@
     <section class="section" id="hakkimizda">
       <div class="wrap about">
         <div class="about__text" data-reveal>
-          <span class="eyebrow">Hakkımızda</span>
-          <h2>2005'ten beri <em>Samandağ</em>'da fidan üretiyoruz</h2>
-          <p>Sağ Fidancılık olarak turunçgil ve diğer meyve fidanlarını sertifikalı şekilde yetiştiriyor, uygun fiyatla satışa sunuyoruz.</p>
-          <p>Amacımız; çiftçilere ve bu işe yeni başlayan girişimcilere kaliteli, sağlıklı ve çeşidi belli fidanlar ulaştırarak kontrolsüz dikimden doğabilecek kayıp ve zararların önüne geçmek.</p>
-          <p>Bunun için aşı gözlerini sağlıklı ve verimli ağaçlardan seçiyor, turunç tohumlarını hastalık riskine karşı çeşitli işlemlerden geçiriyoruz. Öncelikli amacımız her zaman müşteri memnuniyeti.</p>
-          <a class="btn btn-outline" href="#iletisim">Bize Ulaşın <i class="i i-arrow-right"></i></a>
+          <span class="eyebrow" data-i18n="about.eyebrow">Hakkımızda</span>
+          <h2 data-i18n="about.title">2005'ten beri <em>Samandağ</em>'da fidan üretiyoruz</h2>
+          <p data-i18n="about.p1">Sağ Fidancılık olarak turunçgil ve diğer meyve fidanlarını sertifikalı şekilde yetiştiriyor, uygun fiyatla satışa sunuyoruz.</p>
+          <p data-i18n="about.p2">Amacımız; çiftçilere ve bu işe yeni başlayan girişimcilere kaliteli, sağlıklı ve çeşidi belli fidanlar ulaştırarak kontrolsüz dikimden doğabilecek kayıp ve zararların önüne geçmek.</p>
+          <p data-i18n="about.p3">Bunun için aşı gözlerini sağlıklı ve verimli ağaçlardan seçiyor, turunç tohumlarını hastalık riskine karşı çeşitli işlemlerden geçiriyoruz. Öncelikli amacımız her zaman müşteri memnuniyeti.</p>
+          <a class="btn btn-outline" href="#iletisim"><span data-i18n="about.cta">Bize Ulaşın</span> <i class="i i-arrow-right"></i></a>
         </div>
-        <aside class="about__card" data-reveal style="--d:1" aria-label="Kısaca Sağ Fidancılık">
-          <h3>Kısaca biz</h3>
+        <aside class="about__card" data-reveal style="--d:1" aria-label="Kısaca Sağ Fidancılık" data-i18n-attr="aria-label:about.card.aria">
+          <h3 data-i18n="about.card.title">Kısaca biz</h3>
           <ul class="about__facts">
-            <li><span class="about__icon"><i class="i i-calendar"></i></span><div><small>Kuruluş</small><b>2005</b></div></li>
-            <li><span class="about__icon"><i class="i i-pin"></i></span><div><small>Konum</small><b>Fidanlı Mah., Samandağ / Hatay</b></div></li>
-            <li><span class="about__icon"><i class="i i-sprout"></i></span><div><small>Üretim</small><b>Turunçgil, zeytin, nar, kayısı, erik, badem, Trabzon hurması ve anaç</b></div></li>
-            <li><span class="about__icon"><i class="i i-award"></i></span><div><small>Kalite</small><b>Sertifikalı, çeşidi belli fidan</b></div></li>
+            <li><span class="about__icon"><i class="i i-calendar"></i></span><div><small data-i18n="about.f.founded">Kuruluş</small><b>2005</b></div></li>
+            <li><span class="about__icon"><i class="i i-pin"></i></span><div><small data-i18n="about.f.location">Konum</small><b data-i18n="about.f.location.v">Fidanlı Mah., Samandağ / Hatay</b></div></li>
+            <li><span class="about__icon"><i class="i i-sprout"></i></span><div><small data-i18n="about.f.production">Üretim</small><b data-i18n="about.f.production.v">Turunçgil, zeytin, nar, kayısı, erik, badem, Trabzon hurması ve anaç</b></div></li>
+            <li><span class="about__icon"><i class="i i-award"></i></span><div><small data-i18n="about.f.quality">Kalite</small><b data-i18n="about.f.quality.v">Sertifikalı, çeşidi belli fidan</b></div></li>
           </ul>
         </aside>
       </div>
@@ -102,29 +103,29 @@
       <div class="care" data-reveal>
         <div class="care__bg" aria-hidden="true"></div>
         <div class="care__text">
-          <span class="eyebrow">Çeşit danışmanlığı</span>
-          <h2>Bölgenize uygun fidanı <em>birlikte</em> seçelim</h2>
-          <p>Hangi çeşidin toprağınıza ve iklime uygun olduğundan emin değilseniz bizi arayın. Bahçe kuracaklar için toplu sipariş teklifi de hazırlıyoruz.</p>
-          <a class="btn btn-light" href="tel:+905336125225"><i class="i i-phone"></i> Hemen Arayın</a>
+          <span class="eyebrow" data-i18n="care.eyebrow">Çeşit danışmanlığı</span>
+          <h2 data-i18n="care.title">Bölgenize uygun fidanı <em>birlikte</em> seçelim</h2>
+          <p data-i18n="care.p">Hangi çeşidin toprağınıza ve iklime uygun olduğundan emin değilseniz bizi arayın. Bahçe kuracaklar için toplu sipariş teklifi de hazırlıyoruz.</p>
+          <a class="btn btn-light" href="tel:+905336125225"><i class="i i-phone"></i> <span data-i18n="care.call">Hemen Arayın</span></a>
         </div>
         <div class="care-cards">
-          <article class="glass-card"><span class="glass-card__icon"><i class="i i-headset"></i></span><h3>Çeşit Danışmanlığı</h3><p>Toprağınıza ve iklime uygun çeşidi seçmenize yardımcı oluyoruz.</p></article>
-          <article class="glass-card"><span class="glass-card__icon"><i class="i i-box"></i></span><h3>Toplu Sipariş</h3><p>Yeni bahçe kuracaklara toplu fidan teklifi hazırlıyoruz.</p></article>
+          <article class="glass-card"><span class="glass-card__icon"><i class="i i-headset"></i></span><h3 data-i18n="care.c1.t">Çeşit Danışmanlığı</h3><p data-i18n="care.c1.p">Toprağınıza ve iklime uygun çeşidi seçmenize yardımcı oluyoruz.</p></article>
+          <article class="glass-card"><span class="glass-card__icon"><i class="i i-box"></i></span><h3 data-i18n="care.c2.t">Toplu Sipariş</h3><p data-i18n="care.c2.p">Yeni bahçe kuracaklara toplu fidan teklifi hazırlıyoruz.</p></article>
         </div>
       </div>
     </section>
 
-    <!-- 6. ÖNE ÇIKAN FİDANLAR -->
+    <!-- 6. ÖNE ÇIKAN FİDANLAR (kartlar js/home.js ile çizilir) -->
     <section class="section" id="urunler">
       <div class="wrap">
         <header class="section-head" data-reveal>
-          <span class="eyebrow">Fidan çeşitleri</span>
-          <h2>Öne Çıkan <em>Fidanlarımız</em></h2>
+          <span class="eyebrow" data-i18n="fav.eyebrow">Fidan çeşitleri</span>
+          <h2 data-i18n="fav.title">Öne Çıkan <em>Fidanlarımız</em></h2>
         </header>
-        <div class="chips" id="favChips" aria-label="Kategoriler" data-reveal></div>
+        <div class="chips" id="favChips" aria-label="Kategoriler" data-i18n-attr="aria-label:chips.aria" data-reveal></div>
         <div class="p-grid" id="favGrid"></div>
         <div class="section-cta" data-reveal>
-          <a class="btn btn-outline" href="./catalog.html">Tüm çeşitleri gör <i class="i i-arrow-right"></i></a>
+          <a class="btn btn-outline" href="./catalog.html"><span data-i18n="fav.all">Tüm çeşitleri gör</span> <i class="i i-arrow-right"></i></a>
         </div>
       </div>
     </section>
@@ -133,15 +134,18 @@
     <section class="section" id="iletisim">
       <div class="wrap">
         <header class="section-head" data-reveal>
-          <span class="eyebrow">İletişim</span>
-          <h2>Bize <em>ulaşın</em></h2>
-          <p>Fidan çeşitleri, stok ve fiyat bilgisi için arayabilir ya da e-posta gönderebilirsiniz.</p>
+          <span class="eyebrow" data-i18n="contact.eyebrow">İletişim</span>
+          <h2 data-i18n="contact.title">Bize <em>ulaşın</em></h2>
+          <p data-i18n="contact.lead">Fidan çeşitleri, stok ve fiyat bilgisi için bizi arayın; size uygun çeşidi birlikte seçelim.</p>
         </header>
         <div class="contact-grid">
-          <a class="contact-card" href="tel:+905336125225" data-reveal><span class="contact-card__icon"><i class="i i-phone"></i></span><small>Ali Sağ</small><b>0533 612 52 25</b></a>
-          <a class="contact-card" href="tel:+905352184744" data-reveal style="--d:1"><span class="contact-card__icon"><i class="i i-phone"></i></span><small>Saffet Sağ</small><b>0535 218 47 44</b></a>
-          <a class="contact-card" href="mailto:info@sagfidancilik.com" data-reveal style="--d:2"><span class="contact-card__icon"><i class="i i-mail"></i></span><small>E-posta</small><b>info@sagfidancilik.com</b></a>
-          <a class="contact-card" href="https://www.google.com/maps/search/?api=1&amp;query=Fidanl%C4%B1+Mahallesi+Samanda%C4%9F+Hatay" target="_blank" rel="noopener" data-reveal style="--d:3"><span class="contact-card__icon"><i class="i i-pin"></i></span><small>Adres</small><b>Samandağ yolu üzeri, Fidanlı Mah., Samandağ / Hatay</b></a>
+          <a class="contact-card" href="tel:+905336125225" data-reveal><span class="contact-card__icon"><i class="i i-phone"></i></span><small><span data-i18n="contact.phone">Telefon</span> · Ali Sağ</small><b>0533 612 52 25</b></a>
+          <a class="contact-card" href="https://www.google.com/maps/search/?api=1&amp;query=Fidanl%C4%B1+Mahallesi+Samanda%C4%9F+Hatay" target="_blank" rel="noopener" data-reveal style="--d:1"><span class="contact-card__icon"><i class="i i-pin"></i></span><small data-i18n="contact.address">Adres</small><b data-i18n="contact.address.v">Samandağ yolu üzeri, Fidanlı Mah., Samandağ / Hatay</b></a>
+        </div>
+        <div class="social-row" data-social-wrap data-reveal hidden>
+          <span data-i18n="social.follow">Bizi sosyal medyada takip edin</span>
+          <a class="social-btn" data-social="instagram" href="#" target="_blank" rel="noopener" hidden><i class="i i-instagram"></i> Instagram</a>
+          <a class="social-btn" data-social="facebook" href="#" target="_blank" rel="noopener" hidden><i class="i i-facebook"></i> Facebook</a>
         </div>
       </div>
     </section>
