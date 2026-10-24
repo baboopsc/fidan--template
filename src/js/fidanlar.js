@@ -178,8 +178,8 @@ export const TUM_FIDANLAR = [
     desc: 'Doğal olarak küçük boylu kalır; sık dikime, kolay hasat ve ilaçlamaya uygundur. İri, lezzetli ve taşımaya dayanıklı meyveler verir.',
     specs: [['Ağaç', 'Doğal olarak küçük boylu; birim alana daha çok fidan dikilir'], ['İlk ürün', 'Dikimden kısa süre sonra'], ['Meyve', 'İri ve çok lezzetli'], ['Kabuk', 'Orta sert, sarı zemin üzerinde kırmızı noktalı'], ['Tane', 'Kırmızı ya da pembe'], ['Depolama', 'Depolama ve taşımaya dayanıklı'], ['Kullanım', 'Sofralık']] },
   { id: 127, slug: 'caner-nar', name: 'Caner', title: 'Caner Nar', category: 'Nar',
-    desc: 'Bahçemizde yetiştirdiğimiz nar çeşitlerinden. Meyve özellikleri, hasat zamanı ve bölgenize uygunluğu için bizi arayın.',
-    specs: [['Kullanım', 'Sofralık']] },
+    desc: 'Türkiye\'de "çekirdeksiz nar" olarak bilinen, yumuşak çekirdekli bir çeşit. İri, koyu kırmızı kabuklu meyvelerinin taneleri bordo-koyu kırmızıdır. Diğer narlardan erken olgunlaşır; hem sofralık hem nar suyu için değerlendirilir, depolamaya uygundur.',
+    specs: [['Olgunlaşma', 'Erkenci'], ['Hasat', 'Temmuz sonu–Ağustos (Akdeniz sahili)'], ['İrilik', 'İri'], ['Kabuk', 'Koyu kırmızı'], ['Tane', 'Bordo–koyu kırmızı'], ['Çekirdek', 'Yumuşak ("çekirdeksiz" olarak bilinir)'], ['Tat', 'Mayhoş–ekşimsi'], ['Depolama', 'Depolamaya uygun'], ['Kullanım', 'Sofralık ve nar suyu'], ['Anavatan', 'Türkiye']] },
 
   /* ---------- İncir (3) ---------- */
   { id: 128, slug: 'bursa-siyah-inciri', name: 'Bursa Siyah', title: 'Bursa Siyah İnciri', category: 'İncir',
@@ -189,8 +189,8 @@ export const TUM_FIDANLAR = [
     desc: 'Aydın ve İzmir\'in meşhur kurutmalık inciri, Türkiye\'nin standart kuru incir çeşidi. Sarı kabuklu, kehribar renkli etli meyveleri hem kurutmaya hem sofraya uygundur.',
     specs: [['Hasat', 'Temmuz sonu–Eylül sonu'], ['Ağırlık', '65–70 g'], ['Kabuk', 'Sarı, ince'], ['Et', 'Kehribar–sarı'], ['Tozlayıcı', 'İlekleme gerekir'], ['Kullanım', 'Kurutmalık (çok kaliteli) ve sofralık'], ['Diğer adı', 'Aydın inciri']] },
   { id: 130, slug: 'durdane-inciri', name: 'Dürdane', title: 'Dürdane İnciri', category: 'İncir',
-    desc: 'Yerli bir incir çeşidi. Meyve rengi, hasat zamanı ve kullanım şekli için bizi arayın; bölgenize uygunluğunu birlikte değerlendirelim.',
-    specs: [['Anavatan', 'Türkiye']] },
+    desc: 'Bursa Siyahı inciri olarak da bilinen, Türkiye\'nin en önemli ihracat sofralık incirlerinden. İri, yuvarlak, koyu mor-siyah kabuklu meyvelerinin eti koyu kırmızı ve dolgundur; olgunlaşınca ucundan bal damlar. Kabuğu dayanıklı olduğu için taşımaya uygundur, ılıman bölgelerin çoğunda yetişir.',
+    specs: [['Hasat', 'Ağustos–Ekim (Ege), Eylül–Kasım (Bursa)'], ['Meyve şekli', 'Yuvarlak'], ['İrilik', 'İri'], ['Kabuk', 'Koyu mor–mor siyah, dayanıklı'], ['Et', 'Koyu kırmızı, dolgun, boşluksuz'], ['Tozlayıcı', 'İlekleme gerekir'], ['Depolama', 'Taşımaya dayanıklı'], ['Kullanım', 'Sofralık, ihracata uygun'], ['Diğer adı', 'Bursa Siyahı, Bursa karası']] },
 
   /* ---------- Dut (5) ---------- */
   { id: 131, slug: 'beyaz-dut', name: 'Beyaz', title: 'Beyaz Dut', category: 'Dut',
@@ -226,8 +226,8 @@ export const TUM_FIDANLAR = [
     desc: 'Malatya\'nın standart kurutmalık kayısısı (Hacıhaliloğlu). Ağacı dik ve kuvvetli gelişir; orta irilikte, bir yüzü kırmızımtırak, az sulu ve aromalı meyveleri gün kurusu kayısı için idealdir.',
     specs: [['Ağaç', 'Dik, kuvvetli'], ['Hasat', 'Temmuz'], ['İrilik', 'Orta'], ['Kabuk', 'Sarı, bir yüzü kırmızımtırak'], ['Et', 'Az sulu, aromalı'], ['Çekirdek', 'Küçük'], ['Kullanım', 'Kurutmalık'], ['Diğer adı', 'Hacıhaliloğlu']] },
   { id: 138, slug: 'alyanak-kayisi', name: 'Alyanak', title: 'Alyanak Kayısı', category: 'Kayısı',
-    desc: 'Sofralık olarak yetiştirilen yerli bir kayısı çeşidi. Hasat zamanı ve meyve özellikleri için bizi arayın; bölgenize uygunluğunu birlikte değerlendirelim.',
-    specs: [['Kullanım', 'Sofralık'], ['Anavatan', 'Türkiye']] },
+    desc: 'Kuvvetli ve yayvan gelişen ağacıyla sofralık bir kayısı. Basık oval meyveleri güneş gören yüzünde belirgin kırmızı bir yanak yapar — adı da buradan gelir. Turuncu etli, hafif mayhoş meyvelerin çekirdeği etten kolay ayrılır; kendine verimlidir.',
+    specs: [['Ağaç', 'Kuvvetli, yayvan'], ['Hasat', 'Haziran sonu'], ['Meyve şekli', 'Basık oval'], ['Kabuk', 'Turuncu, belirgin kırmızı yanaklı'], ['Et', 'Turuncu'], ['Çekirdek', 'Etten kolay ayrılır'], ['Tat', 'Hafif mayhoş'], ['Tozlayıcı', 'Kendine verimli'], ['Kullanım', 'Sofralık']] },
   { id: 33, slug: 'ninfa-kayisi', name: 'Ninfa', title: 'Ninfa Kayısı', category: 'Kayısı',
     desc: 'Mayısta hasada gelen erkenci, iri ve gösterişli bir kayısı. Tozlayıcıya ihtiyaç duymaz, üreticiler tarafından çok tercih edilir.',
     specs: [['Ağaç', 'Yarı kuvvetli, yayvan, çok verimli'], ['Çiçeklenme', 'Erken'], ['Hasat', 'Mayıs sonu (erkenci)'], ['Meyve şekli', 'Yuvarlağa yakın oval'], ['İrilik', 'İri'], ['Kabuk', 'Sarı, güneş gören yüzü hafif kırmızı'], ['Et', 'Sarı, orta sert'], ['Çekirdek', 'Ete yapışık, içi tatlı'], ['Tat', 'Orta tatlı'], ['Depolama', 'Uzun süre depolanmaz'], ['Tozlayıcı', 'Gerekmez'], ['Kullanım', 'Sofralık']] },
@@ -266,11 +266,11 @@ export const TUM_FIDANLAR = [
 
   /* ---------- Şeftali (8) ---------- */
   { id: 143, slug: 'vistarich-seftali', name: 'Vistarich', title: 'Vistarich Şeftali', category: 'Şeftali',
-    desc: 'Bahçemizde yetiştirdiğimiz şeftali çeşitlerinden. Hasat zamanı ve meyve özellikleri için bizi arayın; bölgenize uygunluğunu birlikte değerlendirelim.',
-    specs: [['Kullanım', 'Sofralık']] },
+    desc: 'Kaliforniya\'da Zaiger Genetics tarafından geliştirilen "Rich" serisinden iri bir şeftali. Kabuğu neredeyse tamamen koyu kırmızıyla kaplı ve az tüylüdür; sarı-turuncu etli, çekirdeği etten ayrılan, çok tatlı ve asidi düşük meyveler verir. Kendine verimlidir, meyvesi dalda iyi durur.',
+    specs: [['Hasat', 'Redhaven\'dan 3–6 gün sonra (Temmuz sonu–Ağustos)'], ['Meyve şekli', 'Yuvarlak, simetrik'], ['Ağırlık', '200 g ve üzeri'], ['Kabuk', 'Neredeyse tamamen koyu kırmızı, az tüylü'], ['Et', 'Sarı–turuncu, sıkı, sulu'], ['Çekirdek', 'Etten ayrılır'], ['Tat', 'Çok tatlı, asidi düşük'], ['Tozlayıcı', 'Kendine verimli'], ['Anavatan', 'ABD (Kaliforniya)']] },
   { id: 144, slug: 'plagold-25-seftali', name: 'Plagold 25', title: 'Plagold 25 Şeftali', category: 'Şeftali',
-    desc: 'Bahçemizde yetiştirdiğimiz şeftali çeşitlerinden. Hasat zamanı ve meyve özellikleri için bizi arayın; bölgenize uygunluğunu birlikte değerlendirelim.',
-    specs: [['Kullanım', 'Sofralık']] },
+    desc: 'İspanyol Planasa firmasının sarı etli PlaGold serisinden erkenci bir şeftali. Haziranda olgunlaşan iri meyvelerinin kabuğu koyu kırmızı, eti sarıdır; oldukça sert ve dayanıklı olduğu için taşımaya ve pazara uygundur.',
+    specs: [['Olgunlaşma', 'Erkenci'], ['Hasat', '18 Haziran (Adana) – 28 Haziran (İzmir)'], ['Ağırlık', 'Ort. 300 g'], ['Kabuk', 'Koyu kırmızı'], ['Et', 'Sarı, çok sert'], ['Depolama', 'Dayanıklı, taşımaya uygun'], ['Anavatan', 'İspanya (Planasa)']] },
   { id: 145, slug: 'cresthaven-seftali', name: 'Cresthaven', title: 'Cresthaven Şeftali', category: 'Şeftali',
     desc: 'ABD\'nin Michigan eyaletinde geliştirilmiş geç bir şeftali. Sarı etli, çekirdeği etten kolay ayrılan, sert ve kesildiğinde kararmayan meyveleri hem sofralık hem konserveliktir.',
     specs: [['Olgunlaşma', 'Geç'], ['Hasat', 'Ağustos sonu'], ['Kabuk', 'Sarı zemin üzerine kırmızı'], ['Et', 'Sarı, sert, kararmaz'], ['Çekirdek', 'Etten kolay ayrılır'], ['Kullanım', 'Sofralık ve konservelik'], ['Anavatan', 'ABD (Michigan)']] },
