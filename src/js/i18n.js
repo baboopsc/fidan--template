@@ -1,19 +1,31 @@
 /* ==========================================================
-   Dil desteği: Türkçe, English, Русский.
+   Dil desteği: Türkçe, English, Русский, العربية.
+   - Arapça seçilince sayfa sağdan sola (dir="rtl") döner.
    - Türkçe metinler HTML'in kendisindedir; ayrıca yazmaya gerek yok.
    - Çevrilecek her öğe data-i18n="anahtar" ile işaretlidir
      (öznitelikler için data-i18n-attr="placeholder:anahtar;aria-label:anahtar2").
-   - İngilizce ve Rusça metinler js/i18n/en.js ve js/i18n/ru.js dosyalarındadır.
+   - Çeviriler js/i18n/ klasöründedir: en.js, ru.js, ar.js.
    - Seçilen dil tarayıcıda hatırlanır; ?lang=en bağlantısıyla da açılabilir.
    ========================================================== */
 import en from './i18n/en.js';
 import ru from './i18n/ru.js';
+import ar from './i18n/ar.js';
 
-export const LANGS = ['tr', 'en', 'ru'];
-const DICTS = { en, ru };
+export const LANGS = ['tr', 'en', 'ru', 'ar'];
+const DICTS = { en, ru, ar };
+const RTL = ['ar'];
 
 // JS'in kendisinin ürettiği Türkçe metinler (HTML'de olmayanlar)
-const TR = { count: '{n} fidan listeleniyor', fullName: '{name} Fidanı', 'card.view': 'Detayları gör' };
+const TR = {
+  count: '{n} fidan bulundu',
+  fullName: '{name} Fidanı',
+  'card.view': 'Detayları gör',
+  'card.ask': 'Bilgi için arayın',
+  varieties: '{n} çeşit',
+  catTitle: '{cat} Çeşitleri',
+  'search.results': 'Arama sonuçları',
+  noDetail: 'Bu çeşidin ayrıntılı özellikleri yakında eklenecek. Çeşit, stok ve fiyat bilgisi için bizi arayın.',
+};
 
 const kaydet = l => { try { localStorage.setItem('lang', l); } catch { /* gizli sekme vb. */ } };
 const oku = () => { try { return localStorage.getItem('lang'); } catch { return null; } };
@@ -36,13 +48,23 @@ export function t(key, vars = {}) {
 // Kategori ve filtre adları: 'Mandalina' -> 'Mandarin'
 export const cat = name => sozluk()?.cats[name] ?? name;
 
-// Sayılar: "%33,4" -> "33.4%" (EN) / "33,4%" (RU); RU'da "mm, g, m" -> "мм, г, м"
+// Sayılar: "%33,4" -> "33.4%" (EN, AR) / "33,4%" (RU); birimler RU'da "мм, г, м", AR'da "مم، غ، م"
 function sayilar(v) {
   if (lang === 'tr') return v;
   let s = v.replace(/%(\d+(?:,\d+)?(?:–\d+(?:,\d+)?)?)/g, '$1%');
-  if (lang === 'en') s = s.replace(/(\d),(\d)/g, '$1.$2');
+  if (lang === 'en' || lang === 'ar') s = s.replace(/(\d),(\d)/g, '$1.$2');
   if (lang === 'ru') s = s.replace(/(\d)\s?mm\b/g, '$1 мм').replace(/(\d)\s?g\b/g, '$1 г').replace(/(\d)\s?m\b/g, '$1 м');
+  if (lang === 'ar') s = s.replace(/(\d)\s?mm\b/g, '$1 مم').replace(/(\d)\s?g\b/g, '$1 غ').replace(/(\d)\s?m\b/g, '$1 م');
   return s;
+}
+
+// Yalnızca adı olan çeşitlerin başlığı: "Orri" + Mandalina -> "Orri Mandarin" / "Мандарин Orri" / "يوسفي Orri"
+function baslik(f, d, p) {
+  if (p.title) return p.title;
+  if (!d || !f.name) return f.title;
+  const tur = d.nouns?.[f.noun || f.category];
+  if (!tur) return f.title;
+  return d.titleOrder === 'noun-name' ? `${tur} ${f.name}` : `${f.name} ${tur}`;
 }
 
 /* Bir fidanın seçili dildeki hâli: başlık, açıklama, kategori ve tüm özellikler.
@@ -52,7 +74,13 @@ export function localize(f) {
   const p = d?.products[f.id] || {};
   const labels = { ...(d?.labels || {}), ...(p.labels || {}) };
   const spec = ([k, v]) => [labels[k] ?? k, p.specs?.[k] ?? sayilar(v)];
-  return { title: p.title ?? f.title, desc: p.desc ?? f.desc, category: cat(f.category), specs: f.specs.map(spec), spec };
+  return { title: baslik(f, d, p), desc: p.desc ?? f.desc ?? '', category: cat(f.category), specs: (f.specs || []).map(spec), spec };
+}
+
+// Kısa ad (kategori kartındaki önizleme listesi için): "Miho Wase", "White Mulberry" ...
+export function shortName(f) {
+  const p = sozluk()?.products[f.id];
+  return (!f.specs && p?.title) ? p.title : (f.name || f.title);
 }
 
 // Görsel alt metni: "Washington Portakal Fidanı" / "Washington Orange sapling"
@@ -65,6 +93,7 @@ const asilAttr = new Map();  // öğe -> { öznitelik: Türkçe değer }
 function uygula() {
   const d = sozluk();
   document.documentElement.lang = lang;
+  document.documentElement.dir = RTL.includes(lang) ? 'rtl' : 'ltr';
 
   document.querySelectorAll('[data-i18n]').forEach(el => {
     if (!asil.has(el)) asil.set(el, el.innerHTML);

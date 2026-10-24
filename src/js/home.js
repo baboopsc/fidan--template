@@ -1,6 +1,6 @@
 /* Ana sayfa — "Öne Çıkan Fidanlar" bölümü */
 import './ui.js';
-import { FIDANLAR, GROUPS } from './data.js';
+import { FIDANLAR, GROUPS, groupOf } from './data.js';
 import { cat } from './i18n.js';
 import { cardHTML } from './product-card.js';
 
@@ -17,7 +17,7 @@ function cipleriCiz() {
 
 function ciz() {
   const liste = FAVORI.map(id => FIDANLAR.find(f => f.id === id))
-    .filter(f => f && (aktif === 'Tümü' || f.group === aktif));
+    .filter(f => f && (aktif === 'Tümü' || groupOf(f) === aktif));
   grid.innerHTML = liste.map((f, i) => cardHTML(f, { link: true, i })).join('');
 }
 

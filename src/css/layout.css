@@ -6,7 +6,7 @@
 /* ---------- Üst menü (partials/header.html) ---------- */
 .site-header { position: fixed; top: 14px; left: 0; right: 0; z-index: 50; view-transition-name: site-header; }
 .site-header .wrap { position: relative; }
-.nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 70px; padding: 0 10px 0 22px; border-radius: 999px; background: rgba(251,248,241,.62); -webkit-backdrop-filter: blur(16px) saturate(1.4); backdrop-filter: blur(16px) saturate(1.4); border: 1px solid rgba(255,255,255,.7); box-shadow: 0 10px 30px -20px rgba(31,46,27,.45); transition: background .3s, box-shadow .3s; }
+.nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 70px; padding: 0; padding-inline: 22px 10px; border-radius: 999px; background: rgba(251,248,241,.62); -webkit-backdrop-filter: blur(16px) saturate(1.4); backdrop-filter: blur(16px) saturate(1.4); border: 1px solid rgba(255,255,255,.7); box-shadow: 0 10px 30px -20px rgba(31,46,27,.45); transition: background .3s, box-shadow .3s; }
 .site-header.is-scrolled .nav { background: rgba(251,248,241,.92); box-shadow: var(--shadow-md); }
 .brand { display: inline-flex; align-items: center; flex: none; }
 .brand__logo { height: 56px; width: auto; transition: transform .4s var(--ease); }
@@ -45,14 +45,14 @@
 .p-card__media { position: relative; display: block; width: 100%; aspect-ratio: 1 / 1; border-radius: 14px; overflow: hidden; background: var(--sand); }
 .p-card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s var(--ease); }
 .p-card:hover .p-card__media img { transform: scale(1.06); }
-.p-card__tag { position: absolute; top: 10px; left: 10px; padding: 5px 11px; border-radius: 999px; background: rgba(255,255,255,.9); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); font-size: 11.5px; font-weight: 700; color: var(--ink-2); }
-.p-card__view { position: absolute; right: 10px; bottom: 10px; display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 999px; background: var(--ink); color: #fff; font-size: 12px; font-weight: 600; opacity: 0; transform: translateY(8px); transition: opacity .3s, transform .3s var(--ease); }
+.p-card__tag { position: absolute; top: 10px; inset-inline-start: 10px; padding: 5px 11px; border-radius: 999px; background: rgba(255,255,255,.9); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); font-size: 11.5px; font-weight: 700; color: var(--ink-2); }
+.p-card__view { position: absolute; inset-inline-end: 10px; bottom: 10px; display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 999px; background: var(--ink); color: #fff; font-size: 12px; font-weight: 600; opacity: 0; transform: translateY(8px); transition: opacity .3s, transform .3s var(--ease); }
 .p-card:hover .p-card__view { opacity: 1; transform: none; }
 .p-card__body { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 4px 4px; }
 .p-card__text { min-width: 0; }
 .p-card__name { font: 700 15.5px/1.3 var(--sans); letter-spacing: 0; }
 /* Başlıktaki bağlantı/düğme görünmez bir katmanla tüm kartı kaplar: kartın her yeri tıklanır */
-.p-card__link { display: block; padding: 0; text-align: left; color: inherit; }
+.p-card__link { display: block; padding: 0; text-align: start; color: inherit; }
 .p-card__link::after { content: ""; position: absolute; inset: 0; z-index: 1; border-radius: inherit; }
 .p-card__link:focus-visible { outline: none; }
 .p-card:has(.p-card__link:focus-visible) { outline: 2px solid var(--leaf); outline-offset: 3px; }
@@ -61,7 +61,8 @@
 .p-card__meta span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .more-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--soft); color: var(--ink); display: grid; place-items: center; flex: none; transition: background .25s, color .25s, transform .25s var(--ease); }
 .more-btn .i { width: 18px; height: 18px; }
-.p-card:hover .more-btn { background: var(--ink); color: #fff; transform: translateX(3px); }
+.p-card:hover .more-btn, .cat-card:hover .more-btn { background: var(--ink); color: #fff; transform: translateX(3px); }
+.p-card__meta--ask { color: var(--leaf); font-weight: 600; }
 
 /* ---------- Boş durum (arama sonucu yok) ---------- */
 .empty { display: grid; justify-items: center; gap: 10px; padding: 70px 20px; text-align: center; }
@@ -97,7 +98,7 @@
 @media (max-width: 1100px) {
   .nav-links a { padding: 9px 12px; }
   .lang-switch__btn { padding: 0 8px; }
-  .lang-switch__btn span { display: none; } /* dar ekranda yalnızca bayrak */
+  .lang-switch__code { display: none; } /* dar ekranda yalnızca bayrak */
 }
 
 @media (max-width: 1080px) {
@@ -126,8 +127,7 @@
 
 @media (max-width: 600px) {
   .site-header { top: 10px; }
-  .nav { height: 60px; padding: 0 8px 0 10px; }
-  .nav { padding-left: 16px; }
+  .nav { height: 60px; padding: 0; padding-inline: 16px 8px; }
   .brand__logo { height: 46px; }
   .page-hero { margin: 8px 8px 0; border-radius: 22px 22px 32px 32px; padding: 120px 0 100px; }
   .p-grid, .p-grid--3 { grid-template-columns: repeat(2, 1fr); gap: 12px; }
@@ -143,3 +143,23 @@
   .footer-grid { grid-template-columns: 1fr; gap: 30px; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
 }
+
+@media (max-width: 400px) {
+  .nav { gap: 8px; padding-inline: 12px 6px; }
+  .brand__logo { height: 40px; }
+  .nav-actions { gap: 6px; }
+  .lang-switch__btn { padding: 0 5px; }
+}
+
+/* ==========================================================
+   Sağdan sola düzen (Arapça) — js/i18n.js <html dir="rtl"> yapar.
+   Yönlü ikonlar ve fotoğraflı arka planlar aynalanır.
+   ========================================================== */
+[dir="rtl"] .i-arrow-right, [dir="rtl"] .i-arrow-left, [dir="rtl"] .i-chevron-right { transform: scaleX(-1); }
+[dir="rtl"] .btn:hover .i-arrow-right { transform: scaleX(-1) translateX(4px); }
+[dir="rtl"] .p-card:hover .more-btn, [dir="rtl"] .cat-card:hover .more-btn { transform: translateX(-3px); }
+[dir="rtl"] .page-hero::before { transform: scaleX(-1); animation-name: heroZoomRtl; }
+@keyframes heroZoomRtl { from { transform: scaleX(-1) scale(1.07); } to { transform: scaleX(-1); } }
+/* Arapça harfler birbirine bağlanır: harf aralığı ve eğik yazı kapatılır */
+html[lang="ar"] * { letter-spacing: normal !important; }
+html[lang="ar"] em { font-style: normal; }

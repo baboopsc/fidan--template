@@ -30,7 +30,7 @@ export default {
     'hero.lead': 'We grow certified citrus, olive, pomegranate and fruit saplings, offering healthy, true-to-variety plants at fair prices.',
     'hero.cta': 'Our Varieties',
     'hero.call': 'Call Us Now',
-    'hero.trust': '<strong>Certified saplings</strong> · 10 fruit types, from citrus to apricot',
+    'hero.trust': '<strong>Certified saplings</strong> · 16 fruit types and 100+ varieties, from citrus to walnut',
 
     'stats.aria': 'Sağ Fidancılık in numbers',
     'stats.years': 'Years of experience',
@@ -63,7 +63,7 @@ export default {
     'about.f.location': 'Location',
     'about.f.location.v': 'Fidanlı Mah., Samandağ / Hatay, Turkey',
     'about.f.production': 'Production',
-    'about.f.production.v': 'Citrus, olive, pomegranate, apricot, plum, almond, persimmon and rootstocks',
+    'about.f.production.v': 'Citrus, olive, pomegranate, fig, mulberry, apricot, plum, peach, nectarine, cherry, almond, walnut and persimmon',
     'about.f.quality': 'Quality',
     'about.f.quality.v': 'Certified, true-to-variety saplings',
 
@@ -99,7 +99,7 @@ export default {
 
     'catalog.crumbs': 'Breadcrumb',
     'catalog.title': 'Our <em>Varieties</em>',
-    'catalog.lead': 'Browse our certified saplings, from citrus to olive and from pomegranate to apricot. Click any sapling to see all of its details.',
+    'catalog.lead': 'More than 100 varieties across 16 fruit types, from citrus to walnut. Pick a category, then click a variety to see its details.',
     'search.ph': 'Which sapling are you looking for?',
     'search.aria': 'Search saplings',
     'search.clear': 'Clear search',
@@ -107,18 +107,35 @@ export default {
     'empty.p': 'Try a different word or clear the filters.',
     'empty.reset': 'Clear Filters',
     'modal.close': 'Close',
+    'modal.note': 'Illustrative image',
     'modal.specs': 'All details',
     'modal.contact': '<b>For prices and availability,</b> give us a call.',
 
-    count: '{n} saplings listed',
+    count: '{n} saplings found',
     fullName: '{name} sapling',
     'card.view': 'View details',
+    'card.ask': 'Call for details',
+    varieties: '{n} varieties',
+    catTitle: '{cat} varieties',
+    noDetail: 'Detailed information for this variety will be added soon. Call us for variety, stock and price information.',
+    'catalog.pick': 'Choose a category to see all of its varieties.',
+    'catalog.back': 'All categories',
+    'search.results': 'Search results',
   },
 
   cats: {
     'Tümü': 'All', 'Mandalina': 'Mandarin', 'Portakal': 'Orange', 'Limon': 'Lemon', 'Greyfurt': 'Grapefruit',
-    'Zeytin': 'Olive', 'Nar': 'Pomegranate', 'Kayısı': 'Apricot', 'Erik': 'Plum', 'Badem': 'Almond',
+    'Zeytin': 'Olive', 'Nar': 'Pomegranate', 'İncir': 'Fig', 'Dut': 'Mulberry', 'Kayısı': 'Apricot', 'Erik': 'Plum',
+    'Şeftali': 'Peach', 'Nektarin': 'Nectarine', 'Kiraz': 'Cherry', 'Badem': 'Almond', 'Ceviz': 'Walnut',
     'Trabzon Hurması': 'Persimmon', 'Anaç': 'Rootstock', 'Turunçgil': 'Citrus', 'Meyve': 'Fruit trees',
+  },
+
+  /* Yalnızca adı olan çeşitlerin başlığı: "{ad} {tür}" -> "Orri Mandarin" */
+  titleOrder: 'name-noun',
+  nouns: {
+    'Mandalina': 'Mandarin', 'Portakal': 'Orange', 'Limon': 'Lemon', 'Greyfurt': 'Grapefruit', 'Zeytin': 'Olive',
+    'Nar': 'Pomegranate', 'İncir': 'Fig', 'Dut': 'Mulberry', 'Kayısı': 'Apricot', 'Erik': 'Plum', 'Japon Erik': 'Japanese Plum',
+    'Şeftali': 'Peach', 'Nektarin': 'Nectarine', 'Kiraz': 'Cherry', 'Badem': 'Almond', 'Ceviz': 'Walnut', 'Trabzon Hurması': 'Persimmon',
   },
 
   labels: {
@@ -143,7 +160,7 @@ export default {
     5: { title: 'Satsuma Mandarin',
       desc: 'An early, seedless mandarin with an easy-to-peel rind. The fruit ripens in mid-October.',
       specs: { 'Olgunlaşma': 'Mid-October', 'Meyve şekli': 'Oblate', 'Kabuk': 'Yellowish orange', 'Et': 'Deep orange', 'Kabuk–et bağlılığı': 'Loose', 'Çekirdek': 'Seedless', 'Puflaşma': 'High', 'Anavatan': 'Japan' } },
-    6: { title: 'Okitsu Mandarin',
+    6: { title: 'Okitsu Wase Mandarin',
       desc: 'A large, seedless, easy-to-peel early mandarin. Harvested in October.',
       specs: { 'Olgunlaşma': 'October', 'Hasat': 'October', 'Meyve şekli': 'Oblate', 'Kabuk': 'Orange, slightly rough', 'Et': 'Deep orange', 'Kabuk–et bağlılığı': 'Loose', 'Çekirdek': 'Seedless', 'Puflaşma': 'Low', 'Periyodisite': 'Low', 'Anavatan': 'Japan' } },
     10: { title: 'Dobashi Beni Mandarin',
@@ -166,7 +183,7 @@ export default {
     13: { title: 'Navelina Orange',
       desc: 'A seedless orange with large, oval fruit. Starts ripening in late October and is harvested in November.',
       specs: { 'Olgunlaşma': 'Late October – early November', 'Hasat': 'November', 'Meyve şekli': 'Oval', 'Kabuk': 'Deep orange', 'Et': 'Orange', 'Kabuk–et bağlılığı': 'Medium', 'Çekirdek': 'Seedless', 'Puflaşma': 'None', 'Periyodisite': 'None', 'Anavatan': 'USA (California)' } },
-    15: { title: 'Washington Orange',
+    15: { title: 'Washington Navel Orange',
       desc: 'A sweet, aromatic, seedless table orange — one of the most sought-after varieties both in Turkey and for export.',
       specs: { 'Ağaç': 'Moderately vigorous, round medium-sized crown', 'Olgunlaşma': 'November (mid-early)', 'Hasat': 'December', 'Meyve şekli': 'Evenly round', 'Kabuk': 'Deep orange', 'Et': 'Orange, crisp', 'Kabuk–et bağlılığı': 'Tight', 'Çekirdek': 'Seedless', 'Periyodisite': 'None', 'Kullanım': 'Table fruit, suitable for export', 'Anavatan': 'Brazil (Bahia)' } },
 
@@ -174,10 +191,10 @@ export default {
     4: { title: 'Interdonato Lemon',
       desc: 'An early lemon with a thin peel and cylindrical fruit. Ripens in September; a popular choice in the Mediterranean region.',
       specs: { 'Ağaç': 'Forms a strong taproot, easy to propagate', 'Olgunlaşma': 'September', 'Hasat': 'October', 'Meyve şekli': 'Elongated, cylindrical', 'Kabuk': 'Light green, glossy, thin', 'Et': 'Greenish yellow', 'Kabuk–et bağlılığı': 'Medium', 'Puflaşma': 'May occur with late harvest', 'Dayanıklılık': 'Tolerant of calcareous soils, long-lived', 'Anavatan': 'Nice and Sicily' } },
-    12: { title: 'Mayer Lemon',
+    12: { title: 'Meyer Lemon',
       desc: 'A thin-skinned, juicy lemon with few seeds. Ripens in September and is harvested in October.',
       specs: { 'Ağaç': 'Forms a strong taproot, easy to propagate', 'Olgunlaşma': 'September', 'Hasat': 'October', 'Meyve şekli': 'Slightly flattened, round', 'Ağırlık': 'Avg. 120 g', 'Kabuk': 'Yellow, smooth, glossy, thin', 'Et': 'Pale yellow, crisp and juicy', 'Kabuk–et bağlılığı': 'Tight', 'Puflaşma': 'None', 'Periyodisite': 'None', 'Dayanıklılık': 'Tolerant of calcareous soils, long-lived', 'Anavatan': 'USA' } },
-    11: { title: 'Kütdiken (Yediveren) Lemon',
+    11: { title: 'Kütdiken Lemon',
       desc: 'A long-lived, easy-to-propagate variety tolerant of calcareous soils. Its fruit ripens in November and can be picked until February.',
       specs: { 'Ağaç': 'Forms a strong taproot, easy to propagate, long-lived', 'Olgunlaşma': 'November', 'Hasat': 'November–February', 'Meyve şekli': 'Nearly elliptical, with a small nipple', 'Kabuk': 'Light greenish-yellow, smooth, glossy', 'Et': 'Yellow', 'Kabuk–et bağlılığı': 'Tight', 'Çekirdek': 'About 10', 'Puflaşma': 'None', 'Periyodisite': 'None', 'Dayanıklılık': 'Tolerant of calcareous soils', 'Anavatan': 'Thought to be a selection of the Italian Femminello' } },
 
@@ -190,7 +207,7 @@ export default {
       specs: { 'Ağaç': 'Grafted, medium-sized; grows more slowly than lemon', 'Olgunlaşma': 'January', 'Hasat': 'February', 'Meyve şekli': 'Between round and elongated', 'Kabuk': 'Deep red, smooth', 'Et': 'Deep red', 'Kabuk–et bağlılığı': 'Tight', 'Puflaşma': 'None', 'Periyodisite': 'None', 'Dayanıklılık': 'Moderately drought-tolerant', 'Toprak': 'Usually heavy, poorly drained soils', 'Anavatan': 'USA' } },
 
     /* ---------- Olive ---------- */
-    19: { title: 'Gemlik Olive', labels: { 'Kabuk': 'Skin', 'Çekirdek': 'Pit' },
+    19: { title: 'Gemlik (Trilye) Olive', labels: { 'Kabuk': 'Skin', 'Çekirdek': 'Pit' },
       desc: 'An Anatolian variety with black skin, used both as table olives and for oil. Hardy and moderately vigorous.',
       specs: { 'Ağaç': 'Moderately vigorous, hardy', 'Hasat': 'November–January', 'Meyve': 'Medium-sized, round to cylindrical', 'Kabuk': 'Black', 'Çekirdek': 'Medium-large', 'Kullanım': 'Table olives and oil', 'Anavatan': 'Anatolia' } },
     18: { title: 'Nizip Olive',
@@ -257,6 +274,20 @@ export default {
     26: { title: 'Hachiya Persimmon', labels: { 'Kabuk': 'Skin' },
       desc: 'Also known as “paradise persimmon”, with very large, showy fruit. Eaten once fully softened.',
       specs: { 'Diğer adı': 'Paradise persimmon', 'Ağaç': 'Vigorous', 'Verime başlama': 'After 4 years of age', 'Hasat': 'October', 'Meyve': 'Very large, showy', 'Kabuk': 'Orange with a reddish tint', 'Et': 'Orange', 'Tat': 'Astringent when firm; eaten once fully soft', 'Tozlayıcı': 'Self-fertile (seedless if not pollinated)', 'Depolama': 'About 1 month in cold storage' } },
+
+    /* ---------- Varieties with a name only (descriptive titles) ---------- */
+    113: { title: 'Smith Red Blood Orange' },
+    115: { title: 'Autumn Gold Orange' },
+    120: { title: 'Sweet Lemon' },
+    121: { title: 'Misket Lime' },
+    122: { title: 'Tahiti Lime' },
+    123: { title: 'Pomelo (Şadok)' },
+    128: { title: 'Bursa Black Fig' },
+    129: { title: 'Sarılop Fig (Aydın)' },
+    131: { title: 'White Mulberry' },
+    132: { title: 'Black Mulberry' },
+    133: { title: 'Red Mulberry' },
+    135: { title: 'Australian Mulberry (everbearing)' },
 
     /* ---------- Rootstock ---------- */
     37: { title: 'Myrobolan B / GF31 Rootstock',

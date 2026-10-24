@@ -1,6 +1,6 @@
 /* Ürün kartı — ana sayfa ve Fidanlar sayfası aynı kartı kullanır.
    Kartın tamamı tıklanabilir: başlıktaki bağlantı/düğme tüm kartı kaplar (CSS: .p-card__link::after). */
-import { imgFor, highlights } from './data.js';
+import { fidanImg, highlights } from './data.js';
 import { localize, fullName, t } from './i18n.js';
 import { esc } from './utils.js';
 
@@ -10,7 +10,10 @@ export function cardHTML(f, { link = false, i = 0 } = {}) {
   const L = localize(f);
   const ilk = highlights(f)[0];
   const [baslik, deger] = ilk ? L.spec([ilk[1], ilk[2]]) : [];
-  const meta = ilk ? `<p class="p-card__meta"><i class="i i-${ilk[0]}"></i><span>${esc(baslik)}: ${esc(deger)}</span></p>` : '';
+  // Detaylı çeşitte hasat vb. ilk bilgi; yalnızca adı olan çeşitte "Bilgi için arayın"
+  const meta = ilk
+    ? `<p class="p-card__meta"><i class="i i-${ilk[0]}"></i><span>${esc(baslik)}: ${esc(deger)}</span></p>`
+    : `<p class="p-card__meta p-card__meta--ask"><i class="i i-phone"></i><span>${esc(t('card.ask'))}</span></p>`;
   const title = link
     ? `<a class="p-card__link" href="./catalog.html?fidan=${f.id}">${esc(L.title)}</a>`
     : `<button class="p-card__link" type="button" data-open="${f.id}">${esc(L.title)}</button>`;
@@ -18,7 +21,7 @@ export function cardHTML(f, { link = false, i = 0 } = {}) {
   return `
     <article class="p-card" style="--i:${i}">
       <div class="p-card__media">
-        <img src="${imgFor(f.slug)}" alt="${esc(fullName(f))}" loading="lazy" width="600" height="600">
+        <img src="${fidanImg(f)}" alt="${esc(fullName(f))}" loading="lazy" width="600" height="600">
         <span class="p-card__tag">${esc(L.category)}</span>
         <span class="p-card__view" aria-hidden="true">${esc(t('card.view'))} <i class="i i-arrow-right"></i></span>
       </div>

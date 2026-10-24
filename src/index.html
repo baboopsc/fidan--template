@@ -9,14 +9,14 @@
   <link rel="icon" href="./img/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/variables.css" />
   <link rel="stylesheet" href="./css/base.css" />
   <link rel="stylesheet" href="./css/icons.css" />
   <link rel="stylesheet" href="./css/layout.css" />
   <link rel="stylesheet" href="./css/home.css" />
   <!-- Seçili dil Türkçe değilse, çeviri yüklenene kadar sayfayı kısa süre gizler (js/i18n.js) -->
-  <script>document.documentElement.classList.add('js');try{var l=new URLSearchParams(location.search).get('lang')||localStorage.getItem('lang');if(l==='en'||l==='ru'){document.documentElement.classList.add('i18n-wait');setTimeout(function(){document.documentElement.classList.remove('i18n-wait')},1500)}}catch(e){}</script>
+  <script>(function(d){d.classList.add('js');try{var l=new URLSearchParams(location.search).get('lang')||localStorage.getItem('lang');if(l==='en'||l==='ru'||l==='ar'){d.classList.add('i18n-wait');d.lang=l;if(l==='ar')d.dir='rtl';setTimeout(function(){d.classList.remove('i18n-wait')},1500)}}catch(e){}})(document.documentElement)</script>
 </head>
 <body id="top">
 
@@ -37,7 +37,7 @@
           </div>
           <div class="hero__trust" data-reveal style="--d:4">
             <span class="hero__trust-icon"><i class="i i-award"></i></span>
-            <span data-i18n="hero.trust"><strong>Sertifikalı fidan</strong> · Turunçgilden kayısıya 10 meyve türü</span>
+            <span data-i18n="hero.trust"><strong>Sertifikalı fidan</strong> · Turunçgilden cevize 16 meyve türü, 100'ü aşkın çeşit</span>
           </div>
         </div>
       </div>
@@ -46,8 +46,8 @@
     <!-- 2. İSTATİSTİKLER -->
     <section class="wrap stats" aria-label="Rakamlarla Sağ Fidancılık" data-i18n-attr="aria-label:stats.aria">
       <div class="stat" data-reveal><span class="stat__icon"><i class="i i-calendar"></i></span><div><strong data-count="20" data-suffix="+">20+</strong><span data-i18n="stats.years">Yıllık tecrübe</span></div></div>
-      <div class="stat" data-reveal style="--d:1"><span class="stat__icon"><i class="i i-sprout"></i></span><div><strong data-count="35" data-suffix="+">35+</strong><span data-i18n="stats.varieties">Fidan çeşidi</span></div></div>
-      <div class="stat" data-reveal style="--d:2"><span class="stat__icon"><i class="i i-tree"></i></span><div><strong data-count="10">10</strong><span data-i18n="stats.types">Meyve türü</span></div></div>
+      <div class="stat" data-reveal style="--d:1"><span class="stat__icon"><i class="i i-sprout"></i></span><div><strong data-count="100" data-suffix="+">100+</strong><span data-i18n="stats.varieties">Fidan çeşidi</span></div></div>
+      <div class="stat" data-reveal style="--d:2"><span class="stat__icon"><i class="i i-tree"></i></span><div><strong data-count="16">16</strong><span data-i18n="stats.types">Meyve türü</span></div></div>
       <div class="stat" data-reveal style="--d:3"><span class="stat__icon"><i class="i i-award"></i></span><div><strong data-count="100" data-prefix="%">%100</strong><span data-i18n="stats.cert">Sertifikalı üretim</span></div></div>
     </section>
 
@@ -91,7 +91,7 @@
           <ul class="about__facts">
             <li><span class="about__icon"><i class="i i-calendar"></i></span><div><small data-i18n="about.f.founded">Kuruluş</small><b>2005</b></div></li>
             <li><span class="about__icon"><i class="i i-pin"></i></span><div><small data-i18n="about.f.location">Konum</small><b data-i18n="about.f.location.v">Fidanlı Mah., Samandağ / Hatay</b></div></li>
-            <li><span class="about__icon"><i class="i i-sprout"></i></span><div><small data-i18n="about.f.production">Üretim</small><b data-i18n="about.f.production.v">Turunçgil, zeytin, nar, kayısı, erik, badem, Trabzon hurması ve anaç</b></div></li>
+            <li><span class="about__icon"><i class="i i-sprout"></i></span><div><small data-i18n="about.f.production">Üretim</small><b data-i18n="about.f.production.v">Turunçgil, zeytin, nar, incir, dut, kayısı, erik, şeftali, nektarin, kiraz, badem, ceviz ve Trabzon hurması</b></div></li>
             <li><span class="about__icon"><i class="i i-award"></i></span><div><small data-i18n="about.f.quality">Kalite</small><b data-i18n="about.f.quality.v">Sertifikalı, çeşidi belli fidan</b></div></li>
           </ul>
         </aside>

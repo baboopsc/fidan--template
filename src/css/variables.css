@@ -30,3 +30,8 @@
   --serif: 'Lora', Georgia, serif;
   --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
 }
+/* Arapça seçilince Arapça harfleri olan Cairo yazı tipi kullanılır */
+:root[lang="ar"] {
+  --serif: 'Cairo', Georgia, serif;
+  --sans: 'Cairo', system-ui, sans-serif;
+}

@@ -9,14 +9,14 @@
   <link rel="icon" href="./img/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/variables.css" />
   <link rel="stylesheet" href="./css/base.css" />
   <link rel="stylesheet" href="./css/icons.css" />
   <link rel="stylesheet" href="./css/layout.css" />
   <link rel="stylesheet" href="./css/catalog.css" />
   <!-- Seçili dil Türkçe değilse, çeviri yüklenene kadar sayfayı kısa süre gizler (js/i18n.js) -->
-  <script>document.documentElement.classList.add('js');try{var l=new URLSearchParams(location.search).get('lang')||localStorage.getItem('lang');if(l==='en'||l==='ru'){document.documentElement.classList.add('i18n-wait');setTimeout(function(){document.documentElement.classList.remove('i18n-wait')},1500)}}catch(e){}</script>
+  <script>(function(d){d.classList.add('js');try{var l=new URLSearchParams(location.search).get('lang')||localStorage.getItem('lang');if(l==='en'||l==='ru'||l==='ar'){d.classList.add('i18n-wait');d.lang=l;if(l==='ar')d.dir='rtl';setTimeout(function(){d.classList.remove('i18n-wait')},1500)}}catch(e){}})(document.documentElement)</script>
 </head>
 <body id="top">
 
@@ -26,31 +26,45 @@
     <!-- SAYFA BAŞLIĞI (arka plan fotoğraflı) -->
     <section class="page-hero">
       <div class="wrap">
-        <nav class="crumbs" aria-label="Konum" data-i18n-attr="aria-label:catalog.crumbs" data-reveal><a href="./index.html" data-i18n="nav.home">Ana Sayfa</a><i class="i i-chevron-right"></i><span data-i18n="footer.catalog">Fidan Çeşitleri</span></nav>
+        <nav class="crumbs" aria-label="Konum" data-i18n-attr="aria-label:catalog.crumbs" data-reveal><a href="./index.html" data-i18n="nav.home">Ana Sayfa</a><i class="i i-chevron-right"></i><a href="./catalog.html" id="crumbAll" data-i18n="footer.catalog">Fidan Çeşitleri</a><span class="crumbs__cat" id="crumbCatWrap" hidden><i class="i i-chevron-right"></i><span id="crumbCat"></span></span></nav>
         <h1 data-reveal style="--d:1" data-i18n="catalog.title">Fidan <em>Çeşitlerimiz</em></h1>
-        <p data-reveal style="--d:2" data-i18n="catalog.lead">Turunçgilden zeytine, nardan kayısıya sertifikalı fidanlarımızı inceleyin. Bir fidana tıklayarak tüm özelliklerini görebilirsiniz.</p>
+        <p data-reveal style="--d:2" data-i18n="catalog.lead">Turunçgilden cevize 16 meyve türünde 100'ü aşkın çeşit. Bir kategori seçin, ardından çeşide tıklayarak ayrıntılarını görün.</p>
       </div>
     </section>
 
     <section class="wrap">
-      <!-- ARAMA + KATEGORİ -->
+      <!-- ARAMA (+ kategori içindeyken diğer kategorilere geçiş çipleri) -->
       <div class="toolbar" data-reveal style="--d:3">
         <div class="search" id="search">
           <i class="i i-search"></i>
           <input id="q" type="search" placeholder="Hangi fidanı arıyorsunuz?" autocomplete="off" aria-label="Fidan ara" data-i18n-attr="placeholder:search.ph;aria-label:search.aria">
           <button class="search__clear" id="clear" type="button" aria-label="Aramayı temizle" data-i18n-attr="aria-label:search.clear"><i class="i i-close"></i></button>
         </div>
-        <div class="chips" id="chips" aria-label="Kategoriler" data-i18n-attr="aria-label:chips.aria"></div>
+        <div class="chips" id="chips" aria-label="Kategoriler" data-i18n-attr="aria-label:chips.aria" hidden></div>
       </div>
 
-      <p class="result-count" id="count" aria-live="polite"></p>
-      <div class="p-grid p-grid--3" id="grid"></div>
+      <!-- 1) KATEGORİLER (kartları js/catalog.js çizer) -->
+      <div id="catsView">
+        <p class="result-count" data-i18n="catalog.pick">Bir kategori seçin, o meyvenin tüm çeşitlerini görün.</p>
+        <div class="cat-grid" id="catGrid"></div>
+      </div>
 
-      <div class="empty" id="empty" hidden>
-        <span class="empty__icon"><i class="i i-search"></i></span>
-        <h3 data-i18n="empty.title">Aradığınız fidanı bulamadık</h3>
-        <p data-i18n="empty.p">Farklı bir kelime deneyin ya da filtreleri temizleyin.</p>
-        <button class="btn btn-primary" id="reset" type="button" data-i18n="empty.reset">Filtreleri Temizle</button>
+      <!-- 2) SEÇİLEN KATEGORİNİN ÇEŞİTLERİ ya da ARAMA SONUÇLARI -->
+      <div id="listView" hidden>
+        <div class="list-head">
+          <button class="back-link" id="back" type="button"><i class="i i-arrow-left"></i><span data-i18n="catalog.back">Tüm kategoriler</span></button>
+          <div class="list-head__row">
+            <h2 class="list-head__title" id="listTitle"></h2>
+            <p class="list-head__count" id="count" aria-live="polite"></p>
+          </div>
+        </div>
+        <div class="p-grid p-grid--3" id="grid"></div>
+        <div class="empty" id="empty" hidden>
+          <span class="empty__icon"><i class="i i-search"></i></span>
+          <h3 data-i18n="empty.title">Aradığınız fidanı bulamadık</h3>
+          <p data-i18n="empty.p">Farklı bir kelime deneyin ya da filtreleri temizleyin.</p>
+          <button class="btn btn-primary" id="reset" type="button" data-i18n="empty.reset">Filtreleri Temizle</button>
+        </div>
       </div>
     </section>
   </main>
@@ -59,13 +73,13 @@
   <dialog class="modal" id="modal" aria-labelledby="mTitle">
     <button class="icon-btn modal__close" type="button" data-close aria-label="Kapat" data-i18n-attr="aria-label:modal.close"><i class="i i-close"></i></button>
     <div class="modal__inner">
-      <div class="modal__media"><img id="mImg" src="" alt=""></div>
+      <div class="modal__media"><img id="mImg" src="" alt=""><span class="modal__note" id="mNote" data-i18n="modal.note" hidden>Görsel temsilidir</span></div>
       <div class="modal__body">
         <span class="eyebrow" id="mCat"></span>
         <h2 id="mTitle"></h2>
         <p class="modal__desc" id="mDesc"></p>
         <div class="facts" id="mFacts"></div>
-        <h3 class="specs__title" data-i18n="modal.specs">Tüm özellikler</h3>
+        <h3 class="specs__title" id="mSpecsTitle" data-i18n="modal.specs">Tüm özellikler</h3>
         <dl class="specs" id="mSpecs"></dl>
         <div class="modal__contact">
           <p data-i18n="modal.contact"><b>Fiyat ve stok bilgisi için</b> bizi arayın.</p>

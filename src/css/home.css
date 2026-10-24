@@ -24,7 +24,7 @@
 
 .play-btn { display: inline-flex; align-items: center; gap: 12px; font-weight: 600; color: var(--ink); }
 .play-btn__circle { position: relative; width: 52px; height: 52px; border-radius: 50%; background: #fff; display: grid; place-items: center; box-shadow: var(--shadow-sm); transition: transform .3s var(--ease); }
-.play-btn__circle .i { width: 18px; height: 18px; margin-left: 3px; }
+.play-btn__circle .i { width: 18px; height: 18px; }
 .play-btn__circle::after { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.9); animation: pulse 2.4s var(--ease) infinite; }
 .play-btn:hover .play-btn__circle { transform: scale(1.08); }
 
@@ -74,7 +74,7 @@
 .contact-card small { font-size: 13px; font-weight: 600; color: var(--mute); }
 .contact-card b { font-size: 15.5px; font-weight: 700; line-height: 1.4; overflow-wrap: anywhere; }
 .social-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px 12px; margin-top: 30px; font-size: 14.5px; font-weight: 600; color: var(--mute); }
-.social-row > span { margin-right: 4px; }
+.social-row > span { margin-inline-end: 4px; }
 .social-btn { display: inline-flex; align-items: center; gap: 8px; height: 46px; padding: 0 20px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); color: var(--ink); box-shadow: var(--shadow-sm); transition: background .2s, color .2s, border-color .2s, transform .2s var(--ease); }
 .social-btn:hover { background: var(--ink); border-color: var(--ink); color: #fff; transform: translateY(-2px); }
 
@@ -137,3 +137,8 @@
   .contact-card { display: grid; grid-template-columns: 48px 1fr; column-gap: 14px; row-gap: 0; align-items: center; padding: 16px 18px; }
   .contact-card__icon { grid-row: span 2; margin: 0; }
 }
+
+/* ---------- Sağdan sola (Arapça): fotoğraflı arka planlar aynalanır ---------- */
+[dir="rtl"] .hero__bg { transform: scaleX(-1); animation-name: heroZoomRtl; }
+[dir="rtl"] .care__bg { transform: scaleX(-1); }
+[dir="rtl"] .care:hover .care__bg { transform: scaleX(-1) scale(1.04); }
