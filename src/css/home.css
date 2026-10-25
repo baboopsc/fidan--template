@@ -1,23 +1,24 @@
 /* ==========================================================
-   Ana sayfa — hero, istatistikler, "Neden biz", bakım bandı.
+   Ana sayfa — hero ve slayt, istatistikler, fidan türleri,
+   hakkımızda, "Neden biz" bandı, fidanlıktan, SSS, iletişim.
    ========================================================== */
 
-/* ---------- Hero ---------- */
-.hero { position: relative; isolation: isolate; overflow: hidden; margin: 12px 12px 0; border-radius: var(--r-lg) var(--r-lg) 44px 44px; min-height: min(800px, 96svh); display: flex; align-items: center; padding: 140px 0 160px; background: var(--sage); }
+/* ---------- Hero: solda yazı, sağda fotoğraf slaytı ---------- */
+.hero { position: relative; isolation: isolate; overflow: hidden; margin: 12px 12px 0; border-radius: var(--r-lg) var(--r-lg) 44px 44px; padding: 170px 0 150px; background: var(--sage); }
 .hero__bg { position: absolute; inset: 0; z-index: -1; background:
-    linear-gradient(90deg, var(--sage) 0%, rgba(200,213,196,.94) 30%, rgba(200,213,196,.35) 55%, rgba(200,213,196,0) 72%),
-    url("../img/hero-plants.jpg") right center / cover no-repeat;
-  animation: heroZoom 1.8s var(--ease) both; }
-.hero__bg::after { content: ""; position: absolute; inset: auto 0 0; height: 35%; background: linear-gradient(to top, rgba(200,213,196,.6), rgba(200,213,196,0)); }
-.hero > .wrap { width: 100%; }
+    radial-gradient(60% 70% at 85% 30%, rgba(255,255,255,.55), rgba(255,255,255,0) 70%),
+    radial-gradient(50% 60% at 10% 100%, rgba(79,125,60,.18), rgba(79,125,60,0) 70%),
+    linear-gradient(160deg, #d3dfcf 0%, var(--sage) 55%, #bccbb7 100%); }
+.hero__bg::after { content: ""; position: absolute; width: 520px; height: 520px; inset-inline-start: -160px; top: -140px; background: currentColor; color: #fff; opacity: .16; -webkit-mask: var(--leafmask) center / contain no-repeat; mask: var(--leafmask) center / contain no-repeat;
+  --leafmask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5.5 19.5C4.3 11 9 4.6 20 4c.5 10.5-6 15.3-14.5 15.5z'/%3E%3Cpath d='M5.5 19.5c2.5-4.2 5.8-7.3 10-9.5'/%3E%3C/svg%3E"); }
+.hero__grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; }
 .hero__content { max-width: 580px; }
-.hero h1 { font-size: clamp(2.5rem, 5.2vw, 4.2rem); margin: 20px 0; }
-.hero__lead { font-size: 1.1rem; color: var(--ink-2); opacity: .82; max-width: 480px; margin-bottom: 34px; }
+.hero h1 { font-size: clamp(2.4rem, 4.8vw, 4rem); margin: 20px 0; }
+.hero__lead { font-size: 1.1rem; color: var(--ink-2); opacity: .85; max-width: 480px; margin-bottom: 34px; }
 .hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; }
-.hero__trust { display: flex; align-items: center; gap: 12px; margin-top: 38px; font-size: 14px; color: var(--ink-2); }
-.hero__trust strong { color: var(--ink); }
-.hero__trust-icon { width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,.7); color: var(--leaf); display: grid; place-items: center; flex: none; }
-.hero__trust-icon .i { width: 18px; height: 18px; }
+.hero__badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 38px; list-style: none; }
+.hero__badges li { display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 14px; border-radius: 999px; background: rgba(255,255,255,.6); border: 1px solid rgba(255,255,255,.85); font-size: 13.5px; font-weight: 600; color: var(--ink-2); }
+.hero__badges .i { width: 17px; height: 17px; color: var(--leaf); }
 .pill-tag { display: inline-flex; align-items: center; gap: 10px; padding: 6px 16px 6px 6px; border-radius: 999px; background: rgba(255,255,255,.62); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.85); font-size: 13.5px; font-weight: 600; color: var(--ink-2); }
 .pill-tag__icon { width: 28px; height: 28px; border-radius: 50%; background: var(--ink); color: #e6f0dc; display: grid; place-items: center; }
 .pill-tag__icon .i { width: 16px; height: 16px; }
@@ -28,48 +29,114 @@
 .play-btn__circle::after { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.9); animation: pulse 2.4s var(--ease) infinite; }
 .play-btn:hover .play-btn__circle { transform: scale(1.08); }
 
+/* Fotoğraf çerçevesi ve slayt */
+.hero-media { position: relative; justify-self: end; width: 100%; max-width: 500px; }
+.hero-media__frame { position: relative; aspect-ratio: 4 / 4.6; border-radius: 32px; overflow: hidden; background: var(--sand); border: 8px solid rgba(255,255,255,.7); box-shadow: 0 40px 80px -40px rgba(31,46,27,.55); }
+.hero-media__frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.06); transition: opacity 1.1s ease, transform 6s linear; }
+.hero-media__frame img.is-active { opacity: 1; transform: none; }
+.hero-media__dots { position: absolute; bottom: 26px; inset-inline-end: 26px; display: flex; gap: 6px; padding: 7px 9px; border-radius: 999px; background: rgba(31,46,27,.45); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.hero-media__dots button { width: 8px; height: 8px; border-radius: 999px; background: rgba(255,255,255,.55); transition: width .3s var(--ease), background .3s; }
+.hero-media__dots button[aria-selected="true"] { width: 22px; background: #fff; }
+.hero-media__badge { position: absolute; inset-inline-start: -34px; bottom: 42px; display: flex; align-items: center; gap: 12px; padding: 14px 18px 14px 14px; border-radius: 20px; background: var(--surface); box-shadow: var(--shadow-md); animation: float 7s ease-in-out infinite; }
+.hero-media__badge-icon { width: 44px; height: 44px; border-radius: 14px; background: var(--ink); color: #e6f0dc; display: grid; place-items: center; flex: none; }
+.hero-media__badge-icon .i { width: 22px; height: 22px; }
+.hero-media__badge b { display: block; font-size: 15px; }
+.hero-media__badge small { display: block; font-size: 12.5px; color: var(--mute); }
+
 /* ---------- İstatistikler ---------- */
-.stats { position: relative; z-index: 2; margin-top: -80px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.stats { position: relative; z-index: 2; margin-top: -70px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 .stat { display: flex; align-items: center; gap: 16px; padding: 24px; background: var(--surface); border-radius: var(--r-md); border: 1px solid rgba(230,225,212,.7); box-shadow: var(--shadow-md); }
 .stat__icon { width: 54px; height: 54px; border-radius: 16px; background: var(--soft); color: var(--leaf); display: grid; place-items: center; flex: none; }
 .stat__icon .i { width: 26px; height: 26px; }
 .stat strong { display: block; font: 700 1.65rem/1.1 var(--sans); letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
 .stat span { font-size: 13.5px; color: var(--mute); }
 
-/* ---------- Neden biz ---------- */
-.why-grid { display: grid; grid-template-columns: 1fr minmax(260px, 380px) 1fr; gap: 48px; align-items: center; }
-.why-col { display: grid; gap: 44px; }
-.feature { display: flex; gap: 18px; align-items: flex-start; }
-.feature__icon { width: 56px; height: 56px; border-radius: 50%; background: var(--surface); border: 1px solid var(--line); color: var(--leaf); display: grid; place-items: center; flex: none; box-shadow: var(--shadow-sm); transition: background .3s, color .3s, transform .4s var(--ease); }
-.feature__icon .i { width: 24px; height: 24px; }
-.feature:hover .feature__icon { background: var(--ink); color: #e6f0dc; transform: rotate(-10deg); }
-.feature h3 { font: 700 1.05rem/1.3 var(--sans); letter-spacing: 0; margin: 4px 0 6px; }
-.feature p { font-size: 14.5px; color: var(--mute); }
-/* Fotoğrafın kenarları yumuşakça kaybolur, arkasında dikdörtgen kalmaz */
-.why-media { position: relative; isolation: isolate; display: grid; place-items: center; background: var(--bg); }
-.why-media::before { content: ""; position: absolute; z-index: -1; width: 92%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, var(--sage-2) 0%, rgba(223,231,217,.7) 42%, rgba(223,231,217,0) 70%); }
-.why-media img { width: 100%; max-width: 380px; aspect-ratio: 5 / 6; object-fit: cover; mix-blend-mode: multiply; filter: brightness(1.05) contrast(1.02); -webkit-mask-image: radial-gradient(ellipse 72% 68% at 50% 50%, #000 78%, transparent 100%); mask-image: radial-gradient(ellipse 72% 68% at 50% 50%, #000 78%, transparent 100%); animation: float 7s ease-in-out infinite; }
+/* ---------- Başlık satırı: solda başlık, sağda "Tümünü gör" ---------- */
+.section-head--row { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; max-width: none; text-align: start; }
+.section-head--row > div { max-width: 600px; }
+.section-head--row .eyebrow::after { display: none; }
+.section-head--row h2 { margin-bottom: 10px; }
+.link-arrow { display: inline-flex; align-items: center; gap: 8px; flex: none; font-weight: 700; font-size: 14.5px; color: var(--ink); }
+.link-arrow .i { width: 18px; height: 18px; transition: transform .25s var(--ease); }
+.link-arrow .i-image { color: var(--leaf); }
+.link-arrow:hover { color: var(--leaf); }
+.link-arrow:hover .i-arrow-right { transform: translateX(4px); }
 
-/* ---------- Hakkımızda ---------- */
-.about { display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; }
+/* ---------- Hakkımızda: fotoğraflar + yazı ---------- */
+.about { display: grid; grid-template-columns: .95fr 1.05fr; gap: 70px; align-items: center; }
+.about__media { position: relative; padding-bottom: 60px; padding-inline-end: 70px; }
+.about__img { border-radius: var(--r-lg); object-fit: cover; background: var(--sand); }
+.about__img--main { width: 100%; aspect-ratio: 4 / 4.6; box-shadow: var(--shadow-md); }
+.about__img--small { position: absolute; inset-inline-end: 0; bottom: 0; width: 46%; aspect-ratio: 1; border: 8px solid var(--bg); box-shadow: var(--shadow-md); }
+.about__stamp { position: absolute; top: 28px; inset-inline-end: 34px; width: 108px; height: 108px; border-radius: 50%; display: grid; place-content: center; text-align: center; background: var(--ink); color: #e6f0dc; box-shadow: var(--shadow-md); }
+.about__stamp b { font: 600 1.8rem/1 var(--serif); color: #fff; }
+.about__stamp span { font-size: 12px; font-weight: 600; }
 .about__text h2 { font-size: clamp(1.9rem, 3.2vw, 2.7rem); margin: 12px 0 20px; }
 .about__text p { color: var(--mute); max-width: 60ch; margin-bottom: 16px; }
-.about__text .btn { margin-top: 12px; }
-.about__card { padding: 32px; border-radius: var(--r-lg); background: var(--surface); border: 1px solid rgba(230,225,212,.75); box-shadow: var(--shadow-md); }
-.about__card h3 { font-size: 1.45rem; margin-bottom: 18px; }
-.about__facts { list-style: none; display: grid; }
-.about__facts li { display: flex; gap: 16px; align-items: flex-start; padding: 16px 0; border-top: 1px solid var(--line); }
-.about__facts li:first-child { border-top: 0; padding-top: 4px; }
-.about__icon { width: 44px; height: 44px; border-radius: 14px; background: var(--soft); color: var(--leaf); display: grid; place-items: center; flex: none; }
-.about__icon .i { width: 22px; height: 22px; }
-.about__facts small { display: block; font-size: 12.5px; font-weight: 600; color: var(--mute); }
-.about__facts b { display: block; font-size: 15px; font-weight: 600; line-height: 1.45; }
+.checklist { list-style: none; display: grid; gap: 12px; margin: 22px 0 32px; }
+.checklist li { display: flex; align-items: flex-start; gap: 12px; font-weight: 600; font-size: 15px; }
+.checklist__ic { width: 26px; height: 26px; border-radius: 50%; background: var(--soft); color: var(--leaf); display: grid; place-items: center; flex: none; }
+.checklist__ic .i { width: 15px; height: 15px; }
+
+/* ---------- "Neden biz" bandı (koyu, 4 kart) ---------- */
+.care { position: relative; isolation: isolate; overflow: hidden; margin-top: 110px; border-radius: var(--r-lg); padding: 60px; display: grid; grid-template-columns: .9fr 1.1fr; gap: 48px; align-items: center; color: #fff; background: #2c3f27; }
+.care__bg { position: absolute; inset: 0; z-index: -1; background:
+    linear-gradient(100deg, rgba(25,38,21,.96) 0%, rgba(33,50,28,.88) 45%, rgba(33,50,28,.55) 100%),
+    url("../img/care-bg.jpg") center / cover no-repeat;
+  transition: transform 1.4s var(--ease); }
+.care:hover .care__bg { transform: scale(1.04); }
+.care .eyebrow { color: #cfe3c2; }
+.care h2 { color: #fff; font-size: clamp(1.9rem, 3vw, 2.6rem); margin: 12px 0 14px; }
+.care h2 em { color: #cfe3c2; }
+.care__text p { color: rgba(255,255,255,.78); max-width: 400px; margin-bottom: 30px; }
+.care-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.glass-card { padding: 24px; border-radius: var(--r-md); background: rgba(255,255,255,.9); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); color: var(--ink); border: 1px solid rgba(255,255,255,.6); transition: transform .35s var(--ease); }
+.glass-card:hover { transform: translateY(-5px); }
+.glass-card__icon { width: 48px; height: 48px; border-radius: 14px; background: var(--soft); color: var(--leaf); display: grid; place-items: center; margin-bottom: 16px; }
+.glass-card__icon .i { width: 24px; height: 24px; }
+.glass-card h3 { font: 700 1rem/1.3 var(--sans); letter-spacing: 0; margin-bottom: 6px; }
+.glass-card p { font-size: 13.5px; color: var(--mute); }
+
+/* ---------- Fidanlıktan: yazı + adımlar + 2 fotoğraf ---------- */
+.field { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
+.field__text h2 { font-size: clamp(1.9rem, 3.2vw, 2.7rem); margin: 12px 0 18px; }
+.field__text > p { color: var(--mute); max-width: 56ch; }
+.steps { list-style: none; display: grid; gap: 4px; margin: 28px 0 30px; }
+.steps li { display: flex; gap: 16px; align-items: flex-start; padding: 14px 0; border-top: 1px solid var(--line); }
+.steps li:first-child { border-top: 0; }
+.steps li > span { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; flex: none; background: var(--ink); color: #e6f0dc; font-weight: 700; font-size: 14px; }
+.steps b { display: block; font-size: 15.5px; }
+.steps small { display: block; font-size: 14px; color: var(--mute); }
+.field__media { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+.field__media img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: var(--r-lg); background: var(--sand); box-shadow: var(--shadow-md); }
+.field__media img:last-child { margin-top: 56px; }
+
+/* ---------- Sık sorulan sorular ---------- */
+.faq { display: grid; grid-template-columns: .8fr 1.2fr; gap: 64px; align-items: start; }
+.faq__side { position: sticky; top: 120px; }
+.faq__side h2 { font-size: clamp(1.9rem, 3.2vw, 2.7rem); margin: 12px 0 16px; }
+.faq__side p { color: var(--mute); margin-bottom: 26px; }
+.faq__call { display: inline-flex; align-items: center; gap: 14px; padding: 12px 22px 12px 12px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow-sm); transition: transform .3s var(--ease); }
+.faq__call:hover { transform: translateY(-3px); }
+.faq__call .contact-card__icon { margin: 0; border-radius: 50%; }
+.faq__call small { display: block; font-size: 12.5px; font-weight: 600; color: var(--mute); }
+.faq__call b { font-size: 16px; }
+.faq__list { display: grid; gap: 12px; }
+.faq__item { border-radius: var(--r-md); background: var(--surface); border: 1px solid rgba(230,225,212,.85); box-shadow: var(--shadow-sm); transition: border-color .25s; }
+.faq__item[open] { border-color: var(--sage); }
+.faq__item summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 22px; cursor: pointer; list-style: none; font-weight: 700; font-size: 15.5px; }
+.faq__item summary::-webkit-details-marker { display: none; }
+.faq__ic { width: 34px; height: 34px; border-radius: 50%; background: var(--soft); color: var(--ink); display: grid; place-items: center; flex: none; transition: transform .3s var(--ease), background .25s, color .25s; }
+.faq__ic .i { width: 18px; height: 18px; }
+.faq__item[open] .faq__ic { transform: rotate(45deg); background: var(--ink); color: #fff; }
+.faq__item p { padding: 0 22px 22px; color: var(--mute); font-size: 15px; animation: fade .35s ease; }
 
 /* ---------- İletişim ---------- */
-.contact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; max-width: 880px; margin-inline: auto; }
+.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; max-width: 1000px; margin-inline: auto; }
 .contact-card { display: flex; flex-direction: column; gap: 4px; padding: 24px; border-radius: var(--r-md); background: var(--surface); border: 1px solid rgba(230,225,212,.75); box-shadow: var(--shadow-sm); transition: transform .35s var(--ease), box-shadow .35s var(--ease); }
 .contact-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
 .contact-card__icon { width: 48px; height: 48px; border-radius: 14px; background: var(--ink); color: #e6f0dc; display: grid; place-items: center; margin-bottom: 14px; }
+.contact-card__icon--wa { background: var(--wa); color: #fff; }
 .contact-card__icon .i { width: 22px; height: 22px; }
 .contact-card small { font-size: 13px; font-weight: 600; color: var(--mute); }
 .contact-card b { font-size: 15.5px; font-weight: 700; line-height: 1.4; overflow-wrap: anywhere; }
@@ -78,67 +145,56 @@
 .social-btn { display: inline-flex; align-items: center; gap: 8px; height: 46px; padding: 0 20px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); color: var(--ink); box-shadow: var(--shadow-sm); transition: background .2s, color .2s, border-color .2s, transform .2s var(--ease); }
 .social-btn:hover { background: var(--ink); border-color: var(--ink); color: #fff; transform: translateY(-2px); }
 
-/* ---------- Bakım bandı ---------- */
-.care { position: relative; isolation: isolate; overflow: hidden; margin-top: 110px; border-radius: var(--r-lg); padding: 60px; display: grid; grid-template-columns: 1fr 1.05fr; gap: 40px; align-items: center; color: #fff; background: #2c3f27; }
-.care__bg { position: absolute; inset: 0; z-index: -1; background:
-    linear-gradient(100deg, rgba(25,38,21,.95) 0%, rgba(33,50,28,.84) 40%, rgba(33,50,28,.3) 100%),
-    url("../img/care-bg.jpg") center / cover no-repeat;
-  transition: transform 1.4s var(--ease); }
-.care:hover .care__bg { transform: scale(1.04); }
-.care .eyebrow { color: #cfe3c2; }
-.care h2 { color: #fff; font-size: clamp(1.9rem, 3vw, 2.6rem); margin: 12px 0 14px; }
-.care h2 em { color: #cfe3c2; }
-.care__text p { color: rgba(255,255,255,.78); max-width: 380px; margin-bottom: 30px; }
-.care-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 470px; justify-self: end; width: 100%; }
-.glass-card { padding: 24px; border-radius: var(--r-md); background: rgba(255,255,255,.86); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); color: var(--ink); border: 1px solid rgba(255,255,255,.6); transition: transform .35s var(--ease); }
-.glass-card:hover { transform: translateY(-5px); }
-.glass-card__icon { width: 48px; height: 48px; border-radius: 14px; background: var(--soft); color: var(--leaf); display: grid; place-items: center; margin-bottom: 18px; }
-.glass-card__icon .i { width: 24px; height: 24px; }
-.glass-card h3 { font: 700 1rem/1.3 var(--sans); letter-spacing: 0; margin-bottom: 6px; }
-.glass-card p { font-size: 13.5px; color: var(--mute); }
-
 /* ---------- Tablet ---------- */
 @media (max-width: 1080px) {
-  .hero__bg { background:
-      linear-gradient(90deg, var(--sage) 0%, rgba(200,213,196,.95) 42%, rgba(200,213,196,.5) 66%, rgba(200,213,196,0) 86%),
-      url("../img/hero-plants.jpg") right center / cover no-repeat; }
-  .about { gap: 36px; }
-  .why-grid { grid-template-columns: 1fr 300px 1fr; gap: 28px; }
+  .hero__grid { gap: 36px; }
+  .hero-media__badge { inset-inline-start: -14px; }
+  .about, .field { gap: 44px; }
   .care { padding: 48px; grid-template-columns: 1fr; }
-  .care-cards { justify-self: start; }
+  .faq { gap: 40px; }
   .stat { padding: 20px; gap: 12px; }
   .stat__icon { width: 46px; height: 46px; }
 }
 
 /* ---------- Mobil ---------- */
 @media (max-width: 860px) {
-  .hero__bg { background:
-      linear-gradient(180deg, rgba(200,213,196,.97) 0%, rgba(200,213,196,.93) 62%, rgba(200,213,196,.55) 100%),
-      url("../img/hero-plants.jpg") 70% center / cover no-repeat; }
-  .about { grid-template-columns: 1fr; }
+  .hero { padding: 130px 0 120px; }
+  .hero__grid { grid-template-columns: 1fr; }
+  .hero-media { justify-self: center; max-width: 440px; }
+  .hero-media__badge { inset-inline-start: 14px; bottom: 18px; }
+  .hero-media__dots { top: 22px; bottom: auto; }
   .stats { grid-template-columns: repeat(2, 1fr); margin-top: -64px; gap: 12px; }
-  .why-grid { grid-template-columns: 1fr; gap: 36px; }
-  .why-media { order: -1; }
-  .why-media img { max-width: 280px; }
-  .why-col { grid-template-columns: 1fr 1fr; gap: 28px; }
+  .section-head--row { flex-direction: column; align-items: flex-start; }
+  .about, .field, .faq { grid-template-columns: 1fr; }
+  .about__media { max-width: 520px; }
+  .faq__side { position: static; }
 }
 
 @media (max-width: 600px) {
-  .hero { margin: 8px 8px 0; border-radius: 22px 22px 32px 32px; min-height: 0; padding: 120px 0 130px; }
+  .hero { margin: 8px 8px 0; border-radius: 22px 22px 32px 32px; padding: 110px 0 110px; }
   .hero__actions { gap: 16px; }
-  .hero__trust { align-items: flex-start; margin-top: 28px; }
+  .hero__badges { margin-top: 28px; gap: 8px; }
+  .hero__badges li { height: 34px; padding: 0 12px; font-size: 12.5px; }
+  .hero-media__frame { border-width: 6px; border-radius: 24px; }
+  .hero-media__badge { padding: 10px 14px 10px 10px; gap: 10px; }
+  .hero-media__badge-icon { width: 38px; height: 38px; }
   .stat { flex-direction: column; align-items: flex-start; padding: 16px; }
   .stat strong { font-size: 1.4rem; }
-  .why-col { grid-template-columns: 1fr; }
+  .about__media { padding-inline-end: 40px; padding-bottom: 44px; }
+  .about__stamp { width: 84px; height: 84px; top: 16px; inset-inline-end: 12px; }
+  .about__stamp b { font-size: 1.4rem; }
   .care { margin-top: 80px; padding: 30px 22px; border-radius: 22px; }
   .care-cards { grid-template-columns: 1fr; }
-  .about__card { padding: 24px; }
+  .field__media { gap: 10px; }
+  .field__media img:last-child { margin-top: 36px; }
+  .faq__item summary { padding: 16px 18px; font-size: 15px; }
+  .faq__item p { padding: 0 18px 18px; }
   .contact-grid { grid-template-columns: 1fr; gap: 12px; }
   .contact-card { display: grid; grid-template-columns: 48px 1fr; column-gap: 14px; row-gap: 0; align-items: center; padding: 16px 18px; }
   .contact-card__icon { grid-row: span 2; margin: 0; }
 }
 
-/* ---------- Sağdan sola (Arapça): fotoğraflı arka planlar aynalanır ---------- */
-[dir="rtl"] .hero__bg { transform: scaleX(-1); animation-name: heroZoomRtl; }
+/* ---------- Sağdan sola (Arapça) ---------- */
 [dir="rtl"] .care__bg { transform: scaleX(-1); }
 [dir="rtl"] .care:hover .care__bg { transform: scaleX(-1) scale(1.04); }
+[dir="rtl"] .link-arrow:hover .i-arrow-right { transform: scaleX(-1) translateX(4px); }

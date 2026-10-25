@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="meta.facility.title">Tesislerimiz | Sağ Fidancılık</title>
+  <meta name="description" content="Samandağ / Hatay'daki fidanlığımız: fidanlarımızın yetiştiği yer ve üretim sürecimiz." data-i18n-attr="content:meta.facility.desc" />
+  <meta name="theme-color" content="#fbf8f1" />
+  <link rel="icon" href="./img/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/variables.css" />
+  <link rel="stylesheet" href="./css/base.css" />
+  <link rel="stylesheet" href="./css/icons.css" />
+  <link rel="stylesheet" href="./css/layout.css" />
+  <link rel="stylesheet" href="./css/gallery.css" />
+  <!-- Seçili dil Türkçe değilse, çeviri yüklenene kadar sayfayı kısa süre gizler (js/i18n.js) -->
+  <script>(function(d){d.classList.add('js');try{var l=new URLSearchParams(location.search).get('lang')||localStorage.getItem('lang');if(l==='en'||l==='ru'||l==='ar'){d.classList.add('i18n-wait');d.lang=l;if(l==='ar')d.dir='rtl';setTimeout(function(){d.classList.remove('i18n-wait')},1500)}}catch(e){}})(document.documentElement)</script>
+</head>
+<body id="top">
+
+  <load src="./partials/header.html" />
+
+  <main>
+    <!-- SAYFA BAŞLIĞI -->
+    <section class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Konum" data-i18n-attr="aria-label:catalog.crumbs" data-reveal><a href="./index.html" data-i18n="nav.home">Ana Sayfa</a><i class="i i-chevron-right"></i><span data-i18n="nav.facilities">Tesislerimiz</span></nav>
+        <h1 data-reveal style="--d:1" data-i18n="facility.title">Fidanın <em>doğduğu</em> yer</h1>
+        <p data-reveal style="--d:2" data-i18n="facility.lead">Tohumdan aşılamaya, bakımdan satışa kadar fidanlarımız Samandağ'daki fidanlığımızda, kendi elimizde yetişiyor.</p>
+      </div>
+    </section>
+
+    <!-- TANITIM + KISACA -->
+    <section class="section">
+      <div class="wrap facility">
+        <div class="facility__text" data-reveal>
+          <span class="eyebrow" data-i18n="nav.facilities">Tesislerimiz</span>
+          <h2 data-i18n="facility.intro.title">Samandağ'daki <em>fidanlığımız</em></h2>
+          <p data-i18n="facility.intro.p1">Fidanlığımız, Hatay'ın Samandağ ilçesinde, Samandağ yolu üzerindeki Fidanlı Mahallesi'nde. 2005'ten beri burada turunçgil, zeytin, nar ve diğer meyve fidanlarını yetiştiriyoruz.</p>
+          <p data-i18n="facility.intro.p2">Fidan üretimi birbirine bağlı halkalardan oluşan bir zincirdir; bir halka dışarıdan geldiğinde hem çeşidin doğruluğu hem de fidanın sağlığı şansa kalır. Bu yüzden anaç tohumunun hazırlanmasından aşılamaya, bakımdan satışa kadar her aşamayı kendi fidanlığımızda yürütüyoruz.</p>
+        </div>
+        <aside class="facility__card" data-reveal style="--d:1">
+          <h3 data-i18n="about.card.title">Kısaca biz</h3>
+          <ul class="facility__facts">
+            <li><span class="facility__icon"><i class="i i-calendar"></i></span><div><small data-i18n="about.f.founded">Kuruluş</small><b>2005</b></div></li>
+            <li><span class="facility__icon"><i class="i i-pin"></i></span><div><small data-i18n="about.f.location">Konum</small><b data-i18n="contact.address.v">Samandağ yolu üzeri, Fidanlı Mah., Samandağ / Hatay</b></div></li>
+            <li><span class="facility__icon"><i class="i i-sprout"></i></span><div><small data-i18n="about.f.production">Üretim</small><b data-i18n="facility.f.production">16 meyve türünde 100'ü aşkın çeşit</b></div></li>
+            <li><span class="facility__icon"><i class="i i-award"></i></span><div><small data-i18n="about.f.quality">Kalite</small><b data-i18n="about.f.quality.v">Sertifikalı, çeşidi belli fidan</b></div></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- FOTOĞRAFLAR: src/img/tesis klasöründen (js/tesis.js) -->
+    <section class="section gallery-section">
+      <div class="wrap">
+        <header class="section-head section-head--row" data-reveal>
+          <div>
+            <span class="eyebrow" data-i18n="field.eyebrow">Fidanlıktan</span>
+            <h2 data-i18n="facility.photos.title">Fidanlıktan <em>kareler</em></h2>
+          </div>
+          <a class="link-arrow" href="./galeri.html"><i class="i i-image"></i> <span data-i18n="facility.toGallery">Tüm galeri</span> <i class="i i-arrow-right"></i></a>
+        </header>
+        <div class="gallery" id="gallery"></div>
+        <div class="empty" id="galleryEmpty" hidden>
+          <div class="empty__icon"><i class="i i-image"></i></div>
+          <h3 data-i18n="gallery.empty.t">Fotoğraflar yakında</h3>
+          <p data-i18n="gallery.empty.p">Fotoğraflarımızı çok yakında burada paylaşacağız.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ÜRETİM ZİNCİRİ -->
+    <section class="section">
+      <div class="wrap nursery-info">
+        <div data-reveal>
+          <span class="eyebrow" data-i18n="facility.chain.eyebrow">Üretim zinciri</span>
+          <h2 data-i18n="facility.chain.title">Her aşama <em>gözümüzün önünde</em></h2>
+          <p data-i18n="field.p">Tohumdan satışa kadar her aşama Samandağ'daki fidanlığımızda, gözümüzün önünde ilerliyor. Böylece hem çeşidin doğruluğundan hem de fidanın sağlığından emin oluyoruz.</p>
+        </div>
+        <ol class="nursery-steps" data-reveal style="--d:1">
+          <li><span class="nursery-steps__icon"><i class="i i-sprout"></i></span><b data-i18n="field.s1.t">Anaç ve tohum</b><small data-i18n="field.s1.p">Turunç tohumları işlemden geçirilip ekilir.</small></li>
+          <li><span class="nursery-steps__icon"><i class="i i-tree"></i></span><b data-i18n="field.s2.t">Aşılama</b><small data-i18n="field.s2.p">Aşı gözleri sağlıklı, verimli ağaçlardan alınır.</small></li>
+          <li><span class="nursery-steps__icon"><i class="i i-award"></i></span><b data-i18n="field.s3.t">Bakım ve satış</b><small data-i18n="field.s3.p">Sertifikalı fidanlar bahçenize hazır hâle gelir.</small></li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <!-- BÜYÜTÜLMÜŞ FOTOĞRAF -->
+  <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Fotoğraf" data-i18n-attr="aria-label:gallery.photo">
+    <button class="lightbox__btn lightbox__close" type="button" data-lb="close" aria-label="Kapat" data-i18n-attr="aria-label:modal.close"><i class="i i-close"></i></button>
+    <button class="lightbox__btn lightbox__prev" type="button" data-lb="prev" aria-label="Önceki" data-i18n-attr="aria-label:gallery.prev"><i class="i i-chevron-left"></i></button>
+    <img class="lightbox__img" id="lbImg" src="" alt="">
+    <button class="lightbox__btn lightbox__next" type="button" data-lb="next" aria-label="Sonraki" data-i18n-attr="aria-label:gallery.next"><i class="i i-chevron-right"></i></button>
+    <span class="lightbox__count" id="lbCount"></span>
+  </div>
+
+  <load src="./partials/footer.html" />
+
+  <script type="module" src="./js/tesis.js"></script>
+</body>
+</html>

@@ -24,6 +24,17 @@ const TR = {
   varieties: '{n} çeşit',
   catTitle: '{cat} Çeşitleri',
   'search.results': 'Arama sonuçları',
+  'hero.slide': 'Fotoğraf {n}',
+  'gallery.open': 'Fotoğraf {n}',
+  'quote.type.any': 'Henüz karar vermedim',
+  'quote.msg.hello': 'Merhaba, fidan için fiyat teklifi almak istiyorum.',
+  'quote.msg.variety': 'Çeşit',
+  'quote.msg.name': 'Ad Soyad',
+  'quote.name': 'Adınız Soyadınız',
+  'quote.type': 'Fidan türü',
+  'quote.qty': 'Adet',
+  'quote.place': 'İl / İlçe',
+  'quote.note': 'Notunuz',
   noDetail: 'Bu çeşidin ayrıntılı özellikleri yakında eklenecek. Çeşit, stok ve fiyat bilgisi için bizi arayın.',
 };
 
@@ -47,6 +58,8 @@ export function t(key, vars = {}) {
 
 // Kategori ve filtre adları: 'Mandalina' -> 'Mandarin'
 export const cat = name => sozluk()?.cats[name] ?? name;
+// Kategori kartındaki kısa açıklama (Türkçesi js/fidanlar.js'te, CATEGORIES[].desc)
+export const catDesc = c => sozluk()?.catDesc?.[c.key] ?? c.desc ?? '';
 
 // Sayılar: "%33,4" -> "33.4%" (EN, AR) / "33,4%" (RU); birimler RU'da "мм, г, м", AR'da "مم، غ، م"
 function sayilar(v) {

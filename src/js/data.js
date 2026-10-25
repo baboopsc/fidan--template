@@ -12,6 +12,8 @@ export const SITE = {
   // Boş bırakılırsa sitede o buton gizlenir.
   instagram: 'https://www.instagram.com/ali_alisag/',
   facebook: 'https://www.facebook.com/sag.fidanc.l.k/',
+  // WhatsApp numarası (ülke koduyla, boşluksuz). Boş bırakılırsa WhatsApp butonları gizlenir.
+  whatsapp: '905336125225',
 };
 
 /* src/img klasöründeki fotoğrafları Vite kendisi bulur.
@@ -26,6 +28,15 @@ export function imgFor(slug) {
   const key = Object.keys(IMAGES).find(k => new RegExp(`/${slug}\\.(jpe?g|png|webp|avif)$`, 'i').test(k));
   return key ? IMAGES[key] : FALLBACK;
 }
+
+/* Tesis ve galeri fotoğrafları — klasöre atman yeterli, ada göre sıralanır (01.jpg, 02.jpg ...):
+   src/img/tesis  -> "Tesislerimiz" sayfası + ana sayfadaki slayt ve bölüm fotoğrafları
+   src/img/galeri -> "Galeri" sayfası */
+const sirala = obj => Object.keys(obj).sort((a, b) => a.localeCompare(b, 'tr', { numeric: true })).map(k => obj[k]);
+const TESIS = import.meta.glob('../img/tesis/*.{jpg,jpeg,png,webp,avif}', { eager: true, query: '?url', import: 'default' });
+const GALERI = import.meta.glob('../img/galeri/*.{jpg,jpeg,png,webp,avif}', { eager: true, query: '?url', import: 'default' });
+export const TESIS_FOTOLARI = sirala(TESIS);
+export const GALERI_FOTOLARI = sirala(GALERI);
 
 export const FIDANLAR = TUM_FIDANLAR.filter(f => !f.hidden);
 export const catOf = f => CATEGORIES.find(c => c.key === f.category);

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="meta.gallery.title">Galeri | Sağ Fidancılık</title>
+  <meta name="description" content="Sağ Fidancılık fotoğraf galerisi: fidanlarımız, fidanlığımız ve bahçeler." data-i18n-attr="content:meta.gallery.desc" />
+  <meta name="theme-color" content="#fbf8f1" />
+  <link rel="icon" href="./img/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/variables.css" />
+  <link rel="stylesheet" href="./css/base.css" />
+  <link rel="stylesheet" href="./css/icons.css" />
+  <link rel="stylesheet" href="./css/layout.css" />
+  <link rel="stylesheet" href="./css/gallery.css" />
+  <!-- Seçili dil Türkçe değilse, çeviri yüklenene kadar sayfayı kısa süre gizler (js/i18n.js) -->
+  <script>(function(d){d.classList.add('js');try{var l=new URLSearchParams(location.search).get('lang')||localStorage.getItem('lang');if(l==='en'||l==='ru'||l==='ar'){d.classList.add('i18n-wait');d.lang=l;if(l==='ar')d.dir='rtl';setTimeout(function(){d.classList.remove('i18n-wait')},1500)}}catch(e){}})(document.documentElement)</script>
+</head>
+<body id="top">
+
+  <load src="./partials/header.html" />
+
+  <main>
+    <!-- SAYFA BAŞLIĞI -->
+    <section class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Konum" data-i18n-attr="aria-label:catalog.crumbs" data-reveal><a href="./index.html" data-i18n="nav.home">Ana Sayfa</a><i class="i i-chevron-right"></i><span data-i18n="nav.gallery">Galeri</span></nav>
+        <h1 data-reveal style="--d:1" data-i18n="gallery.title">Fotoğraf <em>galerisi</em></h1>
+        <p data-reveal style="--d:2" data-i18n="gallery.lead">Fidanlarımızdan, fidanlığımızdan ve fidanlarımızla kurulan bahçelerden kareler.</p>
+      </div>
+    </section>
+
+    <!-- GALERİ: src/img/galeri klasöründen (js/galeri.js) -->
+    <section class="section gallery-section">
+      <div class="wrap">
+        <div class="gallery" id="gallery"></div>
+        <div class="empty" id="galleryEmpty" hidden>
+          <div class="empty__icon"><i class="i i-image"></i></div>
+          <h3 data-i18n="gallery.empty.t">Fotoğraflar yakında</h3>
+          <p data-i18n="gallery.empty.p">Fotoğraflarımızı çok yakında burada paylaşacağız.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- BÜYÜTÜLMÜŞ FOTOĞRAF -->
+  <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Fotoğraf" data-i18n-attr="aria-label:gallery.photo">
+    <button class="lightbox__btn lightbox__close" type="button" data-lb="close" aria-label="Kapat" data-i18n-attr="aria-label:modal.close"><i class="i i-close"></i></button>
+    <button class="lightbox__btn lightbox__prev" type="button" data-lb="prev" aria-label="Önceki" data-i18n-attr="aria-label:gallery.prev"><i class="i i-chevron-left"></i></button>
+    <img class="lightbox__img" id="lbImg" src="" alt="">
+    <button class="lightbox__btn lightbox__next" type="button" data-lb="next" aria-label="Sonraki" data-i18n-attr="aria-label:gallery.next"><i class="i i-chevron-right"></i></button>
+    <span class="lightbox__count" id="lbCount"></span>
+  </div>
+
+  <load src="./partials/footer.html" />
+
+  <script type="module" src="./js/galeri.js"></script>
+</body>
+</html>

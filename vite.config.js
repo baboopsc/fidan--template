@@ -14,6 +14,8 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'src/index.html'),
         catalog: resolve(__dirname, 'src/catalog.html'),
+        tesislerimiz: resolve(__dirname, 'src/tesislerimiz.html'),
+        galeri: resolve(__dirname, 'src/galeri.html'),
       },
     },
   },

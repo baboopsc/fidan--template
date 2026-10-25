@@ -1,11 +1,17 @@
 <!-- Alt bilgi: tüm sayfalara buradan eklenir.
-     Instagram / Facebook bağlantıları js/data.js içindeki SITE'tan gelir; boşsa butonlar gizlenir. -->
+     Instagram / Facebook / WhatsApp bağlantıları js/data.js içindeki SITE'tan gelir; boşsa butonlar gizlenir. -->
 <footer class="site-footer">
   <i class="i i-leaf footer__deco" aria-hidden="true"></i>
   <div class="wrap">
     <div class="footer-cta">
-      <h2 data-i18n="footer.cta.title">Bahçenize yeni bir <em>hayat</em> katın.</h2>
-      <a class="btn btn-light" href="./catalog.html"><span data-i18n="footer.cta.btn">Fidanları Keşfet</span> <i class="i i-arrow-right"></i></a>
+      <div>
+        <span class="eyebrow" data-i18n="footer.cta.eyebrow">Bahçenizi birlikte kuralım</span>
+        <h2 data-i18n="footer.cta.title">Bu sezon hangi fidanı <em>dikeceksiniz</em>?</h2>
+      </div>
+      <div class="footer-cta__actions">
+        <button class="btn btn-light" type="button" data-quote><i class="i i-quote"></i> <span data-i18n="quote.btn">Teklif İste</span></button>
+        <a class="btn btn-ghost" href="tel:+905336125225"><i class="i i-phone"></i> 0533 612 52 25</a>
+      </div>
     </div>
     <div class="footer-grid">
       <div>
@@ -14,14 +20,23 @@
         <div class="footer-social" data-social-wrap hidden>
           <a class="footer-social__btn" data-social="instagram" href="#" target="_blank" rel="noopener" aria-label="Instagram" hidden><i class="i i-instagram"></i></a>
           <a class="footer-social__btn" data-social="facebook" href="#" target="_blank" rel="noopener" aria-label="Facebook" hidden><i class="i i-facebook"></i></a>
+          <a class="footer-social__btn" data-social="whatsapp" href="#" target="_blank" rel="noopener" aria-label="WhatsApp" hidden><i class="i i-whatsapp"></i></a>
         </div>
       </div>
       <div>
-        <h4 data-i18n="footer.explore">Keşfet</h4>
+        <h4 data-i18n="footer.types">Fidan çeşitleri</h4>
+        <!-- Kategori bağlantıları js/ui.js ile çizilir -->
+        <ul class="footer-cats" id="footerCats"></ul>
+      </div>
+      <div>
+        <h4 data-i18n="footer.explore">Hızlı erişim</h4>
         <ul>
           <li><a href="./index.html" data-i18n="nav.home">Ana Sayfa</a></li>
           <li><a href="./catalog.html" data-i18n="footer.catalog">Fidan Çeşitleri</a></li>
           <li><a href="./index.html#hakkimizda" data-i18n="nav.about">Hakkımızda</a></li>
+          <li><a href="./tesislerimiz.html" data-i18n="nav.facilities">Tesislerimiz</a></li>
+          <li><a href="./galeri.html" data-i18n="nav.gallery">Galeri</a></li>
+          <li><a href="./index.html#sss" data-i18n="nav.faq">Sık Sorulanlar</a></li>
           <li><a href="./index.html#iletisim" data-i18n="nav.contact">İletişim</a></li>
         </ul>
       </div>
@@ -29,7 +44,8 @@
         <h4 data-i18n="nav.contact">İletişim</h4>
         <ul>
           <li><i class="i i-phone"></i><a href="tel:+905336125225">Ali Sağ · 0533 612 52 25</a></li>
-          <li><i class="i i-pin"></i><span data-i18n="about.f.location.v">Fidanlı Mah., Samandağ / Hatay</span></li>
+          <li data-social-box><i class="i i-whatsapp"></i><a data-social="whatsapp" href="#" target="_blank" rel="noopener" data-i18n="footer.wa">WhatsApp'tan yazın</a></li>
+          <li><i class="i i-pin"></i><span data-i18n="contact.address.v">Samandağ yolu üzeri, Fidanlı Mah., Samandağ / Hatay</span></li>
         </ul>
       </div>
     </div>
@@ -39,3 +55,36 @@
     </div>
   </div>
 </footer>
+
+<!-- Sabit WhatsApp butonu (SITE.whatsapp boşsa gizlenir) -->
+<a class="wa-float" data-social="whatsapp" href="#" target="_blank" rel="noopener" aria-label="WhatsApp" hidden><i class="i i-whatsapp"></i></a>
+
+<!-- TEKLİF FORMU: data-quote taşıyan butonlar açar (js/ui.js).
+     Bilgiler hiçbir yere kaydedilmez; "WhatsApp ile gönder" deyince hazır mesaj olarak WhatsApp'ta açılır. -->
+<dialog class="quote" id="quoteDialog" aria-labelledby="quoteTitle">
+  <button class="icon-btn quote__close" type="button" data-quote-close aria-label="Kapat" data-i18n-attr="aria-label:modal.close"><i class="i i-close"></i></button>
+  <div class="quote__head">
+    <span class="eyebrow" data-i18n="quote.btn">Teklif İste</span>
+    <h2 id="quoteTitle" data-i18n="quote.title">Size özel <em>fiyat teklifi</em></h2>
+    <p data-i18n="quote.lead">Fiyatlar çeşide, fidan yaşına ve adede göre değişir. Formu doldurun, WhatsApp'tan bize iletin; en kısa sürede dönüş yapalım.</p>
+  </div>
+  <form class="quote__form" id="quoteForm" novalidate>
+    <label class="qfield qfield--full"><span data-i18n="quote.name">Adınız Soyadınız</span>
+      <input name="ad" type="text" autocomplete="name" required></label>
+    <label class="qfield"><span data-i18n="quote.type">Fidan türü</span>
+      <select name="tur" id="quoteType"></select></label>
+    <label class="qfield"><span data-i18n="quote.variety">Çeşit (biliyorsanız)</span>
+      <input name="cesit" type="text" id="quoteVariety" data-i18n-attr="placeholder:quote.variety.ph" placeholder="Ör. Washington Navel"></label>
+    <label class="qfield"><span data-i18n="quote.qty">Adet</span>
+      <input name="adet" type="number" min="1" inputmode="numeric" data-i18n-attr="placeholder:quote.qty.ph" placeholder="Ör. 100"></label>
+    <label class="qfield"><span data-i18n="quote.place">İl / İlçe</span>
+      <input name="yer" type="text" autocomplete="address-level2" data-i18n-attr="placeholder:quote.place.ph" placeholder="Ör. Samandağ / Hatay"></label>
+    <label class="qfield qfield--full"><span data-i18n="quote.note">Notunuz</span>
+      <textarea name="not" rows="3" data-i18n-attr="placeholder:quote.note.ph" placeholder="Dikim zamanı, fidan yaşı vb."></textarea></label>
+    <p class="quote__error" id="quoteError" hidden data-i18n="quote.error">Lütfen adınızı yazın.</p>
+    <div class="quote__actions qfield--full">
+      <button class="btn btn-wa" type="submit"><i class="i i-whatsapp"></i> <span data-i18n="quote.send">WhatsApp ile gönder</span></button>
+      <a class="btn btn-outline" href="tel:+905336125225"><i class="i i-phone"></i> <span data-i18n="quote.call">Arayarak sorun</span></a>
+    </div>
+  </form>
+</dialog>

@@ -1,0 +1,76 @@
+/* ==========================================================
+   Fidanlığımız sayfası — fotoğraf galerisi ve büyütme penceresi.
+   ========================================================== */
+.gallery-section { padding-top: 60px; }
+/* İlk fotoğraf büyük, diğerleri ızgarada */
+.gallery { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 210px; grid-auto-flow: dense; gap: 14px; }
+.gallery__item { position: relative; overflow: hidden; border-radius: var(--r-md); background: var(--sand); box-shadow: var(--shadow-sm); animation: cardIn .55s var(--ease) backwards; animation-delay: calc(var(--i, 0) * 50ms); }
+.gallery__item:first-child { grid-column: span 2; grid-row: span 2; }
+.gallery__item img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s var(--ease); }
+.gallery__item:hover img { transform: scale(1.06); }
+.gallery__item::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(31,46,27,.35), rgba(31,46,27,0) 50%); opacity: 0; transition: opacity .3s; }
+.gallery__item:hover::after { opacity: 1; }
+
+/* Kısa bilgi */
+.nursery-info { display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: center; }
+.nursery-info h2 { font-size: clamp(1.9rem, 3.2vw, 2.6rem); margin: 12px 0 16px; }
+.nursery-info p { color: var(--mute); }
+.nursery-steps { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.nursery-steps li { display: grid; gap: 6px; padding: 22px; border-radius: var(--r-md); background: var(--surface); border: 1px solid rgba(230,225,212,.75); box-shadow: var(--shadow-sm); }
+.nursery-steps__icon { width: 46px; height: 46px; border-radius: 14px; background: var(--soft); color: var(--leaf); display: grid; place-items: center; margin-bottom: 8px; }
+.nursery-steps__icon .i { width: 22px; height: 22px; }
+.nursery-steps b { font-size: 15px; }
+.nursery-steps small { font-size: 13.5px; color: var(--mute); }
+
+/* Büyütme penceresi */
+.lightbox { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 70px 80px; background: rgba(16,24,14,.92); animation: fade .25s ease; }
+.lightbox__img { max-width: 100%; max-height: 100%; border-radius: 16px; object-fit: contain; box-shadow: 0 30px 80px -20px rgba(0,0,0,.6); }
+.lightbox__btn { position: absolute; width: 50px; height: 50px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.2); transition: background .2s; }
+.lightbox__btn:hover { background: rgba(255,255,255,.25); }
+.lightbox__btn .i { width: 24px; height: 24px; }
+.lightbox__close { top: 18px; inset-inline-end: 18px; }
+.lightbox__prev { inset-inline-start: 18px; top: 50%; translate: 0 -50%; }
+.lightbox__next { inset-inline-end: 18px; top: 50%; translate: 0 -50%; }
+.lightbox__count { position: absolute; bottom: 22px; left: 50%; translate: -50% 0; color: rgba(255,255,255,.8); font-size: 14px; font-weight: 600; }
+[dir="rtl"] .lightbox__prev .i, [dir="rtl"] .lightbox__next .i { transform: scaleX(-1); }
+body.modal-open { overflow: hidden; }
+
+@media (max-width: 960px) {
+  .gallery { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 180px; }
+  .nursery-info { grid-template-columns: 1fr; gap: 30px; }
+}
+@media (max-width: 600px) {
+  .gallery-section { padding-top: 40px; }
+  .gallery { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; gap: 8px; }
+  .gallery__item { border-radius: 14px; }
+  .nursery-steps { grid-template-columns: 1fr; }
+  .lightbox { padding: 70px 12px; }
+  .lightbox__prev, .lightbox__next { top: auto; bottom: 14px; translate: none; width: 44px; height: 44px; }
+  .lightbox__count { bottom: 26px; }
+}
+
+/* Tesislerimiz: tanıtım yazısı + "Kısaca biz" kartı */
+.facility { display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; }
+.facility__text h2 { font-size: clamp(1.9rem, 3.2vw, 2.7rem); margin: 12px 0 20px; }
+.facility__text p { color: var(--mute); max-width: 62ch; margin-bottom: 16px; }
+.facility__card { padding: 32px; border-radius: var(--r-lg); background: var(--surface); border: 1px solid rgba(230,225,212,.75); box-shadow: var(--shadow-md); }
+.facility__card h3 { font-size: 1.45rem; margin-bottom: 14px; }
+.facility__facts { list-style: none; display: grid; }
+.facility__facts li { display: flex; gap: 16px; align-items: flex-start; padding: 15px 0; border-top: 1px solid var(--line); }
+.facility__facts li:first-child { border-top: 0; padding-top: 4px; }
+.facility__icon { width: 44px; height: 44px; border-radius: 14px; background: var(--soft); color: var(--leaf); display: grid; place-items: center; flex: none; }
+.facility__icon .i { width: 22px; height: 22px; }
+.facility__facts small { display: block; font-size: 12.5px; font-weight: 600; color: var(--mute); }
+.facility__facts b { display: block; font-size: 15px; font-weight: 600; line-height: 1.45; }
+/* Başlık satırı (ana sayfadakiyle aynı) */
+.section-head--row { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; max-width: none; text-align: start; }
+.section-head--row .eyebrow::after { display: none; }
+.link-arrow { display: inline-flex; align-items: center; gap: 8px; flex: none; font-weight: 700; font-size: 14.5px; color: var(--ink); }
+.link-arrow .i { width: 18px; height: 18px; }
+.link-arrow .i-image { color: var(--leaf); }
+.link-arrow:hover { color: var(--leaf); }
+@media (max-width: 860px) {
+  .facility { grid-template-columns: 1fr; gap: 30px; }
+  .section-head--row { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 600px) { .facility__card { padding: 24px; } }

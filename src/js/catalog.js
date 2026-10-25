@@ -149,6 +149,7 @@ const modal = $('#modal');
 let acik = null;
 
 function doldur(f) {
+  document.getElementById('mQuote').dataset.quote = f.id; // teklif formu bu çeşitle dolu açılır
   const L = localize(f);
   const detayli = hasDetail(f);
   $('#mImg').src = fidanImg(f);

@@ -6,26 +6,26 @@
    ========================================================== */
 
 /* Kategoriler — Fidanlar sayfasında bu sırayla gösterilir.
-   group: ana sayfadaki filtre · tint: kategori kartının zemin rengi
+   group: ana sayfadaki filtre · tint: kategori kartının zemin rengi · desc: kartta görünen kısa açıklama
    Kategori fotoğrafı için src/img'ye "kategori-<slug>.jpg" koyman yeterli (ör. kategori-mandalina.jpg). */
 export const CATEGORIES = [
-  { key: 'Mandalina', slug: 'mandalina', group: 'Turunçgil', tint: '#f8e2c6' },
-  { key: 'Portakal', slug: 'portakal', group: 'Turunçgil', tint: '#fad7ae' },
-  { key: 'Limon', slug: 'limon', group: 'Turunçgil', tint: '#f4efbd' },
-  { key: 'Greyfurt', slug: 'greyfurt', group: 'Turunçgil', tint: '#f6d3c9' },
-  { key: 'Zeytin', slug: 'zeytin', group: 'Zeytin', tint: '#e2e7cc' },
-  { key: 'Nar', slug: 'nar', group: 'Nar', tint: '#f3cdcd' },
-  { key: 'İncir', slug: 'incir', group: 'Meyve', tint: '#e6d9e8' },
-  { key: 'Dut', slug: 'dut', group: 'Meyve', tint: '#dfd5ea' },
-  { key: 'Kayısı', slug: 'kayisi', group: 'Meyve', tint: '#fadfbf' },
-  { key: 'Erik', slug: 'erik', group: 'Meyve', tint: '#e4d8ec' },
-  { key: 'Şeftali', slug: 'seftali', group: 'Meyve', tint: '#fbdacc' },
-  { key: 'Nektarin', slug: 'nektarin', group: 'Meyve', tint: '#f8d4c6' },
-  { key: 'Kiraz', slug: 'kiraz', group: 'Meyve', tint: '#f5cdd1' },
-  { key: 'Badem', slug: 'badem', group: 'Meyve', tint: '#ece3d4' },
-  { key: 'Ceviz', slug: 'ceviz', group: 'Meyve', tint: '#e8e0d2' },
-  { key: 'Trabzon Hurması', slug: 'trabzon-hurmasi', group: 'Meyve', tint: '#f9d8b8' },
-  { key: 'Anaç', slug: 'anac', group: 'Meyve', tint: '#e2e7cc' },
+  { key: 'Mandalina', slug: 'mandalina', group: 'Turunçgil', tint: '#f8e2c6', desc: 'Erkenciden geççiye, kolay soyulan sofralık mandalinalar.' },
+  { key: 'Portakal', slug: 'portakal', group: 'Turunçgil', tint: '#fad7ae', desc: 'Göbekli, kan ve sıkmalık portakal çeşitleri.' },
+  { key: 'Limon', slug: 'limon', group: 'Turunçgil', tint: '#f4efbd', desc: 'Yerli ve yabancı limonlar, lime çeşitleri.' },
+  { key: 'Greyfurt', slug: 'greyfurt', group: 'Turunçgil', tint: '#f6d3c9', desc: 'Kırmızı etli greyfurtlar ve şadok (pomelo).' },
+  { key: 'Zeytin', slug: 'zeytin', group: 'Zeytin', tint: '#e2e7cc', desc: 'Sofralık ve yağlık zeytin çeşitleri.' },
+  { key: 'Nar', slug: 'nar', group: 'Nar', tint: '#f3cdcd', desc: 'Hicaz başta olmak üzere sofralık narlar.' },
+  { key: 'İncir', slug: 'incir', group: 'Meyve', tint: '#e6d9e8', desc: 'Sofralık ve kurutmalık incir çeşitleri.' },
+  { key: 'Dut', slug: 'dut', group: 'Meyve', tint: '#dfd5ea', desc: 'Beyaz, kara, kırmızı ve yediveren dutlar.' },
+  { key: 'Kayısı', slug: 'kayisi', group: 'Meyve', tint: '#fadfbf', desc: 'Sofralık ve kurutmalık kayısılar.' },
+  { key: 'Erik', slug: 'erik', group: 'Meyve', tint: '#e4d8ec', desc: 'Yerli erikler ve Japon erikleri.' },
+  { key: 'Şeftali', slug: 'seftali', group: 'Meyve', tint: '#fbdacc', desc: 'Erkenciden geççiye sofralık şeftaliler.' },
+  { key: 'Nektarin', slug: 'nektarin', group: 'Meyve', tint: '#f8d4c6', desc: 'Tüysüz kabuklu, tatlı nektarinler.' },
+  { key: 'Kiraz', slug: 'kiraz', group: 'Meyve', tint: '#f5cdd1', desc: 'İri ve sert etli kiraz çeşitleri.' },
+  { key: 'Badem', slug: 'badem', group: 'Meyve', tint: '#ece3d4', desc: 'İnce kabuklu ve kendine verimli bademler.' },
+  { key: 'Ceviz', slug: 'ceviz', group: 'Meyve', tint: '#e8e0d2', desc: 'Yerli ve yabancı, verimli ceviz çeşitleri.' },
+  { key: 'Trabzon Hurması', slug: 'trabzon-hurmasi', group: 'Meyve', tint: '#f9d8b8', desc: 'Buruk ve buruk olmayan çeşitler.' },
+  { key: 'Anaç', slug: 'anac', group: 'Meyve', tint: '#e2e7cc', desc: 'Aşılı fidan üretimi için anaçlar.' },
 ];
 export const GROUPS = ['Tümü', 'Turunçgil', 'Zeytin', 'Nar', 'Meyve'];
 

@@ -1,36 +1,90 @@
-/* Ana sayfa — "Öne Çıkan Fidanlar" bölümü */
+/* Ana sayfa — fotoğraf slaytı, fidan türleri (kategori kartları), öne çıkan çeşitler */
 import './ui.js';
-import { FIDANLAR, GROUPS, groupOf } from './data.js';
-import { cat } from './i18n.js';
+import { FIDANLAR, visibleCategories, inCategory, imgFor, TESIS_FOTOLARI, GALERI_FOTOLARI } from './data.js';
+import { cat, catDesc, t } from './i18n.js';
 import { cardHTML } from './product-card.js';
+import { esc } from './utils.js';
 
-const FAVORI = [15, 7, 11, 19, 20, 35, 23, 25]; // Ana sayfada gösterilecek fidanların id'leri (data.js)
+const FAVORI = [15, 7, 11, 19, 20, 35, 23, 25]; // Öne çıkan çeşitlerin id'leri (js/fidanlar.js)
 
-const grid = document.getElementById('favGrid');
-const chips = document.getElementById('favChips');
-let aktif = 'Tümü';
+/* ---------- Fidanlık fotoğrafları ----------
+   src/img/tesis klasöründe (yoksa src/img/galeri'de) fotoğraf varsa slayttaki ve bölümlerdeki
+   yer tutucu (kategori) fotoğrafların yerine onlar konur. */
+const URETIM_FOTOLARI = TESIS_FOTOLARI.length ? TESIS_FOTOLARI : GALERI_FOTOLARI;
+const slides = document.getElementById('heroSlides');
+const dots = document.getElementById('heroDots');
 
-function cipleriCiz() {
-  chips.innerHTML = GROUPS.map(c =>
-    `<button type="button" class="chip${c === aktif ? ' is-active' : ''}" data-cat="${c}">${cat(c)}</button>`).join('');
+if (URETIM_FOTOLARI.length) {
+  const alt = slides.querySelector('img')?.alt || '';
+  slides.innerHTML = URETIM_FOTOLARI.slice(0, 5)
+    .map((src, i) => `<img${i ? '' : ' class="is-active"'} src="${src}" alt="${i ? '' : esc(alt)}" width="900" height="1100">`).join('');
+  // Bölümlerdeki fotoğraflar: data-photo="1" -> 2. fotoğraf ... (yeterli fotoğraf yoksa baştan döner)
+  document.querySelectorAll('[data-photo]').forEach(img => {
+    img.src = URETIM_FOTOLARI[Number(img.dataset.photo) % URETIM_FOTOLARI.length];
+  });
 }
 
-function ciz() {
-  const liste = FAVORI.map(id => FIDANLAR.find(f => f.id === id))
-    .filter(f => f && (aktif === 'Tümü' || groupOf(f) === aktif));
-  grid.innerHTML = liste.map((f, i) => cardHTML(f, { link: true, i })).join('');
-}
+/* ---------- Slayt: 5 saniyede bir yumuşak geçiş ---------- */
+const kareler = [...slides.querySelectorAll('img')];
+let sira = 0, zamanlayici;
 
-chips.addEventListener('click', e => {
-  const b = e.target.closest('[data-cat]');
+function goster(i) {
+  sira = (i + kareler.length) % kareler.length;
+  kareler.forEach((k, j) => k.classList.toggle('is-active', j === sira));
+  dots.querySelectorAll('button').forEach((d, j) => d.setAttribute('aria-selected', j === sira));
+}
+function baslat() {
+  clearInterval(zamanlayici);
+  if (kareler.length > 1 && !matchMedia('(prefers-reduced-motion: reduce)').matches)
+    zamanlayici = setInterval(() => goster(sira + 1), 5000);
+}
+function noktalar() {
+  dots.hidden = kareler.length < 2;
+  dots.innerHTML = kareler.map((_, i) =>
+    `<button type="button" role="tab" aria-selected="${i === sira}" aria-label="${esc(t('hero.slide', { n: i + 1 }))}"></button>`).join('');
+}
+dots.addEventListener('click', e => {
+  const b = e.target.closest('button');
   if (!b) return;
-  aktif = b.dataset.cat;
-  chips.querySelectorAll('.chip').forEach(c => c.classList.toggle('is-active', c === b));
-  ciz();
+  goster([...dots.children].indexOf(b));
+  baslat();
 });
 
-// Dil değişince çipler ve kartlar yeni dille yeniden çizilir
-document.addEventListener('langchange', () => { cipleriCiz(); ciz(); });
+/* ---------- Fidan türleri: her kategori için bir kart ---------- */
+const catGrid = document.getElementById('homeCats');
 
-cipleriCiz();
-ciz();
+function kategoriler() {
+  catGrid.innerHTML = visibleCategories().map((c, i) => {
+    const n = inCategory(c.key).length;
+    return `
+      <a class="cat-card" href="./catalog.html?kategori=${c.slug}" style="--tint:${c.tint};--i:${i}">
+        <span class="cat-card__media has-photo">
+          <img src="${imgFor(`kategori-${c.slug}`)}" alt="" loading="lazy" width="600" height="450">
+          <span class="cat-card__count">${esc(t('varieties', { n }))}</span>
+        </span>
+        <span class="cat-card__body">
+          <span class="cat-card__text">
+            <span class="cat-card__title">${esc(cat(c.key))}</span>
+            <span class="cat-card__desc">${esc(catDesc(c))}</span>
+          </span>
+          <span class="more-btn" aria-hidden="true"><i class="i i-arrow-right"></i></span>
+        </span>
+      </a>`;
+  }).join('');
+}
+
+/* ---------- Öne çıkan çeşitler ---------- */
+const favGrid = document.getElementById('favGrid');
+
+function favoriler() {
+  favGrid.innerHTML = FAVORI.map(id => FIDANLAR.find(f => f.id === id)).filter(Boolean)
+    .map((f, i) => cardHTML(f, { link: true, i })).join('');
+}
+
+// Dil değişince kartlar ve slayt düğmeleri yeni dille yeniden çizilir
+document.addEventListener('langchange', () => { kategoriler(); favoriler(); noktalar(); });
+
+kategoriler();
+favoriler();
+noktalar();
+baslat();
