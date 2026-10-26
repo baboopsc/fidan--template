@@ -45,7 +45,7 @@ export const fidanFotolari = slug => FIDAN_KEYS.filter(k => new RegExp(`/${slug}
 
 /* Ana sayfa slaytı ve Tesislerimiz'de önce gösterilecek fidanlık görünümleri (dosya adları, uzantısız).
    Listede olmayan fotoğraflar arkadan gelir. */
-const ONCE = ['greyfurt-3', 'zeytin-9', 'kamkat-2', 'trabzon-hurmasi-1', 'nar-3', 'zeytin-10', 'greyfurt-1', 'zeytin-1'];
+const ONCE = ['greyfurt-3', 'zeytin-9', 'kamkat-1', 'trabzon-hurmasi-1', 'nar-3', 'zeytin-10', 'greyfurt-1', 'zeytin-1'];
 const ad = k => k.split('/').pop().replace(/\.\w+$/, '');
 const FIDAN_SIRALI = [...FIDAN_KEYS].sort((a, b) => {
   const i = x => (ONCE.indexOf(ad(x)) + 1) || 999;
@@ -58,21 +58,53 @@ export const GALERI_FOTOLARI = [...sirala(GALERI).map(k => GALERI[k]), ...FIDAN_
 export const FIDANLAR = TUM_FIDANLAR.filter(f => !f.hidden);
 export const catOf = f => CATEGORIES.find(c => c.key === f.category);
 
-/* Fidan görseli: türün gerçek fotoğrafları varsa (gercekFoto) onlardan biri — aynı türdeki
-   çeşitler sırayla farklı fotoğraf alır; yoksa önce çeşidin kendi görseli (washington-navel-portakal.webp),
-   o da yoksa kategorisinin görseli (kategori-portakal.webp), o da yoksa saksı görseli. */
-export function fidanImg(f) {
+/* ---------- Meyve ve fidan görselleri ----------
+   Her çeşidin iki görseli olur: MEYVESİ ve FİDANI (ürün penceresinde üstte meyve, altta fidan).
+   Meyve:  src/img/meyve/<çeşit-slug>.webp  ->  yoksa  src/img/meyve/<kategori-slug>.webp
+           (yoksa eski üretilmiş görseller: src/img/<çeşit-slug>.webp, src/img/kategori-<slug>.webp;
+            gerçek fotoğrafı olan türlerde eski görseller kullanılmaz)
+           Dosya adı "-gercek" ile bitiyorsa (ör. kamkat-gercek.webp) gerçek fotoğraf sayılır.
+   Fidan:  src/img/fidan/<kategori-slug>-1.webp ...  (gerçek fotoğraflar)
+           yoksa  src/img/fidan-temsili/<kategori-slug>.webp  (yapay zekâyla üretilmiş, "Görsel temsilidir") */
+const MEYVE = import.meta.glob('../img/meyve/*.{jpg,jpeg,png,webp,avif}', { eager: true, query: '?url', import: 'default' });
+const FIDAN_TEMSILI = import.meta.glob('../img/fidan-temsili/*.{jpg,jpeg,png,webp,avif}', { eager: true, query: '?url', import: 'default' });
+const bul = (glob, slug) => Object.keys(glob).find(k => new RegExp(`/${slug}(-gercek)?\\.\\w+$`).test(k));
+const eski = slug => { const u = imgFor(slug); return u !== FALLBACK ? u : null; };
+
+// Meyve görseli -> { src, gercek } ya da null
+export function meyveGorseli(f) {
   const c = catOf(f);
-  const gercek = c?.gercekFoto ? fidanFotolari(c.slug) : [];
-  if (gercek.length) return gercek[Math.max(0, TUM_FIDANLAR.filter(x => x.category === f.category && !x.hidden).indexOf(f)) % gercek.length];
-  const kendi = imgFor(f.slug);
-  return kendi !== FALLBACK ? kendi : imgFor(`kategori-${c?.slug}`);
+  const k = bul(MEYVE, f.slug) || (c && bul(MEYVE, c.slug));
+  if (k) return { src: MEYVE[k], gercek: /-gercek\.\w+$/.test(k) };
+  if (c?.gercekFoto) return null;
+  const src = eski(f.slug) || eski(`kategori-${c?.slug}`);
+  return src ? { src, gercek: false } : null;
 }
-// Kategori kartının görseli: gerçek fotoğrafı olan türde ilk fotoğraf, yoksa kategori-<slug> görseli
+// Fidan görselleri -> [{ src, gercek }]: önce gerçek fotoğraflar, yoksa tek bir temsili görsel
+export function fidanGorselleri(c) {
+  const gercek = fidanFotolari(c?.slug).map(src => ({ src, gercek: true }));
+  if (gercek.length) return gercek;
+  const k = c && bul(FIDAN_TEMSILI, c.slug);
+  return k ? [{ src: FIDAN_TEMSILI[k], gercek: false }] : [];
+}
+// Aynı türdeki çeşitler gerçek fidan fotoğraflarından sırayla farklı birini alır
+const sira = f => Math.max(0, TUM_FIDANLAR.filter(x => x.category === f.category && !x.hidden).indexOf(f));
+export function fidanGorselleriSirali(f) {
+  const liste = fidanGorselleri(catOf(f));
+  const bas = liste.length ? sira(f) % liste.length : 0;
+  return [...liste.slice(bas), ...liste.slice(0, bas)];
+}
+// Kartta görünen görsel: meyvesi; meyvesi yoksa fidanı; o da yoksa saksı görseli
+export function fidanImg(f) {
+  return meyveGorseli(f)?.src || fidanGorselleriSirali(f)[0]?.src || FALLBACK;
+}
+// Kategori kartının görseli: türün meyvesi; yoksa (gerçek fotoğrafı olmayan türde) eski kategori görseli; yoksa fidanı
 export function kategoriImg(c) {
-  const gercek = c.gercekFoto ? fidanFotolari(c.slug) : [];
-  return gercek[0] || imgFor(`kategori-${c.slug}`);
+  const k = bul(MEYVE, c.slug);
+  if (k) return MEYVE[k];
+  return (!c.gercekFoto && eski(`kategori-${c.slug}`)) || fidanGorselleri(c)[0]?.src || FALLBACK;
 }
+export const VARSAYILAN_GORSEL = FALLBACK;
 export const groupOf = f => catOf(f)?.group || 'Meyve';
 export const inCategory = key => FIDANLAR.filter(f => f.category === key);
 export const visibleCategories = () => CATEGORIES.filter(c => inCategory(c.key).length);

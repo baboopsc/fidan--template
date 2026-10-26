@@ -32,19 +32,35 @@
 .modal[open]::backdrop { animation: fade .3s ease; }
 .modal__close { position: absolute; top: 16px; inset-inline-end: 16px; z-index: 2; }
 .modal__inner { display: flex; max-height: min(800px, calc(100vh - 32px)); }
-/* Fotoğraf solda sabit durur, sağdaki özellikler kendi içinde kaydırılır */
-.modal__media { flex: 0 0 44%; min-height: 540px; background: var(--sand); }
-.modal__media img { width: 100%; height: 100%; object-fit: cover; }
-.modal__media { position: relative; }
-.modal__note--real { background: var(--ink) !important; color: #e6f0dc !important; }
-.modal__thumbs { position: absolute; inset-inline: 12px; bottom: 12px; display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding: 2px; }
+/* Görsel alanı solda sabit durur: üstte meyvesi, altta fidanı (iki ayrı panel).
+   Sağdaki özellikler kendi içinde kaydırılır. */
+.modal__media { flex: 0 0 44%; min-height: 560px; display: flex; flex-direction: column; gap: 8px; padding: 8px; padding-inline-end: 0; background: var(--surface); }
+.mpanel { position: relative; flex: 1 1 0; min-height: 0; margin: 0; border-radius: 20px; overflow: hidden; background: var(--sand); }
+.mpanel--fruit { flex-grow: 1.15; }
+.mpanel > img { width: 100%; height: 100%; object-fit: cover; transition: opacity .3s; }
+.mpanel__empty { display: none; position: absolute; inset: 0; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 20px; text-align: center; color: var(--ink-2);
+  background: radial-gradient(circle at 50% 42%, rgba(255,255,255,.75), rgba(255,255,255,0) 55%), linear-gradient(160deg, var(--sage-2), var(--soft)); }
+.mpanel--empty .mpanel__empty { display: flex; }
+.mpanel--empty > img { visibility: hidden; }
+.mpanel__empty-icon { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; margin-bottom: 4px; background: #fff; color: var(--leaf); box-shadow: var(--shadow-sm); }
+.mpanel__empty-icon .i { width: 26px; height: 26px; }
+.mpanel__empty b { font-size: 14.5px; }
+.mpanel__empty small { font-size: 12.5px; color: var(--mute); }
+.mpanel__tag { position: absolute; z-index: 2; top: 12px; inset-inline-start: 12px; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px 6px 9px; border-radius: 999px; background: rgba(255,255,255,.92); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); font-size: 12.5px; font-weight: 700; color: var(--ink); box-shadow: 0 4px 14px -6px rgba(31,46,27,.35); }
+.mpanel__tag .i { width: 16px; height: 16px; color: var(--leaf); }
+.mpanel--sapling .mpanel__tag { background: var(--ink); color: #fff; }
+.mpanel--sapling .mpanel__tag .i { color: #cfe3c2; }
+.modal__note { position: absolute; inset-inline-end: 12px; bottom: 12px; padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,.88); font-size: 11px; font-weight: 600; color: var(--ink-2); }
+.modal__note--real { background: var(--ink); color: #e6f0dc; }
+/* Fidan panelinde not sağ üstte durur; alttaki küçük resimlerle çakışmaz */
+.mpanel--sapling .modal__note { top: 12px; bottom: auto; }
+.modal__thumbs { max-width: calc(100% - 24px) !important; }
+.modal__thumbs { position: absolute; inset-inline-start: 12px; bottom: 12px; display: flex; gap: 6px; max-width: calc(100% - 150px); overflow-x: auto; scrollbar-width: none; padding: 2px; }
 .modal__thumbs::-webkit-scrollbar { display: none; }
-.modal__thumbs button { flex: none; width: 54px; height: 54px; border-radius: 10px; overflow: hidden; border: 2px solid rgba(255,255,255,.8); opacity: .75; transition: opacity .2s, border-color .2s, transform .2s; }
+.modal__thumbs button { flex: none; width: 44px; height: 44px; border-radius: 10px; overflow: hidden; border: 2px solid rgba(255,255,255,.85); opacity: .75; transition: opacity .2s, border-color .2s, transform .2s; }
 .modal__thumbs button:hover { opacity: 1; }
 .modal__thumbs button[aria-selected="true"] { opacity: 1; border-color: var(--leaf); transform: translateY(-2px); }
 .modal__thumbs img { width: 100%; height: 100%; object-fit: cover; }
-.modal__thumbs:not([hidden]) ~ .modal__note, .modal__media:has(.modal__thumbs:not([hidden])) .modal__note { bottom: 80px; }
-.modal__note { position: absolute; inset-inline-start: 12px; bottom: 12px; padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,.85); font-size: 11.5px; font-weight: 600; color: var(--ink-2); }
 .modal__body { flex: 1; min-width: 0; overflow-y: auto; overscroll-behavior: contain; display: flex; flex-direction: column; gap: 14px; padding: 44px 36px 32px; }
 .modal h2 { font-size: 2.1rem; padding-inline-end: 40px; }
 .modal__desc { color: var(--mute); font-size: 15px; }
@@ -71,7 +87,18 @@
   .cat-grid { gap: 14px; }
   .modal { overflow: auto; overscroll-behavior: contain; }
   .modal__inner { display: block; max-height: none; }
-  .modal__media { min-height: 0; aspect-ratio: 16 / 10; }
+  /* Telefonda iki panel yan yana: solda meyvesi, sağda fidanı */
+  .modal__media { min-height: 0; flex-direction: row; padding: 8px 8px 0; }
+  .mpanel { aspect-ratio: 1; flex: 1 1 0; }
+  .mpanel__empty-icon { width: 40px; height: 40px; }
+  .mpanel__empty-icon .i { width: 20px; height: 20px; }
+  .mpanel__empty b { font-size: 12px; }
+  .mpanel__empty small { display: none; }
+  .mpanel__tag { top: 8px; inset-inline-start: 8px; padding: 4px 9px 4px 7px; font-size: 11.5px; }
+  .modal__note { inset-inline-end: 8px; bottom: 8px; font-size: 10px; padding: 3px 8px; }
+  .mpanel--sapling .modal__note { top: auto; bottom: 8px; }
+  .modal__thumbs { inset-inline-start: 8px; bottom: 32px; max-width: calc(100% - 16px); }
+  .modal__thumbs button { width: 34px; height: 34px; border-radius: 8px; }
   .modal__body { overflow: visible; padding: 26px 22px 24px; }
 }
 

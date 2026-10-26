@@ -73,11 +73,23 @@
   <dialog class="modal" id="modal" aria-labelledby="mTitle">
     <button class="icon-btn modal__close" type="button" data-close aria-label="Kapat" data-i18n-attr="aria-label:modal.close"><i class="i i-close"></i></button>
     <div class="modal__inner">
+      <!-- Görsel alanı her zaman iki panel: üstte MEYVESİ, altta FİDANI (js/catalog.js doldurur).
+           Görseli henüz olmayan panelde "yakında" yer tutucusu görünür. -->
       <div class="modal__media">
-        <img id="mImg" src="" alt="">
-        <span class="modal__note" id="mNote" hidden></span>
-        <!-- Türün gerçek fidan fotoğrafları (src/img/fidan) varsa küçük resimler -->
-        <div class="modal__thumbs" id="mThumbs" role="tablist" aria-label="Fotoğraflar" data-i18n-attr="aria-label:hero.dots" hidden></div>
+        <figure class="mpanel mpanel--fruit" id="mFruit">
+          <img id="mImg" src="" alt="">
+          <figcaption class="mpanel__tag"><i class="i i-fruit"></i><span data-i18n="modal.fruit">Meyvesi</span></figcaption>
+          <span class="modal__note" id="mNote" hidden></span>
+          <div class="mpanel__empty"><span class="mpanel__empty-icon"><i class="i i-fruit"></i></span><b data-i18n="modal.noFruit">Meyve görseli yakında</b></div>
+        </figure>
+        <figure class="mpanel mpanel--sapling" id="mSapling">
+          <img id="mSapImg" src="" alt="">
+          <figcaption class="mpanel__tag"><i class="i i-sprout"></i><span data-i18n="modal.sapling">Fidanı</span></figcaption>
+          <span class="modal__note" id="mSapNote" hidden></span>
+          <!-- Türün birden fazla fidan fotoğrafı varsa küçük resimler -->
+          <div class="mpanel__empty"><span class="mpanel__empty-icon"><i class="i i-sprout"></i></span><b data-i18n="modal.noSapling">Fidan fotoğrafı yakında</b><small data-i18n="modal.noSapling.p">Fidanlarımızı görmek için bizi arayın.</small></div>
+          <div class="modal__thumbs" id="mThumbs" role="tablist" aria-label="Fotoğraflar" data-i18n-attr="aria-label:hero.dots" hidden></div>
+        </figure>
       </div>
       <div class="modal__body">
         <span class="eyebrow" id="mCat"></span>
