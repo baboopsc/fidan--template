@@ -25,6 +25,8 @@ const TR = {
   catTitle: '{cat} Çeşitleri',
   'search.results': 'Arama sonuçları',
   'hero.slide': 'Fotoğraf {n}',
+  'modal.note': 'Görsel temsilidir',
+  'modal.real': 'Fidanlarımızdan gerçek fotoğraf',
   'gallery.open': 'Fotoğraf {n}',
   'quote.type.any': 'Henüz karar vermedim',
   'quote.msg.hello': 'Merhaba, fidan için fiyat teklifi almak istiyorum.',

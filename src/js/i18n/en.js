@@ -30,7 +30,7 @@ export default {
     'hero.lead': 'We grow certified citrus, olive, pomegranate and fruit saplings, offering healthy, true-to-variety plants at fair prices.',
     'hero.cta': 'Our Varieties',
     'hero.call': 'Call Us Now',
-    'hero.trust': '<strong>Certified saplings</strong> · 16 fruit types and 100+ varieties, from citrus to walnut',
+    'hero.trust': '<strong>Certified saplings</strong> · 17 fruit types and 100+ varieties, from citrus to walnut',
 
     'stats.aria': 'Sağ Fidancılık in numbers',
     'stats.years': 'Years of experience',
@@ -53,7 +53,7 @@ export default {
 
     'about.eyebrow': 'About us',
     'about.title': 'From Samandağ to orchards: <em>20+ years</em> of work',
-    'about.p1': 'Sağ Fidancılık was founded in 2005 in the Fidanlı neighbourhood of Samandağ, Hatay. The journey that began on the region’s fertile soil has grown into certified saplings of more than 100 varieties across 16 fruit types, from citrus to walnut.',
+    'about.p1': 'Sağ Fidancılık was founded in 2005 in the Fidanlı neighbourhood of Samandağ, Hatay. The journey that began on the region’s fertile soil has grown into certified saplings of more than 100 varieties across 17 fruit types, from citrus to walnut.',
     'about.p2': 'An orchard’s life begins with the sapling planted. That’s why we take budwood only from healthy, productive trees and treat our sour orange seeds against disease. Our goal is to give farmers and newcomers alike healthy, true-to-variety saplings and prevent the losses that uncontrolled planting can cause.',
     'about.p3': 'Our work doesn’t end with handing over the sapling: we help you choose the variety that suits your soil and climate, and prepare bulk order quotes for new orchards.',
     'about.cta': 'See our facilities',
@@ -99,7 +99,7 @@ export default {
 
     'catalog.crumbs': 'Breadcrumb',
     'catalog.title': 'Our <em>Varieties</em>',
-    'catalog.lead': 'More than 100 varieties across 16 fruit types, from citrus to walnut. Pick a category, then click a variety to see its details.',
+    'catalog.lead': 'More than 100 varieties across 17 fruit types, from citrus to walnut. Pick a category, then click a variety to see its details.',
     'search.ph': 'Which sapling are you looking for?',
     'search.aria': 'Search saplings',
     'search.clear': 'Clear search',
@@ -107,6 +107,7 @@ export default {
     'empty.p': 'Try a different word or clear the filters.',
     'empty.reset': 'Clear Filters',
     'modal.close': 'Close',
+    'modal.real': 'Real photo from our nursery',
     'modal.note': 'Illustrative image',
     'modal.specs': 'All details',
     'modal.contact': '<b>For prices and availability,</b> give us a call.',
@@ -204,7 +205,7 @@ export default {
     'facility.intro.title': 'Our <em>nursery</em> in Samandağ',
     'facility.intro.p1': 'Our nursery is on the Samandağ road, in the Fidanlı neighbourhood of Samandağ, Hatay. We have been growing citrus, olive, pomegranate and other fruit saplings here since 2005.',
     'facility.intro.p2': 'Sapling production is a chain of linked steps; when one link comes from outside, both the trueness of the variety and the health of the sapling are left to chance. That’s why we carry out every stage — from preparing rootstock seed to grafting, care and sale — in our own nursery.',
-    'facility.f.production': '100+ varieties across 16 fruit types',
+    'facility.f.production': '100+ varieties across 17 fruit types',
     'facility.photos.title': 'Snapshots from the <em>nursery</em>',
     'facility.toGallery': 'Full gallery',
     'facility.chain.title': 'Every step <em>before our eyes</em>',
@@ -220,7 +221,7 @@ export default {
   },
 
   cats: {
-    'Tümü': 'All', 'Mandalina': 'Mandarin', 'Portakal': 'Orange', 'Limon': 'Lemon', 'Greyfurt': 'Grapefruit',
+    'Tümü': 'All', 'Mandalina': 'Mandarin', 'Portakal': 'Orange', 'Limon': 'Lemon', 'Kamkat': 'Kumquat', 'Greyfurt': 'Grapefruit',
     'Zeytin': 'Olive', 'Nar': 'Pomegranate', 'İncir': 'Fig', 'Dut': 'Mulberry', 'Kayısı': 'Apricot', 'Erik': 'Plum',
     'Şeftali': 'Peach', 'Nektarin': 'Nectarine', 'Kiraz': 'Cherry', 'Badem': 'Almond', 'Ceviz': 'Walnut',
     'Trabzon Hurması': 'Persimmon', 'Anaç': 'Rootstock', 'Turunçgil': 'Citrus', 'Meyve': 'Fruit trees',
@@ -235,6 +236,7 @@ export default {
   },
 
   catDesc: {
+    'Kamkat': 'A small citrus eaten peel and all; also suits pots.',
     'Mandalina': 'Easy-peel table mandarins, from early to late.',
     'Portakal': 'Navel, blood and juicing orange varieties.',
     'Limon': 'Local and international lemons and limes.',
@@ -572,5 +574,8 @@ export default {
     171: { labels: { 'Kabuk': 'Skin' },
       desc: 'A large, non-astringent persimmon from Japan (the "giant Fuyu"). It is self-fertile; the fruit can be eaten sweet even when firm, and the foliage colours beautifully in autumn.',
       specs: { 'Hasat': 'October–November', 'İrilik': 'Very large', 'Kabuk': 'Orange with a reddish tint', 'Tat': 'Non-astringent, sweet', 'Tozlayıcı': 'Self-fertile', 'Anavatan': 'Japan' } },
+    172: { title: 'Kumquat',
+      desc: 'A dwarf citrus with small, oval orange fruit eaten together with the peel. The peel is sweet and the flesh tart. As it stays small, it is also grown in pots on balconies and terraces, and it is one of the most cold-hardy citrus fruits.',
+      specs: { 'Meyve': 'Small, oval, orange', 'Tat': 'Sweet peel, tart flesh; eaten with the peel', 'Hasat': 'Winter months', 'Ağaç': 'Dwarf, suitable for pots', 'Dayanıklılık': 'One of the most cold-hardy citrus', 'Kullanım': 'Fresh, jam and candied; also ornamental', 'Anavatan': 'China' } },
   },
 };

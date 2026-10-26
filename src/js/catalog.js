@@ -7,7 +7,7 @@
    Geri tuşu ve paylaşılan bağlantılar çalışır.
    ========================================================== */
 import './ui.js';
-import { FIDANLAR, visibleCategories, inCategory, byId, imgFor, fidanImg, highlights, hasDetail } from './data.js';
+import { FIDANLAR, visibleCategories, inCategory, byId, imgFor, kategoriImg, fidanImg, highlights, hasDetail, catOf, fidanFotolari } from './data.js';
 import { lang, localize, fullName, shortName, cat, t } from './i18n.js';
 import { cardHTML } from './product-card.js';
 import { sade, esc } from './utils.js';
@@ -43,7 +43,7 @@ function kartlar() {
   const ayrac = lang === 'ar' ? '، ' : ', ';
   return KATEGORILER.map((c, i) => {
     const liste = inCategory(c.key);
-    const src = imgFor(`kategori-${c.slug}`);
+    const src = kategoriImg(c);
     const onizleme = liste.slice(0, 4).map(shortName).join(ayrac) + (liste.length > 4 ? '…' : '');
     return `
       <a class="cat-card" href="${adres({ key: c.key })}" data-key="${esc(c.key)}" style="--tint:${c.tint};--i:${i}">
@@ -148,12 +148,36 @@ $('#reset').addEventListener('click', () => { aramayiTemizle(); ciz(); });
 const modal = $('#modal');
 let acik = null;
 
+let kareler = [];
+// Büyük fotoğrafı değiştirir; altındaki not "Görsel temsilidir" ya da "Fidanlarımızdan gerçek fotoğraf" olur
+function kareGoster(i) {
+  const k = kareler[i];
+  $('#mImg').src = k.src;
+  $('#mNote').textContent = t(k.gercek ? 'modal.real' : 'modal.note');
+  $('#mNote').classList.toggle('modal__note--real', k.gercek);
+  $('#mNote').hidden = !k.gercek && k.src === VARSAYILAN;
+  $('#mThumbs').querySelectorAll('button').forEach((b, j) => b.setAttribute('aria-selected', j === i));
+}
+$('#mThumbs').addEventListener('click', e => {
+  const b = e.target.closest('[data-kare]');
+  if (b) kareGoster(Number(b.dataset.kare));
+});
+
 function doldur(f) {
   document.getElementById('mQuote').dataset.quote = f.id; // teklif formu bu çeşitle dolu açılır
   const L = localize(f);
   const detayli = hasDetail(f);
-  $('#mImg').src = fidanImg(f);
-  $('#mNote').hidden = fidanImg(f) === VARSAYILAN; // gerçek/üretilmiş görselde "Görsel temsilidir" notu
+  // İlk kare çeşidin (temsili) görseli; türün gerçek fidan fotoğrafları varsa arkasından gelir
+  const tur = catOf(f), gercekler = fidanFotolari(tur?.slug).map(src => ({ src, gercek: true }));
+  if (tur?.gercekFoto && gercekler.length) {
+    // Kartta görünen fotoğraf başta olsun
+    const bas = Math.max(0, gercekler.findIndex(k => k.src === fidanImg(f)));
+    kareler = [...gercekler.slice(bas), ...gercekler.slice(0, bas)];
+  } else kareler = [{ src: fidanImg(f), gercek: false }, ...gercekler];
+  $('#mThumbs').hidden = kareler.length < 2;
+  $('#mThumbs').innerHTML = kareler.length < 2 ? '' : kareler.map((k, i) =>
+    `<button type="button" role="tab" data-kare="${i}" aria-label="${esc(t(k.gercek ? 'modal.real' : 'modal.note'))}"><img src="${k.src}" alt="" loading="lazy"></button>`).join('');
+  kareGoster(0);
   $('#mImg').alt = fullName(f);
   $('#mCat').textContent = L.category;
   $('#mTitle').textContent = L.title;

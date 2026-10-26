@@ -14,7 +14,8 @@
      npm run gorsel -- --sadece=hicaz-nar,kategori-nar   yalnızca bunları üretir
      npm run gorsel -- --hepsi                eksik olanların hepsini üretir
      npm run gorsel -- --sadece=hicaz-nar --yeniden      var olanın üzerine yeniden üretir
-     npm run gorsel -- --kategoriler          yalnızca 16 kategori görselini üretir (~0,60 $)
+     npm run gorsel -- --kategoriler          yalnızca kategori görsellerini üretir
+     npm run gorsel -- --hepsi --yeniden      var olanlar dahil hepsini yeni tarzla baştan üretir
      --butce=3                                tahmini harcama 3 doları geçecekse durur (varsayılan 5)
      --model=gemini-3.1-flash-image           bu sefer başka bir modelle üretir
      --deneme                                 siteye koymaz; scripts/denemeler/ klasörüne kaydeder (karşılaştırmak için)
@@ -34,7 +35,7 @@ const API = 'https://generativelanguage.googleapis.com/v1beta';
 const VARSAYILAN_MODEL = 'gemini-3.1-flash-image'; // Nano Banana 2: denemelerde en doğal sonucu verdi
 // Görsel başı tahmini dolar. Bilinmeyen modellerde temkinli (yüksek) tahmin; gerçek tutarı AI Studio > Billing'den kontrol et.
 const FIYATLAR = { 'gemini-2.5-flash-image': 0.039 };
-let TAHMINI_FIYAT = 0.07;
+let TAHMINI_FIYAT = 0.085; // önceki üretimde 62 görsel ~5 $ tuttu (~0,08 $/görsel), biraz pay bıraktık
 
 /* ---------- Komut satırı: --limit=3 --sadece=a,b --dene ---------- */
 const ARG = Object.fromEntries(process.argv.slice(2).map(a => {
@@ -55,18 +56,19 @@ async function envOku() {
 
 /* ---------- Komut (prompt) hazırlama ----------
    Gemini İngilizce komutlarda daha iyi sonuç veriyor; bu yüzden en.js'teki İngilizce bilgileri kullanıyoruz. */
-// Yapay zekâ havası vermesin diye: "ürün fotoğrafı / stüdyo / tam ortada / yarım meyve" gibi kalıplardan kaçınıyoruz,
-// bunun yerine bahçede telefonla çekilmiş, kusurlarıyla gerçek bir fotoğraf istiyoruz.
-const STIL = 'A candid, unedited smartphone photo taken by a farmer in a real orchard in Hatay, Turkey. '
-  + 'Fruit growing naturally on the tree, photographed at eye level from a slightly off-centre, casual angle. '
-  + 'Natural outdoor light with uneven shadows, ordinary phone-camera depth (background only slightly soft, still recognisable trees and soil), '
-  + 'slight sensor noise, realistic natural colours (ripe fruit clearly bright and appetising), no heavy colour grading. '
-  + 'The fruit looks healthy and good quality, like normal fruit on a real working farm — not flawless: '
-  + 'a few fruits have small natural marks such as light wind scars, a little dust, slightly uneven colour or a small leaf rub, '
-  + 'but no disease, no rot, no heavy dark spots and no insect damage. Irregular fruit sizes, '
-  + 'a few leaves with slightly dry edges, twigs and leaves partly covering some fruit, ordinary soil and trees behind, with no people anywhere in the frame. '
-  + 'Not staged, not a stock photo, not a studio shot, no perfect symmetry. '
-  + 'Square 1:1 photo. No text, no logos, no watermark, no people, no hands, no baskets, no props.';
+// Tarz: fidancıların satış sayfalarındaki gibi YAKIN ÇEKİM, TEMİZ, kusursuz meyve.
+// Dayının isteği: meyvede leke, kir, toz, çatlak, ezik olmasın (çatlak nar satılmaz).
+// Yapay zekâ "plastik" havası vermesin diye: doğal doku, gerçek gün ışığı, abartısız renk.
+const STIL = 'A realistic close-up photograph of fresh fruit on the tree, like the photos fruit-tree nurseries use to sell their saplings. '
+  + 'The fruit is large in the frame and fills most of the picture; the camera is close, at fruit level. '
+  + 'The fruits are perfect market quality: clean, fresh, healthy and fully ripe, with smooth unblemished skin — '
+  + 'absolutely no spots, no dirt, no dust, no scars, no bruises, no cracks or splits, no insects, no disease, no rot. '
+  + 'Natural fruit texture is still visible (fine pores, light natural bloom or fuzz where the fruit naturally has it), so it looks real, not plastic or CGI. '
+  + 'Fresh, healthy green leaves around the fruit, also clean and undamaged. '
+  + 'Bright natural daylight, true-to-life rich colours (not oversaturated, not glowing). '
+  + 'Sharp focus on the front fruit; the background is a soft natural blur of green leaves and a little sky. '
+  + 'Taken with a good camera. Not a studio shot, no white background, no cut fruit, no people, no hands, no baskets, no props. '
+  + 'Square 1:1 photo. No text, no logos, no watermark, no frame.';
 
 // Her kategori için sahne: n = meyvenin İngilizce adı. Meyveler ağaçta, olduğu gibi.
 const SAHNE = {
@@ -75,31 +77,31 @@ const SAHNE = {
   'Limon': n => `ripe ${n}s hanging on the tree among leaves, some fruit still slightly green`,
   'Greyfurt': n => `large ripe ${n}s hanging heavily on the tree among leaves`,
   'Zeytin': n => `an olive branch loaded with ${n}s among narrow silvery-green leaves`,
-  'Nar': n => `ripe ${n}s hanging on the tree, one of them naturally cracked open on the branch showing a few arils`,
+  'Nar': n => `two or three ripe, whole ${n}s hanging on the tree among narrow leaves, skin intact and unbroken (none cracked or split)`,
   'İncir': n => `ripe ${n}s on the tree among large lobed fig leaves`,
-  'Dut': () => 'a mulberry branch full of ripe berries among leaves, some berries not yet ripe',
+  'Dut': n => `a branch with plump ripe ${n}s among fresh leaves`,
   'Kayısı': n => `ripe ${n}s on the tree among leaves`,
   'Erik': n => `ripe ${n}s hanging on the tree among leaves`,
   'Şeftali': n => `ripe ${n}es hanging on the tree among long narrow leaves`,
   'Nektarin': n => `ripe smooth-skinned ${n}s hanging on the tree among long narrow leaves`,
   'Kiraz': () => 'clusters of ripe sweet cherries hanging on the tree among leaves',
-  'Badem': n => `${n}s on the tree with green hulls, some hulls split open showing the nuts`,
-  'Ceviz': n => `${n}s in green husks on the tree among leaves, one husk split open`,
+  'Badem': n => `a cluster of ${n}s in fresh velvety green hulls on the branch`,
+  'Ceviz': n => `a cluster of ${n}s in smooth fresh green husks on the branch among leaves`,
   'Trabzon Hurması': n => `ripe orange ${n}s hanging on the tree among leaves`,
   'Anaç': () => 'a row of young grafted fruit-tree saplings in a nursery field',
 };
 
-// Aynı kategorideki çeşitler birbirinin kopyası gibi durmasın: her çeşit farklı bir çekim alır (id'ye göre sabit)
+// Aynı kategorideki çeşitler birbirinin kopyası gibi durmasın: her çeşit farklı bir yakın çekim alır (id'ye göre sabit)
 const CEKIMLER = [
-  'Close-up of one branch, fruit filling most of the frame.',
-  'Medium shot showing a larger part of the tree with fruit at different heights.',
-  'Taken in early morning light, low sun from the side.',
-  'Taken on an overcast day with soft, flat light.',
-  'Shot from slightly below, looking up into the canopy with a bit of sky.',
-  'Shot from the side of the tree row, with the next trees visible behind.',
-  'Late afternoon warm light, some fruit in shade and some in sun.',
-  'A few fruits in the foreground, the rest of the tree out of focus behind.',
-  'Taken around midday with harsh light and short shadows.',
+  'One single fruit very close, filling the frame.',
+  'Two fruits side by side, close up.',
+  'A small cluster of three or four fruits, close up.',
+  'Close-up from slightly below, a bit of blue sky behind the leaves.',
+  'Close-up with soft morning light from the side.',
+  'Close-up, one fruit in front in sharp focus and another behind it slightly blurred.',
+  'Close-up in warm late-afternoon sunlight.',
+  'Close-up on a bright overcast day with soft even light.',
+  'Close-up of fruit hanging from a branch, a few leaves in the foreground.',
 ];
 
 // Görünüşü etkileyen özellikler (renk, şekil, iriliği) -> komuta eklenir
@@ -139,8 +141,10 @@ async function mevcutGorseller() {
 }
 
 function isListesi() {
-  const fidanlar = TUM_FIDANLAR.filter(f => !f.hidden);
-  const kategoriler = CATEGORIES.filter(c => fidanlar.some(f => f.category === c.key));
+  // Gerçek fotoğrafı olan türler (fidanlar.js'te gercekFoto: true) için yapay görsel üretilmez
+  const gercek = new Set(CATEGORIES.filter(c => c.gercekFoto).map(c => c.key));
+  const fidanlar = TUM_FIDANLAR.filter(f => !f.hidden && !gercek.has(f.category));
+  const kategoriler = CATEGORIES.filter(c => !gercek.has(c.key) && fidanlar.some(f => f.category === c.key));
   return [
     ...kategoriler.map(c => ({ slug: `kategori-${c.slug}`, ad: `Kategori: ${c.key}`, komut: kategoriKomutu(c) })),
     ...fidanlar.map(f => ({ slug: f.slug, ad: f.title, komut: fidanKomutu(f) })),
@@ -196,7 +200,11 @@ async function kaydet(slug, { veri, tur }, klasor = IMG) {
   try {
     const sharp = (await import('sharp')).default;
     const hedef = path.join(klasor, `${slug}.webp`);
-    await sharp(veri).resize(900, 900, { fit: 'cover' }).webp({ quality: 76 }).toFile(hedef);
+    // Temiz satış görseli tarzı: renklere dokunmadan yalnızca küçültüp sıkıştırır
+    await sharp(veri)
+      .resize(900, 900, { fit: 'cover' })
+      .webp({ quality: 78 })
+      .toFile(hedef);
     return hedef;
   } catch (e) {
     if (e.code !== 'ERR_MODULE_NOT_FOUND') throw e;

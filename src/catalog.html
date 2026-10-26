@@ -28,7 +28,7 @@
       <div class="wrap">
         <nav class="crumbs" aria-label="Konum" data-i18n-attr="aria-label:catalog.crumbs" data-reveal><a href="./index.html" data-i18n="nav.home">Ana Sayfa</a><i class="i i-chevron-right"></i><a href="./catalog.html" id="crumbAll" data-i18n="footer.catalog">Fidan Çeşitleri</a><span class="crumbs__cat" id="crumbCatWrap" hidden><i class="i i-chevron-right"></i><span id="crumbCat"></span></span></nav>
         <h1 data-reveal style="--d:1" data-i18n="catalog.title">Fidan <em>Çeşitlerimiz</em></h1>
-        <p data-reveal style="--d:2" data-i18n="catalog.lead">Turunçgilden cevize 16 meyve türünde 100'ü aşkın çeşit. Bir kategori seçin, ardından çeşide tıklayarak ayrıntılarını görün.</p>
+        <p data-reveal style="--d:2" data-i18n="catalog.lead">Turunçgilden cevize 17 meyve türünde 100'ü aşkın çeşit. Bir kategori seçin, ardından çeşide tıklayarak ayrıntılarını görün.</p>
       </div>
     </section>
 
@@ -73,7 +73,12 @@
   <dialog class="modal" id="modal" aria-labelledby="mTitle">
     <button class="icon-btn modal__close" type="button" data-close aria-label="Kapat" data-i18n-attr="aria-label:modal.close"><i class="i i-close"></i></button>
     <div class="modal__inner">
-      <div class="modal__media"><img id="mImg" src="" alt=""><span class="modal__note" id="mNote" data-i18n="modal.note" hidden>Görsel temsilidir</span></div>
+      <div class="modal__media">
+        <img id="mImg" src="" alt="">
+        <span class="modal__note" id="mNote" hidden></span>
+        <!-- Türün gerçek fidan fotoğrafları (src/img/fidan) varsa küçük resimler -->
+        <div class="modal__thumbs" id="mThumbs" role="tablist" aria-label="Fotoğraflar" data-i18n-attr="aria-label:hero.dots" hidden></div>
+      </div>
       <div class="modal__body">
         <span class="eyebrow" id="mCat"></span>
         <h2 id="mTitle"></h2>

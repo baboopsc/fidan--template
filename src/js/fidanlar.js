@@ -7,14 +7,17 @@
 
 /* Kategoriler — Fidanlar sayfasında bu sırayla gösterilir.
    group: ana sayfadaki filtre · tint: kategori kartının zemin rengi · desc: kartta görünen kısa açıklama
+   gercekFoto: true -> bu türde src/img/fidan'daki gerçek fotoğraflar kullanılır (kartlarda ve ürün penceresinde);
+                       görsel üretme betiği bu türler için yapay görsel üretmez
    Kategori fotoğrafı için src/img'ye "kategori-<slug>.jpg" koyman yeterli (ör. kategori-mandalina.jpg). */
 export const CATEGORIES = [
   { key: 'Mandalina', slug: 'mandalina', group: 'Turunçgil', tint: '#f8e2c6', desc: 'Erkenciden geççiye, kolay soyulan sofralık mandalinalar.' },
   { key: 'Portakal', slug: 'portakal', group: 'Turunçgil', tint: '#fad7ae', desc: 'Göbekli, kan ve sıkmalık portakal çeşitleri.' },
   { key: 'Limon', slug: 'limon', group: 'Turunçgil', tint: '#f4efbd', desc: 'Yerli ve yabancı limonlar, lime çeşitleri.' },
-  { key: 'Greyfurt', slug: 'greyfurt', group: 'Turunçgil', tint: '#f6d3c9', desc: 'Kırmızı etli greyfurtlar ve şadok (pomelo).' },
-  { key: 'Zeytin', slug: 'zeytin', group: 'Zeytin', tint: '#e2e7cc', desc: 'Sofralık ve yağlık zeytin çeşitleri.' },
-  { key: 'Nar', slug: 'nar', group: 'Nar', tint: '#f3cdcd', desc: 'Hicaz başta olmak üzere sofralık narlar.' },
+  { key: 'Greyfurt', slug: 'greyfurt', gercekFoto: true, group: 'Turunçgil', tint: '#f6d3c9', desc: 'Kırmızı etli greyfurtlar ve şadok (pomelo).' },
+  { key: 'Kamkat', slug: 'kamkat', group: 'Turunçgil', tint: '#fbe0b8', gercekFoto: true, desc: 'Kabuğuyla yenen küçük turunçgil; saksıya da uygun.' },
+  { key: 'Zeytin', slug: 'zeytin', gercekFoto: true, group: 'Zeytin', tint: '#e2e7cc', desc: 'Sofralık ve yağlık zeytin çeşitleri.' },
+  { key: 'Nar', slug: 'nar', gercekFoto: true, group: 'Nar', tint: '#f3cdcd', desc: 'Hicaz başta olmak üzere sofralık narlar.' },
   { key: 'İncir', slug: 'incir', group: 'Meyve', tint: '#e6d9e8', desc: 'Sofralık ve kurutmalık incir çeşitleri.' },
   { key: 'Dut', slug: 'dut', group: 'Meyve', tint: '#dfd5ea', desc: 'Beyaz, kara, kırmızı ve yediveren dutlar.' },
   { key: 'Kayısı', slug: 'kayisi', group: 'Meyve', tint: '#fadfbf', desc: 'Sofralık ve kurutmalık kayısılar.' },
@@ -24,7 +27,7 @@ export const CATEGORIES = [
   { key: 'Kiraz', slug: 'kiraz', group: 'Meyve', tint: '#f5cdd1', desc: 'İri ve sert etli kiraz çeşitleri.' },
   { key: 'Badem', slug: 'badem', group: 'Meyve', tint: '#ece3d4', desc: 'İnce kabuklu ve kendine verimli bademler.' },
   { key: 'Ceviz', slug: 'ceviz', group: 'Meyve', tint: '#e8e0d2', desc: 'Yerli ve yabancı, verimli ceviz çeşitleri.' },
-  { key: 'Trabzon Hurması', slug: 'trabzon-hurmasi', group: 'Meyve', tint: '#f9d8b8', desc: 'Buruk ve buruk olmayan çeşitler.' },
+  { key: 'Trabzon Hurması', slug: 'trabzon-hurmasi', gercekFoto: true, group: 'Meyve', tint: '#f9d8b8', desc: 'Buruk ve buruk olmayan çeşitler.' },
   { key: 'Anaç', slug: 'anac', group: 'Meyve', tint: '#e2e7cc', desc: 'Aşılı fidan üretimi için anaçlar.' },
 ];
 export const GROUPS = ['Tümü', 'Turunçgil', 'Zeytin', 'Nar', 'Meyve'];
@@ -155,6 +158,10 @@ export const TUM_FIDANLAR = [
   { id: 123, slug: 'sadok-pomelo', name: 'Şadok', title: 'Şadok (Pomelo)', category: 'Greyfurt',
     desc: 'Turunçgillerin en irisi olan şadok (pomelo, Citrus maxima). Kalın kabuklu, iri meyvelerinin eti tatlımsı ve yumuşak içimlidir; greyfurta göre daha az acıdır.',
     specs: [['Hasat', 'Kış (Kasım–Şubat)'], ['İrilik', 'Çok iri'], ['Kabuk', 'Çok kalın'], ['Tat', 'Tatlımsı, az acı'], ['Anavatan', 'Güneydoğu Asya']] },
+  /* ---------- Kamkat (1) ---------- */
+  { id: 172, slug: 'kamkat', name: 'Kamkat', title: 'Kamkat', category: 'Kamkat',
+    desc: 'Kabuğuyla birlikte yenen, küçük oval turuncu meyveler veren bodur bir turunçgil. Kabuğu tatlı, eti mayhoştur. Küçük boylu kaldığı için bahçenin yanında saksıda, balkon ve terasta da yetiştirilir; turunçgiller içinde soğuğa en dayanıklılardandır.',
+    specs: [['Meyve', 'Küçük, oval, turuncu'], ['Tat', 'Kabuğu tatlı, eti mayhoş; kabuğuyla yenir'], ['Hasat', 'Kış aylarında'], ['Ağaç', 'Küçük boylu, saksıya uygun'], ['Dayanıklılık', 'Turunçgiller içinde soğuğa en dayanıklılardan'], ['Kullanım', 'Taze, reçel ve şekerleme; süs bitkisi olarak da'], ['Anavatan', 'Çin']] },
 
   /* ---------- Zeytin (4) ---------- */
   { id: 19, slug: 'gemlik-zeytin', name: 'Gemlik (Trilye)', title: 'Gemlik (Trilye) Zeytin', category: 'Zeytin',

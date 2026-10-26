@@ -1,6 +1,6 @@
 /* Ana sayfa — fotoğraf slaytı, fidan türleri (kategori kartları), öne çıkan çeşitler */
 import './ui.js';
-import { FIDANLAR, visibleCategories, inCategory, imgFor, TESIS_FOTOLARI, GALERI_FOTOLARI } from './data.js';
+import { FIDANLAR, visibleCategories, inCategory, imgFor, kategoriImg, TESIS_FOTOLARI, GALERI_FOTOLARI } from './data.js';
 import { cat, catDesc, t } from './i18n.js';
 import { cardHTML } from './product-card.js';
 import { esc } from './utils.js';
@@ -59,7 +59,7 @@ function kategoriler() {
     return `
       <a class="cat-card" href="./catalog.html?kategori=${c.slug}" style="--tint:${c.tint};--i:${i}">
         <span class="cat-card__media has-photo">
-          <img src="${imgFor(`kategori-${c.slug}`)}" alt="" loading="lazy" width="600" height="450">
+          <img src="${kategoriImg(c)}" alt="" loading="lazy" width="600" height="450">
           <span class="cat-card__count">${esc(t('varieties', { n }))}</span>
         </span>
         <span class="cat-card__body">

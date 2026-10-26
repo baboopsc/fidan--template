@@ -36,6 +36,14 @@
 .modal__media { flex: 0 0 44%; min-height: 540px; background: var(--sand); }
 .modal__media img { width: 100%; height: 100%; object-fit: cover; }
 .modal__media { position: relative; }
+.modal__note--real { background: var(--ink) !important; color: #e6f0dc !important; }
+.modal__thumbs { position: absolute; inset-inline: 12px; bottom: 12px; display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding: 2px; }
+.modal__thumbs::-webkit-scrollbar { display: none; }
+.modal__thumbs button { flex: none; width: 54px; height: 54px; border-radius: 10px; overflow: hidden; border: 2px solid rgba(255,255,255,.8); opacity: .75; transition: opacity .2s, border-color .2s, transform .2s; }
+.modal__thumbs button:hover { opacity: 1; }
+.modal__thumbs button[aria-selected="true"] { opacity: 1; border-color: var(--leaf); transform: translateY(-2px); }
+.modal__thumbs img { width: 100%; height: 100%; object-fit: cover; }
+.modal__thumbs:not([hidden]) ~ .modal__note, .modal__media:has(.modal__thumbs:not([hidden])) .modal__note { bottom: 80px; }
 .modal__note { position: absolute; inset-inline-start: 12px; bottom: 12px; padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,.85); font-size: 11.5px; font-weight: 600; color: var(--ink-2); }
 .modal__body { flex: 1; min-width: 0; overflow-y: auto; overscroll-behavior: contain; display: flex; flex-direction: column; gap: 14px; padding: 44px 36px 32px; }
 .modal h2 { font-size: 2.1rem; padding-inline-end: 40px; }
