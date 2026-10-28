@@ -5,12 +5,16 @@
 
 /* ---------- Hero: solda yazı, sağda fotoğraf slaytı ---------- */
 .hero { position: relative; isolation: isolate; overflow: hidden; margin: 12px 12px 0; border-radius: var(--r-lg) var(--r-lg) 44px 44px; padding: 170px 0 150px; background: var(--sage); }
-.hero__bg { position: absolute; inset: 0; z-index: -1; background:
-    radial-gradient(60% 70% at 85% 30%, rgba(255,255,255,.55), rgba(255,255,255,0) 70%),
-    radial-gradient(50% 60% at 10% 100%, rgba(79,125,60,.18), rgba(79,125,60,0) 70%),
-    linear-gradient(160deg, #d3dfcf 0%, var(--sage) 55%, #bccbb7 100%); }
-.hero__bg::after { content: ""; position: absolute; width: 520px; height: 520px; inset-inline-start: -160px; top: -140px; background: currentColor; color: #fff; opacity: .16; -webkit-mask: var(--leafmask) center / contain no-repeat; mask: var(--leafmask) center / contain no-repeat;
-  --leafmask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5.5 19.5C4.3 11 9 4.6 20 4c.5 10.5-6 15.3-14.5 15.5z'/%3E%3Cpath d='M5.5 19.5c2.5-4.2 5.8-7.3 10-9.5'/%3E%3C/svg%3E"); }
+/* Arka plan: fidanlığımızdan sera fotoğrafı (img/sera-fidanlar.webp) + yazı okunsun diye açık yeşil perde */
+.hero { --hero-yon: 90deg; }
+[dir="rtl"] .hero { --hero-yon: 270deg; }
+.hero__bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
+.hero__bg::before { content: ""; position: absolute; inset: -2%; background: url("../img/sera-fidanlar.webp") center 40% / cover no-repeat; animation: heroPan 26s ease-in-out infinite alternate; }
+.hero__bg::after { content: ""; position: absolute; inset: 0; background:
+    linear-gradient(var(--hero-yon), rgba(234,240,228,.95) 0%, rgba(228,236,222,.88) 36%, rgba(214,226,208,.5) 60%, rgba(200,213,196,.18) 100%),
+    linear-gradient(180deg, rgba(234,240,228,.8) 0%, rgba(234,240,228,0) 26%, rgba(31,46,27,0) 72%, rgba(31,46,27,.28) 100%); }
+@keyframes heroPan { from { transform: scale(1); } to { transform: scale(1.08) translateX(-1.5%); } }
+@media (prefers-reduced-motion: reduce) { .hero__bg::before { animation: none; } }
 .hero__grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; }
 .hero__content { max-width: 580px; }
 .hero h1 { font-size: clamp(2.4rem, 4.8vw, 4rem); margin: 20px 0; }
@@ -159,6 +163,7 @@
 /* ---------- Mobil ---------- */
 @media (max-width: 860px) {
   .hero { padding: 130px 0 120px; }
+  .hero__bg::after { background: linear-gradient(180deg, rgba(234,240,228,.93) 0%, rgba(228,236,222,.86) 55%, rgba(214,226,208,.6) 100%); }
   .hero__grid { grid-template-columns: 1fr; }
   .hero-media { justify-self: center; max-width: 440px; }
   .hero-media__badge { inset-inline-start: 14px; bottom: 18px; }
