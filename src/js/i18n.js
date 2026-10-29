@@ -7,12 +7,13 @@
    - Çeviriler js/i18n/ klasöründedir: en.js, ru.js, ar.js.
    - Seçilen dil tarayıcıda hatırlanır; ?lang=en bağlantısıyla da açılabilir.
    ========================================================== */
-import en from './i18n/en.js';
-import ru from './i18n/ru.js';
-import ar from './i18n/ar.js';
-
 export const LANGS = ['tr', 'en', 'ru', 'ar'];
-const DICTS = { en, ru, ar };
+// Çeviriler ayrı dosyalarda; yalnızca o dil seçilince indirilir (Türkçe girenler hiç indirmez -> site hızlı açılır)
+const YUKLE = { en: () => import('./i18n/en.js'), ru: () => import('./i18n/ru.js'), ar: () => import('./i18n/ar.js') };
+const DICTS = {};
+async function sozlukYukle(l) {
+  if (l !== 'tr' && !DICTS[l]) DICTS[l] = (await YUKLE[l]()).default;
+}
 const RTL = ['ar'];
 
 // JS'in kendisinin ürettiği Türkçe metinler (HTML'de olmayanlar)
@@ -129,8 +130,9 @@ function uygula() {
   document.querySelectorAll('[data-lang]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
 }
 
-export function setLang(l) {
+export async function setLang(l) {
   if (!LANGS.includes(l) || l === lang) return;
+  await sozlukYukle(l);
   lang = l;
   kaydet(l);
   const url = new URL(location.href);
@@ -144,5 +146,6 @@ document.addEventListener('click', e => {
   if (b) setLang(b.dataset.lang);
 });
 
+await sozlukYukle(lang); // site Türkçe dışında bir dille açıldıysa önce o dilin çevirisi gelir
 uygula();
 document.documentElement.classList.remove('i18n-wait'); // <head>'deki betik, çeviri bitene kadar sayfayı gizler

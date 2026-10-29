@@ -8,6 +8,7 @@ export default defineConfig({
   root: 'src',
   envDir: '../',
   build: {
+    target: 'es2022', // çeviri dosyalarını sonradan yüklemek için (tüm güncel tarayıcılar destekler)
     outDir: '../dist',
     emptyOutDir: true,
     rollupOptions: {
