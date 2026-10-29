@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "gorsel": "node scripts/gorsel-uret.mjs"
+    "gorsel": "node scripts/gorsel-uret.mjs",
+    "kucult": "node scripts/kucult.mjs"
   },
   "devDependencies": {
     "sharp": "^0.35.5",

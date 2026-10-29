@@ -1,6 +1,6 @@
 /* Ana sayfa — fotoğraf slaytı, fidan türleri (kategori kartları), öne çıkan çeşitler */
 import './ui.js';
-import { FIDANLAR, visibleCategories, inCategory, imgFor, kategoriImg, TESIS_FOTOLARI, GALERI_FOTOLARI } from './data.js';
+import { FIDANLAR, visibleCategories, inCategory, imgFor, kategoriImg, TESIS_FOTOLARI, GALERI_FOTOLARI, kucuk } from './data.js';
 import { cat, catDesc, t } from './i18n.js';
 import { cardHTML } from './product-card.js';
 import { esc } from './utils.js';
@@ -15,18 +15,18 @@ const slides = document.getElementById('heroSlides');
 const dots = document.getElementById('heroDots');
 
 if (URETIM_FOTOLARI.length) {
-  const alt = slides.querySelector('img')?.alt || '';
-  slides.innerHTML = URETIM_FOTOLARI.slice(0, 5)
-    // İlk fotoğraf hemen yüklenir; diğerleri sayfa açıldıktan sonra (data-src) -> açılış hızlanır
-    .map((src, i) => i
-      ? `<img data-src="${src}" alt="" width="900" height="1100" decoding="async">`
-      : `<img class="is-active" src="${src}" alt="${esc(alt)}" width="900" height="1100" fetchpriority="high">`).join('');
+  const ilk = slides.querySelector('img');
+  const ayni = u => new URL(u, location.href).href === ilk.src;
+  // HTML'deki ilk fotoğraf listenin ilkiyse olduğu gibi kalır; diğer 4 fotoğraf sayfa açıldıktan sonra yüklenir
+  if (!ayni(URETIM_FOTOLARI[0])) ilk.src = URETIM_FOTOLARI[0];
+  const liste = URETIM_FOTOLARI.slice(1, 5);
+  slides.insertAdjacentHTML('beforeend', liste.map(src => `<img data-src="${src}" alt="" width="900" height="1100" decoding="async">`).join(''));
   const sonrakiler = () => slides.querySelectorAll('img[data-src]').forEach(k => { k.src = k.dataset.src; k.removeAttribute('data-src'); });
   if (document.readyState === 'complete') setTimeout(sonrakiler, 1500);
   else addEventListener('load', () => setTimeout(sonrakiler, 1500), { once: true });
-  // Bölümlerdeki fotoğraflar: data-photo="1" -> 2. fotoğraf ... (yeterli fotoğraf yoksa baştan döner)
+  // Bölümlerdeki fotoğraflar: data-photo="1" -> 2. fotoğraf ... (yeterli fotoğraf yoksa baştan döner); küçük kopyaları
   document.querySelectorAll('[data-photo]').forEach(img => {
-    img.src = URETIM_FOTOLARI[Number(img.dataset.photo) % URETIM_FOTOLARI.length];
+    img.src = kucuk(URETIM_FOTOLARI[Number(img.dataset.photo) % URETIM_FOTOLARI.length]);
   });
 }
 
@@ -67,7 +67,7 @@ function kategoriler() {
     return `
       <a class="cat-card" href="./catalog.html?kategori=${c.slug}" style="--tint:${c.tint};--i:${i}">
         <span class="cat-card__media has-photo">
-          <img src="${kategoriImg(c)}" alt="" loading="lazy" width="600" height="450">
+          <img src="${kucuk(kategoriImg(c))}" alt="" loading="lazy" width="600" height="450">
           <span class="cat-card__count">${esc(t('varieties', { n }))}</span>
         </span>
         <span class="cat-card__body">

@@ -7,7 +7,7 @@
    Geri tuşu ve paylaşılan bağlantılar çalışır.
    ========================================================== */
 import './ui.js';
-import { FIDANLAR, visibleCategories, inCategory, byId, imgFor, kategoriImg, highlights, hasDetail, meyveGorseli, fidanGorselleriSirali } from './data.js';
+import { FIDANLAR, visibleCategories, inCategory, byId, imgFor, kategoriImg, highlights, hasDetail, meyveGorseli, fidanGorselleriSirali, kucuk } from './data.js';
 import { lang, localize, fullName, shortName, cat, t } from './i18n.js';
 import { cardHTML } from './product-card.js';
 import { sade, esc } from './utils.js';
@@ -48,7 +48,7 @@ function kartlar() {
     return `
       <a class="cat-card" href="${adres({ key: c.key })}" data-key="${esc(c.key)}" style="--tint:${c.tint};--i:${i}">
         <span class="cat-card__media${src !== VARSAYILAN ? ' has-photo' : ''}">
-          <img src="${src}" alt="" loading="lazy" width="600" height="450">
+          <img src="${kucuk(src)}" alt="" loading="lazy" width="600" height="450">
           <span class="cat-card__count">${esc(t('varieties', { n: liste.length }))}</span>
         </span>
         <span class="cat-card__body">
@@ -214,7 +214,7 @@ function doldur(f) {
   if (!kareler.length) $('#mSapImg').removeAttribute('src');
   $('#mThumbs').hidden = kareler.length < 2;
   $('#mThumbs').innerHTML = kareler.length < 2 ? '' : kareler.map((k, i) =>
-    `<button type="button" role="tab" data-kare="${i}" aria-label="${esc(t('gallery.open', { n: i + 1 }))}"><img src="${k.src}" alt="" loading="lazy"></button>`).join('');
+    `<button type="button" role="tab" data-kare="${i}" aria-label="${esc(t('gallery.open', { n: i + 1 }))}"><img src="${kucuk(k.src)}" alt="" loading="lazy"></button>`).join('');
   kareGoster(0);
   $('#mSapImg').alt = fullName(f);
   $('#mImg').alt = L.title;

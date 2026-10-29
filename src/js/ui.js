@@ -4,7 +4,7 @@
    kaydırınca beliren öğeler ve sayaçlar.
    ========================================================== */
 import './i18n.js'; // dil seçimi ve sayfa çevirileri
-import { SITE, visibleCategories, imgFor, kategoriImg, inCategory, byId } from './data.js';
+import { SITE, visibleCategories, imgFor, kategoriImg, inCategory, byId, kucuk } from './data.js';
 import { cat, t, localize } from './i18n.js';
 import { esc } from './utils.js';
 
@@ -87,7 +87,7 @@ function footerCats() {
     .sort((a, b) => b.n - a.n).slice(0, 6);
   ul.innerHTML = liste.map(({ c }) => `
     <li><a class="footer-cat" href="./catalog.html?kategori=${c.slug}">
-      <img src="${kategoriImg(c)}" alt="" width="40" height="40" loading="lazy">
+      <img src="${kucuk(kategoriImg(c))}" alt="" width="40" height="40" loading="lazy">
       <span>${esc(cat(c.key))}</span></a></li>`).join('');
 }
 document.addEventListener('langchange', footerCats);

@@ -164,6 +164,7 @@
 @media (max-width: 860px) {
   .hero { padding: 130px 0 120px; }
   .hero__bg::after { background: linear-gradient(180deg, rgba(234,240,228,.93) 0%, rgba(228,236,222,.86) 55%, rgba(214,226,208,.6) 100%); }
+  .hero__bg::before { background-image: url("../img/sera-fidanlar-m.webp"); }
   .hero__grid { grid-template-columns: 1fr; }
   .hero-media { justify-self: center; max-width: 440px; }
   .hero-media__badge { inset-inline-start: 14px; bottom: 18px; }

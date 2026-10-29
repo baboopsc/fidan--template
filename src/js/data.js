@@ -130,6 +130,18 @@ export function kategoriImg(c) {
   if (k) return MEYVE[k];
   return (!c.gercekFoto && eski(`kategori-${c.slug}`)) || fidanGorselleri(c)[0]?.src || FALLBACK;
 }
+/* ---------- Küçük kopyalar (kartlar, küçük resimler) ----------
+   src/img/kucuk/ klasöründe her fotoğrafın 600 piksellik kopyası var (npm run kucult ile üretilir).
+   Kartlarda küçüğü, büyütünce ve ürün penceresinde asıl fotoğraf kullanılır -> telefonda site çok daha hızlı. */
+const KUCUK = import.meta.glob('../img/kucuk/**/*.webp', { eager: true, query: '?url', import: 'default' });
+const KMAP = new Map();
+for (const glob of [IMAGES, MEYVE, FIDAN, GALERI, TESIS]) {
+  for (const [k, url] of Object.entries(glob)) {
+    const kk = k.replace('../img/', '../img/kucuk/').replace(/\.\w+$/, '.webp');
+    if (KUCUK[kk]) KMAP.set(url, KUCUK[kk]);
+  }
+}
+export const kucuk = src => KMAP.get(src) || src;
 export const VARSAYILAN_GORSEL = FALLBACK;
 export const groupOf = f => catOf(f)?.group || 'Meyve';
 export const inCategory = key => FIDANLAR.filter(f => f.category === key);

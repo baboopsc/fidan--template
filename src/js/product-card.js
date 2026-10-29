@@ -1,6 +1,6 @@
 /* Ürün kartı — ana sayfa ve Fidanlar sayfası aynı kartı kullanır.
    Kartın tamamı tıklanabilir: başlıktaki bağlantı/düğme tüm kartı kaplar (CSS: .p-card__link::after). */
-import { fidanImg, highlights } from './data.js';
+import { fidanImg, highlights, kucuk } from './data.js';
 import { localize, fullName, t } from './i18n.js';
 import { esc } from './utils.js';
 
@@ -21,7 +21,7 @@ export function cardHTML(f, { link = false, i = 0 } = {}) {
   return `
     <article class="p-card" style="--i:${i}">
       <div class="p-card__media">
-        <img src="${fidanImg(f)}" alt="${esc(fullName(f))}" loading="lazy" width="600" height="600">
+        <img src="${kucuk(fidanImg(f))}" alt="${esc(fullName(f))}" loading="lazy" width="600" height="600">
         <span class="p-card__tag">${esc(L.category)}</span>
         <span class="p-card__view" aria-hidden="true">${esc(t('card.view'))} <i class="i i-arrow-right"></i></span>
       </div>
