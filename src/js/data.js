@@ -19,9 +19,9 @@ export const SITE = {
 /* src/img klasöründeki fotoğrafları Vite kendisi bulur.
    Ürün fotoğrafını slug adıyla koyman yeterli: washington-navel-portakal.webp, gemlik-zeytin.jpg ...
    (scripts/gorsel-uret.mjs görselleri bu adlarla kendisi kaydeder)
-   Fotoğrafı olmayan fidanda pot-plant.png gösterilir. */
+   Fotoğrafı olmayan fidanda pot-plant.webp gösterilir. */
 const IMAGES = import.meta.glob('../img/*.{jpg,jpeg,png,webp,avif}', { eager: true, query: '?url', import: 'default' });
-const FALLBACK = IMAGES['../img/pot-plant.png'] || '';
+const FALLBACK = IMAGES['../img/pot-plant.webp'] || '';
 
 export function imgFor(slug) {
   if (!slug) return FALLBACK;

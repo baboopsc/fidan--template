@@ -86,7 +86,7 @@
 .care { position: relative; isolation: isolate; overflow: hidden; margin-top: 110px; border-radius: var(--r-lg); padding: 60px; display: grid; grid-template-columns: .9fr 1.1fr; gap: 48px; align-items: center; color: #fff; background: #2c3f27; }
 .care__bg { position: absolute; inset: 0; z-index: -1; background:
     linear-gradient(100deg, rgba(25,38,21,.96) 0%, rgba(33,50,28,.88) 45%, rgba(33,50,28,.55) 100%),
-    url("../img/care-bg.jpg") center / cover no-repeat;
+    url("../img/care-bg.webp") center / cover no-repeat;
   transition: transform 1.4s var(--ease); }
 .care:hover .care__bg { transform: scale(1.04); }
 .care .eyebrow { color: #cfe3c2; }

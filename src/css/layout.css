@@ -42,7 +42,7 @@ a.topbar__item:hover { color: var(--ink); text-decoration: underline; }
 .page-hero { position: relative; isolation: isolate; overflow: hidden; margin: 12px 12px 0; border-radius: var(--r-lg) var(--r-lg) 44px 44px; padding: 160px 0 130px; background: var(--sage); }
 .page-hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background:
     linear-gradient(90deg, var(--sage) 0%, rgba(200,213,196,.93) 34%, rgba(200,213,196,.3) 68%, rgba(200,213,196,0) 100%),
-    url("../img/hero-plants.jpg") right 35% / cover no-repeat;
+    url("../img/hero-plants.webp") right 35% / cover no-repeat;
   animation: heroZoom 1.8s var(--ease) both; }
 /* İç sayfaların başlık arka planı: Fidanlar -> zeytin dalı, Tesislerimiz -> kayısı, Galeri -> erik */
 .page-hero--fidan { --ph-img: url("../img/zeytin-dali.webp"); }
@@ -201,7 +201,7 @@ a.topbar__item:hover { color: var(--ink); text-decoration: underline; }
   .nav-links a { padding: 13px 16px; font-size: 15.5px; }
   .page-hero::before { background:
       linear-gradient(180deg, rgba(200,213,196,.96) 0%, rgba(200,213,196,.88) 60%, rgba(200,213,196,.55) 100%),
-      url("../img/hero-plants.jpg") 70% center / cover no-repeat; }
+      url("../img/hero-plants.webp") 70% center / cover no-repeat; }
   :is(.page-hero--fidan, .page-hero--tesis, .page-hero--galeri)::before, [dir="rtl"] :is(.page-hero--fidan, .page-hero--tesis, .page-hero--galeri)::before { background:
       linear-gradient(180deg, rgba(200,213,196,.95) 0%, rgba(200,213,196,.85) 60%, rgba(200,213,196,.5) 100%),
       var(--ph-img) center / cover no-repeat; }

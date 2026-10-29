@@ -17,7 +17,13 @@ const dots = document.getElementById('heroDots');
 if (URETIM_FOTOLARI.length) {
   const alt = slides.querySelector('img')?.alt || '';
   slides.innerHTML = URETIM_FOTOLARI.slice(0, 5)
-    .map((src, i) => `<img${i ? '' : ' class="is-active"'} src="${src}" alt="${i ? '' : esc(alt)}" width="900" height="1100">`).join('');
+    // İlk fotoğraf hemen yüklenir; diğerleri sayfa açıldıktan sonra (data-src) -> açılış hızlanır
+    .map((src, i) => i
+      ? `<img data-src="${src}" alt="" width="900" height="1100" decoding="async">`
+      : `<img class="is-active" src="${src}" alt="${esc(alt)}" width="900" height="1100" fetchpriority="high">`).join('');
+  const sonrakiler = () => slides.querySelectorAll('img[data-src]').forEach(k => { k.src = k.dataset.src; k.removeAttribute('data-src'); });
+  if (document.readyState === 'complete') setTimeout(sonrakiler, 1500);
+  else addEventListener('load', () => setTimeout(sonrakiler, 1500), { once: true });
   // Bölümlerdeki fotoğraflar: data-photo="1" -> 2. fotoğraf ... (yeterli fotoğraf yoksa baştan döner)
   document.querySelectorAll('[data-photo]').forEach(img => {
     img.src = URETIM_FOTOLARI[Number(img.dataset.photo) % URETIM_FOTOLARI.length];
@@ -30,6 +36,8 @@ let sira = 0, zamanlayici;
 
 function goster(i) {
   sira = (i + kareler.length) % kareler.length;
+  const k = kareler[sira];
+  if (k.dataset.src) { k.src = k.dataset.src; k.removeAttribute('data-src'); }
   kareler.forEach((k, j) => k.classList.toggle('is-active', j === sira));
   dots.querySelectorAll('button').forEach((d, j) => d.setAttribute('aria-selected', j === sira));
 }
