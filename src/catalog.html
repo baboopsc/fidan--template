@@ -111,6 +111,16 @@
     </div>
   </dialog>
 
+  <!-- BÜYÜTME: ürün penceresindeki meyve / fidan fotoğrafına basınca tam ekran açılır (js/catalog.js) -->
+  <dialog class="zoom" id="zoom" aria-label="Fotoğraf" data-i18n-attr="aria-label:gallery.photo">
+    <div class="zoom__stage" id="zoomStage"><img class="zoom__img" id="zoomImg" src="" alt=""></div>
+    <button class="zoom__btn zoom__close" type="button" data-zclose aria-label="Kapat" data-i18n-attr="aria-label:modal.close"><i class="i i-close"></i></button>
+    <button class="zoom__btn zoom__prev" type="button" data-zgo="-1" aria-label="Önceki" data-i18n-attr="aria-label:gallery.prev"><i class="i i-chevron-left"></i></button>
+    <button class="zoom__btn zoom__next" type="button" data-zgo="1" aria-label="Sonraki" data-i18n-attr="aria-label:gallery.next"><i class="i i-chevron-right"></i></button>
+    <span class="zoom__count" id="zoomCount"></span>
+  </dialog>
+
+
   <load src="./partials/footer.html" />
 
   <script type="module" src="./js/catalog.js"></script>

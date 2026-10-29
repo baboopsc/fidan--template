@@ -150,11 +150,12 @@ let acik = null;
 
 /* Görsel alanı: üst panel meyvesi, alt panel fidanı.
    Görsellerin üstünde "temsilidir / gerçek fotoğraf" yazısı gösterilmiyor; sadece görsel görünür. */
-let kareler = [];
+let kareler = [], aktifKare = 0;
 function not(el) { el.hidden = true; }
 function kareGoster(i) {
   const k = kareler[i];
   if (!k) return;
+  aktifKare = i;
   $('#mSapImg').src = k.src;
   not($('#mSapNote'), k);
   $('#mThumbs').querySelectorAll('button').forEach((b, j) => b.setAttribute('aria-selected', j === i));
@@ -162,6 +163,39 @@ function kareGoster(i) {
 $('#mThumbs').addEventListener('click', e => {
   const b = e.target.closest('[data-kare]');
   if (b) kareGoster(Number(b.dataset.kare));
+});
+
+/* ---------- Büyütme: meyve ya da fidan fotoğrafına basınca tam ekran ----------
+   Oklarla (ya da klavyede ← →) meyve ve fidan fotoğrafları arasında geçilir; fotoğrafa basınca 2 kat yakınlaşır. */
+const zoom = $('#zoom');
+let zListe = [], zSira = 0;
+function zGoster(i) {
+  zSira = (i + zListe.length) % zListe.length;
+  $('#zoomImg').src = zListe[zSira];
+  $('#zoomStage').classList.remove('is-big');
+  $('#zoomCount').textContent = zListe.length > 1 ? `${zSira + 1} / ${zListe.length}` : '';
+  zoom.querySelectorAll('[data-zgo]').forEach(b => { b.hidden = zListe.length < 2; });
+}
+function buyut(i) {
+  const meyveSrc = $('#mFruit').classList.contains('mpanel--empty') ? null : $('#mImg').getAttribute('src');
+  zListe = [meyveSrc, ...kareler.map(k => k.src)].filter(Boolean);
+  if (!zListe.length) return;
+  zGoster(meyveSrc ? i : Math.max(0, i - 1));
+  zoom.showModal();
+}
+$('#mImg').addEventListener('click', () => buyut(0));
+$('#mSapImg').addEventListener('click', () => buyut(1 + aktifKare));
+zoom.addEventListener('click', e => {
+  const git = e.target.closest('[data-zgo]');
+  if (git) return zGoster(zSira + Number(git.dataset.zgo));
+  if (e.target.closest('[data-zclose]') || e.target === zoom || e.target.id === 'zoomStage') return zoom.close();
+  if (e.target.id === 'zoomImg') $('#zoomStage').classList.toggle('is-big');
+});
+zoom.addEventListener('keydown', e => {
+  if (zListe.length < 2) return;
+  const rtl = document.documentElement.dir === 'rtl';
+  if (e.key === 'ArrowRight') zGoster(zSira + (rtl ? -1 : 1));
+  if (e.key === 'ArrowLeft') zGoster(zSira + (rtl ? 1 : -1));
 });
 
 function doldur(f) {

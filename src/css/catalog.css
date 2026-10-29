@@ -119,3 +119,28 @@
   .specs__row { grid-template-columns: 1fr 1.3fr; gap: 12px; font-size: 13.5px; }
   .modal__actions .btn { flex: 1; }
 }
+
+/* ---------- Büyütme penceresi (meyve / fidan fotoğrafına basınca) ---------- */
+.mpanel img[src] { cursor: zoom-in; }
+.zoom { width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: rgba(16,24,14,.94); color: #fff; }
+.zoom::backdrop { background: transparent; }
+.zoom[open] { animation: fade .25s ease; }
+.zoom__stage { position: absolute; inset: 0; display: grid; place-items: center; padding: 70px 80px; overflow: auto; }
+.zoom__img { max-width: 100%; max-height: calc(100dvh - 140px); border-radius: 16px; object-fit: contain; box-shadow: 0 30px 80px -20px rgba(0,0,0,.6); cursor: zoom-in; }
+.zoom__stage.is-big { place-items: start; }
+.zoom__stage.is-big .zoom__img { max-width: none; max-height: none; width: 200%; cursor: zoom-out; border-radius: 0; }
+.zoom__btn { position: absolute; z-index: 1; width: 50px; height: 50px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.2); transition: background .2s; }
+.zoom__btn:hover { background: rgba(255,255,255,.25); }
+.zoom__btn .i { width: 24px; height: 24px; }
+.zoom__btn[hidden] { display: none; }
+.zoom__close { top: 18px; inset-inline-end: 18px; }
+.zoom__prev { inset-inline-start: 18px; top: 50%; translate: 0 -50%; }
+.zoom__next { inset-inline-end: 18px; top: 50%; translate: 0 -50%; }
+[dir="rtl"] .zoom__prev .i, [dir="rtl"] .zoom__next .i { transform: scaleX(-1); }
+.zoom__count { position: absolute; bottom: 22px; left: 50%; translate: -50% 0; color: rgba(255,255,255,.8); font-size: 14px; font-weight: 600; }
+@media (max-width: 600px) {
+  .zoom__stage { padding: 70px 12px; }
+  .zoom__stage.is-big .zoom__img { width: 260%; }
+  .zoom__prev, .zoom__next { top: auto; bottom: 14px; translate: none; width: 44px; height: 44px; }
+  .zoom__count { bottom: 26px; }
+}
