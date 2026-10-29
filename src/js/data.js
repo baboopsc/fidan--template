@@ -47,13 +47,37 @@ export const fidanFotolari = slug => FIDAN_KEYS.filter(k => new RegExp(`/${slug}
    Listede olmayan fotoğraflar arkadan gelir. */
 const ONCE = ['greyfurt-3', 'zeytin-9', 'kamkat-1', 'trabzon-hurmasi-1', 'nar-3', 'zeytin-10', 'greyfurt-1', 'zeytin-1'];
 const ad = k => k.split('/').pop().replace(/\.\w+$/, '');
-const FIDAN_SIRALI = [...FIDAN_KEYS].sort((a, b) => {
-  const i = x => (ONCE.indexOf(ad(x)) + 1) || 999;
-  return i(a) - i(b);
-}).map(k => FIDAN[k]);
+// Aynı türün fotoğrafları art arda gelmesin: türlere ayırıp sırayla birer tane al (zeytin, nar, greyfurt, zeytin, ...)
+const tur = k => ad(k).replace(/-\d+$/, '');
+function dagit(keys) {
+  const gruplar = {};
+  keys.forEach(k => (gruplar[tur(k)] ||= []).push(k));
+  const listeler = Object.values(gruplar).sort((a, b) => b.length - a.length);
+  const out = [];
+  for (let i = 0; out.length < keys.length; i++) listeler.forEach(l => l[i] && out.push(l[i]));
+  return out;
+}
+const onceKi = ONCE.map(a => FIDAN_KEYS.find(k => ad(k) === a)).filter(Boolean);
+const FIDAN_SIRALI = [...onceKi, ...dagit(FIDAN_KEYS.filter(k => !onceKi.includes(k)))].map(k => FIDAN[k]);
+
+// Galeri: meyve ve fidan fotoğrafları karışık (bir meyve, bir fidan ...), her seferinde aynı sırayla
+function karistir(arr, tohum) {
+  const a = [...arr];
+  let t = tohum;
+  const rnd = () => { t = (t * 1664525 + 1013904223) % 4294967296; return t / 4294967296; };
+  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+  return a;
+}
+const meyveler = karistir(sirala(GALERI), 7).map(k => GALERI[k]);
+const fidanlar = dagit(karistir(FIDAN_KEYS, 11)).map(k => FIDAN[k]);
+const karisik = [];
+for (let i = 0; i < Math.max(meyveler.length, fidanlar.length); i++) {
+  if (meyveler[i]) karisik.push(meyveler[i]);
+  if (fidanlar[i]) karisik.push(fidanlar[i]);
+}
 
 export const TESIS_FOTOLARI = [...sirala(TESIS).map(k => TESIS[k]), ...FIDAN_SIRALI];
-export const GALERI_FOTOLARI = [...sirala(GALERI).map(k => GALERI[k]), ...FIDAN_KEYS.map(k => FIDAN[k])];
+export const GALERI_FOTOLARI = karisik;
 
 export const FIDANLAR = TUM_FIDANLAR.filter(f => !f.hidden);
 export const catOf = f => CATEGORIES.find(c => c.key === f.category);
@@ -68,7 +92,9 @@ export const catOf = f => CATEGORIES.find(c => c.key === f.category);
            yoksa  src/img/fidan-temsili/<kategori-slug>.webp  (yapay zekâyla üretilmiş, "Görsel temsilidir") */
 const MEYVE = import.meta.glob('../img/meyve/*.{jpg,jpeg,png,webp,avif}', { eager: true, query: '?url', import: 'default' });
 const FIDAN_TEMSILI = import.meta.glob('../img/fidan-temsili/*.{jpg,jpeg,png,webp,avif}', { eager: true, query: '?url', import: 'default' });
-const bul = (glob, slug) => Object.keys(glob).find(k => new RegExp(`/${slug}(-gercek)?\\.\\w+$`).test(k));
+// Gerçek fotoğraf (<slug>-gercek) varsa o, yoksa yapay zekâ görseli (<slug>) kullanılır
+const bul = (glob, slug) => { const ks = Object.keys(glob);
+  return ks.find(k => new RegExp(`/${slug}-gercek\\.\\w+$`).test(k)) || ks.find(k => new RegExp(`/${slug}\\.\\w+$`).test(k)); };
 const eski = slug => { const u = imgFor(slug); return u !== FALLBACK ? u : null; };
 
 // Meyve görseli -> { src, gercek } ya da null

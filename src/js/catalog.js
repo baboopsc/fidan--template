@@ -149,13 +149,9 @@ const modal = $('#modal');
 let acik = null;
 
 /* Görsel alanı: üst panel meyvesi, alt panel fidanı.
-   Notlar: "Görsel temsilidir" (yapay zekâ) ya da "Fidanlarımızdan gerçek fotoğraf". */
+   Görsellerin üstünde "temsilidir / gerçek fotoğraf" yazısı gösterilmiyor; sadece görsel görünür. */
 let kareler = [];
-function not(el, gorsel) {
-  el.textContent = t(gorsel.gercek ? 'modal.real' : 'modal.note');
-  el.classList.toggle('modal__note--real', gorsel.gercek);
-  el.hidden = false;
-}
+function not(el) { el.hidden = true; }
 function kareGoster(i) {
   const k = kareler[i];
   if (!k) return;

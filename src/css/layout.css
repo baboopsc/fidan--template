@@ -44,13 +44,16 @@ a.topbar__item:hover { color: var(--ink); text-decoration: underline; }
     linear-gradient(90deg, var(--sage) 0%, rgba(200,213,196,.93) 34%, rgba(200,213,196,.3) 68%, rgba(200,213,196,0) 100%),
     url("../img/hero-plants.jpg") right 35% / cover no-repeat;
   animation: heroZoom 1.8s var(--ease) both; }
-/* Fidanlar sayfası: arka planda zeytin dalı fotoğrafı (img/zeytin-dali.webp) */
-.page-hero--fidan::before { background:
+/* İç sayfaların başlık arka planı: Fidanlar -> zeytin dalı, Tesislerimiz -> kayısı, Galeri -> erik */
+.page-hero--fidan { --ph-img: url("../img/zeytin-dali.webp"); }
+.page-hero--tesis { --ph-img: url("../img/hero-kayisi.webp"); }
+.page-hero--galeri { --ph-img: url("../img/hero-erik.webp"); }
+.page-hero--fidan::before, .page-hero--tesis::before, .page-hero--galeri::before { background:
     linear-gradient(90deg, var(--sage) 0%, rgba(200,213,196,.92) 34%, rgba(200,213,196,.35) 66%, rgba(200,213,196,.05) 100%),
-    url("../img/zeytin-dali.webp") center 45% / cover no-repeat; }
-[dir="rtl"] .page-hero--fidan::before { background:
+    var(--ph-img) center 45% / cover no-repeat; }
+[dir="rtl"] :is(.page-hero--fidan, .page-hero--tesis, .page-hero--galeri)::before { background:
     linear-gradient(270deg, var(--sage) 0%, rgba(200,213,196,.92) 34%, rgba(200,213,196,.35) 66%, rgba(200,213,196,.05) 100%),
-    url("../img/zeytin-dali.webp") center 45% / cover no-repeat; }
+    var(--ph-img) center 45% / cover no-repeat; }
 .page-hero h1 { font-size: clamp(2.3rem, 4.6vw, 3.6rem); margin: 18px 0 14px; }
 .page-hero p { max-width: 480px; color: var(--ink-2); opacity: .82; font-size: 1.05rem; }
 .crumbs { display: flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 600; color: var(--ink-2); }
@@ -199,9 +202,9 @@ a.topbar__item:hover { color: var(--ink); text-decoration: underline; }
   .page-hero::before { background:
       linear-gradient(180deg, rgba(200,213,196,.96) 0%, rgba(200,213,196,.88) 60%, rgba(200,213,196,.55) 100%),
       url("../img/hero-plants.jpg") 70% center / cover no-repeat; }
-  .page-hero--fidan::before, [dir="rtl"] .page-hero--fidan::before { background:
+  :is(.page-hero--fidan, .page-hero--tesis, .page-hero--galeri)::before, [dir="rtl"] :is(.page-hero--fidan, .page-hero--tesis, .page-hero--galeri)::before { background:
       linear-gradient(180deg, rgba(200,213,196,.95) 0%, rgba(200,213,196,.85) 60%, rgba(200,213,196,.5) 100%),
-      url("../img/zeytin-dali.webp") center / cover no-repeat; }
+      var(--ph-img) center / cover no-repeat; }
   .p-grid, .p-grid--3 { grid-template-columns: repeat(3, 1fr); gap: 14px; }
   .footer-cta { flex-direction: column; align-items: flex-start; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
