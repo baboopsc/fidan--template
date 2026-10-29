@@ -6,7 +6,7 @@ import { join, relative, dirname, extname } from 'path';
 
 const IMG = 'src/img';
 const OUT = join(IMG, 'kucuk');
-const KLASORLER = ['', 'meyve', 'fidan', 'galeri', 'tesis'];
+const KLASORLER = ['', 'meyve', 'fidan', 'fidan-tekli', 'galeri', 'tesis'];
 let yeni = 0;
 
 for (const k of KLASORLER) {

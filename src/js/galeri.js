@@ -4,3 +4,4 @@ import { GALERI_FOTOLARI } from './data.js';
 import { galeriKur } from './gallery.js';
 
 galeriKur(GALERI_FOTOLARI);
+

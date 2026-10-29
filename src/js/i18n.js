@@ -34,6 +34,7 @@ const TR = {
   'modal.noSapling.p': 'Fidanlarımızı görmek için bizi arayın.',
   'modal.real': 'Fidanlarımızdan gerçek fotoğraf',
   'gallery.open': 'Fotoğraf {n}',
+  'modal.wa.msg': 'Merhaba, {name} hakkında bilgi almak istiyorum.',
   'quote.type.any': 'Henüz karar vermedim',
   'quote.msg.hello': 'Merhaba, fidan için fiyat teklifi almak istiyorum.',
   'quote.msg.variety': 'Çeşit',

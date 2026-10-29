@@ -7,7 +7,7 @@
    Geri tuşu ve paylaşılan bağlantılar çalışır.
    ========================================================== */
 import './ui.js';
-import { FIDANLAR, visibleCategories, inCategory, byId, imgFor, kategoriImg, highlights, hasDetail, meyveGorseli, fidanGorselleriSirali, kucuk } from './data.js';
+import { FIDANLAR, visibleCategories, inCategory, byId, imgFor, kategoriImg, highlights, hasDetail, meyveGorseli, fidanGorselleriSirali, kucuk, fidanImg, SITE } from './data.js';
 import { lang, localize, fullName, shortName, cat, t } from './i18n.js';
 import { cardHTML } from './product-card.js';
 import { sade, esc } from './utils.js';
@@ -228,6 +228,17 @@ function doldur(f) {
   }).join('');
   $('#mSpecs').innerHTML = L.specs
     .map(([baslik, deger]) => `<div class="specs__row"><dt>${esc(baslik)}</dt><dd>${esc(deger)}</dd></div>`).join('');
+  // WhatsApp: mesaj bu çeşidin adıyla hazır gelir ("Merhaba, Washington Navel Portakal Fidanı hakkında bilgi almak istiyorum.")
+  $('#mWa').hidden = !SITE.whatsapp;
+  $('#mWa').href = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(t('modal.wa.msg', { name: fullName(f) }))}`;
+  // Aynı türden diğer çeşitler (en fazla 4)
+  const benzer = inCategory(f.category).filter(x => x.id !== f.id).slice(0, 4);
+  $('#mRelated').hidden = !benzer.length;
+  $('#mRelList').innerHTML = benzer.map(x => `
+    <button class="related__item" type="button" data-open="${x.id}">
+      <img src="${kucuk(fidanImg(x))}" alt="" loading="lazy" width="120" height="120">
+      <span>${esc(localize(x).title)}</span>
+    </button>`).join('');
 }
 
 function ac(id) {
@@ -246,6 +257,8 @@ grid.addEventListener('click', e => {
   if (o) ac(o.dataset.open);
 });
 modal.addEventListener('click', e => {
+  const r = e.target.closest('.related__item[data-open]');
+  if (r) return ac(r.dataset.open);
   if (e.target === modal || e.target.closest('[data-close]')) modal.close();
 });
 modal.addEventListener('close', () => { acik = null; history.replaceState(null, '', adres()); });

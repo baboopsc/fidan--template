@@ -264,3 +264,6 @@ a.topbar__item:hover { color: var(--ink); text-decoration: underline; }
 /* Arapça harfler birbirine bağlanır: harf aralığı ve eğik yazı kapatılır */
 html[lang="ar"] * { letter-spacing: normal !important; }
 html[lang="ar"] em { font-style: normal; }
+
+.footer-credits { opacity: .7; font-size: 13px; margin-inline-start: auto; margin-inline-end: 18px; }
+.footer-credits:hover { opacity: 1; text-decoration: underline; }

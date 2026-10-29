@@ -74,3 +74,13 @@ body.modal-open { overflow: hidden; }
   .section-head--row { flex-direction: column; align-items: flex-start; }
 }
 @media (max-width: 600px) { .facility__card { padding: 24px; } }
+
+/* ---------- Fotoğraf kaynakları (Galeri sayfasının altı) ---------- */
+.credits-section { padding-top: 0; }
+.credits { border: 1px solid var(--line); border-radius: 18px; background: var(--surface); padding: 14px 20px; font-size: 14px; color: var(--ink-2); }
+.credits summary { cursor: pointer; font-weight: 700; display: flex; align-items: center; gap: 8px; list-style: none; }
+.credits summary::-webkit-details-marker { display: none; }
+.credits summary .i { width: 18px; height: 18px; color: var(--leaf); }
+.credits p { margin: 12px 0 8px; opacity: .85; }
+.credits__list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 6px 24px; list-style: none; padding: 0; margin: 0; }
+.credits__list a { text-decoration: underline; text-underline-offset: 2px; }

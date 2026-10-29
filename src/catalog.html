@@ -104,10 +104,16 @@
           <p data-i18n="modal.contact"><b>Fiyat ve stok bilgisi için</b> bizi arayın.</p>
           <div class="modal__actions">
             <a class="btn btn-primary btn-sm" href="tel:+905336125225"><i class="i i-phone"></i> Ali Sağ · 0533 612 52 25</a>
+            <a class="btn btn-wa btn-sm" id="mWa" href="#" target="_blank" rel="noopener"><i class="i i-whatsapp"></i> <span data-i18n="modal.wa">WhatsApp'tan sor</span></a>
             <button class="btn btn-outline btn-sm" type="button" id="mQuote" data-quote><i class="i i-quote"></i> <span data-i18n="quote.btn">Teklif İste</span></button>
             <a class="icon-btn" data-social="instagram" href="#" target="_blank" rel="noopener" aria-label="Instagram" hidden><i class="i i-instagram"></i></a>
             <a class="icon-btn" data-social="facebook" href="#" target="_blank" rel="noopener" aria-label="Facebook" hidden><i class="i i-facebook"></i></a>
           </div>
+        </div>
+        <!-- Aynı türden diğer çeşitler: ziyaretçi bir çeşide bakarken diğerlerini de görsün (js/catalog.js) -->
+        <div class="related" id="mRelated" hidden>
+          <h3 class="specs__title" data-i18n="modal.related">Aynı türden diğer çeşitler</h3>
+          <div class="related__list" id="mRelList"></div>
         </div>
       </div>
     </div>

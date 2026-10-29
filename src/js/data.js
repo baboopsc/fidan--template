@@ -39,6 +39,9 @@ const FIDAN = import.meta.glob('../img/fidan/*.{jpg,jpeg,png,webp,avif}', { eage
 const TESIS = import.meta.glob('../img/tesis/*.{jpg,jpeg,png,webp,avif}', { eager: true, query: '?url', import: 'default' });
 const GALERI = import.meta.glob('../img/galeri/*.{jpg,jpeg,png,webp,avif}', { eager: true, query: '?url', import: 'default' });
 const FIDAN_KEYS = sirala(FIDAN);
+// Çeşide özel tekli fidan fotoğrafları (ölçü tabelası önünde) — ürün penceresinde ve Tesislerimiz'de
+const TEKLI = import.meta.glob('../img/fidan-tekli/*.{jpg,jpeg,png,webp,avif}', { eager: true, query: '?url', import: 'default' });
+const TEKLI_KEYS = sirala(TEKLI);
 
 // Bir türün gerçek fidan fotoğrafları: fidanFotolari('zeytin') -> [zeytin-1, zeytin-2, ...]
 export const fidanFotolari = slug => FIDAN_KEYS.filter(k => new RegExp(`/${slug}-\\d+\\.\\w+$`).test(k)).map(k => FIDAN[k]);
@@ -76,7 +79,15 @@ for (let i = 0; i < Math.max(meyveler.length, fidanlar.length); i++) {
   if (fidanlar[i]) karisik.push(fidanlar[i]);
 }
 
-export const TESIS_FOTOLARI = [...sirala(TESIS).map(k => TESIS[k]), ...FIDAN_SIRALI];
+// Tesislerimiz: fidanlık fotoğrafları ile tekli fidan fotoğrafları karışık (iki fidanlık, bir tekli fidan ...)
+const TEKLI_LISTE = TEKLI_KEYS.map(k => TEKLI[k]);
+const tesisKarisik = [];
+for (let i = 0, j = 0; i < FIDAN_SIRALI.length || j < TEKLI_LISTE.length;) {
+  if (i < FIDAN_SIRALI.length) tesisKarisik.push(FIDAN_SIRALI[i++]);
+  if (i < FIDAN_SIRALI.length) tesisKarisik.push(FIDAN_SIRALI[i++]);
+  if (j < TEKLI_LISTE.length) tesisKarisik.push(TEKLI_LISTE[j++]);
+}
+export const TESIS_FOTOLARI = [...sirala(TESIS).map(k => TESIS[k]), ...tesisKarisik];
 export const GALERI_FOTOLARI = karisik;
 
 export const FIDANLAR = TUM_FIDANLAR.filter(f => !f.hidden);
@@ -115,7 +126,13 @@ export function fidanGorselleri(c) {
 }
 // Aynı türdeki çeşitler gerçek fidan fotoğraflarından sırayla farklı birini alır
 const sira = f => Math.max(0, TUM_FIDANLAR.filter(x => x.category === f.category && !x.hidden).indexOf(f));
+/* Çeşide özel tekli fidan fotoğrafları (ölçü tabelası önünde): src/img/fidan-tekli/<çeşit-slug>-1.webp ...
+   Varsa ürün penceresinde önce bunlar gösterilir; Tesislerimiz ve Galeri'de görünmezler. */
+const tekliFotolar = slug => TEKLI_KEYS.filter(k => new RegExp(`/${slug}-\\d+\\.\\w+$`).test(k)).map(k => ({ src: TEKLI[k], gercek: true }));
+
 export function fidanGorselleriSirali(f) {
+  const tekli = tekliFotolar(f.slug);
+  if (tekli.length) return [...tekli, ...fidanGorselleri(catOf(f)).slice(0, 2)];
   const liste = fidanGorselleri(catOf(f));
   const bas = liste.length ? sira(f) % liste.length : 0;
   return [...liste.slice(bas), ...liste.slice(0, bas)];
@@ -135,7 +152,7 @@ export function kategoriImg(c) {
    Kartlarda küçüğü, büyütünce ve ürün penceresinde asıl fotoğraf kullanılır -> telefonda site çok daha hızlı. */
 const KUCUK = import.meta.glob('../img/kucuk/**/*.webp', { eager: true, query: '?url', import: 'default' });
 const KMAP = new Map();
-for (const glob of [IMAGES, MEYVE, FIDAN, GALERI, TESIS]) {
+for (const glob of [IMAGES, MEYVE, FIDAN, GALERI, TESIS, TEKLI]) {
   for (const [k, url] of Object.entries(glob)) {
     const kk = k.replace('../img/', '../img/kucuk/').replace(/\.\w+$/, '.webp');
     if (KUCUK[kk]) KMAP.set(url, KUCUK[kk]);

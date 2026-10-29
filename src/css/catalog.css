@@ -88,8 +88,9 @@
   .modal { overflow: auto; overscroll-behavior: contain; }
   .modal__inner { display: block; max-height: none; }
   /* Telefonda iki panel yan yana: solda meyvesi, sağda fidanı */
-  .modal__media { min-height: 0; flex-direction: row; padding: 8px 8px 0; }
-  .mpanel { aspect-ratio: 1; flex: 1 1 0; }
+  /* Telefonda da meyve üstte, fidan altta (yan yana değil) */
+  .modal__media { min-height: 0; flex-direction: column; padding: 8px 8px 0; }
+  .mpanel { aspect-ratio: 4 / 3; flex: none; }
   .mpanel__empty-icon { width: 40px; height: 40px; }
   .mpanel__empty-icon .i { width: 20px; height: 20px; }
   .mpanel__empty b { font-size: 12px; }
@@ -144,3 +145,15 @@
   .zoom__prev, .zoom__next { top: auto; bottom: 14px; translate: none; width: 44px; height: 44px; }
   .zoom__count { bottom: 26px; }
 }
+
+/* ---------- Ürün penceresi: WhatsApp butonu ve aynı türden diğer çeşitler ---------- */
+.btn-wa { background: #25d366; color: #fff; border-color: #25d366; }
+.btn-wa:hover { background: #1ebe5b; border-color: #1ebe5b; }
+.btn-wa .i { width: 18px; height: 18px; }
+.related { margin-top: 22px; }
+.related__list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 10px; }
+.related__item { display: grid; gap: 6px; text-align: start; padding: 0; background: none; border: 0; cursor: pointer; font-size: 12.5px; font-weight: 600; color: var(--ink-2); line-height: 1.25; }
+.related__item img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 12px; background: var(--sand); transition: transform .3s var(--ease); }
+.related__item:hover img { transform: scale(1.04); }
+.related__item:hover span { text-decoration: underline; }
+@media (max-width: 600px) { .related__list { grid-template-columns: repeat(2, 1fr); } }

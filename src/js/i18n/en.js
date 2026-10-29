@@ -10,7 +10,7 @@
 export default {
   ui: {
     'meta.index.title': 'Sağ Fidancılık | Sapling Nursery in Hatay, Turkey',
-    'meta.index.desc': 'Certified citrus, olive, pomegranate and fruit saplings grown in Samandağ, Hatay since 2005.',
+    'meta.index.desc': 'Certified citrus, olive, pomegranate and fruit saplings grown in Samandağ, Hatay since 2001.',
     'meta.catalog.title': 'Sapling Varieties | Sağ Fidancılık',
     'meta.catalog.desc': 'Browse our certified citrus, olive, pomegranate and fruit sapling varieties.',
 
@@ -25,7 +25,7 @@ export default {
     'cta.browse': 'Browse Saplings',
     'cta.contact': 'Contact Us',
 
-    'hero.pill': 'Samandağ, Hatay · since 2005',
+    'hero.pill': 'Samandağ, Hatay · since 2001',
     'hero.title': 'Your orchard’s future starts with a <em>healthy</em> sapling',
     'hero.lead': 'We grow certified citrus, olive, pomegranate and fruit saplings, offering healthy, true-to-variety plants at fair prices.',
     'hero.cta': 'Our Varieties',
@@ -52,8 +52,8 @@ export default {
     'why.img': 'A green sapling in a pot',
 
     'about.eyebrow': 'About us',
-    'about.title': 'From Samandağ to orchards: <em>20+ years</em> of work',
-    'about.p1': 'Sağ Fidancılık was founded in 2005 in the Fidanlı neighbourhood of Samandağ, Hatay. The journey that began on the region’s fertile soil has grown into certified saplings of more than 100 varieties across 17 fruit types, from citrus to walnut.',
+    'about.title': 'From Samandağ to orchards: <em>25+ years</em> of work',
+    'about.p1': 'Sağ Fidancılık was founded in 2001 in the Fidanlı neighbourhood of Samandağ, Hatay. The journey that began on the region’s fertile soil has grown into certified saplings of more than 100 varieties across 17 fruit types, from citrus to walnut.',
     'about.p2': 'An orchard’s life begins with the sapling planted. That’s why we take budwood only from healthy, productive trees and treat our sour orange seeds against disease. Our goal is to give farmers and newcomers alike healthy, true-to-variety saplings and prevent the losses that uncontrolled planting can cause.',
     'about.p3': 'Our work doesn’t end with handing over the sapling: we help you choose the variety that suits your soil and climate, and prepare bulk order quotes for new orchards.',
     'about.cta': 'See our facilities',
@@ -91,7 +91,7 @@ export default {
 
     'footer.cta.title': 'Which sapling will you <em>plant</em> this season?',
     'footer.cta.btn': 'Explore Saplings',
-    'footer.about': 'Growing certified citrus and fruit saplings in Samandağ, Hatay since 2005.',
+    'footer.about': 'Growing certified citrus and fruit saplings in Samandağ, Hatay since 2001.',
     'footer.explore': 'Quick links',
     'footer.catalog': 'Sapling Varieties',
     'footer.rights': 'Sağ Fidancılık. All rights reserved.',
@@ -138,7 +138,7 @@ export default {
     'hero.img': 'Orange sapling',
     'hero.dots': 'Photos',
     'hero.slide': 'Photo {n}',
-    'hero.badge.t': '20+ years of experience',
+    'hero.badge.t': '25+ years of experience',
     'hero.badge.p': 'Grown in our own nursery',
     'types.eyebrow': 'Sapling types',
     'types.title': 'Our <em>Varieties</em>',
@@ -208,7 +208,7 @@ export default {
     'facility.title': 'Where our saplings <em>begin</em>',
     'facility.lead': 'From seed and grafting to care and sale, our saplings grow by our own hands in our nursery in Samandağ.',
     'facility.intro.title': 'Our <em>nursery</em> in Samandağ',
-    'facility.intro.p1': 'Our nursery is on the Samandağ road, in the Fidanlı neighbourhood of Samandağ, Hatay. We have been growing citrus, olive, pomegranate and other fruit saplings here since 2005.',
+    'facility.intro.p1': 'Our nursery is on the Samandağ road, in the Fidanlı neighbourhood of Samandağ, Hatay. We have been growing citrus, olive, pomegranate and other fruit saplings here since 2001.',
     'facility.intro.p2': 'Sapling production is a chain of linked steps; when one link comes from outside, both the trueness of the variety and the health of the sapling are left to chance. That’s why we carry out every stage — from preparing rootstock seed to grafting, care and sale — in our own nursery.',
     'facility.f.production': '100+ varieties across 17 fruit types',
     'facility.photos.title': 'Snapshots from the <em>nursery</em>',
@@ -223,6 +223,12 @@ export default {
     'gallery.prev': 'Previous',
     'gallery.next': 'Next',
     'gallery.open': 'Photo {n}',
+    'modal.wa': 'Ask on WhatsApp',
+    'modal.wa.msg': 'Hello, I would like information about {name}.',
+    'modal.related': 'Other varieties of this type',
+    'credits.title': 'Photo credits',
+    'credits.p': 'Most photos are from our own nursery. Fruit photos of some varieties are from Wikimedia Commons, used under their licences:',
+    'footer.credits': 'Photo credits',
   },
 
   cats: {
