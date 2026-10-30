@@ -179,6 +179,8 @@ function kareGoster(i) {
   aktifKare = i;
   $('#mSapImg').src = k.src;
   not($('#mSapNote'), k);
+  // Çeşidin kendi fotoğrafı "Fidanı"; türün genel fidanlık fotoğrafı "Mandalina fidanlarımız" diye yazılır
+  $('#mSapTag').textContent = k.tekli ? t('modal.sapling') : t('modal.saplingCat', { cat: cat(acik?.category || '') });
   $('#mThumbs').querySelectorAll('button').forEach((b, j) => b.setAttribute('aria-selected', j === i));
 }
 $('#mThumbs').addEventListener('click', e => {
@@ -252,7 +254,7 @@ function doldur(f) {
   }).join('');
   $('#mSpecs').innerHTML = L.specs
     .map(([baslik, deger]) => `<div class="specs__row"><dt>${esc(baslik)}</dt><dd>${esc(deger)}</dd></div>`).join('');
-  // Satıştaki fidan: "Tüplü aşılı · 2 yaş · 90–120 cm" (bilgisi olmayan çeşitte yalnızca gönderim notu görünür)
+  // Satıştaki fidan: "Tüplü aşılı · 2 yaş · 90–120 cm" (bilgisi olmayan çeşitte yalnızca dikim rehberi bağlantısı görünür)
   const boylar = FIDAN_BOYLARI[f.slug] || [];
   $('#mSapTitle').hidden = $('#mSapList').hidden = !boylar.length;
   $('#mSapList').innerHTML = boylar.map(([yas, cm]) =>

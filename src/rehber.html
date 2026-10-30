@@ -25,29 +25,53 @@
   <load src="./partials/header.html" />
 
   <main>
-    <!-- SAYFA BAŞLIĞI -->
+    <!-- SAYFA BAŞLIĞI: solda yazı ve kısa bilgiler, sağ altta fidanlıktan küçük fotoğraf kartı -->
     <section class="page-hero page-hero--rehber">
-      <div class="wrap">
-        <nav class="crumbs" aria-label="Konum" data-i18n-attr="aria-label:catalog.crumbs"><a href="./index.html" data-i18n="nav.home">Ana Sayfa</a><i class="i i-chevron-right"></i><span data-i18n="nav.guide">Dikim Rehberi</span></nav>
-        <h1 data-i18n="guide.title">Fidanınızı <em>doğru</em> dikin</h1>
-        <p data-i18n="guide.lead">Fidanınız elinize ulaştığı andan ilk hasada kadar bilmeniz gerekenler. Aklınıza takılan her konuda bizi arayabilirsiniz.</p>
+      <div class="wrap guide-hero">
+        <div class="guide-hero__text">
+          <nav class="crumbs" aria-label="Konum" data-i18n-attr="aria-label:catalog.crumbs"><a href="./index.html" data-i18n="nav.home">Ana Sayfa</a><i class="i i-chevron-right"></i><span data-i18n="nav.guide">Dikim Rehberi</span></nav>
+          <h1 data-i18n="guide.title">Fidanınızı <em>doğru</em> dikin</h1>
+          <p data-i18n="guide.lead">Fidanınız elinize ulaştığı andan ilk hasada kadar bilmeniz gerekenler. Aklınıza takılan her konuda bizi arayabilirsiniz.</p>
+          <ul class="guide-hero__stats">
+            <li><b>5</b><span data-i18n="guide.b1.t">adımda doğru dikim</span></li>
+            <li><b data-i18n="guide.b2.n">4–6 m</b><span data-i18n="guide.b2.t">dikim mesafesi</span></li>
+          </ul>
+        </div>
+        <a class="guide-hero__card" href="./tesislerimiz.html">
+          <img src="./img/kucuk/fidan/mandalina-4.webp" alt="" width="600" height="450">
+          <span class="guide-hero__card-row">
+            <span><b data-i18n="guide.card.t">Fidanlığımızdan</b><small data-i18n="topbar.location">Samandağ / Hatay</small></span>
+            <span class="guide-hero__card-btn" aria-hidden="true"><i class="i i-arrow-right"></i></span>
+          </span>
+        </a>
       </div>
     </section>
+
+    <!-- SAYFA İÇİ KISAYOLLAR -->
+    <nav class="wrap guide-nav" aria-label="Dikim Rehberi" data-i18n-attr="aria-label:nav.guide">
+      <a href="#dikim"><span class="guide-nav__ic"><i class="i i-sprout"></i></span><span data-i18n="guide.nav.plant">Dikim</span></a>
+      <a href="#sulama"><span class="guide-nav__ic"><i class="i i-droplet"></i></span><span data-i18n="guide.water.title">Sulama</span></a>
+      <a href="#gubreleme"><span class="guide-nav__ic"><i class="i i-flask"></i></span><span data-i18n="guide.feed.title">Gübreleme</span></a>
+      <a href="#saksi"><span class="guide-nav__ic"><i class="i i-leaf"></i></span><span data-i18n="guide.pot.t">Saksıda yetiştirme</span></a>
+    </nav>
 
     <!-- İLK BİLMENİZ GEREKENLER -->
     <section class="section guide-intro">
       <div class="wrap guide-cards">
-        <article class="guide-card" data-reveal>
-          <span class="guide-card__icon"><i class="i i-box"></i></span>
-          <h2 data-i18n="guide.arrive.t">Fidanınız geldiğinde</h2>
-          <p data-i18n="guide.arrive.p">Kargonuzu teslim alır almaz fidanı kutusundan çıkarın ve hafifçe sulayın; yolda yorulmuştur. Hemen dikmeyecekseniz 3–4 günde bir, suya boğmadan sulamayı ihmal etmeyin.</p>
+        <article class="guide-card guide-card--a" data-reveal>
+          <span class="guide-card__num">01</span>
+          <span class="guide-card__icon"><i class="i i-check"></i></span>
+          <h2 data-i18n="guide.arrive.t">Fidanlarınızı aldığınızda</h2>
+          <p data-i18n="guide.arrive.p">Fidanlarınızı teslim aldığınızda hafifçe sulayın. Hemen dikmeyecekseniz 3–4 günde bir, suya boğmadan sulamayı ihmal etmeyin.</p>
         </article>
-        <article class="guide-card" data-reveal style="--d:1">
+        <article class="guide-card guide-card--b" data-reveal style="--d:1">
+          <span class="guide-card__num">02</span>
           <span class="guide-card__icon"><i class="i i-calendar"></i></span>
           <h2 data-i18n="guide.when.t">Ne zaman dikilir?</h2>
           <p data-i18n="guide.when.p">Dikimi buharlaşmanın en az olduğu saatlerde, sabah erken ya da ikindi vakti yapın.</p>
         </article>
-        <article class="guide-card" data-reveal style="--d:2">
+        <article class="guide-card guide-card--c" data-reveal style="--d:2">
+          <span class="guide-card__num">03</span>
           <span class="guide-card__icon"><i class="i i-scale"></i></span>
           <h2 data-i18n="guide.dist.t">Dikim mesafesi</h2>
           <p data-i18n="guide.dist.p">Fidanlar arasında 4, 5 ya da 6 metre bırakın.</p>
@@ -55,12 +79,62 @@
       </div>
     </section>
 
-    <!-- ADIM ADIM DİKİM -->
-    <section class="section">
+    <!-- ADIM ADIM DİKİM: solda dikim kesiti çizimi (üstünde küçük fidan fotoğrafı), sağda adımlar -->
+    <section class="section" id="dikim">
       <div class="wrap guide-steps-wrap">
-        <div class="guide-steps__media" data-reveal>
-          <img src="./img/fidan-tekli/satsuma-mandarin-1.webp" alt="Tüplü aşılı mandalina fidanı" data-i18n-attr="alt:guide.img.alt" width="900" height="1200" loading="lazy">
-        </div>
+        <figure class="guide-diagram" data-reveal>
+          <svg viewBox="0 0 460 340" role="img" aria-labelledby="dgCap">
+            <defs>
+              <marker id="ok" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#5d4128"/></marker>
+              <pattern id="nokta" width="9" height="9" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.3" fill="#2c2118" opacity=".55"/></pattern>
+            </defs>
+            <rect x="0" y="0" width="460" height="172" rx="22" fill="#eef4e8"/>
+            <rect x="0" y="150" width="460" height="22" fill="#eef4e8"/>
+            <rect x="0" y="172" width="460" height="168" fill="#d9bf98"/>
+            <rect x="0" y="172" width="460" height="10" fill="#c7a679"/>
+            <!-- çukur -->
+            <rect x="130" y="172" width="140" height="112" fill="#a07d58" stroke="#5d4128" stroke-width="2" stroke-dasharray="6 5"/>
+            <rect x="131" y="256" width="138" height="27" fill="#5a4636"/>
+            <rect x="131" y="256" width="138" height="27" fill="url(#nokta)"/>
+            <!-- kök topu, gövde, destek -->
+            <rect x="173" y="214" width="54" height="44" rx="12" fill="#6b4a2e"/>
+            <line x1="226" y1="258" x2="226" y2="78" stroke="#d0ad73" stroke-width="5" stroke-linecap="round"/>
+            <line x1="200" y1="216" x2="200" y2="72" stroke="#7a5a3a" stroke-width="7" stroke-linecap="round"/>
+            <path d="M200 112 226 112 M200 140 226 140" stroke="#3f6b2f" stroke-width="2.5"/>
+            <ellipse cx="200" cy="158" rx="7" ry="5" fill="#b08a5e" stroke="#5d4128" stroke-width="1.5"/>
+            <!-- taç -->
+            <circle cx="178" cy="66" r="24" fill="#86b064"/><circle cx="222" cy="62" r="26" fill="#6f9a52"/>
+            <circle cx="200" cy="40" r="26" fill="#7ea85c"/><circle cx="196" cy="80" r="18" fill="#5f8c45"/>
+            <!-- toprak çizgisi ve aşı yüksekliği -->
+            <line x1="40" y1="172" x2="420" y2="172" stroke="#5d4128" stroke-width="1.5" stroke-dasharray="3 4" opacity=".6"/>
+            <path d="M210 158 H244 M244 158 V172" stroke="#3f6b2f" stroke-width="1.5" fill="none"/>
+            <line x1="244" y1="158" x2="300" y2="132" stroke="#3f6b2f" stroke-width="1.3"/>
+            <text class="dg-t" x="304" y="128" data-i18n="guide.d.graft">Aşı noktası</text>
+            <text class="dg-s" x="304" y="144" data-i18n="guide.d.graft2">toprağın 5–10 cm üstünde</text>
+            <!-- destek çubuğu -->
+            <line x1="228" y1="92" x2="300" y2="76" stroke="#3f6b2f" stroke-width="1.3"/>
+            <text class="dg-t" x="304" y="80" data-i18n="guide.d.stake">Destek çubuğu</text>
+            <!-- can suyu -->
+            <path d="M150 128c-7 9-10 14-10 19a10 10 0 0 0 20 0c0-5-3-10-10-19z" fill="#5aa0d8"/>
+            <line x1="140" y1="146" x2="112" y2="132" stroke="#3f6b2f" stroke-width="1.3"/>
+            <text class="dg-t" x="108" y="128" text-anchor="end" data-i18n="guide.d.water">~10 L can suyu</text>
+            <!-- leonarditli toprak -->
+            <line x1="131" y1="270" x2="112" y2="270" stroke="#3f6b2f" stroke-width="1.3"/>
+            <text class="dg-s" x="108" y="274" text-anchor="end" data-i18n="guide.d.soil">Leonarditli toprak</text>
+            <!-- ölçüler -->
+            <line x1="132" y1="300" x2="268" y2="300" stroke="#5d4128" stroke-width="1.6" marker-start="url(#ok)" marker-end="url(#ok)"/>
+            <text class="dg-t" x="200" y="322" text-anchor="middle"><tspan data-i18n="guide.d.w">40–45 cm</tspan> <tspan class="dg-s" data-i18n="guide.d.wl">genişlik</tspan></text>
+            <line x1="290" y1="175" x2="290" y2="281" stroke="#5d4128" stroke-width="1.6" marker-start="url(#ok)" marker-end="url(#ok)"/>
+            <text class="dg-t" x="300" y="226" data-i18n="guide.d.d">30–40 cm</text>
+            <text class="dg-s" x="300" y="242" data-i18n="guide.d.dl">derinlik</text>
+          </svg>
+          <figcaption id="dgCap" data-i18n="guide.d.cap">Turunçgil için örnek ölçüler</figcaption>
+          <!-- küçük eklenti fotoğraf: gerçek tüplü aşılı fidan -->
+          <span class="guide-chip">
+            <img src="./img/kucuk/fidan-tekli/satsuma-mandarin-1.webp" alt="Tüplü aşılı mandalina fidanı" data-i18n-attr="alt:guide.img.alt" width="120" height="120" loading="lazy">
+            <span data-i18n="guide.chip.sapling">Tüplü aşılı fidan</span>
+          </span>
+        </figure>
         <div data-reveal style="--d:1">
           <span class="eyebrow" data-i18n="guide.eyebrow">Dikim ve bakım</span>
           <h2 class="guide-h2" data-i18n="guide.steps.title">Adım adım <em>dikim</em></h2>
@@ -75,34 +149,99 @@
       </div>
     </section>
 
-    <!-- SULAMA VE GÜBRELEME -->
-    <section class="section guide-care">
-      <div class="wrap guide-care__grid">
-        <article class="guide-panel" data-reveal>
-          <span class="guide-card__icon"><i class="i i-droplet"></i></span>
-          <h2 data-i18n="guide.water.title">Sulama</h2>
-          <ul class="guide-list">
-            <li data-i18n="guide.w.citrus"><b>Turunçgiller:</b> Fidan tutana kadar toprağa göre 3–6 günde bir; dikimden bir yıl sonra havaya ve toprağa göre 10–15 günde bir.</li>
-            <li data-i18n="guide.w.persimmon"><b>Trabzon hurması:</b> Konumuna ve toprağına göre 10–15 günde bir.</li>
-            <li data-i18n="guide.w.apricot"><b>Kayısı:</b> Az su ister; yılda 5–10 sulama yeterlidir. Sıcak bölgelerde Mayıs sonundan Ekim başına kadar 15–20 günde bir sulayın; hasattan 10 gün önce de sulayın.</li>
-            <li data-i18n="guide.w.olive"><b>Zeytin:</b> Yaz aylarında ve eylülde yapılan 4–5 sulama verimi artırır.</li>
-          </ul>
-        </article>
-        <article class="guide-panel" data-reveal style="--d:1">
-          <span class="guide-card__icon"><i class="i i-flask"></i></span>
-          <h2 data-i18n="guide.feed.title">Gübreleme</h2>
-          <p data-i18n="guide.f.p1">Kışın azot ağırlıklı; ilkbaharda çiçeklenme döneminde fosfor, potasyum ve hümik asit ağırlıklı gübreleme yapın.</p>
-          <p data-i18n="guide.f.p2">En doğru gübreleme, toprak ve yaprak analizine göre yapılandır. Azotlu gübreyi gövdeden 50–70 cm uzağa, tacın izdüşümüne serpip toprağa karıştırın.</p>
-        </article>
-        <article class="guide-panel guide-panel--soft" data-reveal>
-          <span class="guide-card__icon"><i class="i i-leaf"></i></span>
+    <!-- SULAMA: her tür için fotoğraflı kart -->
+    <section class="section" id="sulama">
+      <div class="wrap">
+        <header class="section-head" data-reveal>
+          <span class="eyebrow"><i class="i i-droplet"></i> <span data-i18n="guide.water.title">Sulama</span></span>
+          <h2 data-i18n="guide.water.h">Ne sıklıkla <em>sulanır?</em></h2>
+          <p data-i18n="guide.water.lead">Sulama sıklığı toprağa, havaya ve fidanın yaşına göre değişir; aşağıdakiler başlangıç için yol gösterir.</p>
+        </header>
+        <div class="water-grid">
+          <article class="water-card" data-reveal>
+            <img src="./img/kucuk/meyve/limon-gercek.webp" alt="" width="600" height="400" loading="lazy">
+            <div class="water-card__body">
+              <h3 data-i18n="guide.w.citrus.n">Turunçgiller</h3>
+              <ul>
+                <li data-i18n="guide.w.citrus.c1">Fidan tutana kadar: 3–6 günde bir</li>
+                <li data-i18n="guide.w.citrus.c2">Dikimden 1 yıl sonra: 10–15 günde bir</li>
+              </ul>
+            </div>
+          </article>
+          <article class="water-card" data-reveal style="--d:1">
+            <img src="./img/kucuk/meyve/trabzon-hurmasi-gercek.webp" alt="" width="600" height="400" loading="lazy">
+            <div class="water-card__body">
+              <h3 data-i18n="guide.w.persimmon.n">Trabzon hurması</h3>
+              <ul>
+                <li data-i18n="guide.w.persimmon.c1">10–15 günde bir</li>
+                <li data-i18n="guide.w.persimmon.c2">Konumuna ve toprağına göre</li>
+              </ul>
+            </div>
+          </article>
+          <article class="water-card" data-reveal style="--d:2">
+            <img src="./img/kucuk/meyve/kayisi-gercek.webp" alt="" width="600" height="400" loading="lazy">
+            <div class="water-card__body">
+              <h3 data-i18n="guide.w.apricot.n">Kayısı</h3>
+              <ul>
+                <li data-i18n="guide.w.apricot.c1">Yılda 5–10 sulama yeterli</li>
+                <li data-i18n="guide.w.apricot.c2">Sıcak bölgede Mayıs sonu–Ekim başı: 15–20 günde bir</li>
+                <li data-i18n="guide.w.apricot.c3">Hasattan 10 gün önce bir sulama</li>
+              </ul>
+            </div>
+          </article>
+          <article class="water-card" data-reveal style="--d:3">
+            <img src="./img/kucuk/meyve/zeytin-gercek.webp" alt="" width="600" height="400" loading="lazy">
+            <div class="water-card__body">
+              <h3 data-i18n="guide.w.olive.n">Zeytin</h3>
+              <ul>
+                <li data-i18n="guide.w.olive.c1">Yazın ve eylülde 4–5 sulama</li>
+                <li data-i18n="guide.w.olive.c2">Verimi artırır</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- GÜBRELEME: iki mevsim kartı + ipuçları -->
+    <section class="section" id="gubreleme">
+      <div class="wrap">
+        <header class="section-head" data-reveal>
+          <span class="eyebrow"><i class="i i-flask"></i> <span data-i18n="guide.feed.title">Gübreleme</span></span>
+          <h2 data-i18n="guide.feed.h">Mevsimine göre <em>gübreleme</em></h2>
+        </header>
+        <div class="feed-grid">
+          <article class="feed-card feed-card--kis" data-reveal>
+            <span class="feed-card__icon"><i class="i i-snow"></i></span>
+            <small data-i18n="guide.f.winter.t">Kışın</small>
+            <b data-i18n="guide.f.winter.p">Azot ağırlıklı gübreleme</b>
+          </article>
+          <article class="feed-card feed-card--bahar" data-reveal style="--d:1">
+            <span class="feed-card__icon"><i class="i i-sun"></i></span>
+            <small data-i18n="guide.f.spring.t">İlkbaharda, çiçeklenmede</small>
+            <b data-i18n="guide.f.spring.p">Fosfor, potasyum ve hümik asit ağırlıklı gübreleme</b>
+          </article>
+        </div>
+        <ul class="feed-tips" data-reveal>
+          <li><span class="feed-tips__ic"><i class="i i-flask"></i></span><span data-i18n="guide.f.tip1">En doğru gübreleme toprak ve yaprak analizine göre yapılır.</span></li>
+          <li><span class="feed-tips__ic"><i class="i i-tree"></i></span><span data-i18n="guide.f.tip2">Azotlu gübreyi gövdeden 50–70 cm uzağa, tacın izdüşümüne serpip toprağa karıştırın.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SAKSIDA YETİŞTİRME + FİDANLIĞIMIZA GELİN: fotoğraflı iki pano -->
+    <section class="section" id="saksi">
+      <div class="wrap photo-panels">
+        <article class="photo-panel photo-panel--pot" data-reveal>
+          <span class="photo-panel__icon"><i class="i i-leaf"></i></span>
           <h2 data-i18n="guide.pot.t">Saksıda yetiştirme</h2>
           <p data-i18n="guide.pot.p">Turunçgiller, zeytin, Trabzon hurması ve yenidünya saksıda da yetiştirilebilir. Saksıdaki fidanı 4–5 günde bir, suya boğmadan sulayın.</p>
         </article>
-        <article class="guide-panel guide-panel--soft" data-reveal style="--d:1">
-          <span class="guide-card__icon"><i class="i i-shield"></i></span>
-          <h2 data-i18n="guide.ship.t">Paketleme ve gönderim</h2>
-          <p data-i18n="guide.ship.p">Fidanlarımız özel olarak üretilen fidan kutularında, özenle paketlenerek gönderilir.</p>
+        <article class="photo-panel photo-panel--visit" data-reveal style="--d:1">
+          <span class="photo-panel__icon"><i class="i i-pin"></i></span>
+          <h2 data-i18n="guide.visit.t">Fidanlığımıza gelin</h2>
+          <p data-i18n="guide.visit.p">Fidanlarımızı Samandağ'daki fidanlığımızda yerinde görebilirsiniz. Gelmeden önce arayıp haber vermeniz yeterli.</p>
+          <a class="photo-panel__link" href="./tesislerimiz.html"><span data-i18n="nav.facilities">Tesislerimiz</span> <i class="i i-arrow-right"></i></a>
         </article>
       </div>
     </section>

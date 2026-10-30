@@ -86,7 +86,7 @@
         </figure>
         <figure class="mpanel mpanel--sapling" id="mSapling">
           <img id="mSapImg" src="" alt="">
-          <figcaption class="mpanel__tag"><i class="i i-sprout"></i><span data-i18n="modal.sapling">Fidanı</span></figcaption>
+          <figcaption class="mpanel__tag"><i class="i i-sprout"></i><span id="mSapTag">Fidanı</span></figcaption>
           <span class="modal__note" id="mSapNote" hidden></span>
           <!-- Türün birden fazla fidan fotoğrafı varsa küçük resimler -->
           <div class="mpanel__empty"><span class="mpanel__empty-icon"><i class="i i-sprout"></i></span><b data-i18n="modal.noSapling">Fidan fotoğrafı yakında</b><small data-i18n="modal.noSapling.p">Fidanlarımızı görmek için bizi arayın.</small></div>
@@ -100,13 +100,13 @@
         <div class="facts" id="mFacts"></div>
         <h3 class="specs__title" id="mSpecsTitle" data-i18n="modal.specs">Tüm özellikler</h3>
         <dl class="specs" id="mSpecs"></dl>
-        <!-- Satıştaki fidanın yaşı / boyu ve gönderim bilgisi (js/catalog.js, veriler js/fidanlar.js -> FIDAN_BOYLARI) -->
+        <!-- Satıştaki fidanın yaşı / boyu ve dikim rehberi bağlantısı (js/catalog.js, veriler js/fidanlar.js -> FIDAN_BOYLARI) -->
         <div class="sapbox">
           <span class="sapbox__icon"><i class="i i-sprout"></i></span>
           <div class="sapbox__body">
             <b class="sapbox__title" id="mSapTitle" data-i18n="modal.sap.title">Satıştaki fidan</b>
             <ul class="sapbox__list" id="mSapList"></ul>
-            <p class="sapbox__ship"><span data-i18n="sap.ship">Özel fidan kutusunda özenle paketlenip kargoyla gönderilir.</span> <a href="./rehber.html"><span data-i18n="sap.guide">Dikim ve bakım rehberi</span> <i class="i i-arrow-right"></i></a></p>
+            <p class="sapbox__ship"><a href="./rehber.html"><span data-i18n="sap.guide">Dikim ve bakım rehberi</span> <i class="i i-arrow-right"></i></a></p>
           </div>
         </div>
         <div class="modal__contact">

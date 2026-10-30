@@ -128,14 +128,14 @@ export function fidanGorselleri(c) {
 const sira = f => Math.max(0, TUM_FIDANLAR.filter(x => x.category === f.category && !x.hidden).indexOf(f));
 /* Çeşide özel tekli fidan fotoğrafları (ölçü tabelası önünde): src/img/fidan-tekli/<çeşit-slug>-1.webp ...
    Varsa ürün penceresinde önce bunlar gösterilir; Tesislerimiz ve Galeri'de görünmezler. */
-const tekliFotolar = slug => TEKLI_KEYS.filter(k => new RegExp(`/${slug}-\\d+\\.\\w+$`).test(k)).map(k => ({ src: TEKLI[k], gercek: true }));
+const tekliFotolar = slug => TEKLI_KEYS.filter(k => new RegExp(`/${slug}-\\d+\\.\\w+$`).test(k)).map(k => ({ src: TEKLI[k], gercek: true, tekli: true }));
 
 export function fidanGorselleriSirali(f) {
   const tekli = tekliFotolar(f.slug);
   if (tekli.length) return [...tekli, ...fidanGorselleri(catOf(f)).slice(0, 2)];
   const liste = fidanGorselleri(catOf(f));
   const bas = liste.length ? sira(f) % liste.length : 0;
-  return [...liste.slice(bas), ...liste.slice(0, bas)];
+  return [...liste.slice(bas), ...liste.slice(0, bas)].slice(0, 6); // pencerede en fazla 6 fotoğraf
 }
 // Kartta görünen görsel: meyvesi; meyvesi yoksa fidanı; o da yoksa saksı görseli
 export function fidanImg(f) {
