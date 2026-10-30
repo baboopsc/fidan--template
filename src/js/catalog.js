@@ -51,7 +51,7 @@ function kartlar() {
     const src = kategoriImg(c);
     const onizleme = liste.slice(0, 4).map(shortName).join(ayrac) + (liste.length > 4 ? '…' : '');
     return `
-      <a class="cat-card" href="${adres({ key: c.key })}" data-key="${esc(c.key)}" style="--tint:${c.tint};--i:${i}">
+      <a class="cat-card" href="/${c.slug}-fidani/" data-key="${esc(c.key)}" style="--tint:${c.tint};--i:${i}">
         <span class="cat-card__media${src !== VARSAYILAN ? ' has-photo' : ''}">
           <img src="${kucuk(src)}" alt="" loading="lazy" width="600" height="450">
           <span class="cat-card__count">${esc(t('varieties', { n: liste.length }))}</span>

@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
+import { readdirSync, existsSync } from 'fs';
 import injectHtml from 'vite-plugin-html-inject';
 import FullReload from 'vite-plugin-full-reload';
 import { CATEGORIES, TUM_FIDANLAR } from './src/js/fidanlar.js';
@@ -16,6 +17,9 @@ const SAYFALAR = [
   ['tesislerimiz.html', '/tesislerimiz.html', '0.6', 'monthly'],
   ['galeri.html', '/galeri.html', '0.5', 'monthly'],
 ];
+// Tür sayfaları (scripts/tur-sayfalari.mjs üretir): src/mandalina-fidani/index.html ...
+const TUR_SAYFALARI = readdirSync(resolve(__dirname, 'src')).filter(d => d.endsWith('-fidani') && existsSync(resolve(__dirname, 'src', d, 'index.html')));
+SAYFALAR.push(...TUR_SAYFALARI.map(d => [`${d}/index.html`, `/${d}/`, '0.8', 'weekly']));
 const DILLER = { tr: 'tr_TR', en: 'en_US', ru: 'ru_RU', ar: 'ar_AR' };
 const xml = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
@@ -58,7 +62,6 @@ function seo() {
       const kategoriler = CATEGORIES.filter(c => fidanlar.some(f => f.category === c.key));
       const urls = [
         ...SAYFALAR.map(([, yol, o, s]) => satir(yol, o, s)),
-        ...kategoriler.map(c => satir(`/catalog.html?kategori=${c.slug}`, '0.8', 'weekly')),
         ...fidanlar.map(f => {
           const c = CATEGORIES.find(c => c.key === f.category);
           return satir(`/catalog.html?${c ? `kategori=${c.slug}&` : ''}fidan=${f.id}`, '0.6', 'monthly');
@@ -88,6 +91,7 @@ export default defineConfig({
         galeri: resolve(__dirname, 'src/galeri.html'),
         rehber: resolve(__dirname, 'src/rehber.html'),
         notfound: resolve(__dirname, 'src/404.html'),
+        ...Object.fromEntries(TUR_SAYFALARI.map(d => [d, resolve(__dirname, 'src', d, 'index.html')])),
       },
     },
   },

@@ -15,7 +15,7 @@ export function cardHTML(f, { link = false, i = 0 } = {}) {
     ? `<p class="p-card__meta"><i class="i i-${ilk[0]}"></i><span>${esc(baslik)}: ${esc(deger)}</span></p>`
     : `<p class="p-card__meta p-card__meta--ask"><i class="i i-phone"></i><span>${esc(t('card.ask'))}</span></p>`;
   const title = link
-    ? `<a class="p-card__link" href="./catalog.html?fidan=${f.id}">${esc(L.title)}</a>`
+    ? `<a class="p-card__link" href="/catalog.html?fidan=${f.id}">${esc(L.title)}</a>`
     : `<button class="p-card__link" type="button" data-open="${f.id}">${esc(L.title)}</button>`;
 
   return `

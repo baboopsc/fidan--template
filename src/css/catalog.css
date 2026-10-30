@@ -211,3 +211,34 @@
   .harvest__c { height: 26px; }
 }
 .deep-panel .harvest .harvest__note { color: var(--mute); }
+
+/* ---------- Tür sayfaları (/mandalina-fidani/ ...) ---------- */
+.tur-bolum { padding-top: 56px; }
+.tur-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.tur-kart { display: flex; flex-direction: column; overflow: hidden; border-radius: var(--r-md); background: var(--surface); border: 1px solid rgba(230,225,212,.75); box-shadow: var(--shadow-sm); transition: transform .35s var(--ease), box-shadow .35s var(--ease); }
+.tur-kart:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.tur-kart__img img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--sand); }
+.tur-kart__body { display: grid; gap: 10px; padding: 18px 20px 22px; }
+.tur-kart__name { font-size: 1.25rem; }
+.tur-kart__name a:hover { color: var(--leaf); }
+.tur-kart__desc { color: var(--mute); font-size: 14.5px; line-height: 1.6; }
+.tur-kart__specs { display: grid; gap: 4px; margin: 0; padding-top: 10px; border-top: 1px solid var(--line); }
+.tur-kart__specs div { display: grid; grid-template-columns: 96px 1fr; gap: 10px; font-size: 13.5px; }
+.tur-kart__specs dt { color: var(--mute); }
+.tur-kart__specs dd { margin: 0; font-weight: 600; color: var(--ink); }
+.tur-kart__boy { display: flex; align-items: center; gap: 8px; margin: 0; padding: 8px 12px; border-radius: 12px; background: var(--soft); font-size: 13px; font-weight: 600; color: var(--leaf); }
+.tur-kart__boy .i { width: 16px; height: 16px; flex: none; }
+.harvest--tek .harvest__tabs { display: none; }
+.tur-cta { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; padding: 32px 36px; border-radius: var(--r-lg); background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow-sm); }
+.tur-cta h2 { font-size: clamp(1.5rem, 2.6vw, 2rem); }
+.tur-cta p { margin-top: 6px; color: var(--mute); }
+.tur-cta__actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.tur-diger { margin-top: 34px; }
+.tur-diger__list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+@media (max-width: 960px) { .tur-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) {
+  .tur-bolum { padding-top: 36px; }
+  .tur-grid { grid-template-columns: 1fr; }
+  .tur-cta { padding: 24px 20px; }
+  .tur-cta__actions .btn { flex: 1 1 100%; justify-content: center; }
+}

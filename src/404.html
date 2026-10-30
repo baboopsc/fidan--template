@@ -21,6 +21,17 @@
   
   <!-- Seçili dil Türkçe değilse, çeviri yüklenene kadar sayfayı kısa süre gizler (js/i18n.js) -->
   <script>(function(d){d.classList.add('js');try{var l=new URLSearchParams(location.search).get('lang')||localStorage.getItem('lang');if(l==='en'||l==='ru'||l==='ar'){d.classList.add('i18n-wait');d.lang=l;if(l==='ar')d.dir='rtl';setTimeout(function(){d.classList.remove('i18n-wait')},1500)}}catch(e){}})(document.documentElement)</script>
+  <!-- Eski sitenin (sagfidancilik.com'un önceki hâli) bağlantılarından gelenleri yeni sayfaya gönderir.
+       Asıl yönlendirme Render'daki kurallarla yapılır; bu, kural eksik kalırsa yedek. -->
+  <script>(function(){
+    var p=decodeURIComponent(location.pathname).replace(/\/+$/,''), L=p.toLowerCase(), m, hedef=null;
+    var sayfa={'/anasayfa':'/','/fidan-cesitleri':'/catalog.html','/hakkimizda':'/#hakkimizda','/foto-galeri':'/galeri.html','/iletisim-bilgileri':'/#iletisim'};
+    if (sayfa[L]) hedef=sayfa[L];
+    else if ((m=L.match(/^\/fidan-cesitleri\/([a-z-]+?)-(fidanlari|cesitleri)\/\d+$/))) hedef=m[1]==='anac'?'/catalog.html':'/'+m[1]+'-fidani/';
+    else if ((m=L.match(/^\/[a-z0-9-]+-fidan(i|lari)\/(\d+)$/))) hedef='/catalog.html?fidan='+m[2];
+    else if (L.indexOf('/userdata/images/_photogallery/')===0) hedef='/galeri.html';
+    if (hedef) location.replace(hedef);
+  })();</script>
 </head>
 <body id="top">
 

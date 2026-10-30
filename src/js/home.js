@@ -65,7 +65,7 @@ function kategoriler() {
   catGrid.innerHTML = visibleCategories().map((c, i) => {
     const n = inCategory(c.key).length;
     return `
-      <a class="cat-card" href="./catalog.html?kategori=${c.slug}" style="--tint:${c.tint};--i:${i}">
+      <a class="cat-card" href="/${c.slug}-fidani/" style="--tint:${c.tint};--i:${i}">
         <span class="cat-card__media has-photo">
           <img src="${kucuk(kategoriImg(c))}" alt="" loading="lazy" width="600" height="450">
           <span class="cat-card__count">${esc(t('varieties', { n }))}</span>

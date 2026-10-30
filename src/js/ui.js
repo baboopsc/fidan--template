@@ -105,7 +105,7 @@ function footerCats() {
   const liste = visibleCategories().map(c => ({ c, n: inCategory(c.key).length }))
     .sort((a, b) => b.n - a.n).slice(0, 6);
   ul.innerHTML = liste.map(({ c }) => `
-    <li><a class="footer-cat" href="./catalog.html?kategori=${c.slug}">
+    <li><a class="footer-cat" href="/${c.slug}-fidani/">
       <img src="${kucuk(kategoriImg(c))}" alt="" width="40" height="40" loading="lazy">
       <span>${esc(cat(c.key))}</span></a></li>`).join('');
 }
