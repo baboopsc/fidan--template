@@ -3,6 +3,8 @@
    Sitenin rengini değiştirmek için yalnızca burayı düzenle.
    ========================================================== */
 :root {
+  --deep: linear-gradient(145deg, #3d6b30 0%, #24391f 100%); /* koyu yeşil vurgu (ikon kutuları, bantlar) */
+  --deep-ic: #dcefcd;
   /* Renkler */
   --bg: #fbf8f1;        /* sayfa zemini (krem) */
   --surface: #ffffff;   /* kartlar */

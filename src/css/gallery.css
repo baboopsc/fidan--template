@@ -17,7 +17,7 @@
 .nursery-info p { color: var(--mute); }
 .nursery-steps { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
 .nursery-steps li { display: grid; gap: 6px; padding: 22px; border-radius: var(--r-md); background: var(--surface); border: 1px solid rgba(230,225,212,.75); box-shadow: var(--shadow-sm); }
-.nursery-steps__icon { width: 46px; height: 46px; border-radius: 14px; background: var(--soft); color: var(--leaf); display: grid; place-items: center; margin-bottom: 8px; }
+.nursery-steps__icon { width: 46px; height: 46px; border-radius: 14px; background: var(--deep); color: var(--deep-ic); box-shadow: 0 10px 22px -12px rgba(31,46,27,.75); display: grid; place-items: center; margin-bottom: 8px; }
 .nursery-steps__icon .i { width: 22px; height: 22px; }
 .nursery-steps b { font-size: 15px; }
 .nursery-steps small { font-size: 13.5px; color: var(--mute); }
@@ -58,7 +58,7 @@ body.modal-open { overflow: hidden; }
 .facility__facts { list-style: none; display: grid; }
 .facility__facts li { display: flex; gap: 16px; align-items: flex-start; padding: 15px 0; border-top: 1px solid var(--line); }
 .facility__facts li:first-child { border-top: 0; padding-top: 4px; }
-.facility__icon { width: 44px; height: 44px; border-radius: 14px; background: var(--soft); color: var(--leaf); display: grid; place-items: center; flex: none; }
+.facility__icon { width: 44px; height: 44px; border-radius: 14px; background: var(--deep); color: var(--deep-ic); box-shadow: 0 10px 22px -12px rgba(31,46,27,.75); display: grid; place-items: center; flex: none; }
 .facility__icon .i { width: 22px; height: 22px; }
 .facility__facts small { display: block; font-size: 12.5px; font-weight: 600; color: var(--mute); }
 .facility__facts b { display: block; font-size: 15px; font-weight: 600; line-height: 1.45; }

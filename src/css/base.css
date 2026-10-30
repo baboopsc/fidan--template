@@ -90,3 +90,26 @@ h1 em, h2 em { font-style: italic; font-weight: 500; color: var(--leaf); }
 [dir="rtl"] .has-deco::before { transform: scaleX(-1); }
 [dir="rtl"] .has-deco--sol::before { transform: none; }
 @media (max-width: 760px) { .has-deco::before { width: 130px; height: 130px; top: 40px; opacity: .7; } }
+
+/* ---------- Koyu yeşil vurgular ----------
+   .deep-panel: bölümü koyu yeşil, köşeleri yuvarlak bir banda alır (Neden biz bandı gibi)
+   Kartların üstündeki ince yeşil şerit: .stat, .guide-card, .water-card, .contact-card ... */
+.deep-panel { position: relative; isolation: isolate; overflow: hidden; padding: 70px 56px; border-radius: var(--r-lg); color: #fff;
+  background: radial-gradient(120% 90% at 0% 0%, rgba(122,170,90,.28), transparent 55%), radial-gradient(90% 80% at 100% 100%, rgba(10,20,8,.55), transparent 60%), linear-gradient(150deg, #2f4a28 0%, #1d2c19 100%); box-shadow: 0 40px 80px -50px rgba(20,32,17,.8); }
+.deep-panel::before, .deep-panel::after { content: ""; position: absolute; z-index: -1; width: 260px; height: 260px; background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22 fill=%22%23cfe3c2%22 fill-opacity=%22.06%22 stroke=%22%23cfe3c2%22 stroke-width=%221.6%22 stroke-opacity=%22.35%22 stroke-linecap=%22round%22%3E%3Cpath d=%22M18 192C70 152 112 110 182 18%22 fill=%22none%22/%3E%3Cellipse cx=%2237%22 cy=%22152%22 rx=%2217%22 ry=%227%22 transform=%22rotate(-62 37 152)%22/%3E%3Cellipse cx=%2265%22 cy=%22173%22 rx=%2217%22 ry=%227%22 transform=%22rotate(28 65 173)%22/%3E%3Cellipse cx=%2269%22 cy=%22123%22 rx=%2217%22 ry=%227%22 transform=%22rotate(-62 69 123)%22/%3E%3Cellipse cx=%2297%22 cy=%22144%22 rx=%2217%22 ry=%227%22 transform=%22rotate(28 97 144)%22/%3E%3Cellipse cx=%2299%22 cy=%2290%22 rx=%2217%22 ry=%227%22 transform=%22rotate(-62 99 90)%22/%3E%3Cellipse cx=%22127%22 cy=%22111%22 rx=%2217%22 ry=%227%22 transform=%22rotate(28 127 111)%22/%3E%3Cellipse cx=%22128%22 cy=%2253%22 rx=%2217%22 ry=%227%22 transform=%22rotate(-62 128 53)%22/%3E%3Cellipse cx=%22156%22 cy=%2274%22 rx=%2217%22 ry=%227%22 transform=%22rotate(28 156 74)%22/%3E%3Cellipse cx=%22153%22 cy=%2222%22 rx=%2217%22 ry=%227%22 transform=%22rotate(-62 153 22)%22/%3E%3Cellipse cx=%22181%22 cy=%2243%22 rx=%2217%22 ry=%227%22 transform=%22rotate(28 181 43)%22/%3E%3C/svg%3E") center / contain no-repeat; pointer-events: none; }
+.deep-panel::before { top: -30px; inset-inline-end: -30px; }
+.deep-panel::after { bottom: -40px; inset-inline-start: -40px; transform: scaleX(-1) rotate(180deg); }
+.deep-panel h2 { color: #fff; }
+.deep-panel h2 em { color: #b9dd9c; }
+.deep-panel .eyebrow { color: #cfe3c2; }
+.deep-panel > p, .deep-panel .section-head p, .deep-panel > div > p { color: rgba(255,255,255,.75); }
+@media (max-width: 700px) { .deep-panel { padding: 46px 18px; border-radius: 24px; } .deep-panel::before, .deep-panel::after { width: 160px; height: 160px; } }
+
+.stat, .guide-card, .water-card, .contact-card, .feed-tips li, .nursery-steps li, .facility__card, .glass-card { position: relative; overflow: hidden; }
+.stat::after, .guide-card::after, .water-card::after, .contact-card::after, .feed-tips li::after, .nursery-steps li::after, .facility__card::after, .glass-card::after {
+  content: ""; position: absolute; inset: 0 0 auto; height: 3px; background: linear-gradient(90deg, #6f9a52, #24391f); transform: scaleX(.18); transform-origin: var(--acc-o, left); transition: transform .5s var(--ease); pointer-events: none; }
+[dir="rtl"] { --acc-o: right; }
+.stat:hover::after, .guide-card:hover::after, .water-card:hover::after, .contact-card:hover::after, .feed-tips li:hover::after, .nursery-steps li:hover::after, .facility__card:hover::after, .glass-card:hover::after { transform: scaleX(1); }
+.wrap.deep-panel { width: min(1160px, calc(100% - 32px)); }
+.deep-panel .water-card, .deep-panel .nursery-steps li { background: #fff; color: var(--ink); border-color: transparent; box-shadow: 0 24px 40px -28px rgba(0,0,0,.7); }
+.deep-panel .nursery-steps b, .deep-panel .water-card h3 { color: var(--ink); }

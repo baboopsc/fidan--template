@@ -21,7 +21,7 @@
 .guide-nav { position: relative; z-index: 2; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: -26px; }
 .guide-nav a { display: inline-flex; align-items: center; gap: 8px; height: 50px; padding: 0 20px 0 14px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow-sm); font-weight: 700; font-size: 14.5px; color: var(--ink); transition: transform .25s var(--ease), box-shadow .25s; }
 .guide-nav a:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
-.guide-nav__ic { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--soft); color: var(--leaf); }
+.guide-nav__ic { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--deep); color: var(--deep-ic); box-shadow: 0 10px 22px -12px rgba(31,46,27,.75); }
 .guide-nav__ic .i { width: 17px; height: 17px; }
 section[id] { scroll-margin-top: 100px; }
 
@@ -35,7 +35,7 @@ section[id] { scroll-margin-top: 100px; }
 .guide-card__num { position: absolute; top: 14px; inset-inline-end: 20px; font: 600 3.4rem/1 var(--serif); color: rgba(31,46,27,.07); }
 .guide-card h2 { font-size: 1.35rem; }
 .guide-card p { color: var(--mute); font-size: 15px; line-height: 1.65; }
-.guide-card__icon { width: 50px; height: 50px; border-radius: 15px; background: var(--leaf); color: #fff; display: grid; place-items: center; margin-bottom: 4px; box-shadow: 0 10px 20px -10px rgba(79,125,60,.8); }
+.guide-card__icon { width: 50px; height: 50px; border-radius: 15px; background: var(--deep); color: var(--deep-ic); display: grid; place-items: center; margin-bottom: 4px; box-shadow: 0 10px 20px -10px rgba(79,125,60,.8); }
 .guide-card__icon .i { width: 24px; height: 24px; }
 
 /* ---------- Adım adım dikim ---------- */
@@ -50,7 +50,7 @@ section[id] { scroll-margin-top: 100px; }
 .guide-h2 { font-size: clamp(1.9rem, 3.2vw, 2.6rem); margin: 12px 0 22px; }
 .guide-steps { list-style: none; counter-reset: adim; display: grid; }
 .guide-steps li { counter-increment: adim; position: relative; display: grid; gap: 4px; padding: 0 0 22px 64px; }
-.guide-steps li::before { content: counter(adim); position: absolute; inset-inline-start: 0; top: 0; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--leaf); color: #fff; font: 700 17px var(--sans); box-shadow: 0 0 0 6px var(--soft); }
+.guide-steps li::before { content: counter(adim); position: absolute; inset-inline-start: 0; top: 0; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--deep); color: var(--deep-ic); font: 700 17px var(--sans); box-shadow: 0 0 0 6px var(--soft); }
 .guide-steps li::after { content: ""; position: absolute; inset-inline-start: 21px; top: 52px; bottom: 6px; width: 2px; background: repeating-linear-gradient(var(--line) 0 6px, transparent 6px 11px); }
 .guide-steps li:last-child { padding-bottom: 0; }
 .guide-steps li:last-child::after { display: none; }
@@ -86,7 +86,7 @@ section[id] { scroll-margin-top: 100px; }
 [dir="rtl"] .feed-card { padding: 30px 104px 30px 30px; }
 .feed-tips { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 18px; }
 .feed-tips li { display: flex; align-items: flex-start; gap: 14px; padding: 20px 22px; border-radius: var(--r-md); background: var(--surface); border: 1px solid rgba(230,225,212,.75); font-size: 15px; line-height: 1.6; color: var(--ink-2); }
-.feed-tips__ic { flex: none; display: grid; place-items: center; width: 38px; height: 38px; border-radius: 12px; background: var(--soft); color: var(--leaf); }
+.feed-tips__ic { flex: none; display: grid; place-items: center; width: 38px; height: 38px; border-radius: 12px; background: var(--deep); color: var(--deep-ic); box-shadow: 0 10px 22px -12px rgba(31,46,27,.75); }
 .feed-tips__ic .i { width: 20px; height: 20px; }
 
 /* ---------- Fotoğraflı panolar ---------- */
