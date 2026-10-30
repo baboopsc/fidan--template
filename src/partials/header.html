@@ -32,10 +32,16 @@
         <li><a href="./index.html#hakkimizda" data-i18n="nav.about">Hakkımızda</a></li>
         <li><a href="./tesislerimiz.html" data-page="tesislerimiz" data-i18n="nav.facilities">Tesislerimiz</a></li>
         <li><a href="./galeri.html" data-page="galeri" data-i18n="nav.gallery">Galeri</a></li>
+        <li><a href="./rehber.html" data-page="rehber" data-i18n="nav.guide">Dikim Rehberi</a></li>
         <li><a href="./index.html#iletisim" data-i18n="nav.contact">İletişim</a></li>
         <li class="nav-links__quote"><button class="btn btn-primary btn-block" type="button" data-quote><i class="i i-quote"></i> <span data-i18n="quote.btn">Teklif İste</span></button></li>
       </ul>
       <div class="nav-actions">
+        <!-- Fidan arama: büyüteçe basınca kutu açılır, aranan kelimeyle Fidanlar sayfasına gider (js/ui.js) -->
+        <form class="nav-search" action="./catalog.html" role="search">
+          <input class="nav-search__input" type="search" name="ara" placeholder="Fidan ara (ör. mandalina)" aria-label="Fidan ara" data-i18n-attr="placeholder:search.navph;aria-label:search.open" autocomplete="off" enterkeyhint="search">
+          <button class="icon-btn nav-search__btn" type="button" aria-label="Fidan ara" data-i18n-attr="aria-label:search.open" aria-expanded="false"><i class="i i-search"></i></button>
+        </form>
         <div class="lang-switch lang-switch--nav" role="group" aria-label="Dil seçimi" data-i18n-attr="aria-label:lang.aria">
           <button class="lang-switch__btn" type="button" data-lang="tr" aria-pressed="true" aria-label="Türkçe" title="Türkçe"><img src="./img/flags/tr.svg" alt="" width="21" height="14"><span class="lang-switch__code">TR</span></button>
           <button class="lang-switch__btn" type="button" data-lang="en" aria-pressed="false" aria-label="English" title="English"><img src="./img/flags/gb.svg" alt="" width="21" height="14"><span class="lang-switch__code">EN</span></button>

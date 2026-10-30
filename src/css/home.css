@@ -134,6 +134,7 @@
 .faq__ic .i { width: 18px; height: 18px; }
 .faq__item[open] .faq__ic { transform: rotate(45deg); background: var(--ink); color: #fff; }
 .faq__item p { padding: 0 22px 22px; color: var(--mute); font-size: 15px; animation: fade .35s ease; }
+.faq__item p a { color: var(--leaf); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
 
 /* ---------- İletişim ---------- */
 .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; max-width: 1000px; margin-inline: auto; }

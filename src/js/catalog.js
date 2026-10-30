@@ -8,6 +8,7 @@
    ========================================================== */
 import './ui.js';
 import { FIDANLAR, visibleCategories, inCategory, byId, imgFor, kategoriImg, highlights, hasDetail, meyveGorseli, fidanGorselleriSirali, kucuk, fidanImg, SITE } from './data.js';
+import { FIDAN_BOYLARI, TUPLU } from './fidanlar.js';
 import { lang, localize, fullName, shortName, cat, t } from './i18n.js';
 import { cardHTML } from './product-card.js';
 import { sade, esc } from './utils.js';
@@ -84,6 +85,7 @@ function ciz() {
   crumbCatWrap.hidden = !aktif;
   if (aktif) crumbCat.textContent = cat(aktif);
 
+  metaGuncelle();
   if (!listede) { catGrid.innerHTML = kartlar(); return; }
 
   const liste = araniyor ? FIDANLAR.filter(f => eslesir(f, q)) : inCategory(aktif);
@@ -94,6 +96,25 @@ function ciz() {
   chips.querySelectorAll('.chip').forEach(b => b.classList.toggle('is-active', b.dataset.key === aktif));
   // Telefonda çip satırı yana kayar: seçili kategoriyi görünür yap
   if (!chips.hidden) chips.querySelector('.is-active')?.scrollIntoView({ block: 'nearest', inline: 'center' });
+}
+
+/* ---------- Sayfa başlığı ve açıklaması (Google'da görünen) ----------
+   Tür seçiliyse "Mandalina Fidanı Çeşitleri | Sağ Fidancılık", çeşit açıksa "Satsuma Mandarin Fidanı | Sağ Fidancılık" */
+const metaAciklama = document.querySelector('meta[name="description"]');
+function metaGuncelle() {
+  let baslik = t('meta.catalog.title'), aciklama = t('meta.catalog.desc');
+  if (acik) {
+    baslik = `${fullName(acik)} | Sağ Fidancılık`;
+    const L = localize(acik);
+    aciklama = (hasDetail(acik) ? L.desc : t('noDetail'));
+  } else if (aktif && !aranan) {
+    const ayrac = lang === 'ar' ? '، ' : ', ';
+    baslik = t('meta.cat.title', { cat: cat(aktif) });
+    aciklama = t('meta.cat.desc', { cat: cat(aktif), list: inCategory(aktif).map(shortName).join(ayrac) });
+  }
+  if (aciklama.length > 300) aciklama = aciklama.slice(0, 297).replace(/\s+\S*$/, '') + '…';
+  document.title = baslik;
+  metaAciklama?.setAttribute('content', aciklama);
 }
 
 function yukariKaydir() {
@@ -216,6 +237,9 @@ function doldur(f) {
   $('#mThumbs').innerHTML = kareler.length < 2 ? '' : kareler.map((k, i) =>
     `<button type="button" role="tab" data-kare="${i}" aria-label="${esc(t('gallery.open', { n: i + 1 }))}"><img src="${kucuk(k.src)}" alt="" loading="lazy"></button>`).join('');
   kareGoster(0);
+  // Fotoğrafı olmayan panel hiç gösterilmez; kalan fotoğraf tüm alanı kaplar (ikisi de yoksa yalnızca meyve yer tutucusu)
+  $('#mSapling').hidden = !kareler.length;
+  $('#mFruit').hidden = !meyve && kareler.length > 0;
   $('#mSapImg').alt = fullName(f);
   $('#mImg').alt = L.title;
   $('#mCat').textContent = L.category;
@@ -228,6 +252,11 @@ function doldur(f) {
   }).join('');
   $('#mSpecs').innerHTML = L.specs
     .map(([baslik, deger]) => `<div class="specs__row"><dt>${esc(baslik)}</dt><dd>${esc(deger)}</dd></div>`).join('');
+  // Satıştaki fidan: "Tüplü aşılı · 2 yaş · 90–120 cm" (bilgisi olmayan çeşitte yalnızca gönderim notu görünür)
+  const boylar = FIDAN_BOYLARI[f.slug] || [];
+  $('#mSapTitle').hidden = $('#mSapList').hidden = !boylar.length;
+  $('#mSapList').innerHTML = boylar.map(([yas, cm]) =>
+    `<li>${esc(t(TUPLU.has(f.slug) ? 'sap.potted' : 'sap.grafted'))} · ${esc(yas === 1 ? t('sap.age1') : t('sap.age', { n: yas }))} · <b>${esc(cm)} cm</b></li>`).join('');
   // WhatsApp: mesaj bu çeşidin adıyla hazır gelir ("Merhaba, Washington Navel Portakal Fidanı hakkında bilgi almak istiyorum.")
   $('#mWa').hidden = !SITE.whatsapp;
   $('#mWa').href = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(t('modal.wa.msg', { name: fullName(f) }))}`;
@@ -246,6 +275,7 @@ function ac(id) {
   if (!f) return;
   acik = f;
   doldur(f);
+  metaGuncelle();
   if (!modal.open) modal.showModal();
   modal.scrollTop = 0;
   modal.querySelector('.modal__body').scrollTop = 0;
@@ -261,7 +291,7 @@ modal.addEventListener('click', e => {
   if (r) return ac(r.dataset.open);
   if (e.target === modal || e.target.closest('[data-close]')) modal.close();
 });
-modal.addEventListener('close', () => { acik = null; history.replaceState(null, '', adres()); });
+modal.addEventListener('close', () => { acik = null; history.replaceState(null, '', adres()); metaGuncelle(); });
 
 /* ---------- Geri / ileri tuşu ve dil değişimi ---------- */
 window.addEventListener('popstate', () => {
@@ -280,6 +310,24 @@ document.addEventListener('langchange', () => {
 
 /* ---------- Başlat ---------- */
 const ilk = adresiOku();
+// Üst menüdeki aramadan gelindiyse (catalog.html?ara=mandalina) arama kutusunu doldur
+function aramaYap(s) {
+  input.value = s;
+  aranan = s.trim();
+  search.classList.toggle('has-value', aranan.length > 0);
+}
+const gelenArama = new URLSearchParams(location.search).get('ara');
+if (gelenArama) aramaYap(gelenArama);
+// Bu sayfadayken üst menüden arama yapılırsa sayfayı yenilemeden sonuçları göster
+document.querySelector('.nav-search')?.addEventListener('submit', e => {
+  const s = e.currentTarget.querySelector('input').value.trim();
+  if (!s) return;
+  e.preventDefault();
+  aramaYap(s);
+  ciz();
+  e.currentTarget.classList.remove('is-open');
+  yukariKaydir();
+});
 aktif = ilk.key;
 if (ilk.fidan && !aktif) aktif = byId(ilk.fidan)?.category ?? null; // ana sayfadaki karttan gelindiyse o kategoriyi aç
 cipler();

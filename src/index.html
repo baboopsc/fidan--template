@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title data-i18n="meta.index.title">Sağ Fidancılık | Hatay Fidan Üreticisi</title>
-  <meta name="description" content="2001'den beri Samandağ / Hatay'da sertifikalı turunçgil, zeytin, nar ve meyve fidanı üretimi." data-i18n-attr="content:meta.index.desc" />
+  <title data-i18n="meta.index.title">Sağ Fidancılık | Hatay Samandağ Fidan Üreticisi</title>
+  <meta name="description" content="2001'den beri Samandağ / Hatay'da sertifikalı mandalina, portakal, limon, zeytin, nar ve meyve fidanı üretimi. 110'u aşkın çeşit, tüplü aşılı fidan, kargoyla gönderim." data-i18n-attr="content:meta.index.desc" />
   <meta name="theme-color" content="#fbf8f1" />
   <!-- Hero arka planı sayfanın en büyük görseli: CSS'i beklemeden hemen indirilsin (telefonda küçüğü) -->
   <link rel="preload" as="image" href="./img/sera-fidanlar-m.webp" media="(max-width: 860px)" fetchpriority="high">
@@ -22,6 +22,31 @@
   <link rel="stylesheet" href="./css/home.css" />
   <!-- Seçili dil Türkçe değilse, çeviri yüklenene kadar sayfayı kısa süre gizler (js/i18n.js) -->
   <script>(function(d){d.classList.add('js');try{var l=new URLSearchParams(location.search).get('lang')||localStorage.getItem('lang');if(l==='en'||l==='ru'||l==='ar'){d.classList.add('i18n-wait');d.lang=l;if(l==='ar')d.dir='rtl';setTimeout(function(){d.classList.remove('i18n-wait')},1500)}}catch(e){}})(document.documentElement)</script>
+  <!-- Google için işletme bilgisi (adres __SITE__ derlemede vite.config.js'teki SITE_URL ile değişir) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "GardenStore",
+    "@id": "__SITE__/#isletme",
+    "name": "Sağ Fidancılık",
+    "alternateName": "Sag Fidancilik",
+    "description": "2001'den beri Samandağ / Hatay'da sertifikalı turunçgil, zeytin, nar ve meyve fidanı üretimi. Mandalina, portakal, limon, greyfurt, zeytin, nar, incir, kayısı, erik, şeftali, nektarin ve daha fazlası.",
+    "url": "__SITE__/",
+    "image": "__SITE__/og.jpg",
+    "telephone": "+905336125225",
+    "foundingDate": "2001",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Samandağ yolu üzeri, Fidanlı Mahallesi",
+      "addressLocality": "Samandağ",
+      "addressRegion": "Hatay",
+      "addressCountry": "TR"
+    },
+    "areaServed": { "@type": "Country", "name": "Türkiye" },
+    "sameAs": ["https://www.instagram.com/ali_alisag/", "https://www.facebook.com/sag.fidanc.l.k/"],
+    "knowsAbout": ["Fidancılık", "Mandalina fidanı", "Portakal fidanı", "Limon fidanı", "Greyfurt fidanı", "Zeytin fidanı", "Nar fidanı", "İncir fidanı", "Kayısı fidanı", "Erik fidanı", "Şeftali fidanı", "Nektarin fidanı", "Trabzon hurması fidanı", "Yenidünya fidanı", "Turunçgil fidanı", "Aşılı fidan"]
+  }
+  </script>
 </head>
 <body id="top">
 
@@ -65,11 +90,11 @@
     <section class="wrap stats" aria-label="Rakamlarla Sağ Fidancılık" data-i18n-attr="aria-label:stats.aria">
       <div class="stat" data-reveal><span class="stat__icon"><i class="i i-calendar"></i></span><div><strong data-count="25" data-suffix="+">25+</strong><span data-i18n="stats.years">Yıllık tecrübe</span></div></div>
       <div class="stat" data-reveal style="--d:1"><span class="stat__icon"><i class="i i-sprout"></i></span><div><strong data-count="100" data-suffix="+">100+</strong><span data-i18n="stats.varieties">Fidan çeşidi</span></div></div>
-      <div class="stat" data-reveal style="--d:2"><span class="stat__icon"><i class="i i-tree"></i></span><div><strong data-count="17">17</strong><span data-i18n="stats.types">Meyve türü</span></div></div>
+      <div class="stat" data-reveal style="--d:2"><span class="stat__icon"><i class="i i-tree"></i></span><div><strong data-count="18">18</strong><span data-i18n="stats.types">Meyve türü</span></div></div>
       <div class="stat" data-reveal style="--d:3"><span class="stat__icon"><i class="i i-award"></i></span><div><strong data-count="100" data-prefix="%">%100</strong><span data-i18n="stats.cert">Sertifikalı üretim</span></div></div>
     </section>
 
-    <!-- 3. FİDAN ÇEŞİTLERİ: 17 kategori kartı (js/home.js ile çizilir) -->
+    <!-- 3. FİDAN ÇEŞİTLERİ: kategori kartları (js/home.js ile çizilir) -->
     <section class="section" id="cesitler">
       <div class="wrap">
         <header class="section-head section-head--row" data-reveal>
@@ -95,7 +120,7 @@
         <div class="about__text" data-reveal style="--d:1">
           <span class="eyebrow" data-i18n="about.eyebrow">Hakkımızda</span>
           <h2 data-i18n="about.title">Samandağ'dan bahçelere <em>25 yılı aşkın</em> emek</h2>
-          <p data-i18n="about.p1">Sağ Fidancılık, 2001 yılında Hatay'ın Samandağ ilçesinde, Fidanlı Mahallesi'nde kuruldu. Bölgenin bereketli toprağında başlayan bu yolculukta bugün turunçgilden cevize 17 meyve türünde, 100'ü aşkın çeşitte sertifikalı fidan yetiştiriyoruz.</p>
+          <p data-i18n="about.p1">Sağ Fidancılık, 2001 yılında Hatay'ın Samandağ ilçesinde, Fidanlı Mahallesi'nde kuruldu. Bölgenin bereketli toprağında başlayan bu yolculukta bugün turunçgilden cevize 18 meyve türünde, 100'ü aşkın çeşitte sertifikalı fidan yetiştiriyoruz.</p>
           <p data-i18n="about.p2">Bir bahçenin ömrü, dikilen fidanla başlar. Bu yüzden aşı gözlerini yalnızca sağlıklı ve verimli ağaçlardan alıyor, turunç tohumlarını hastalık riskine karşı çeşitli işlemlerden geçiriyoruz. Amacımız; çiftçiye de bu işe yeni başlayana da çeşidi belli, sağlıklı fidan ulaştırarak kontrolsüz dikimden doğabilecek kayıpların önüne geçmek.</p>
           <p data-i18n="about.p3">Fidanı teslim etmekle işimiz bitmiyor: hangi çeşidin toprağınıza ve iklime uygun olduğunu birlikte seçiyor, yeni bahçe kuranlara toplu sipariş teklifi hazırlıyoruz.</p>
           <ul class="checklist">
@@ -194,6 +219,18 @@
           <details class="faq__item">
             <summary><span data-i18n="faq.q5">Fidanlığınız nerede?</span><span class="faq__ic"><i class="i i-plus"></i></span></summary>
             <p data-i18n="faq.a5">Samandağ yolu üzerinde, Fidanlı Mahallesi, Samandağ / Hatay'dayız. Gelmeden önce arayıp haber verirseniz sizi bekleriz.</p>
+          </details>
+          <details class="faq__item">
+            <summary><span data-i18n="faq.q6">Fidanları kargoyla gönderiyor musunuz?</span><span class="faq__ic"><i class="i i-plus"></i></span></summary>
+            <p data-i18n="faq.a6">Evet. Fidanlarımız özel olarak üretilen fidan kutularında, özenle paketlenerek kargoyla gönderilir. Teslim aldığınızda yapmanız gerekenleri <a href="./rehber.html">Dikim Rehberi</a>'nde anlattık.</p>
+          </details>
+          <details class="faq__item">
+            <summary><span data-i18n="faq.q7">Fidanlarınız kaç yaşında ve ne boyda?</span><span class="faq__ic"><i class="i i-plus"></i></span></summary>
+            <p data-i18n="faq.a7">Tüplü aşılı turunçgil ve meyve fidanlarımız çoğunlukla 2 yaşında ve 90–120 cm boyundadır. Zeytinde 1 ve 2 yaşlı, yenidünyada 2 ve 3 yaşlı fidanlarımız var. Her çeşidin fidan bilgisini ürün penceresinde görebilirsiniz.</p>
+          </details>
+          <details class="faq__item">
+            <summary><span data-i18n="faq.q8">Farklı çeşitleri bir arada alabilir miyim?</span><span class="faq__ic"><i class="i i-plus"></i></span></summary>
+            <p data-i18n="faq.a8">Evet. Örneğin limonu portakal, mandalina, greyfurt ya da kamkatla birlikte içeren ikili paketler hazırlıyoruz. İstediğiniz çeşitleri ve adetleri “Teklif İste” formuna yazmanız yeterli.</p>
           </details>
         </div>
       </div>

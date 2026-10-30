@@ -29,6 +29,13 @@ a.topbar__item:hover { color: var(--ink); text-decoration: underline; }
 .nav-links a:hover { background: rgba(31,46,27,.06); }
 .nav-links a[aria-current="page"] { background: var(--ink); color: #fff; }
 .nav-actions { display: flex; align-items: center; gap: 8px; }
+/* Üst menüdeki fidan arama */
+.nav-search { position: relative; display: flex; }
+.nav-search__btn .i { width: 20px; height: 20px; }
+.nav-search__input { position: absolute; top: calc(100% + 16px); inset-inline-end: 0; width: min(340px, calc(100vw - 32px)); height: 50px; padding: 0 18px; border-radius: 999px; border: 1px solid var(--line); background: #fff; font: 500 15px var(--sans); color: var(--ink); box-shadow: var(--shadow-md); opacity: 0; visibility: hidden; transform: translateY(-6px); transition: opacity .2s, transform .25s var(--ease), visibility .2s; }
+.nav-search__input:focus { outline: 2px solid var(--leaf); outline-offset: 2px; }
+.nav-search.is-open .nav-search__input { opacity: 1; visibility: visible; transform: none; }
+.nav-search.is-open .nav-search__btn { background: var(--ink); color: #fff; border-color: var(--ink); }
 
 /* Dil seçimi (TR / EN / RU) */
 .lang-switch { display: flex; align-items: center; gap: 2px; padding: 4px; border-radius: 999px; background: rgba(31,46,27,.06); }
@@ -48,10 +55,11 @@ a.topbar__item:hover { color: var(--ink); text-decoration: underline; }
 .page-hero--fidan { --ph-img: url("../img/zeytin-dali.webp"); }
 .page-hero--tesis { --ph-img: url("../img/hero-kayisi.webp"); }
 .page-hero--galeri { --ph-img: url("../img/hero-erik.webp"); }
-.page-hero--fidan::before, .page-hero--tesis::before, .page-hero--galeri::before { background:
+.page-hero--rehber { --ph-img: url("../img/hero-tarla.webp"); }
+.page-hero--fidan::before, .page-hero--tesis::before, .page-hero--galeri::before, .page-hero--rehber::before { background:
     linear-gradient(90deg, var(--sage) 0%, rgba(200,213,196,.92) 34%, rgba(200,213,196,.35) 66%, rgba(200,213,196,.05) 100%),
     var(--ph-img) center 45% / cover no-repeat; }
-[dir="rtl"] :is(.page-hero--fidan, .page-hero--tesis, .page-hero--galeri)::before { background:
+[dir="rtl"] :is(.page-hero--fidan, .page-hero--tesis, .page-hero--galeri, .page-hero--rehber)::before { background:
     linear-gradient(270deg, var(--sage) 0%, rgba(200,213,196,.92) 34%, rgba(200,213,196,.35) 66%, rgba(200,213,196,.05) 100%),
     var(--ph-img) center 45% / cover no-repeat; }
 .page-hero h1 { font-size: clamp(2.3rem, 4.6vw, 3.6rem); margin: 18px 0 14px; }
@@ -177,8 +185,11 @@ a.topbar__item:hover { color: var(--ink); text-decoration: underline; }
 .quote__actions .btn { flex: 1 1 200px; }
 
 /* ---------- Tablet ---------- */
-@media (max-width: 1100px) {
+@media (max-width: 1240px) {
   .nav-links a { padding: 9px 12px; }
+}
+@media (max-width: 1100px) {
+  .nav-links a { padding: 9px 9px; font-size: 14px; }
   .lang-switch__btn { padding: 0 8px; }
   .lang-switch__code { display: none; } /* dar ekranda yalnızca bayrak */
 }
@@ -198,11 +209,21 @@ a.topbar__item:hover { color: var(--ink); text-decoration: underline; }
   .nav-cta { display: none; }
   .nav-links { position: absolute; top: calc(100% + 10px); left: 20px; right: 20px; flex-direction: column; gap: 2px; padding: 10px; border-radius: 22px; background: rgba(251,248,241,.97); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); box-shadow: var(--shadow-md); border: 1px solid var(--line); opacity: 0; visibility: hidden; transform: translateY(-8px); transition: opacity .25s, transform .3s var(--ease), visibility .25s; }
   .site-header.is-open .nav-links { opacity: 1; visibility: visible; transform: none; }
+  .nav-search { position: static; }
+  .nav-search__input { top: calc(100% + 10px); inset-inline: 0; width: auto; }
+  /* Telefonda sıra: bayraklar · arama · menü. Menü düğmesi açık yeşil zeminli: sade ama fark edilir */
+  .lang-switch--nav { order: 1; }
+  .nav-search { order: 2; }
+  .nav-search__btn { width: 38px; height: 38px; }
+  .nav-search__btn .i { width: 18px; height: 18px; }
+  .nav-toggle { order: 3; width: 44px; height: 44px; border-radius: 14px; background: #e4eedc; border-color: rgba(79,125,60,.35); color: var(--leaf); }
+  .nav-toggle:hover, .site-header.is-open .nav-toggle { background: #d6e6cb; }
+  .nav-toggle .i { width: 23px; height: 23px; }
   .nav-links a { padding: 13px 16px; font-size: 15.5px; }
   .page-hero::before { background:
       linear-gradient(180deg, rgba(200,213,196,.96) 0%, rgba(200,213,196,.88) 60%, rgba(200,213,196,.55) 100%),
       url("../img/hero-plants.webp") 70% center / cover no-repeat; }
-  :is(.page-hero--fidan, .page-hero--tesis, .page-hero--galeri)::before, [dir="rtl"] :is(.page-hero--fidan, .page-hero--tesis, .page-hero--galeri)::before { background:
+  :is(.page-hero--fidan, .page-hero--tesis, .page-hero--galeri, .page-hero--rehber)::before, [dir="rtl"] :is(.page-hero--fidan, .page-hero--tesis, .page-hero--galeri, .page-hero--rehber)::before { background:
       linear-gradient(180deg, rgba(200,213,196,.95) 0%, rgba(200,213,196,.85) 60%, rgba(200,213,196,.5) 100%),
       var(--ph-img) center / cover no-repeat; }
   .p-grid, .p-grid--3 { grid-template-columns: repeat(3, 1fr); gap: 14px; }
@@ -247,6 +268,10 @@ a.topbar__item:hover { color: var(--ink); text-decoration: underline; }
 
 @media (max-width: 400px) {
   .nav { gap: 8px; padding-inline: 12px 6px; }
+  .nav-search__btn { width: 36px; height: 36px; }
+  .nav-toggle { width: 42px; height: 42px; border-radius: 13px; }
+  .lang-switch--nav .lang-switch__btn { height: 30px; }
+  .lang-switch--nav .lang-switch__btn img { width: 19px; height: 13px; }
   .brand__logo { height: 40px; }
   .nav-actions { gap: 6px; }
   .lang-switch__btn { padding: 0 5px; }

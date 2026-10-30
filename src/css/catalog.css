@@ -73,6 +73,19 @@
 .specs__row { display: grid; grid-template-columns: minmax(120px, 36%) 1fr; gap: 16px; padding: 10px 2px; border-bottom: 1px solid var(--line); font-size: 14px; line-height: 1.5; }
 .specs dt { color: var(--mute); }
 .specs dd { font-weight: 600; color: var(--ink); }
+/* Satıştaki fidan kutusu */
+.sapbox { display: flex; gap: 14px; align-items: flex-start; margin-top: 4px; padding: 16px 18px; border: 1px dashed color-mix(in srgb, var(--leaf) 45%, transparent); border-radius: 16px; background: color-mix(in srgb, var(--leaf) 6%, transparent); }
+.sapbox__icon { flex: none; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: var(--leaf); color: #fff; }
+.sapbox__icon .i { width: 22px; height: 22px; }
+.sapbox__body { display: grid; gap: 6px; min-width: 0; }
+.sapbox__title { font: 700 12px var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--leaf); }
+.sapbox__list { display: grid; gap: 2px; margin: 0; padding: 0; list-style: none; font-size: 14.5px; color: var(--ink); }
+.sapbox__list b { color: var(--leaf); }
+.sapbox__ship { margin: 0; font-size: 13px; line-height: 1.55; color: var(--mute); }
+.sapbox__ship a { display: inline-flex; align-items: center; gap: 4px; font-weight: 700; color: var(--leaf); text-decoration: none; white-space: nowrap; }
+.sapbox__ship a:hover { text-decoration: underline; }
+.sapbox__ship a .i { width: 14px; height: 14px; }
+[dir="rtl"] .sapbox__ship a .i { transform: scaleX(-1); }
 .modal__contact { display: grid; gap: 12px; margin-top: 8px; padding: 18px; border-radius: 16px; background: var(--bg); }
 .modal__contact p { font-size: 14px; color: var(--mute); }
 .modal__contact b { color: var(--ink); }

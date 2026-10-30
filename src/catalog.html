@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title data-i18n="meta.catalog.title">Fidan Çeşitleri | Sağ Fidancılık</title>
-  <meta name="description" content="Sertifikalı turunçgil, zeytin, nar ve meyve fidanı çeşitlerini inceleyin." data-i18n-attr="content:meta.catalog.desc" />
+  <meta name="description" content="Mandalina, portakal, limon, greyfurt, zeytin, nar, incir, kayısı, erik, şeftali ve daha fazlası: 110'u aşkın sertifikalı fidan çeşidi ve özellikleri." data-i18n-attr="content:meta.catalog.desc" />
   <meta name="theme-color" content="#fbf8f1" />
   <link rel="icon" href="./img/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,7 +30,7 @@
       <div class="wrap">
         <nav class="crumbs" aria-label="Konum" data-i18n-attr="aria-label:catalog.crumbs"><a href="./index.html" data-i18n="nav.home">Ana Sayfa</a><i class="i i-chevron-right"></i><a href="./catalog.html" id="crumbAll" data-i18n="footer.catalog">Fidan Çeşitleri</a><span class="crumbs__cat" id="crumbCatWrap" hidden><i class="i i-chevron-right"></i><span id="crumbCat"></span></span></nav>
         <h1 data-i18n="catalog.title">Fidan <em>Çeşitlerimiz</em></h1>
-        <p data-i18n="catalog.lead">Turunçgilden cevize 17 meyve türünde 100'ü aşkın çeşit. Bir kategori seçin, ardından çeşide tıklayarak ayrıntılarını görün.</p>
+        <p data-i18n="catalog.lead">Turunçgilden cevize 18 meyve türünde 100'ü aşkın çeşit. Bir kategori seçin, ardından çeşide tıklayarak ayrıntılarını görün.</p>
       </div>
     </section>
 
@@ -75,8 +75,8 @@
   <dialog class="modal" id="modal" aria-labelledby="mTitle">
     <button class="icon-btn modal__close" type="button" data-close aria-label="Kapat" data-i18n-attr="aria-label:modal.close"><i class="i i-close"></i></button>
     <div class="modal__inner">
-      <!-- Görsel alanı her zaman iki panel: üstte MEYVESİ, altta FİDANI (js/catalog.js doldurur).
-           Görseli henüz olmayan panelde "yakında" yer tutucusu görünür. -->
+      <!-- Görsel alanı: üstte MEYVESİ, altta FİDANI (js/catalog.js doldurur).
+           Fotoğrafı olmayan panel gizlenir, diğeri tüm alanı kaplar. -->
       <div class="modal__media">
         <figure class="mpanel mpanel--fruit" id="mFruit">
           <img id="mImg" src="" alt="">
@@ -100,6 +100,15 @@
         <div class="facts" id="mFacts"></div>
         <h3 class="specs__title" id="mSpecsTitle" data-i18n="modal.specs">Tüm özellikler</h3>
         <dl class="specs" id="mSpecs"></dl>
+        <!-- Satıştaki fidanın yaşı / boyu ve gönderim bilgisi (js/catalog.js, veriler js/fidanlar.js -> FIDAN_BOYLARI) -->
+        <div class="sapbox">
+          <span class="sapbox__icon"><i class="i i-sprout"></i></span>
+          <div class="sapbox__body">
+            <b class="sapbox__title" id="mSapTitle" data-i18n="modal.sap.title">Satıştaki fidan</b>
+            <ul class="sapbox__list" id="mSapList"></ul>
+            <p class="sapbox__ship"><span data-i18n="sap.ship">Özel fidan kutusunda özenle paketlenip kargoyla gönderilir.</span> <a href="./rehber.html"><span data-i18n="sap.guide">Dikim ve bakım rehberi</span> <i class="i i-arrow-right"></i></a></p>
+          </div>
+        </div>
         <div class="modal__contact">
           <p data-i18n="modal.contact"><b>Fiyat ve stok bilgisi için</b> bizi arayın.</p>
           <div class="modal__actions">

@@ -1,0 +1,55 @@
+/* ==========================================================
+   Dikim Rehberi sayfası (rehber.html)
+   ========================================================== */
+.guide-intro { padding-top: 70px; }
+.guide-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.guide-card, .guide-panel { display: grid; align-content: start; gap: 10px; padding: 28px; border-radius: var(--r-md); background: var(--surface); border: 1px solid rgba(230,225,212,.75); box-shadow: var(--shadow-sm); }
+.guide-card h2, .guide-panel h2 { font-size: 1.35rem; }
+.guide-card p, .guide-panel p, .guide-list li { color: var(--mute); font-size: 15px; line-height: 1.65; }
+.guide-card__icon { width: 48px; height: 48px; border-radius: 14px; background: var(--soft); color: var(--leaf); display: grid; place-items: center; margin-bottom: 4px; }
+.guide-card__icon .i { width: 23px; height: 23px; }
+
+/* Adım adım dikim: solda fidan fotoğrafı, sağda numaralı adımlar */
+.guide-steps-wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: 60px; align-items: center; }
+.guide-steps__media { position: relative; overflow: hidden; border-radius: var(--r-lg); background: var(--sand); aspect-ratio: 4 / 5; box-shadow: var(--shadow-md); }
+.guide-steps__media img { width: 100%; height: 100%; object-fit: cover; }
+.guide-h2 { font-size: clamp(1.9rem, 3.2vw, 2.6rem); margin: 12px 0 22px; }
+.guide-steps { list-style: none; counter-reset: adim; display: grid; gap: 4px; }
+.guide-steps li { counter-increment: adim; position: relative; display: grid; gap: 4px; padding: 16px 0 16px 62px; border-top: 1px solid var(--line); }
+.guide-steps li:first-child { border-top: 0; }
+.guide-steps li::before { content: counter(adim); position: absolute; inset-inline-start: 0; top: 16px; width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: var(--leaf); color: #fff; font: 700 17px var(--sans); }
+[dir="rtl"] .guide-steps li { padding: 16px 62px 16px 0; }
+.guide-steps b { font-size: 16.5px; color: var(--ink); }
+.guide-steps p { color: var(--mute); font-size: 15px; line-height: 1.6; }
+
+/* Sulama ve gübreleme */
+.guide-care__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.guide-list { list-style: none; display: grid; gap: 10px; }
+.guide-list li { position: relative; padding-inline-start: 18px; }
+.guide-list li::before { content: ""; position: absolute; inset-inline-start: 0; top: .62em; width: 7px; height: 7px; border-radius: 50%; background: var(--leaf); }
+.guide-list b, .guide-panel p b { color: var(--ink); }
+.guide-panel--soft { background: var(--soft); border-color: transparent; box-shadow: none; }
+
+/* Yardım şeridi */
+.guide-help { display: flex; align-items: center; justify-content: space-between; gap: 28px; flex-wrap: wrap; padding: 38px 42px; border-radius: var(--r-lg); background: var(--ink); color: #fff; }
+.guide-help h2 { font-size: clamp(1.5rem, 2.6vw, 2rem); color: #fff; }
+.guide-help p { margin-top: 6px; color: rgba(255,255,255,.75); max-width: 52ch; }
+.guide-help__actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.guide-help .btn-outline { border-color: rgba(255,255,255,.6); color: #fff; }
+.guide-help .btn-outline:hover { background: #fff; color: var(--ink); }
+.btn-wa { background: #25d366; color: #fff; border-color: #25d366; }
+.btn-wa:hover { background: #1ebe5b; border-color: #1ebe5b; }
+.btn .i { width: 18px; height: 18px; }
+[dir="rtl"] .guide-help .i-arrow-right { transform: scaleX(-1); }
+
+@media (max-width: 960px) {
+  .guide-cards { grid-template-columns: 1fr; }
+  .guide-steps-wrap { grid-template-columns: 1fr; gap: 30px; }
+  .guide-steps__media { aspect-ratio: 16 / 10; }
+}
+@media (max-width: 700px) {
+  .guide-care__grid { grid-template-columns: 1fr; }
+  .guide-card, .guide-panel { padding: 22px; }
+  .guide-help { padding: 28px 22px; }
+  .guide-help__actions .btn { flex: 1 1 100%; justify-content: center; }
+}

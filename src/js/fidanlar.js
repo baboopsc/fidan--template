@@ -28,6 +28,7 @@ export const CATEGORIES = [
   { key: 'Badem', slug: 'badem', group: 'Meyve', tint: '#ece3d4', desc: 'İnce kabuklu ve kendine verimli bademler.' },
   { key: 'Ceviz', slug: 'ceviz', group: 'Meyve', tint: '#e8e0d2', desc: 'Yerli ve yabancı, verimli ceviz çeşitleri.' },
   { key: 'Trabzon Hurması', slug: 'trabzon-hurmasi', gercekFoto: true, group: 'Meyve', tint: '#f9d8b8', desc: 'Buruk ve buruk olmayan çeşitler.' },
+  { key: 'Yenidünya', slug: 'yenidunya', group: 'Meyve', tint: '#fbe3c4', desc: 'Malta eriği olarak da bilinen, kışın çiçek açan her dem yeşil meyve.' },
   { key: 'Anaç', slug: 'anac', group: 'Meyve', tint: '#e2e7cc', desc: 'Aşılı fidan üretimi için anaçlar.' },
 ];
 export const GROUPS = ['Tümü', 'Turunçgil', 'Zeytin', 'Nar', 'Meyve'];
@@ -116,6 +117,10 @@ export const TUM_FIDANLAR = [
     desc: 'Avustralya kökenli, çok geç olgunlaşan bir göbekli portakal. Tatlı ve sulu, çekirdeksiz meyveleri ağaçta uzun süre bekleyebildiği için sezonu ilkbahara kadar uzatır.',
     specs: [['Olgunlaşma', 'Çok geç'], ['Hasat', 'Ocak–Mayıs'], ['Meyve şekli', 'Yuvarlak, göbekli'], ['Çekirdek', 'Çekirdeksiz'], ['Tat', 'Tatlı, sulu'], ['Anavatan', 'Avustralya']] },
 
+  { id: 173, slug: 'rize-portakal', name: 'Rize', title: 'Rize Portakal', category: 'Portakal',
+    desc: 'Anadolu kökenli, ağacı hızlı gelişen ve erken yaşta meyveye yatan bir portakal. Orta irilikteki meyveleri sulu ve çok lezzetlidir.',
+    specs: [['Hasat', 'Ocak ayından itibaren'], ['Meyve', 'Orta iri, sulu ve lezzetli'], ['Ağaç', 'Hızlı gelişir, erken meyveye yatar'], ['Tozlayıcı', 'Kendine verimli (tozlayıcı verimi artırır)'], ['Dayanıklılık', 'Ağacı dayanıklı'], ['Anavatan', 'Anadolu']] },
+
   /* ---------- Limon (10) ---------- */
   { id: 11, slug: 'kutdiken-limon', name: 'Kütdiken', title: 'Kütdiken Limon', category: 'Limon',
     desc: 'Kirece dayanıklı, kolay çoğalan ve uzun ömürlü bir çeşit. Kasımda olgunlaşan meyveleri şubata kadar toplanabilir.',
@@ -147,6 +152,10 @@ export const TUM_FIDANLAR = [
   { id: 122, slug: 'tahiti-lime', name: 'Tahiti', title: 'Tahiti Lime (Misket Limon)', category: 'Limon',
     desc: 'Misket limonuna göre daha iri, çekirdeksiz ve soğuğa daha dayanıklı bir lime (Tahiti/İran lime\'ı). Yeşil, sulu meyveleri içecek ve yemeklerde kullanılır.',
     specs: [['İrilik', 'Orta'], ['Kabuk', 'Yeşil, ince'], ['Et', 'Açık yeşil, çok sulu'], ['Çekirdek', 'Çekirdeksiz'], ['Dayanıklılık', 'Misket limonundan daha dayanıklı'], ['Kullanım', 'İçecek ve mutfak']] },
+
+  { id: 174, slug: 'limequat-limon', name: 'Limequat', title: 'Limequat (Limon–Kamkat Melezi)', category: 'Limon',
+    desc: 'Limon ile kamkatın melezi, bodur ve yaprak dökmeyen bir çeşit. Genç yaşta bol meyve verir; küçük, sulu meyveleri kabuğuyla birlikte yenebilir. Saksıda ve iç mekânda yetiştirmeye uygundur.',
+    specs: [['Hasat', 'Kasım ortasından itibaren'], ['Ağaç', 'Bodur, yavaş büyür, yaprak dökmez'], ['Meyve', 'Küçük, uzunca, çekirdekli; limondan sulu'], ['Kabuk', 'İnce, yeşilimsi sarı; kabuğuyla yenir'], ['Tat', 'Limon ve kamkat karışımı, aromalı'], ['Tozlayıcı', 'Kendine verimli'], ['Dayanıklılık', 'Limeden soğuğa dayanıklı, kamkattan az'], ['Kullanım', 'Saksı ve iç mekân; içecek ve yemeklerde']] },
 
   /* ---------- Greyfurt (3) ---------- */
   { id: 16, slug: 'rio-red-greyfurt', name: 'Rio Red', title: 'Rio Red Greyfurt', category: 'Greyfurt',
@@ -385,6 +394,21 @@ export const TUM_FIDANLAR = [
     desc: 'Japon kökenli, buruk olmayan iri bir Trabzon hurması ("dev Fuyu"). Kendine verimlidir; meyvesi sertken bile tatlı yenir, sonbaharda yaprakları da çok renkli olur.',
     specs: [['Hasat', 'Ekim–Kasım'], ['İrilik', 'Çok iri'], ['Kabuk', 'Turuncu, kırmızımsı tonlu'], ['Tat', 'Buruk değil, tatlı'], ['Tozlayıcı', 'Kendine verimli'], ['Anavatan', 'Japonya']] },
 
+  { id: 175, slug: 'kakaolu-trabzon-hurmasi', name: 'Kakaolu', title: 'Kakaolu Trabzon Hurması', category: 'Trabzon Hurması',
+    desc: 'Ekim–Kasım aylarında hasat edilen bir Trabzon hurması çeşidi. Fidanı hava ve toprak nemine dayanıklıdır; her iklime uyum sağlar, saksıda da yetiştirilebilir.',
+    specs: [['Hasat', 'Ekim–Kasım'], ['Dayanıklılık', 'Hava ve toprak nemine dayanıklı'], ['Uyum', 'Her iklime uyum sağlar'], ['Kullanım', 'Bahçe ve saksı']] },
+  { id: 176, slug: 'yesil-kis-trabzon-hurmasi', name: 'Yeşil Kış', title: 'Yeşil Kış Trabzon Hurması', category: 'Trabzon Hurması',
+    desc: 'Hatay, Adana ve Mersin\'de yetiştirilen; Mallit, Yeşil Hurma ya da Kış Hurması diye de bilinen yerel bir çeşit. Kabuğu koyu yeşil ve tüylü, içi altın renkli ve jöle kıvamındadır; tadı tropik meyveleri andırır.',
+    specs: [['Diğer adları', 'Mallit hurması, Tin Mallit, Yeşil hurma, Kış hurması'], ['Hasat', 'Kasım–Aralık'], ['Kabuk', 'Koyu yeşil, tüylü'], ['Et', 'Altın renkli, yumuşak, jöle kıvamında'], ['Tat', 'Tatlı, tropik meyveleri andırır'], ['Tozlayıcı', 'Gerekmez (birden fazla dikim verimi artırır)'], ['Dayanıklılık', 'Hava ve toprak nemine dayanıklı']] },
+
+  /* ---------- Yenidünya (2) ---------- */
+  { id: 177, slug: 'malta-erigi', name: 'Malta Eriği', title: 'Malta Eriği (Yenidünya)', category: 'Yenidünya',
+    desc: 'Çin kökenli, her dem yeşil bir meyve ağacı; Akdeniz\'de yaygındır, bazı yörelerde "sarıkız" diye de bilinir. Ekim sonundan şubata kadar hoş kokulu çiçekler açar; sarı-turuncu meyveleri etli ve lezzetlidir.',
+    specs: [['Diğer adları', 'Yenidünya, sarıkız'], ['Çiçeklenme', 'Ekim sonu – Şubat'], ['Hasat', 'Nisan sonundan itibaren'], ['Meyve', 'Sarı-turuncu, etli, lezzetli'], ['Ağaç', 'Her dem yeşil, kuvvetli ve dayanıklı'], ['Dayanıklılık', 'Ağaç −14 °C\'ye, çiçek ve meyve −5 °C\'ye kadar'], ['Anavatan', 'Çin']] },
+  { id: 178, slug: 'hafif-cukurgobek-malta-erigi', name: 'Hafif Çukurgöbek', title: 'Hafif Çukurgöbek Malta Eriği (Yenidünya)', category: 'Yenidünya',
+    desc: 'Erkenci ve kendine verimli bir yenidünya çeşidi. Orta iri, gösterişli, pembe-turuncu meyveleri çok tatlı ve hoş aromalıdır; kara leke hastalığına toleranslıdır.',
+    specs: [['Hasat', 'Nisan sonundan itibaren (erkenci)'], ['Meyve', 'Orta iri, gösterişli, pembe-turuncu'], ['Tat', 'Çok tatlı, hoş aromalı'], ['Tozlayıcı', 'Kendine verimli'], ['Hastalık', 'Kara lekeye toleranslı'], ['Dayanıklılık', 'Ağaç −14 °C\'ye, çiçek ve meyve −5 °C\'ye kadar'], ['Anavatan', 'Çin']] },
+
   /* ---------- Listede olmayanlar: sitede gizli (göstermek için hidden: true satırını sil) ---------- */
   { id: 18, slug: 'nizip-zeytin', name: 'Nizip', title: 'Nizip Zeytin', category: 'Zeytin', hidden: true,
     desc: 'Adaptasyon yeteneği yüksek, yağ bakımından zengin bir çeşit. Dikimden sonraki ikinci yılda meyveye yatar.',
@@ -393,3 +417,21 @@ export const TUM_FIDANLAR = [
     desc: 'Erik yetiştiriciliğinde en yaygın kullanılan anaçlardan. Geniş taç oluşturur, ağır topraklar dahil farklı topraklarda kullanılabilir.',
     specs: [['Kullanım', 'Erik yetiştiriciliği (Can grubu erikleriyle aynı tür)'], ['Kuvvet', 'Güçlü, geniş taç'], ['Toprak', 'Ağır topraklar dahil farklı toprak tipleri'], ['Alternatif', 'Myrobolan 29-C: yarı bodur, ağaçlar yaklaşık %70–80 boyutta'], ['29-C kök yapısı', 'Orta derinlikte'], ['29-C hassasiyet', 'Bakteriyel kanser ve meşe kök mantarına hassas'], ['29-C dikim aralığı', 'Sıra üzeri 3–3,5 m, sıra arası 4,5–5 m'], ['Diğer anaçlar', 'Kayısı çöğürü de temin edilir']] },
 ];
+
+/* Satıştaki fidanın yaşı ve boyu (Sağ Tarım ürün bilgilerinden): [yaş, 'boy (cm)'].
+   Ürün penceresinde "Satıştaki fidan" kutusunda gösterilir. Aşısız (yalnızca tüplü) satılanlar TUPLU listesinde. */
+export const FIDAN_BOYLARI = {
+  'meyer-limon': [[2, '90–120']], 'kutdiken-limon': [[2, '90–120']], 'yediveren-limon': [[2, '90–130']],
+  'zagara-bianca-limon': [[2, '90–130']], 'limequat-limon': [[2, '70–90']],
+  'star-ruby-greyfurt': [[2, '90–120']],
+  'nova-mandarin': [[2, '90–110']], 'w-murcott-mandarin': [[2, '90–120']], 'satsuma-mandarin': [[2, '90–120']],
+  'owari-mandarin': [[2, '90–120']], 'okitsu-wase-mandarin': [[2, '90–120']],
+  'washington-navel-portakal': [[2, '90–120']], 'navelina-portakal': [[2, '90–120']], 'fukumoto-portakal': [[2, '90–120']],
+  'cara-cara-portakal': [[2, '90–120']], 'valencia-portakal': [[2, '90–120']], 'rize-portakal': [[2, '90–120']],
+  'hachiya-trabzon-hurmasi': [[2, '90–110']], 'rojo-brillante-trabzon-hurmasi': [[2, '90–110']],
+  'kakaolu-trabzon-hurmasi': [[2, '90–110']], 'yesil-kis-trabzon-hurmasi': [[2, '90–110']],
+  'ferragnes-badem': [[2, '90–110']], 'sekerpare-kayisi': [[2, '90–110']], 'can-erik': [[2, '90–110']],
+  'gemlik-zeytin': [[1, '50–70'], [2, '60–70']], 'arbequina-zeytin': [[1, '30–40'], [2, '50–70']],
+  'malta-erigi': [[2, '80–100']], 'hafif-cukurgobek-malta-erigi': [[2, '80–100'], [3, '100–120']],
+};
+export const TUPLU = new Set(['gemlik-zeytin', 'arbequina-zeytin', 'malta-erigi', 'hafif-cukurgobek-malta-erigi']);

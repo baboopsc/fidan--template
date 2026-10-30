@@ -22,6 +22,24 @@ function markActivePage() {
 const onScroll = () => header?.classList.toggle('is-scrolled', window.scrollY > 10);
 window.addEventListener('scroll', onScroll, { passive: true });
 
+/* ---------- Üst menüde fidan arama ---------- */
+const araForm = document.querySelector('.nav-search');
+const araKutu = araForm?.querySelector('input');
+const araBtn = araForm?.querySelector('button');
+function aramaAc(acik) {
+  araForm.classList.toggle('is-open', acik);
+  araBtn.setAttribute('aria-expanded', acik);
+  if (acik && header?.classList.contains('is-open')) toggle?.click(); // telefonda açık menüyü kapat
+  if (acik) araKutu.focus(); else araKutu.blur();
+}
+araBtn?.addEventListener('click', () => {
+  if (!araForm.classList.contains('is-open')) return aramaAc(true);
+  if (araKutu.value.trim()) araForm.requestSubmit(); else aramaAc(false);
+});
+araForm?.addEventListener('submit', e => { if (!araKutu.value.trim()) { e.preventDefault(); araKutu.focus(); } });
+araKutu?.addEventListener('keydown', e => { if (e.key === 'Escape') aramaAc(false); });
+document.addEventListener('click', e => { if (araForm?.classList.contains('is-open') && !araForm.contains(e.target)) aramaAc(false); });
+
 toggle?.addEventListener('click', () => {
   const open = header.classList.toggle('is-open');
   toggle.setAttribute('aria-expanded', open);
