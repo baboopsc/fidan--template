@@ -84,3 +84,4 @@ body.modal-open { overflow: hidden; }
 .credits p { margin: 12px 0 8px; opacity: .85; }
 .credits__list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 6px 24px; list-style: none; padding: 0; margin: 0; }
 .credits__list a { text-decoration: underline; text-underline-offset: 2px; }
+.facility__map:hover b { color: var(--leaf); text-decoration: underline; text-underline-offset: 3px; }

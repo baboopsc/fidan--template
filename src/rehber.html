@@ -7,6 +7,8 @@
   <meta name="description" content="Fidan nasıl dikilir, ne sıklıkla sulanır, nasıl gübrelenir? Sağ Fidancılık'tan adım adım dikim ve bakım rehberi." data-i18n-attr="content:meta.guide.desc" />
   <meta name="theme-color" content="#fbf8f1" />
   <link rel="icon" href="./img/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/manifest.webmanifest" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Cairo:wght@400;500;600;700&display=swap">
@@ -86,46 +88,48 @@
         <figure class="guide-diagram" data-reveal>
           <svg viewBox="0 0 460 340" role="img" aria-labelledby="dgCap">
             <defs>
-              <marker id="ok" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#5d4128"/></marker>
-              <pattern id="nokta" width="9" height="9" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.3" fill="#2c2118" opacity=".55"/></pattern>
+              <marker id="ok" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#7a6248"/></marker>
+              <pattern id="nokta" width="9" height="9" patternUnits="userSpaceOnUse"><circle cx="2.5" cy="2.5" r="1.2" fill="#3b2f24" opacity=".35"/></pattern>
             </defs>
-            <rect x="0" y="0" width="460" height="172" rx="22" fill="#eef4e8"/>
-            <rect x="0" y="150" width="460" height="22" fill="#eef4e8"/>
-            <rect x="0" y="172" width="460" height="168" fill="#d9bf98"/>
-            <rect x="0" y="172" width="460" height="10" fill="#c7a679"/>
+            <!-- zemin: üstte açık yeşil, altta sade toprak -->
+            <rect x="0" y="0" width="460" height="340" rx="20" fill="#eef2ea"/>
+            <path d="M0 172h460v148a20 20 0 0 1-20 20H20A20 20 0 0 1 0 320z" fill="#e6d8c0"/>
             <!-- çukur -->
-            <rect x="130" y="172" width="140" height="112" fill="#a07d58" stroke="#5d4128" stroke-width="2" stroke-dasharray="6 5"/>
-            <rect x="131" y="256" width="138" height="27" fill="#5a4636"/>
-            <rect x="131" y="256" width="138" height="27" fill="url(#nokta)"/>
-            <!-- kök topu, gövde, destek -->
-            <rect x="173" y="214" width="54" height="44" rx="12" fill="#6b4a2e"/>
-            <line x1="226" y1="258" x2="226" y2="78" stroke="#d0ad73" stroke-width="5" stroke-linecap="round"/>
-            <line x1="200" y1="216" x2="200" y2="72" stroke="#7a5a3a" stroke-width="7" stroke-linecap="round"/>
-            <path d="M200 112 226 112 M200 140 226 140" stroke="#3f6b2f" stroke-width="2.5"/>
-            <ellipse cx="200" cy="158" rx="7" ry="5" fill="#b08a5e" stroke="#5d4128" stroke-width="1.5"/>
+            <rect x="130" y="172" width="140" height="112" rx="6" fill="#cdb48f"/>
+            <rect x="130" y="254" width="140" height="30" rx="6" fill="#8f7558"/>
+            <rect x="130" y="254" width="140" height="30" rx="6" fill="url(#nokta)"/>
+            <rect x="130" y="172" width="140" height="112" rx="6" fill="none" stroke="#7a6248" stroke-width="1.6" stroke-dasharray="6 5"/>
+            <!-- kök topu, destek, gövde -->
+            <rect x="174" y="214" width="52" height="44" rx="14" fill="#7a5a3c"/>
+            <rect x="224" y="78" width="4" height="182" rx="2" fill="#cfae74"/>
+            <rect x="197" y="96" width="6" height="122" rx="3" fill="#6f5136"/>
+            <rect x="198" y="114" width="30" height="3.5" rx="1.75" fill="#4f7d3c"/>
+            <rect x="198" y="142" width="30" height="3.5" rx="1.75" fill="#4f7d3c"/>
+            <ellipse cx="200" cy="158" rx="7" ry="4.5" fill="#a07c56"/>
             <!-- taç -->
-            <circle cx="178" cy="66" r="24" fill="#86b064"/><circle cx="222" cy="62" r="26" fill="#6f9a52"/>
-            <circle cx="200" cy="40" r="26" fill="#7ea85c"/><circle cx="196" cy="80" r="18" fill="#5f8c45"/>
+            <circle cx="182" cy="74" r="25" fill="#8bb36b"/>
+            <circle cx="220" cy="70" r="27" fill="#6f9a52"/>
+            <circle cx="200" cy="46" r="27" fill="#7ea85c"/>
+            <circle cx="200" cy="82" r="19" fill="#4f7d3c"/>
             <!-- toprak çizgisi ve aşı yüksekliği -->
-            <line x1="40" y1="172" x2="420" y2="172" stroke="#5d4128" stroke-width="1.5" stroke-dasharray="3 4" opacity=".6"/>
-            <path d="M210 158 H244 M244 158 V172" stroke="#3f6b2f" stroke-width="1.5" fill="none"/>
-            <line x1="244" y1="158" x2="300" y2="132" stroke="#3f6b2f" stroke-width="1.3"/>
+            <line x1="24" y1="172" x2="436" y2="172" stroke="#7a6248" stroke-width="1.2" stroke-dasharray="3 4" opacity=".5"/>
+            <path d="M210 158h34v14" stroke="#4f7d3c" stroke-width="1.4" fill="none"/>
+            <path d="M244 158 298 132" stroke="#4f7d3c" stroke-width="1.2"/><circle cx="298" cy="132" r="2.4" fill="#4f7d3c"/>
             <text class="dg-t" x="304" y="128" data-i18n="guide.d.graft">Aşı noktası</text>
             <text class="dg-s" x="304" y="144" data-i18n="guide.d.graft2">toprağın 5–10 cm üstünde</text>
-            <!-- destek çubuğu -->
-            <line x1="228" y1="92" x2="300" y2="76" stroke="#3f6b2f" stroke-width="1.3"/>
-            <text class="dg-t" x="304" y="80" data-i18n="guide.d.stake">Destek çubuğu</text>
+            <path d="M230 94 298 80" stroke="#4f7d3c" stroke-width="1.2"/><circle cx="298" cy="80" r="2.4" fill="#4f7d3c"/>
+            <text class="dg-t" x="304" y="84" data-i18n="guide.d.stake">Destek çubuğu</text>
             <!-- can suyu -->
-            <path d="M150 128c-7 9-10 14-10 19a10 10 0 0 0 20 0c0-5-3-10-10-19z" fill="#5aa0d8"/>
-            <line x1="140" y1="146" x2="112" y2="132" stroke="#3f6b2f" stroke-width="1.3"/>
-            <text class="dg-t" x="108" y="128" text-anchor="end" data-i18n="guide.d.water">~10 L can suyu</text>
+            <path d="M152 128c-7 9-10 14-10 19a10 10 0 0 0 20 0c0-5-3-10-10-19z" fill="#6aa8d8"/>
+            <path d="M142 144 114 130" stroke="#4f7d3c" stroke-width="1.2"/><circle cx="114" cy="130" r="2.4" fill="#4f7d3c"/>
+            <text class="dg-t" x="108" y="126" text-anchor="end" data-i18n="guide.d.water">~10 L can suyu</text>
             <!-- leonarditli toprak -->
-            <line x1="131" y1="270" x2="112" y2="270" stroke="#3f6b2f" stroke-width="1.3"/>
-            <text class="dg-s" x="108" y="274" text-anchor="end" data-i18n="guide.d.soil">Leonarditli toprak</text>
+            <path d="M130 269h-18" stroke="#4f7d3c" stroke-width="1.2"/><circle cx="112" cy="269" r="2.4" fill="#4f7d3c"/>
+            <text class="dg-s" x="106" y="273" text-anchor="end" data-i18n="guide.d.soil">Leonarditli toprak</text>
             <!-- ölçüler -->
-            <line x1="132" y1="300" x2="268" y2="300" stroke="#5d4128" stroke-width="1.6" marker-start="url(#ok)" marker-end="url(#ok)"/>
-            <text class="dg-t" x="200" y="322" text-anchor="middle"><tspan data-i18n="guide.d.w">40–45 cm</tspan> <tspan class="dg-s" data-i18n="guide.d.wl">genişlik</tspan></text>
-            <line x1="290" y1="175" x2="290" y2="281" stroke="#5d4128" stroke-width="1.6" marker-start="url(#ok)" marker-end="url(#ok)"/>
+            <line x1="133" y1="302" x2="267" y2="302" stroke="#7a6248" stroke-width="1.5" marker-start="url(#ok)" marker-end="url(#ok)"/>
+            <text class="dg-t" x="200" y="324" text-anchor="middle"><tspan data-i18n="guide.d.w">40–45 cm</tspan> <tspan class="dg-s" data-i18n="guide.d.wl">genişlik</tspan></text>
+            <line x1="290" y1="175" x2="290" y2="281" stroke="#7a6248" stroke-width="1.5" marker-start="url(#ok)" marker-end="url(#ok)"/>
             <text class="dg-t" x="300" y="226" data-i18n="guide.d.d">30–40 cm</text>
             <text class="dg-s" x="300" y="242" data-i18n="guide.d.dl">derinlik</text>
           </svg>

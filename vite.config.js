@@ -87,6 +87,7 @@ export default defineConfig({
         tesislerimiz: resolve(__dirname, 'src/tesislerimiz.html'),
         galeri: resolve(__dirname, 'src/galeri.html'),
         rehber: resolve(__dirname, 'src/rehber.html'),
+        notfound: resolve(__dirname, 'src/404.html'),
       },
     },
   },

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="meta.404.title">Sayfa bulunamadı | Sağ Fidancılık</title>
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#fbf8f1" />
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Cairo:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Cairo:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Cairo:wght@400;500;600;700&display=swap"></noscript>
+  <link rel="stylesheet" href="/css/variables.css" />
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/icons.css" />
+  <link rel="stylesheet" href="/css/layout.css" />
+  
+  <!-- Seçili dil Türkçe değilse, çeviri yüklenene kadar sayfayı kısa süre gizler (js/i18n.js) -->
+  <script>(function(d){d.classList.add('js');try{var l=new URLSearchParams(location.search).get('lang')||localStorage.getItem('lang');if(l==='en'||l==='ru'||l==='ar'){d.classList.add('i18n-wait');d.lang=l;if(l==='ar')d.dir='rtl';setTimeout(function(){d.classList.remove('i18n-wait')},1500)}}catch(e){}})(document.documentElement)</script>
+</head>
+<body id="top">
+
+  <load src="./partials/header.html" />
+
+  <main>
+    <!-- 404: yanlış ya da eski bir bağlantıyla gelenler için -->
+    <section class="notfound">
+      <div class="wrap notfound__inner">
+        <svg class="notfound__art" viewBox="0 0 240 200" aria-hidden="true">
+          <ellipse cx="120" cy="178" rx="92" ry="12" fill="#e6dfcf"/>
+          <path d="M84 176h72l-8-46H92z" fill="#b7895c"/><rect x="86" y="122" width="68" height="14" rx="4" fill="#9c7048"/>
+          <path d="M120 124V70" stroke="#4f7d3c" stroke-width="5" stroke-linecap="round"/>
+          <path d="M120 92c-22 2-36-10-40-30 22-2 36 10 40 30z" fill="#6f9a52"/>
+          <path d="M120 78c18-4 30-18 30-38-20 2-32 18-30 38z" fill="#4f7d3c"/>
+          <text x="120" y="34" text-anchor="middle" font-family="Lora, serif" font-size="30" font-weight="600" fill="#1f2e1b" opacity=".18">404</text>
+        </svg>
+        <h1 data-i18n="notfound.title">Bu sayfa <em>bulunamadı</em></h1>
+        <p data-i18n="notfound.p">Aradığınız sayfa taşınmış ya da hiç var olmamış olabilir. Ana sayfadan ya da fidan çeşitlerimizden devam edebilirsiniz.</p>
+        <div class="notfound__actions">
+          <a class="btn btn-primary" href="/"><span data-i18n="nav.home">Ana Sayfa</span></a>
+          <a class="btn btn-outline" href="/catalog.html"><span data-i18n="footer.catalog">Fidan Çeşitleri</span> <i class="i i-arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <load src="./partials/footer.html" />
+
+  <script type="module" src="./js/rehber.js"></script>
+</body>
+</html>

@@ -10,6 +10,8 @@
   <link rel="preload" as="image" href="./img/sera-fidanlar-m.webp" media="(max-width: 860px)" fetchpriority="high">
   <link rel="preload" as="image" href="./img/sera-fidanlar.webp" media="(min-width: 861px)" fetchpriority="high">
   <link rel="icon" href="./img/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/manifest.webmanifest" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Cairo:wght@400;500;600;700&display=swap">
@@ -37,7 +39,8 @@
     "foundingDate": "2001",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Samandağ yolu üzeri, Fidanlı Mahallesi",
+      "streetAddress": "Cumhuriyet Mah., Atatürk Cd. No:107",
+      "postalCode": "31800",
       "addressLocality": "Samandağ",
       "addressRegion": "Hatay",
       "addressCountry": "TR"
@@ -90,7 +93,7 @@
         "name": "Fidanlığınız nerede?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Samandağ yolu üzerinde, Fidanlı Mahallesi, Samandağ / Hatay'dayız. Gelmeden önce arayıp haber verirseniz sizi bekleriz."
+          "text": "Cumhuriyet Mahallesi, Atatürk Caddesi No:107, Samandağ / Hatay'dayız. Gelmeden önce arayıp haber verirseniz sizi bekleriz."
         }
       },
       {
@@ -283,7 +286,7 @@
           </details>
           <details class="faq__item">
             <summary><span data-i18n="faq.q5">Fidanlığınız nerede?</span><span class="faq__ic"><i class="i i-plus"></i></span></summary>
-            <p data-i18n="faq.a5">Samandağ yolu üzerinde, Fidanlı Mahallesi, Samandağ / Hatay'dayız. Gelmeden önce arayıp haber verirseniz sizi bekleriz.</p>
+            <p data-i18n="faq.a5">Cumhuriyet Mahallesi, Atatürk Caddesi No:107, Samandağ / Hatay'dayız. Gelmeden önce arayıp haber verirseniz sizi bekleriz.</p>
           </details>
           <details class="faq__item">
             <summary><span data-i18n="faq.q7">Fidanlarınız kaç yaşında ve ne boyda?</span><span class="faq__ic"><i class="i i-plus"></i></span></summary>
@@ -308,7 +311,16 @@
         <div class="contact-grid">
           <a class="contact-card" href="tel:+905336125225" data-reveal><span class="contact-card__icon"><i class="i i-phone"></i></span><small><span data-i18n="contact.phone">Telefon</span> · Ali Sağ</small><b>0533 612 52 25</b></a>
           <a class="contact-card" data-social="whatsapp" href="#" target="_blank" rel="noopener" data-reveal style="--d:1" hidden><span class="contact-card__icon contact-card__icon--wa"><i class="i i-whatsapp"></i></span><small>WhatsApp</small><b data-i18n="contact.wa">Mesaj gönderin</b></a>
-          <a class="contact-card" href="https://www.google.com/maps/search/?api=1&amp;query=Fidanl%C4%B1+Mahallesi+Samanda%C4%9F+Hatay" target="_blank" rel="noopener" data-reveal style="--d:2"><span class="contact-card__icon"><i class="i i-pin"></i></span><small data-i18n="contact.address">Adres</small><b data-i18n="contact.address.v">Samandağ yolu üzeri, Fidanlı Mah., Samandağ / Hatay</b></a>
+          <a class="contact-card" href="https://www.google.com/maps/search/?api=1&amp;query=Sa%C4%9F%20Fidanc%C4%B1l%C4%B1k%20Hatay%2C%20Atat%C3%BCrk%20Cd.%20No%3A107%2C%2031800%20Samanda%C4%9F/Hatay" target="_blank" rel="noopener" data-reveal style="--d:2"><span class="contact-card__icon"><i class="i i-pin"></i></span><small data-i18n="contact.address">Adres</small><b data-i18n="contact.address.v">Cumhuriyet Mah., Atatürk Cd. No:107, Samandağ / Hatay</b></a>
+        </div>
+        <!-- Harita ve yol tarifi (harita sayfayı yavaşlatmasın diye ekrana gelince yüklenir) -->
+        <div class="map-card" data-reveal>
+          <iframe class="map-card__frame" src="https://www.google.com/maps?q=Sa%C4%9F%20Fidanc%C4%B1l%C4%B1k%20Hatay%2C%20Atat%C3%BCrk%20Cd.%20No%3A107%2C%2031800%20Samanda%C4%9F/Hatay&amp;z=16&amp;output=embed" title="Fidanlığımızın konumu" data-i18n-attr="title:contact.map.title" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-card__info">
+            <span class="contact-card__icon"><i class="i i-pin"></i></span>
+            <div class="map-card__text"><b data-i18n="contact.map.title">Fidanlığımızın konumu</b><small data-i18n="contact.address.v">Cumhuriyet Mah., Atatürk Cd. No:107, Samandağ / Hatay</small></div>
+            <a class="btn btn-primary btn-sm map-card__btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Sa%C4%9F%20Fidanc%C4%B1l%C4%B1k%20Hatay%2C%20Atat%C3%BCrk%20Cd.%20No%3A107%2C%2031800%20Samanda%C4%9F/Hatay" target="_blank" rel="noopener"><i class="i i-send"></i> <span data-i18n="contact.dir">Yol tarifi al</span></a>
+          </div>
         </div>
         <div class="social-row" data-social-wrap data-reveal hidden>
           <span data-i18n="social.follow">Bizi sosyal medyada takip edin</span>

@@ -14,6 +14,7 @@ import { cardHTML } from './product-card.js';
 import { ac as goruntuleyici } from './viewer.js';
 import { listede, ekle, cikar } from './liste.js';
 import { bildir } from './ui.js';
+import { hasatKur } from './hasat.js';
 import { sade, esc } from './utils.js';
 
 const $ = s => document.querySelector(s);
@@ -89,6 +90,7 @@ function ciz() {
   if (aktif) crumbCat.textContent = cat(aktif);
 
   metaGuncelle();
+  if (aktif) hasatTur?.(aktif);
   if (!listede) { catGrid.innerHTML = kartlar(); return; }
 
   const liste = araniyor ? FIDANLAR.filter(f => eslesir(f, q)) : inCategory(aktif);
@@ -310,6 +312,9 @@ document.addEventListener('langchange', () => {
   ciz();
   if (acik) doldur(acik);
 });
+
+/* ---------- Hasat takvimi ---------- */
+const hasatTur = hasatKur(document.getElementById('hasat'), id => ac(id));
 
 /* ---------- Başlat ---------- */
 const ilk = adresiOku();

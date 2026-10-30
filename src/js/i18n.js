@@ -29,6 +29,7 @@ const TR = {
   'modal.note': 'Görsel temsilidir',
   'modal.fruit': 'Meyvesi',
   'modal.sapling': 'Fidanı',
+  'harvest.now': 'Bu ay',
   'list.add': "Teklif listesine ekle",
   'list.added': "Teklif listesinde",
   'list.toast': "{name} teklif listesine eklendi",

@@ -7,6 +7,8 @@
   <meta name="description" content="Mandalina, portakal, limon, greyfurt, zeytin, nar, incir, kayısı, erik, şeftali ve daha fazlası: 110'u aşkın sertifikalı fidan çeşidi ve özellikleri." data-i18n-attr="content:meta.catalog.desc" />
   <meta name="theme-color" content="#fbf8f1" />
   <link rel="icon" href="./img/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/manifest.webmanifest" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Cairo:wght@400;500;600;700&display=swap">
@@ -67,6 +69,22 @@
           <h3 data-i18n="empty.title">Aradığınız fidanı bulamadık</h3>
           <p data-i18n="empty.p">Farklı bir kelime deneyin ya da filtreleri temizleyin.</p>
           <button class="btn btn-primary" id="reset" type="button" data-i18n="empty.reset">Filtreleri Temizle</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- HASAT TAKVİMİ: çeşitlerin hasat ayları (js/hasat.js, bilgiler js/fidanlar.js'teki "Hasat" satırlarından) -->
+    <section class="section" id="hasat">
+      <div class="wrap deep-panel harvest-panel">
+        <header class="section-head" data-reveal>
+          <span class="eyebrow" data-i18n="harvest.eyebrow">Hasat takvimi</span>
+          <h2 data-i18n="harvest.title">Hangi çeşit <em>ne zaman</em> olgunlaşır?</h2>
+          <p data-i18n="harvest.lead">Bahçenizde hasadı aylara yaymak için çeşitleri karşılaştırın. Ayrıntılar için çeşidin adına basın.</p>
+        </header>
+        <div class="harvest" data-reveal>
+          <div class="harvest__tabs" role="tablist" aria-label="Hasat takvimi" data-i18n-attr="aria-label:harvest.eyebrow"></div>
+          <div class="harvest__scroll"><div class="harvest__grid"></div></div>
+          <p class="harvest__note"><span class="harvest__legend"></span><span data-i18n="harvest.note">Hasat zamanı bölgeye ve yıla göre birkaç hafta değişebilir.</span></p>
         </div>
       </div>
     </section>
