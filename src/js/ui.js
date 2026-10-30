@@ -232,32 +232,10 @@ if (quote) {
   rozetler();
 }
 
-/* ---------- Çalışma saatleri: "Şu an açığız · 18:00'e kadar" / "Şu an kapalıyız · 09:00'da açılıyoruz" ---------- */
-function saatDurumu() {
-  const h = SITE.hours;
-  const els = document.querySelectorAll('[data-hours-status]');
-  if (!h || !els.length) return;
-  // Ziyaretçi nerede olursa olsun Türkiye saatine göre hesaplanır
-  const p = Object.fromEntries(new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Istanbul', weekday: 'short', hour: 'numeric', hourCycle: 'h23' })
-    .formatToParts(new Date()).map(x => [x.type, x.value]));
-  const gun = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(p.weekday);
-  const saat = Number(p.hour);
-  const acik = h.gunler.includes(gun) && saat >= h.acilis && saat < h.kapanis;
-  const iki = n => String(n).padStart(2, '0') + ':00';
-  els.forEach(el => {
-    el.hidden = false;
-    el.classList.toggle('is-open', acik);
-    el.textContent = acik ? t('hours.open', { saat: iki(h.kapanis) }) : t('hours.closed', { saat: iki(h.acilis) });
-  });
-}
-document.addEventListener('langchange', saatDurumu);
-setInterval(saatDurumu, 60000);
-
 /* ---------- Başlat ---------- */
 footerCats();
 markActivePage();
 onScroll();
 applySocial();
-saatDurumu();
 reveal();
 document.querySelectorAll('[data-year]').forEach(el => { el.textContent = new Date().getFullYear(); });

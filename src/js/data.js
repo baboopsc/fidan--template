@@ -14,8 +14,6 @@ export const SITE = {
   facebook: 'https://www.facebook.com/sag.fidanc.l.k/',
   // WhatsApp numarası (ülke koduyla, boşluksuz). Boş bırakılırsa WhatsApp butonları gizlenir.
   whatsapp: '905336125225',
-  // Çalışma saatleri (Türkiye saatiyle). gunler: 0 = Pazar ... 6 = Cumartesi
-  hours: { acilis: 9, kapanis: 18, gunler: [0, 1, 2, 3, 4, 5, 6] },
 };
 
 /* src/img klasöründeki fotoğrafları Vite kendisi bulur.

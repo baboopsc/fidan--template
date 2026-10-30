@@ -324,6 +324,7 @@ export default {
     "posts.p2": "Orange varieties and harvest times (in Turkish)",
     "posts.p3": "Which variety is harvested in which month? (in Turkish)",
     "posts.read": "Read",
+    "harvest.more": "Full list by month",
     "nav.guide": "Planting Guide",
     "guide.eyebrow": "Planting & care",
     "guide.title": "Plant your sapling the <em>right</em> way",
