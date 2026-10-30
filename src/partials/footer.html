@@ -24,12 +24,12 @@
         </div>
       </div>
       <div>
-        <h4 data-i18n="footer.types">Fidan çeşitleri</h4>
+        <h3 class="footer-h" data-i18n="footer.types">Fidan çeşitleri</h3>
         <!-- Kategori bağlantıları js/ui.js ile çizilir -->
         <ul class="footer-cats" id="footerCats"></ul>
       </div>
       <div>
-        <h4 data-i18n="footer.explore">Hızlı erişim</h4>
+        <h3 class="footer-h" data-i18n="footer.explore">Hızlı erişim</h3>
         <ul>
           <li><a href="./index.html" data-i18n="nav.home">Ana Sayfa</a></li>
           <li><a href="./catalog.html" data-i18n="footer.catalog">Fidan Çeşitleri</a></li>
@@ -42,7 +42,7 @@
         </ul>
       </div>
       <div>
-        <h4 data-i18n="nav.contact">İletişim</h4>
+        <h3 class="footer-h" data-i18n="nav.contact">İletişim</h3>
         <ul>
           <li><i class="i i-phone"></i><a href="tel:+905336125225">Ali Sağ · 0533 612 52 25</a></li>
           <li data-social-box><i class="i i-whatsapp"></i><a data-social="whatsapp" href="#" target="_blank" rel="noopener" data-i18n="footer.wa">WhatsApp'tan yazın</a></li>
@@ -70,13 +70,18 @@
     <p data-i18n="quote.lead">Fiyatlar çeşide, fidan yaşına ve adede göre değişir. Formu doldurun, WhatsApp'tan bize iletin; en kısa sürede dönüş yapalım.</p>
   </div>
   <form class="quote__form" id="quoteForm" novalidate>
+    <!-- Teklif listesi: ürün penceresinde "Teklif listesine ekle" denen çeşitler (js/liste.js, js/ui.js) -->
+    <div class="qlist qfield--full" id="quoteList" hidden>
+      <div class="qlist__head"><b class="qlist__count"></b><button type="button" class="qlist__clear" data-temizle data-i18n="list.clear">Listeyi temizle</button></div>
+      <ul class="qlist__items"></ul>
+    </div>
     <label class="qfield qfield--full"><span data-i18n="quote.name">Adınız Soyadınız</span>
       <input name="ad" type="text" autocomplete="name" required></label>
-    <label class="qfield"><span data-i18n="quote.type">Fidan türü</span>
+    <label class="qfield qfield--tek"><span data-i18n="quote.type">Fidan türü</span>
       <select name="tur" id="quoteType"></select></label>
-    <label class="qfield"><span data-i18n="quote.variety">Çeşit (biliyorsanız)</span>
+    <label class="qfield qfield--tek"><span data-i18n="quote.variety">Çeşit (biliyorsanız)</span>
       <input name="cesit" type="text" id="quoteVariety" data-i18n-attr="placeholder:quote.variety.ph" placeholder="Ör. Washington Navel"></label>
-    <label class="qfield"><span data-i18n="quote.qty">Adet</span>
+    <label class="qfield qfield--tek"><span data-i18n="quote.qty">Adet</span>
       <input name="adet" type="number" min="1" inputmode="numeric" data-i18n-attr="placeholder:quote.qty.ph" placeholder="Ör. 100"></label>
     <label class="qfield"><span data-i18n="quote.place">İl / İlçe</span>
       <input name="yer" type="text" autocomplete="address-level2" data-i18n-attr="placeholder:quote.place.ph" placeholder="Ör. Samandağ / Hatay"></label>

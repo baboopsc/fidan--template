@@ -81,3 +81,12 @@ h1 em, h2 em { font-style: italic; font-weight: 500; color: var(--leaf); }
   html { scroll-behavior: auto; }
   .js [data-reveal] { opacity: 1; transform: none; }
 }
+
+/* ---------- Hafif süs: köşelerde çizgi dal (class="has-deco" / "has-deco has-deco--sol") ---------- */
+.has-deco { position: relative; isolation: isolate; }
+.has-deco::before { content: ""; position: absolute; z-index: -1; top: 70px; inset-inline-end: max(0px, calc((100vw - 1280px) / 2)); width: 210px; height: 210px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' fill='%234f7d3c' fill-opacity='.07' stroke='%234f7d3c' stroke-width='1.8' stroke-linecap='round'%3E%3Cpath d='M18 192C70 152 112 110 182 18' fill='none'/%3E%3Cellipse cx='37' cy='152' rx='17' ry='7' transform='rotate(-62 37 152)'/%3E%3Cellipse cx='65' cy='173' rx='17' ry='7' transform='rotate(28 65 173)'/%3E%3Cellipse cx='69' cy='123' rx='17' ry='7' transform='rotate(-62 69 123)'/%3E%3Cellipse cx='97' cy='144' rx='17' ry='7' transform='rotate(28 97 144)'/%3E%3Cellipse cx='99' cy='90' rx='17' ry='7' transform='rotate(-62 99 90)'/%3E%3Cellipse cx='127' cy='111' rx='17' ry='7' transform='rotate(28 127 111)'/%3E%3Cellipse cx='128' cy='53' rx='17' ry='7' transform='rotate(-62 128 53)'/%3E%3Cellipse cx='156' cy='74' rx='17' ry='7' transform='rotate(28 156 74)'/%3E%3Cellipse cx='153' cy='22' rx='17' ry='7' transform='rotate(-62 153 22)'/%3E%3Cellipse cx='181' cy='43' rx='17' ry='7' transform='rotate(28 181 43)'/%3E%3Ccircle cx='128' cy='118' r='9'/%3E%3Ccircle cx='141' cy='128' r='7'/%3E%3C/svg%3E") center / contain no-repeat; opacity: .6; pointer-events: none; }
+.has-deco--alt::before { top: auto; bottom: -40px; }
+.has-deco--sol::before { inset-inline-end: auto; inset-inline-start: max(0px, calc((100vw - 1280px) / 2)); transform: scaleX(-1); }
+[dir="rtl"] .has-deco::before { transform: scaleX(-1); }
+[dir="rtl"] .has-deco--sol::before { transform: none; }
+@media (max-width: 760px) { .has-deco::before { width: 130px; height: 130px; top: 40px; opacity: .7; } }

@@ -170,3 +170,9 @@
 .related__item:hover img { transform: scale(1.04); }
 .related__item:hover span { text-decoration: underline; }
 @media (max-width: 600px) { .related__list { grid-template-columns: repeat(2, 1fr); } }
+
+/* Ürün penceresi: teklif listesine ekle */
+.btn-list { background: var(--soft); color: var(--leaf); border-color: rgba(79,125,60,.3); }
+.btn-list:hover { background: #e2ecd9; }
+.btn-list.is-on { background: var(--leaf); color: #fff; border-color: var(--leaf); }
+.btn-list .i { width: 17px; height: 17px; }

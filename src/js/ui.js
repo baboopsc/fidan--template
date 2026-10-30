@@ -4,8 +4,9 @@
    kaydırınca beliren öğeler ve sayaçlar.
    ========================================================== */
 import './i18n.js'; // dil seçimi ve sayfa çevirileri
-import { SITE, visibleCategories, imgFor, kategoriImg, inCategory, byId, kucuk } from './data.js';
-import { cat, t, localize } from './i18n.js';
+import { SITE, visibleCategories, imgFor, kategoriImg, inCategory, byId, kucuk, fidanImg } from './data.js';
+import { cat, t, localize, fullName } from './i18n.js';
+import { listeAl, ekle, cikar, adetYaz, temizle } from './liste.js';
 import { esc } from './utils.js';
 
 /* ---------- Üst menü ---------- */
@@ -126,16 +127,64 @@ function turleriDoldur() {
   qType.value = secili;
 }
 
+const qListe = document.getElementById('quoteList');
+
+// Formun üstündeki liste: her çeşit için adet kutusu ve "çıkar" düğmesi
+function listeCiz() {
+  if (!qListe) return;
+  const l = listeAl().map(x => ({ ...x, f: byId(x.id) })).filter(x => x.f);
+  quote.classList.toggle('has-list', l.length > 0);
+  qListe.hidden = !l.length;
+  qListe.querySelector('.qlist__items').innerHTML = l.map(({ f, adet }) => `
+    <li class="qlist__item">
+      <img src="${kucuk(fidanImg(f))}" alt="" width="44" height="44" loading="lazy">
+      <span class="qlist__name">${esc(localize(f).title)}<small>${esc(cat(f.category))}</small></span>
+      <input type="number" min="1" inputmode="numeric" value="${esc(adet)}" data-adet="${f.id}" placeholder="${esc(t('quote.qty'))}" aria-label="${esc(t('quote.qty'))}: ${esc(localize(f).title)}">
+      <button type="button" class="qlist__remove" data-cikar="${f.id}" aria-label="${esc(t('list.remove'))}"><i class="i i-close"></i></button>
+    </li>`).join('');
+  qListe.querySelector('.qlist__count').textContent = t('list.count', { n: l.length });
+}
+
+// "Teklif İste" düğmelerinde listedeki çeşit sayısı rozeti
+function rozetler() {
+  const n = listeAl().length;
+  document.querySelectorAll('[data-quote=""]').forEach(b => {
+    let r = b.querySelector('.q-badge');
+    if (!n) return r?.remove();
+    if (!r) { r = document.createElement('span'); r.className = 'q-badge'; b.appendChild(r); }
+    r.textContent = n;
+  });
+}
+
 function teklifAc(fidanId) {
   if (header?.classList.contains('is-open')) toggle?.click();
   const f = fidanId ? byId(fidanId) : null;
-  if (f) {
+  if (f && listeAl().length) ekle(f.id);          // liste varsa çeşit listeye eklenir
+  else if (f) {
     qType.value = f.category;
     qForm.elements.cesit.value = localize(f).title;
   }
+  listeCiz();
   document.getElementById('quoteError').hidden = true;
   quote.showModal();
   setTimeout(() => qForm.elements.ad.focus(), 50);
+}
+
+/* Listeye eklenince kısa bildirim: "Washington Navel Portakal teklif listesine eklendi · Teklif iste" */
+let bildirimZaman;
+export function bildir(metin) {
+  let b = document.getElementById('toast');
+  if (!b) {
+    b = document.createElement('div');
+    b.id = 'toast'; b.className = 'toast'; b.setAttribute('role', 'status');
+    b.innerHTML = '<i class="i i-check"></i><span class="toast__text"></span><button type="button" class="toast__btn" data-quote=""></button>';
+    document.body.appendChild(b);
+  }
+  b.querySelector('.toast__text').textContent = metin;
+  b.querySelector('.toast__btn').textContent = t('list.open');
+  b.classList.add('is-on');
+  clearTimeout(bildirimZaman);
+  bildirimZaman = setTimeout(() => b.classList.remove('is-on'), 4200);
 }
 
 if (quote) {
@@ -143,11 +192,15 @@ if (quote) {
   qForm.querySelector('[type="submit"]').hidden = !SITE.whatsapp;
   document.addEventListener('click', e => {
     const b = e.target.closest('[data-quote]');
-    if (b) { e.preventDefault(); teklifAc(b.dataset.quote); }
+    if (b) { e.preventDefault(); document.getElementById('toast')?.classList.remove('is-on'); teklifAc(b.dataset.quote); }
   });
   quote.addEventListener('click', e => {
     if (e.target === quote || e.target.closest('[data-quote-close]')) quote.close();
+    const c = e.target.closest('[data-cikar]');
+    if (c) cikar(c.dataset.cikar);
+    if (e.target.closest('[data-temizle]')) temizle();
   });
+  quote.addEventListener('input', e => { if (e.target.dataset.adet) adetYaz(e.target.dataset.adet, e.target.value.trim()); });
   qForm.addEventListener('submit', e => {
     e.preventDefault();
     const v = name => qForm.elements[name].value.trim();
@@ -156,20 +209,27 @@ if (quote) {
       qForm.elements.ad.focus();
       return;
     }
+    const l = listeAl().map(x => ({ ...x, f: byId(x.id) })).filter(x => x.f);
     const satirlar = [
       t('quote.msg.hello'),
       `${t('quote.msg.name')}: ${v('ad')}`,
-      v('tur') && `${t('quote.type')}: ${cat(v('tur'))}`,
-      v('cesit') && `${t('quote.msg.variety')}: ${v('cesit')}`,
-      v('adet') && `${t('quote.qty')}: ${v('adet')}`,
+      ...(l.length
+        ? [`${t('list.msg')}:`, ...l.map(({ f, adet }) => `• ${fullName(f)}${adet ? ` — ${adet} ${t('list.unit')}` : ''}`)]
+        : [
+          v('tur') && `${t('quote.type')}: ${cat(v('tur'))}`,
+          v('cesit') && `${t('quote.msg.variety')}: ${v('cesit')}`,
+          v('adet') && `${t('quote.qty')}: ${v('adet')}`,
+        ]),
       v('yer') && `${t('quote.place')}: ${v('yer')}`,
       v('not') && `${t('quote.note')}: ${v('not')}`,
     ].filter(Boolean);
     window.open(`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(satirlar.join('\n'))}`, '_blank', 'noopener');
     quote.close();
   });
-  document.addEventListener('langchange', turleriDoldur);
+  document.addEventListener('langchange', () => { turleriDoldur(); listeCiz(); });
+  document.addEventListener('listechange', () => { listeCiz(); rozetler(); });
   turleriDoldur();
+  rozetler();
 }
 
 /* ---------- Başlat ---------- */

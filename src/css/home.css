@@ -38,9 +38,11 @@
 .hero-media__frame { position: relative; aspect-ratio: 4 / 4.6; border-radius: 32px; overflow: hidden; background: var(--sand); border: 8px solid rgba(255,255,255,.7); box-shadow: 0 40px 80px -40px rgba(31,46,27,.55); }
 .hero-media__frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.06); transition: opacity 1.1s ease, transform 6s linear; }
 .hero-media__frame img.is-active { opacity: 1; transform: none; }
-.hero-media__dots { position: absolute; bottom: 26px; inset-inline-end: 26px; display: flex; gap: 6px; padding: 7px 9px; border-radius: 999px; background: rgba(31,46,27,.45); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
-.hero-media__dots button { width: 8px; height: 8px; border-radius: 999px; background: rgba(255,255,255,.55); transition: width .3s var(--ease), background .3s; }
-.hero-media__dots button[aria-selected="true"] { width: 22px; background: #fff; }
+.hero-media__dots { position: absolute; bottom: 26px; inset-inline-end: 26px; display: flex; gap: 0; padding: 7px 4px; border-radius: 999px; background: rgba(31,46,27,.45); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.hero-media__dots button { position: relative; width: 24px; height: 24px; margin: -8px 0; display: grid; place-items: center; background: none; } /* dokunma alanı 24px, görünen nokta küçük */
+.hero-media__dots button::before { content: ""; width: 8px; height: 8px; border-radius: 999px; background: rgba(255,255,255,.55); transition: width .3s var(--ease), background .3s; }
+.hero-media__dots button[aria-selected="true"]::before { width: 22px; background: #fff; }
+.hero-media__dots button[aria-selected="true"] { width: 30px; }
 .hero-media__badge { position: absolute; inset-inline-start: -34px; bottom: 42px; display: flex; align-items: center; gap: 12px; padding: 14px 18px 14px 14px; border-radius: 20px; background: var(--surface); box-shadow: var(--shadow-md); animation: float 7s ease-in-out infinite; }
 .hero-media__badge-icon { width: 44px; height: 44px; border-radius: 14px; background: var(--ink); color: #e6f0dc; display: grid; place-items: center; flex: none; }
 .hero-media__badge-icon .i { width: 22px; height: 22px; }

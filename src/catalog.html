@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="./css/catalog.css" />
   <!-- Seçili dil Türkçe değilse, çeviri yüklenene kadar sayfayı kısa süre gizler (js/i18n.js) -->
   <script>(function(d){d.classList.add('js');try{var l=new URLSearchParams(location.search).get('lang')||localStorage.getItem('lang');if(l==='en'||l==='ru'||l==='ar'){d.classList.add('i18n-wait');d.lang=l;if(l==='ar')d.dir='rtl';setTimeout(function(){d.classList.remove('i18n-wait')},1500)}}catch(e){}})(document.documentElement)</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "__SITE__/"}, {"@type": "ListItem", "position": 2, "name": "Fidan Çeşitleri", "item": "__SITE__/catalog.html"}]}</script>
 </head>
 <body id="top">
 
@@ -114,6 +115,7 @@
           <div class="modal__actions">
             <a class="btn btn-primary btn-sm" href="tel:+905336125225"><i class="i i-phone"></i> Ali Sağ · 0533 612 52 25</a>
             <a class="btn btn-wa btn-sm" id="mWa" href="#" target="_blank" rel="noopener"><i class="i i-whatsapp"></i> <span data-i18n="modal.wa">WhatsApp'tan sor</span></a>
+            <button class="btn btn-list btn-sm" type="button" id="mList" aria-pressed="false"><i class="i i-plus"></i> <span id="mListTxt">Teklif listesine ekle</span></button>
             <button class="btn btn-outline btn-sm" type="button" id="mQuote" data-quote><i class="i i-quote"></i> <span data-i18n="quote.btn">Teklif İste</span></button>
             <a class="icon-btn" data-social="instagram" href="#" target="_blank" rel="noopener" aria-label="Instagram" hidden><i class="i i-instagram"></i></a>
             <a class="icon-btn" data-social="facebook" href="#" target="_blank" rel="noopener" aria-label="Facebook" hidden><i class="i i-facebook"></i></a>
@@ -128,14 +130,6 @@
     </div>
   </dialog>
 
-  <!-- BÜYÜTME: ürün penceresindeki meyve / fidan fotoğrafına basınca tam ekran açılır (js/catalog.js) -->
-  <dialog class="zoom" id="zoom" aria-label="Fotoğraf" data-i18n-attr="aria-label:gallery.photo">
-    <div class="zoom__stage" id="zoomStage"><img class="zoom__img" id="zoomImg" src="" alt=""></div>
-    <button class="zoom__btn zoom__close" type="button" data-zclose aria-label="Kapat" data-i18n-attr="aria-label:modal.close"><i class="i i-close"></i></button>
-    <button class="zoom__btn zoom__prev" type="button" data-zgo="-1" aria-label="Önceki" data-i18n-attr="aria-label:gallery.prev"><i class="i i-chevron-left"></i></button>
-    <button class="zoom__btn zoom__next" type="button" data-zgo="1" aria-label="Sonraki" data-i18n-attr="aria-label:gallery.next"><i class="i i-chevron-right"></i></button>
-    <span class="zoom__count" id="zoomCount"></span>
-  </dialog>
 
 
   <load src="./partials/footer.html" />

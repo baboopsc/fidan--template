@@ -11,6 +11,9 @@ import { FIDANLAR, visibleCategories, inCategory, byId, imgFor, kategoriImg, hig
 import { FIDAN_BOYLARI, TUPLU } from './fidanlar.js';
 import { lang, localize, fullName, shortName, cat, t } from './i18n.js';
 import { cardHTML } from './product-card.js';
+import { ac as goruntuleyici } from './viewer.js';
+import { listede, ekle, cikar } from './liste.js';
+import { bildir } from './ui.js';
 import { sade, esc } from './utils.js';
 
 const $ = s => document.querySelector(s);
@@ -180,7 +183,7 @@ function kareGoster(i) {
   $('#mSapImg').src = k.src;
   not($('#mSapNote'), k);
   // Çeşidin kendi fotoğrafı "Fidanı"; türün genel fidanlık fotoğrafı "Mandalina fidanlarımız" diye yazılır
-  $('#mSapTag').textContent = k.tekli ? t('modal.sapling') : t('modal.saplingCat', { cat: cat(acik?.category || '') });
+  $('#mSapTag').textContent = sapEtiket(k);
   $('#mThumbs').querySelectorAll('button').forEach((b, j) => b.setAttribute('aria-selected', j === i));
 }
 $('#mThumbs').addEventListener('click', e => {
@@ -188,38 +191,35 @@ $('#mThumbs').addEventListener('click', e => {
   if (b) kareGoster(Number(b.dataset.kare));
 });
 
-/* ---------- Büyütme: meyve ya da fidan fotoğrafına basınca tam ekran ----------
-   Oklarla (ya da klavyede ← →) meyve ve fidan fotoğrafları arasında geçilir; fotoğrafa basınca 2 kat yakınlaşır. */
-const zoom = $('#zoom');
-let zListe = [], zSira = 0;
-function zGoster(i) {
-  zSira = (i + zListe.length) % zListe.length;
-  $('#zoomImg').src = zListe[zSira];
-  $('#zoomStage').classList.remove('is-big');
-  $('#zoomCount').textContent = zListe.length > 1 ? `${zSira + 1} / ${zListe.length}` : '';
-  zoom.querySelectorAll('[data-zgo]').forEach(b => { b.hidden = zListe.length < 2; });
+/* ---------- Teklif listesi düğmesi (ürün penceresi) ---------- */
+function listeDugmesi() {
+  if (!acik) return;
+  const var_ = listede(acik.id);
+  const btn = $('#mList');
+  btn.setAttribute('aria-pressed', String(var_));
+  btn.classList.toggle('is-on', var_);
+  btn.querySelector('.i').className = `i ${var_ ? 'i-check' : 'i-plus'}`;
+  $('#mListTxt').textContent = t(var_ ? 'list.added' : 'list.add');
 }
+$('#mList').addEventListener('click', () => {
+  if (!acik) return;
+  if (listede(acik.id)) cikar(acik.id);
+  else { ekle(acik.id); bildir(t('list.toast', { name: localize(acik).title })); }
+});
+document.addEventListener('listechange', listeDugmesi);
+
+/* ---------- Büyütme: meyve ya da fidan fotoğrafına basınca tam ekran görüntüleyici (js/viewer.js) ---------- */
+function sapEtiket(k) { return k.tekli ? t('modal.sapling') : t('modal.saplingCat', { cat: cat(acik?.category || '') }); }
 function buyut(i) {
-  const meyveSrc = $('#mFruit').classList.contains('mpanel--empty') ? null : $('#mImg').getAttribute('src');
-  zListe = [meyveSrc, ...kareler.map(k => k.src)].filter(Boolean);
-  if (!zListe.length) return;
-  zGoster(meyveSrc ? i : Math.max(0, i - 1));
-  zoom.showModal();
+  const meyveSrc = $('#mFruit').hidden || $('#mFruit').classList.contains('mpanel--empty') ? null : $('#mImg').getAttribute('src');
+  const liste = [
+    ...(meyveSrc ? [{ src: meyveSrc, thumb: kucuk(meyveSrc), label: t('modal.fruit') }] : []),
+    ...kareler.map(k => ({ src: k.src, thumb: kucuk(k.src), label: sapEtiket(k) })),
+  ];
+  goruntuleyici(liste, meyveSrc ? i : Math.max(0, i - 1), acik ? localize(acik).title : '');
 }
 $('#mImg').addEventListener('click', () => buyut(0));
 $('#mSapImg').addEventListener('click', () => buyut(1 + aktifKare));
-zoom.addEventListener('click', e => {
-  const git = e.target.closest('[data-zgo]');
-  if (git) return zGoster(zSira + Number(git.dataset.zgo));
-  if (e.target.closest('[data-zclose]') || e.target === zoom || e.target.id === 'zoomStage') return zoom.close();
-  if (e.target.id === 'zoomImg') $('#zoomStage').classList.toggle('is-big');
-});
-zoom.addEventListener('keydown', e => {
-  if (zListe.length < 2) return;
-  const rtl = document.documentElement.dir === 'rtl';
-  if (e.key === 'ArrowRight') zGoster(zSira + (rtl ? -1 : 1));
-  if (e.key === 'ArrowLeft') zGoster(zSira + (rtl ? 1 : -1));
-});
 
 function doldur(f) {
   document.getElementById('mQuote').dataset.quote = f.id; // teklif formu bu çeşitle dolu açılır
@@ -259,6 +259,7 @@ function doldur(f) {
   $('#mSapTitle').hidden = $('#mSapList').hidden = !boylar.length;
   $('#mSapList').innerHTML = boylar.map(([yas, cm]) =>
     `<li>${esc(t(TUPLU.has(f.slug) ? 'sap.potted' : 'sap.grafted'))} · ${esc(yas === 1 ? t('sap.age1') : t('sap.age', { n: yas }))} · <b>${esc(cm)} cm</b></li>`).join('');
+  listeDugmesi();
   // WhatsApp: mesaj bu çeşidin adıyla hazır gelir ("Merhaba, Washington Navel Portakal Fidanı hakkında bilgi almak istiyorum.")
   $('#mWa').hidden = !SITE.whatsapp;
   $('#mWa').href = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(t('modal.wa.msg', { name: fullName(f) }))}`;
