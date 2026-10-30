@@ -20,6 +20,10 @@ const SAYFALAR = [
 // Tür sayfaları (scripts/tur-sayfalari.mjs üretir): src/mandalina-fidani/index.html ...
 const TUR_SAYFALARI = readdirSync(resolve(__dirname, 'src')).filter(d => d.endsWith('-fidani') && existsSync(resolve(__dirname, 'src', d, 'index.html')));
 SAYFALAR.push(...TUR_SAYFALARI.map(d => [`${d}/index.html`, `/${d}/`, '0.8', 'weekly']));
+// Rehber yazıları (scripts/yazilar.mjs üretir): src/rehber/<yazi>/index.html
+const YAZI_DIR = resolve(__dirname, 'src', 'rehber');
+const YAZILAR = existsSync(YAZI_DIR) ? readdirSync(YAZI_DIR).filter(d => existsSync(resolve(YAZI_DIR, d, 'index.html'))) : [];
+SAYFALAR.push(...YAZILAR.map(d => [`rehber/${d}/index.html`, `/rehber/${d}/`, '0.6', 'monthly']));
 const DILLER = { tr: 'tr_TR', en: 'en_US', ru: 'ru_RU', ar: 'ar_AR' };
 const xml = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
@@ -92,6 +96,7 @@ export default defineConfig({
         rehber: resolve(__dirname, 'src/rehber.html'),
         notfound: resolve(__dirname, 'src/404.html'),
         ...Object.fromEntries(TUR_SAYFALARI.map(d => [d, resolve(__dirname, 'src', d, 'index.html')])),
+        ...Object.fromEntries(YAZILAR.map(d => [`yazi-${d}`, resolve(YAZI_DIR, d, 'index.html')])),
       },
     },
   },

@@ -1,0 +1,42 @@
+/* ==========================================================
+   Rehber yazıları (src/rehber/*)
+   ========================================================== */
+.article { max-width: 820px; padding-top: 56px; }
+.article h2 { font-size: clamp(1.45rem, 2.4vw, 1.9rem); margin: 42px 0 14px; }
+.article h3 { font-size: 1.25rem; }
+.article h3 a:hover, .article a:not(.btn):hover { color: var(--leaf); }
+.article p { color: var(--ink-2); font-size: 16px; line-height: 1.75; margin-bottom: 14px; }
+.article a:not(.btn) { color: var(--leaf); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.article h3 a { color: var(--ink); text-decoration: none; }
+.article__lead { font-size: 1.12rem !important; color: var(--ink) !important; }
+.article__table { overflow-x: auto; border-radius: 16px; border: 1px solid var(--line); background: var(--surface); }
+.article__table table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+.article__table th, .article__table td { padding: 11px 14px; text-align: start; border-bottom: 1px solid var(--line); }
+.article__table thead th { background: #2f4a28; color: #fff; font-weight: 600; font-size: 13px; letter-spacing: .03em; }
+.article__table tbody tr:nth-child(even) { background: var(--bg); }
+.article__table tbody tr:last-child td { border-bottom: 0; }
+.article__item { position: relative; display: grid; gap: 8px; margin-top: 14px; padding: 22px 24px; border-radius: var(--r-md); background: var(--surface); border: 1px solid rgba(230,225,212,.75); box-shadow: var(--shadow-sm); }
+.article__item p { margin: 0; font-size: 15px; color: var(--mute); }
+.article__item dl { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 6px 18px; margin: 6px 0 0; padding-top: 12px; border-top: 1px solid var(--line); }
+.article__item dl div { display: grid; grid-template-columns: 110px 1fr; gap: 8px; font-size: 13.5px; }
+.article__item dt { color: var(--mute); }
+.article__item dd { margin: 0; font-weight: 600; color: var(--ink); }
+.article__month { margin-top: 10px; padding: 4px 0 6px 22px; border-inline-start: 3px solid #b9dd9c; }
+.article__month h2 { margin: 26px 0 10px; }
+.article__month ul { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; font-size: 15px; line-height: 1.6; color: var(--ink-2); }
+.article__cta { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 18px; margin-top: 48px; padding: 28px; border-radius: var(--r-lg); background: var(--deep); color: #fff; }
+.article__cta b { font: 600 1.3rem var(--serif); }
+.article__cta p { margin: 6px 0 0; color: rgba(255,255,255,.78); font-size: 15px; }
+.article__cta-btns { display: flex; flex-wrap: wrap; gap: 10px; }
+.article__cta .btn-primary { background: #fff; color: var(--ink); border-color: #fff; }
+.article__cta .btn-outline { border-color: rgba(255,255,255,.6); color: #fff; }
+.article__more { margin-top: 36px; }
+.article__more h2 { font-size: 1.2rem; margin: 0 0 10px; }
+.article__more ul { display: grid; gap: 8px; padding-inline-start: 20px; }
+@media (max-width: 600px) {
+  .article { padding-top: 36px; }
+  .article__item { padding: 18px; }
+  .article__item dl div { grid-template-columns: 96px 1fr; }
+  .article__cta { padding: 22px 18px; }
+  .article__cta-btns .btn { flex: 1 1 100%; justify-content: center; }
+}

@@ -254,3 +254,9 @@
 .reviews__all .i { width: 15px; height: 15px; }
 [dir="rtl"] .reviews__all .i { transform: scaleX(-1); }
 @media (max-width: 960px) { .reviews { grid-template-columns: 1fr; max-width: 620px; margin-inline: auto; } }
+
+.hours-card { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; max-width: 1000px; margin: 18px auto 0; padding: 16px 18px; border-radius: 22px; background: #fff; color: var(--ink); box-shadow: 0 24px 40px -28px rgba(0,0,0,.7); }
+.hours-card .contact-card__icon { margin: 0; flex: none; background: var(--deep); color: #fff; }
+.hours-card > div { display: grid; margin-inline-end: auto; }
+.hours-card small { font-size: 13px; font-weight: 600; color: var(--mute); }
+.hours-card b { font-size: 15.5px; }

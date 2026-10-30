@@ -40,8 +40,6 @@ const bas = sablon.slice(0, sablon.indexOf('</head>'))
 const gorunur = TUM_FIDANLAR.filter(f => !f.hidden);
 const turler = CATEGORIES.filter(c => c.key !== 'Anaç' && gorunur.some(f => f.category === c.key));
 
-// eski üretilmiş sayfaları temizle
-for (const d of readdirSync(KOK)) if (d.endsWith('-fidani') && existsSync(join(KOK, d, 'index.html'))) rmSync(join(KOK, d), { recursive: true });
 
 for (const c of turler) {
   const liste = gorunur.filter(f => f.category === c.key);

@@ -5,11 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/tur-sayfalari.mjs && vite build",
+    "build": "node scripts/tur-sayfalari.mjs && node scripts/yazilar.mjs && vite build",
     "preview": "vite preview",
     "gorsel": "node scripts/gorsel-uret.mjs",
     "kucult": "node scripts/kucult.mjs",
-    "sayfalar": "node scripts/tur-sayfalari.mjs"
+    "sayfalar": "node scripts/tur-sayfalari.mjs && node scripts/yazilar.mjs"
   },
   "devDependencies": {
     "sharp": "^0.35.5",

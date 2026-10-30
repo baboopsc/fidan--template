@@ -329,3 +329,12 @@ html[lang="ar"] em { font-style: normal; }
 .notfound h1 { font-size: clamp(2.2rem, 5vw, 3.2rem); }
 .notfound p { color: var(--mute); }
 .notfound__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 8px; }
+
+/* ---------- Çalışma saatleri ---------- */
+.hours-status { display: inline-flex; align-items: center; gap: 7px; font-weight: 600; }
+.hours-status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #a8a497; flex: none; }
+.hours-status.is-open::before { background: #2fb45a; box-shadow: 0 0 0 0 rgba(47,180,90,.5); animation: hoursPulse 2s infinite; }
+@keyframes hoursPulse { 70% { box-shadow: 0 0 0 7px rgba(47,180,90,0); } 100% { box-shadow: 0 0 0 0 rgba(47,180,90,0); } }
+.hours-status--pill { padding: 7px 14px; border-radius: 999px; background: var(--bg); font-size: 13px; color: var(--ink-2); white-space: nowrap; }
+.hours-status--pill.is-open { background: #e5f5ea; color: #1f7a3d; }
+@media (prefers-reduced-motion: reduce) { .hours-status.is-open::before { animation: none; } }
