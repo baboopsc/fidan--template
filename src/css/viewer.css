@@ -61,7 +61,9 @@ html.vw-acik { overflow: hidden; }
   .vw__label { padding: 5px 10px; font-size: 12px; }
   .vw__thumbs { justify-content: flex-start; }
   .vw__thumbs button { width: 52px; height: 52px; border-radius: 10px; }
-  .vw__zoom { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { .vw__track, .vw[open], .vw.is-closing { animation: none; transition: none; } }
 .vw__btn:focus { outline: none; } .vw__btn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.vw--sade .vw__top, .vw--sade .vw__thumbs { opacity: 0; pointer-events: none; }
+.vw__track { transition-duration: .32s; }
+.vw__slide img { -webkit-touch-callout: none; }

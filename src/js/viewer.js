@@ -2,15 +2,15 @@
    Fotoğraf görüntüleyici (ürün penceresi, Galeri ve Tesislerimiz kullanır)
    ac(ogeler, baslangic, baslik)
      ogeler: [{ src, thumb?, label? }]  (src: büyük fotoğraf, thumb: küçük kopya)
-   - Telefonda: parmakla sağa/sola kaydır, iki parmakla ya da iki kez dokunarak yakınlaştır,
-     aşağı çekerek kapat
+   - Telefonda: parmakla sağa/sola kaydır, iki parmakla ya da + düğmesiyle yakınlaştır,
+     tek dokunuşla çubukları gizle, aşağı çekerek kapat
    - Bilgisayarda: oklar / ← → tuşları, tekerlekle ya da çift tıkla yakınlaştır, Esc ile kapat
    ========================================================== */
 import { t } from './i18n.js';
 import '../css/viewer.css';
 
 const MAX = 4;          // en fazla yakınlaştırma
-const CIFT = 2.5;       // çift dokunuşta yakınlaştırma
+const CIFT = 2.5;       // çift tıklamada / düğmede yakınlaştırma
 let dlg, track, viewport, bg, thumbs, ogeler = [], sira = 0;
 let olcek = 1, tx = 0, ty = 0;
 
@@ -180,16 +180,20 @@ function hareketler() {
       dlg.style.removeProperty('--vw-alpha');
       if (dy > 110) kapat(); else uygula(true);
     } else if (!mod) {
-      // dokunuş: çift dokunuşta yakınlaş; fotoğrafın dışına tek dokunuşta kapat
-      const simdi = performance.now();
-      if (simdi - sonDokunus < 300 && Math.hypot(e.clientX - sonXY[0], e.clientY - sonXY[1]) < 30) {
-        const [x, y] = merkez(e.clientX, e.clientY);
-        olcek > 1.01 ? sifirla(true) : yakinlas(CIFT, x, y);
-        sonDokunus = 0;
-      } else {
-        sonDokunus = simdi; sonXY = [e.clientX, e.clientY];
-        const disarida = !e.target.closest('img');
-        if (disarida && olcek <= 1.01) setTimeout(() => { if (sonDokunus === simdi) kapat(); }, 300);
+      if (e.pointerType === 'mouse') {
+        // Fare: çift tıklayınca o noktaya yakınlaş; fotoğrafın dışına tıklayınca kapat
+        const simdi = performance.now();
+        if (simdi - sonDokunus < 300 && Math.hypot(e.clientX - sonXY[0], e.clientY - sonXY[1]) < 20) {
+          const [x, y] = merkez(e.clientX, e.clientY);
+          olcek > 1.01 ? sifirla(true) : yakinlas(CIFT, x, y);
+          sonDokunus = 0;
+        } else {
+          sonDokunus = simdi; sonXY = [e.clientX, e.clientY];
+          if (!e.target.closest('img') && olcek <= 1.01) setTimeout(() => { if (sonDokunus === simdi) kapat(); }, 300);
+        }
+      } else if (sure < 350) {
+        // Dokunmatik: tek dokunuş yalnızca üst/alt çubukları gizler-gösterir (yanlışlıkla yakınlaşma ya da kapanma olmaz)
+        dlg.classList.toggle('vw--sade');
       }
     }
     mod = null; bas = null;
@@ -222,6 +226,7 @@ export function ac(liste, baslangic = 0, baslik = '') {
   let gosterildi = false;
   try { gosterildi = sessionStorage.getItem('vw-ipucu') === '1'; sessionStorage.setItem('vw-ipucu', '1'); } catch { /* gizli sekme */ }
   dlg.classList.toggle('vw--ipucu', !gosterildi);
+  dlg.classList.remove('vw--sade');
   document.documentElement.classList.add('vw-acik');
   dlg.showModal();
   dlg.focus({ preventScroll: true }); // odak çerçevesi kapat düğmesinde görünmesin

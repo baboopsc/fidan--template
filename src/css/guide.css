@@ -106,7 +106,7 @@ section[id] { scroll-margin-top: 100px; }
 
 /* ---------- Yardım şeridi ---------- */
 .guide-help { position: relative; isolation: isolate; overflow: hidden; display: flex; align-items: center; justify-content: space-between; gap: 28px; flex-wrap: wrap; padding: 44px 46px; border-radius: var(--r-lg); background: var(--ink); color: #fff; }
-.guide-help::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(31,46,27,.97) 0%, rgba(31,46,27,.9) 50%, rgba(31,46,27,.7) 100%), url("../img/hero-tarla.webp") center / cover no-repeat; }
+.guide-help::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(31,46,27,.97) 0%, rgba(31,46,27,.9) 50%, rgba(31,46,27,.7) 100%), url("../img/hero-rehber.webp") center / cover no-repeat; }
 .guide-help h2 { font-size: clamp(1.5rem, 2.6vw, 2rem); color: #fff; }
 .guide-help p { margin-top: 6px; color: rgba(255,255,255,.75); max-width: 52ch; }
 .guide-help__actions { display: flex; flex-wrap: wrap; gap: 10px; }

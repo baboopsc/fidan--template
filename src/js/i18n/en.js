@@ -276,7 +276,7 @@ export default {
     "guide.visit.t": "Visit our nursery",
     "guide.visit.p": "You can see our saplings on site at our nursery in Samandağ. Just call us before you come.",
     "viewer.zoom": "Zoom in",
-    "viewer.hint": "Double-tap to zoom",
+    "viewer.hint": "Pinch to zoom, swipe to browse",
     "viewer.hintDesk": "Double-click or scroll to zoom",
     "list.add": "Add to quote list",
     "list.added": "In your quote list",

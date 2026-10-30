@@ -55,7 +55,7 @@ a.topbar__item:hover { color: var(--ink); text-decoration: underline; }
 .page-hero--fidan { --ph-img: url("../img/zeytin-dali.webp"); }
 .page-hero--tesis { --ph-img: url("../img/hero-kayisi.webp"); }
 .page-hero--galeri { --ph-img: url("../img/hero-erik.webp"); }
-.page-hero--rehber { --ph-img: url("../img/hero-tarla.webp"); }
+.page-hero--rehber { --ph-img: url("../img/hero-rehber.webp"); }
 .page-hero--fidan::before, .page-hero--tesis::before, .page-hero--galeri::before, .page-hero--rehber::before { background:
     linear-gradient(90deg, var(--sage) 0%, rgba(200,213,196,.92) 34%, rgba(200,213,196,.35) 66%, rgba(200,213,196,.05) 100%),
     var(--ph-img) center 45% / cover no-repeat; }

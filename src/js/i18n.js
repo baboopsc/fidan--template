@@ -43,7 +43,7 @@ const TR = {
   'gallery.prev': 'Önceki',
   'gallery.next': 'Sonraki',
   'viewer.zoom': 'Yakınlaştır',
-  'viewer.hint': 'Yakınlaştırmak için iki kez dokunun',
+  'viewer.hint': 'İki parmakla yakınlaştırın, kaydırarak geçin',
   'viewer.hintDesk': 'Yakınlaştırmak için çift tıklayın ya da tekerleği kullanın',
   'modal.saplingCat': '{cat} fidanlarımız',
   'modal.noFruit': 'Meyve görseli yakında',
