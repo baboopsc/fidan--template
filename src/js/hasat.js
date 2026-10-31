@@ -5,7 +5,7 @@
      "Yıl boyunca" -> 12 ayın tamamı   |  "Kış aylarında" -> 12, 1, 2
    Ay yazmayan çeşitler ("Geç", "Erkenci" ...) takvimde gösterilmez; yanlış bilgi verilmez.
    ========================================================== */
-import { visibleCategories, inCategory } from './data.js';
+import { visibleCategories, inCategory, fidanImg, kucuk } from './data.js';
 import { lang, cat, shortName, t } from './i18n.js';
 import { esc } from './utils.js';
 
@@ -58,7 +58,7 @@ export function hasatKur(kok, acFn) {
       </div>
       ${satirlar.map(({ f, a }) => `
         <div class="harvest__row">
-          <button type="button" class="harvest__name" data-open="${f.id}">${esc(shortName(f))}</button>
+          <button type="button" class="harvest__name" data-open="${f.id}"><img src="${kucuk(fidanImg(f))}" alt="" width="30" height="30" loading="lazy"><span>${esc(shortName(f))}</span></button>
           ${AYLAR.map((_, i) => {
             if (!a.has(i)) return `<span class="harvest__c${i === buAy ? ' is-now' : ''}"></span>`;
             const bas = !a.has((i + 11) % 12) || i === 0, son = !a.has((i + 1) % 12) || i === 11;

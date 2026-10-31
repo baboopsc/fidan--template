@@ -15,7 +15,6 @@ import { ac as goruntuleyici } from './viewer.js';
 import { listede, ekle, cikar } from './liste.js';
 import { bildir } from './ui.js';
 import { hasatKur } from './hasat.js';
-import { karsilastirKur, karsilastirmada, degistir } from './karsilastir.js';
 import { sade, esc } from './utils.js';
 
 const $ = s => document.querySelector(s);
@@ -211,19 +210,6 @@ $('#mList').addEventListener('click', () => {
 });
 document.addEventListener('listechange', listeDugmesi);
 
-/* ---------- Karşılaştır düğmesi (ürün penceresi) ---------- */
-function cmpDugmesi() {
-  if (!acik) return;
-  const var_ = karsilastirmada(acik.id);
-  $('#mCmp').setAttribute('aria-pressed', String(var_));
-  $('#mCmp').classList.toggle('is-on', var_);
-  $('#mCmpTxt').textContent = t(var_ ? 'cmp.added' : 'cmp.add');
-}
-$('#mCmp').addEventListener('click', () => {
-  if (!acik) return;
-  if (!degistir(acik.id)) bildir(t('cmp.max'));
-});
-document.addEventListener('cmpchange', cmpDugmesi);
 
 /* ---------- Büyütme: meyve ya da fidan fotoğrafına basınca tam ekran görüntüleyici (js/viewer.js) ---------- */
 function sapEtiket(k) { return k.tekli ? t('modal.sapling') : t('modal.saplingCat', { cat: cat(acik?.category || '') }); }
@@ -277,7 +263,6 @@ function doldur(f) {
   $('#mSapList').innerHTML = boylar.map(([yas, cm]) =>
     `<li>${esc(t(TUPLU.has(f.slug) ? 'sap.potted' : 'sap.grafted'))} · ${esc(yas === 1 ? t('sap.age1') : t('sap.age', { n: yas }))} · <b>${esc(cm)} cm</b></li>`).join('');
   listeDugmesi();
-  cmpDugmesi();
   // WhatsApp: mesaj bu çeşidin adıyla hazır gelir ("Merhaba, Washington Navel Portakal Fidanı hakkında bilgi almak istiyorum.")
   $('#mWa').hidden = !SITE.whatsapp;
   $('#mWa').href = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(t('modal.wa.msg', { name: fullName(f) }))}`;
@@ -328,8 +313,6 @@ document.addEventListener('langchange', () => {
   ciz();
   if (acik) doldur(acik);
 });
-
-karsilastirKur(id => ac(id));
 
 /* ---------- Hasat takvimi ---------- */
 const hasatTur = hasatKur(document.getElementById('hasat'), id => ac(id));

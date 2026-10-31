@@ -260,3 +260,7 @@
 .hours-card > div { display: grid; margin-inline-end: auto; }
 .hours-card small { font-size: 13px; font-weight: 600; color: var(--mute); }
 .hours-card b { font-size: 15.5px; }
+
+/* Yorumlar koyu yeşil bantta */
+.reviews-panel .review { color: var(--ink); border-color: transparent; box-shadow: 0 24px 40px -28px rgba(0,0,0,.7); }
+.reviews-panel .reviews__badge { border-color: transparent; }
